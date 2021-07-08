@@ -8,13 +8,16 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "bootstrap": "^5.0.2",
     "core-js": "^3.6.5",
+    "t1c-sdk-js": "^3.5.0-RC2",
     "vue": "^3.0.0",
+    "vue-clipboard3": "^1.0.1",
     "vue-router": "^4.0.0-0",
-    "vuex": "^4.0.0-0",
-    "t1c-sdk-js": "^3.5.0-RC2"
+    "vuex": "^4.0.0-0"
   },
   "devDependencies": {
+    "@types/bootstrap": "^5.0.16",
     "@vue/cli-plugin-babel": "~4.5.0",
     "@vue/cli-plugin-eslint": "~4.5.0",
     "@vue/cli-plugin-router": "~4.5.0",

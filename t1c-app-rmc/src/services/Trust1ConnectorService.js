@@ -2,6 +2,8 @@ import { T1CClient, T1CConfig, T1CConfigOptions } from "t1c-sdk-js";
 
 let client = null;
 
+let errorClient = null;
+
 function makeid(length) {
   var result = "";
   var characters =
@@ -38,5 +40,14 @@ export default {
   },
   setClient(c) {
     client = c;
+  },
+  getErrorClient() {
+    return errorClient;
+  },
+  setErrorClient(c) {
+    errorClient = c;
+  },
+  getRand(length) {
+    return makeid(length);
   },
 };
