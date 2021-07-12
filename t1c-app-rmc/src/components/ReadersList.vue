@@ -5,6 +5,7 @@
       type="button"
       data-bs-toggle="dropdown"
       aria-expanded="false"
+      @click="getReaders"
     >
       Selected reader
     </button>
@@ -26,8 +27,26 @@ export default {
       readers: null,
     };
   },
-  methods: {},
+  methods: {
+    getReaders() {
+      if (Trust1ConnectorService.getClient() != null) {
+        Trust1ConnectorService.getClient()
+          .core()
+          .readersCardAvailable()
+          .then(
+            (res) => {
+              console.log(res.data);
+              this.readers = res.data;
+            },
+            (err) => {
+              console.log(err);
+            }
+          );
+      }
+    },
+  },
   mounted() {
+    if (Trust1ConnectorService.getClient() != null) {
       Trust1ConnectorService.getClient()
         .core()
         .readersCardAvailable()
@@ -40,6 +59,7 @@ export default {
             console.log(err);
           }
         );
+    }
   },
 };
 </script>
