@@ -22,6 +22,7 @@ export default {
   data: () => ({
     consentData: null,
   }),
+  emits: ["consented"],
   methods: {
     consent() {
       let range = document.createRange();
@@ -43,10 +44,10 @@ export default {
             Trust1ConnectorService.getClient()
               .core()
               .version()
-              .then((versionResult) =>
-                console.log("T1C running on core " + versionResult)
-              );
-            this.modal.hide();
+              .then((versionResult) => {
+                console.log("T1C running on core " + versionResult);
+                this.$emit("consented", true);
+              });
           },
           (err) => {
             console.error(err);
