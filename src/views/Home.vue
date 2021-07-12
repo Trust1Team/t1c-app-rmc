@@ -1,9 +1,6 @@
 <template>
   <div class="container">
     <h1>Trust1Connector</h1>
-
-    {{ consentRequired }}
-
     <ReadersList v-if="!consentRequired" />
     <Consent v-if="consentRequired" @consented="consented" />
   </div>
@@ -23,20 +20,8 @@ export default {
       consentRequired: false,
     };
   },
-  // computed: {
-  //   getConsentRequired() {
-  //     return this.consentRequired;
-  //   },
-  // },
-  // watch: {
-  //   consentRequiredRef(current, prev) {
-  //     console.log(current, prev);
-  //     this.consentRequired = current;
-  //   },
-  // },
   methods: {
     consented() {
-      console.log("consented", this.consentRequired);
       this.consentRequired = false;
     },
   },
@@ -53,17 +38,7 @@ export default {
       }
     );
   },
-  setup() {
-    // const consentRequiredRef = ref(false);
-    //
-    // onMounted(() => {
-    //
-    // });
-    //
-    // return {
-    //   consentRequiredRef,
-    // };
-  },
+
   components: { ReadersList, Consent },
 };
 </script>
