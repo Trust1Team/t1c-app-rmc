@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import Trust1ConnectorService from "../services/Trust1ConnectorService";
+import Trust1ConnectorService from "../../services/Trust1ConnectorService";
 
 export default {
   name: "Consent",

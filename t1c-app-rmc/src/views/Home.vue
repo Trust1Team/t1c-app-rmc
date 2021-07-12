@@ -10,8 +10,8 @@
 <script>
 // @ is an alias to /src
 import Trust1ConnectorService from "../services/Trust1ConnectorService";
-import ReadersList from "../components/ReadersList";
-import Consent from "../components/Consent";
+import ReadersList from "../components/core/ReadersList";
+import Consent from "../components/core/Consent";
 
 export default {
   name: "Home",
