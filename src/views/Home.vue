@@ -20,7 +20,6 @@ export default {
   }),
   methods: {
     consented() {
-      console.log("consented (parent)");
       if (Trust1ConnectorService.getErrorClient() != null) {
         Trust1ConnectorService.getErrorClient()
           .init()
