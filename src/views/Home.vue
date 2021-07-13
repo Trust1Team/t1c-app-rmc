@@ -11,7 +11,6 @@
 import Trust1ConnectorService from "../services/Trust1ConnectorService";
 import ReadersList from "../components/core/ReadersList";
 import Consent from "../components/core/Consent";
-// import { onMounted, ref } from "vue";
 
 export default {
   name: "Home",
@@ -26,6 +25,7 @@ export default {
     },
   },
   created() {
+    Trust1ConnectorService.getClient();
     Trust1ConnectorService.init().then(
       (res) => {
         this.consentRequired = false;
