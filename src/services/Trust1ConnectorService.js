@@ -19,7 +19,10 @@ export default {
   init() {
     // TODO make the variables configurable via docker
     // Return a initialised T1C client
-    if (client != null) return client;
+    if (client != null)
+      return new Promise((resolve) => {
+        resolve(client);
+      });
     else {
       return T1CClient.initialize(
         new T1CConfig(

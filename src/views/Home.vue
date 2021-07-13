@@ -1,7 +1,6 @@
 <template>
   <div class="container">
     <h1>Trust1Connector</h1>
-
     <ReadersList v-if="!consentRequired" />
     <Consent v-if="consentRequired" @consented="consented" />
   </div>
@@ -15,32 +14,18 @@ import Consent from "../components/core/Consent";
 
 export default {
   name: "Home",
-  data: () => ({
-    consentRequired: Boolean,
-  }),
+  data() {
+    return {
+      consentRequired: false,
+    };
+  },
   methods: {
     consented() {
-      if (Trust1ConnectorService.getErrorClient() != null) {
-        Trust1ConnectorService.getErrorClient()
-          .init()
-          .then(
-            (res) => {
-              this.consentRequired = false;
-              Trust1ConnectorService.setClient(res);
-            },
-            (err) => {
-              console.log(err);
-              this.consentRequired = true;
-              Trust1ConnectorService.setErrorClient(err.client);
-            }
-          );
-      } else {
-        // TODO error
-      }
+      this.consentRequired = false;
     },
   },
-  mounted() {
-    this.consentRequired = false;
+  created() {
+    Trust1ConnectorService.getClient();
     Trust1ConnectorService.init().then(
       (res) => {
         this.consentRequired = false;
@@ -53,6 +38,7 @@ export default {
       }
     );
   },
+
   components: { ReadersList, Consent },
 };
 </script>
