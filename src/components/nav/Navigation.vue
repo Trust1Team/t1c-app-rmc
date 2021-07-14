@@ -16,11 +16,9 @@
             Home
           </button>
         </router-link>
-        <router-link to="/modules">
-          <button type="button" class="list-group-item list-group-item-action">
-            Modules
-          </button>
-        </router-link>
+        <button type="button" class="list-group-item list-group-item-action">
+          Modules
+        </button>
         <router-link to="/file-explorer">
           <button type="button" class="list-group-item list-group-item-action">
             File explorer
@@ -118,6 +116,11 @@ export default {
 }
 
 .list-group-item:hover {
+  background-color: #d24d0d;
+  color: white;
+}
+
+.list-group-item:focus {
   background-color: #d24d0d;
   color: white;
 }
