@@ -1,16 +1,14 @@
 <template>
   <div class="container">
-    <div class="t1c-logo">
-      <img src="../assets/t1c-logo-full.png" alt="t1c-logo" />
+    <Consent v-if="consentRequired" @consented="consented" />
+    <div v-if="!consentRequired">
+      <h1>Device information</h1>
+      <DeviceInfo :info="info" :js-version="jsVersion" />
+
+      <h1>User information</h1>
+      <UserInfo :info="info" />
     </div>
 
-    <Consent v-if="consentRequired" @consented="consented" />
-
-    <h1>Device information</h1>
-    <DeviceInfo :info="info" :js-version="jsVersion" />
-
-    <h1>User information</h1>
-    <UserInfo :info="info" />
   </div>
 </template>
 
@@ -75,12 +73,6 @@ export default {
 </script>
 
 <style scoped>
-.t1c-logo {
-  margin-top: 30px;
-  display: flex;
-  justify-content: center;
-  height: 100px;
-}
 
 
 </style>
