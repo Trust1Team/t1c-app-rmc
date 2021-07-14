@@ -35,7 +35,6 @@ export default {
           .readersCardAvailable()
           .then(
             (res) => {
-              console.log(res.data);
               this.readers = res.data;
             },
             (err) => {
@@ -45,14 +44,13 @@ export default {
       }
     },
   },
-  mounted() {
+  created() {
     if (Trust1ConnectorService.getClient() != null) {
       Trust1ConnectorService.getClient()
         .core()
         .readersCardAvailable()
         .then(
           (res) => {
-            console.log(res.data);
             this.readers = res.data;
           },
           (err) => {

@@ -1,8 +1,4 @@
 <template>
-<!--  <header id="nav">-->
-
-<!--  </header>-->
-
   <div class="app-container">
     <Navigation />
 
