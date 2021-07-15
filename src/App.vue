@@ -1,8 +1,10 @@
 <template>
   <div class="app-container">
     <Navigation />
-
     <div id="content">
+      <div class="header">
+      <Header />
+      </div>
       <router-view />
     </div>
   </div>
@@ -26,10 +28,14 @@
 // @ is an alias to /src
 
 import Navigation from "./components/nav/Navigation";
+import Header from "./components/nav/Header";
 
 export default {
   name: "App",
-  components: { Navigation },
+  components: {
+    Navigation,
+    Header
+  },
 };
 </script>
 
@@ -78,5 +84,10 @@ export default {
   margin-bottom: 10px;
   width: 100%;
   min-height: calc(100vh - 130px);
+}
+
+.header {
+  width: 100%;
+  height: 65px;
 }
 </style>

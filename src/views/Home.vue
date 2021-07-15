@@ -1,6 +1,8 @@
 <template>
   <div class="container">
-    <h1>Trust1Connector</h1>
+    <h1 style="text-align: center; color: #D74112">Connect your Reader</h1>
+    <p style="text-align: center;">Please connect your <b>smartcard reader</b> to your computer.</p>
+    <p style="text-align: center;">Once it is connected, this page will automatically detect it</p>
     <ReadersList v-if="!consentRequired" />
     <Consent v-if="consentRequired" @consented="consented" />
   </div>
