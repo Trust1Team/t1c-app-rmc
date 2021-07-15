@@ -56,7 +56,7 @@ export default {
     },
   },
   props: {},
-  mounted() {
+  created() {
     this.consentData = Trust1ConnectorService.getRand(15);
   },
 };

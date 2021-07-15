@@ -1,12 +1,12 @@
 <template>
-  <header id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </header>
+  <div class="app-container">
+    <Navigation />
 
-  <div id="content">
-    <router-view />
+    <div id="content">
+      <router-view />
+    </div>
   </div>
+
 <!--  <footer id="footer">-->
 <!--    <div class="logo">-->
 <!--      <img src="./assets/t1c-stamp.svg" alt="T1C logo" />-->
@@ -22,6 +22,17 @@
 <!--  </footer>-->
 </template>
 
+<script>
+// @ is an alias to /src
+
+import Navigation from "./components/nav/Navigation";
+
+export default {
+  name: "App",
+  components: { Navigation },
+};
+</script>
+
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -30,24 +41,14 @@
   color: #2c3e50;
 }
 
-#nav {
+
+.app-container {
   width: 100%;
-  height: 50px;
-  background-color: #d9400e;
+  min-height: 100vh;
   display: flex;
   flex-direction: row;
-  align-items: center;
 }
 
-#nav a {
-  margin: 10px;
-  font-weight: bold;
-  color: white;
-}
-
-#nav a.router-link-exact-active {
-  color: white;
-}
 
 #footer {
   height: 50px;
@@ -77,7 +78,5 @@
   margin-bottom: 10px;
   width: 100%;
   min-height: calc(100vh - 130px);
-  display: flex;
-  justify-content: center;
 }
 </style>
