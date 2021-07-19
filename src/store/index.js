@@ -1,11 +1,11 @@
 import { createStore } from "vuex";
-import * as ConnectedCards from "./modules/ConnectedCards"
+import * as SelectedReader from "./modules/SelectedReader";
 
 export default createStore({
   state: {},
   mutations: {},
   actions: {},
   modules: {
-    ConnectedCards,
+    SelectedReader,
   },
 });
