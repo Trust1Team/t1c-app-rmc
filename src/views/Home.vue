@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h1>Trust1Connector</h1>
+
     <ReadersList v-if="!consentRequired" />
     <Consent v-if="consentRequired" @consented="consented" />
   </div>

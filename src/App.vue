@@ -1,35 +1,41 @@
 <template>
   <div class="app-container">
     <Navigation />
-
     <div id="content">
+      <div class="header">
+        <Header />
+      </div>
       <router-view />
     </div>
   </div>
 
-<!--  <footer id="footer">-->
-<!--    <div class="logo">-->
-<!--      <img src="./assets/t1c-stamp.svg" alt="T1C logo" />-->
-<!--    </div>-->
-<!--    <div class="copyright">-->
-<!--      <p>-->
-<!--        This service is provided free of charge, and is intended for private use-->
-<!--        only. No personal info is saved when using this service.-->
-<!--      </p>-->
-<!--      <p>Copyright 2021 Trust1Team - All rights reserved</p>-->
-<!--    </div>-->
-<!--    <div class="i18n">NL EN</div>-->
-<!--  </footer>-->
+  <!--  <footer id="footer">-->
+  <!--    <div class="logo">-->
+  <!--      <img src="./assets/t1c-stamp.svg" alt="T1C logo" />-->
+  <!--    </div>-->
+  <!--    <div class="copyright">-->
+  <!--      <p>-->
+  <!--        This service is provided free of charge, and is intended for private use-->
+  <!--        only. No personal info is saved when using this service.-->
+  <!--      </p>-->
+  <!--      <p>Copyright 2021 Trust1Team - All rights reserved</p>-->
+  <!--    </div>-->
+  <!--    <div class="i18n">NL EN</div>-->
+  <!--  </footer>-->
 </template>
 
 <script>
 // @ is an alias to /src
 
 import Navigation from "./components/nav/Navigation";
+import Header from "./components/nav/Header";
 
 export default {
   name: "App",
-  components: { Navigation },
+  components: {
+    Navigation,
+    Header
+  },
 };
 </script>
 
@@ -78,5 +84,10 @@ export default {
   margin-bottom: 10px;
   width: 100%;
   min-height: calc(100vh - 130px);
+}
+
+.header {
+  width: 100%;
+  height: 65px;
 }
 </style>
