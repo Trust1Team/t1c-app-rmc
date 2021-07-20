@@ -1,17 +1,17 @@
 <template>
-  <h1>Provide your consent</h1>
-  <p>
-    Please provide your <strong>consent</strong> to use the Trust1Connector.
-  </p>
-  <p>
-    The button below states that you consent the Trust1Connector to read your
-    card/token information.
-  </p>
-  <p ref="consentData" class="consent-data">{{ consentData }}</p>
+  <div class="consent-container">
+    <p>To use the Read My Cards application we need your consent.</p>
+    <p>
+      Please click on the button below to provide your <strong>consent</strong> to
+      continue.
+    </p>
+    <p ref="consentData" class="consent-data">{{ consentData }}</p>
 
-  <button type="button" class="btn btn-primary" @click="consent">
-    Consent
-  </button>
+    <button type="button" class="btn btn-primary consent-btn" @click="consent">
+      Consent
+    </button>
+  </div>
+
 </template>
 
 <script>
@@ -64,7 +64,22 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.consent-container {
+  margin-top: 50px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .consent-data {
   opacity: 0;
+}
+
+.consent-btn {
+  width: 130px;
+  height: 50px;
+  font-weight: bold;
 }
 </style>
