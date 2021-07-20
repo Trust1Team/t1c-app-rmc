@@ -1,6 +1,14 @@
 <template>
   <div class="container">
-    <ReadersList v-if="!consentRequired" />
+    <div v-if="!consentRequired">
+      <div v-if="pageView === 0">
+        <ReadersList />
+      </div>
+      <div v-if="pageView === 1">
+        Page details
+      </div>
+    </div>
+
     <Consent v-if="consentRequired" @consented="consented" />
   </div>
 </template>
@@ -16,6 +24,7 @@ export default {
   data() {
     return {
       consentRequired: false,
+      pageView: 0,
     };
   },
   methods: {

@@ -1,7 +1,6 @@
 <template>
   <div class="app-container">
     <Navigation />
-
     <div id="content">
       <div class="t1c-logo">
         <img src="./assets/t1c-logo-full.png" alt="t1c-logo" />
@@ -32,7 +31,9 @@ import Navigation from "./components/nav/Navigation";
 
 export default {
   name: "App",
-  components: { Navigation },
+  components: {
+    Navigation,
+  },
 };
 </script>
 
@@ -42,6 +43,7 @@ export default {
   display: flex;
   justify-content: center;
   height: 100px;
+  margin-bottom: 30px;
 }
 
 #app {
@@ -96,5 +98,10 @@ export default {
   margin-bottom: 10px;
   width: 100%;
   min-height: calc(100vh - 130px);
+}
+
+.header {
+  width: 100%;
+  height: 65px;
 }
 </style>
