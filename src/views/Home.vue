@@ -10,6 +10,7 @@
             <i class="fas fa-arrow-left go-back-icon"></i>
           </button>
         </div>
+        <GenericCardView :reader-id="readerId" :module="module" />
       </div>
     </div>
 
@@ -22,6 +23,7 @@
 import Trust1ConnectorService from "../services/Trust1ConnectorService";
 import ReadersList from "../components/core/ReadersList";
 import Consent from "../components/core/Consent";
+import GenericCardView from "../components/modules/GenericCardView";
 
 export default {
   name: "Home",
@@ -29,6 +31,7 @@ export default {
     return {
       consentRequired: false,
       readerId: null,
+      module: null,
       pageView: 0,
     };
   },
@@ -36,8 +39,9 @@ export default {
     consented() {
       this.consentRequired = false;
     },
-    readerSelected(readerId) {
-      this.readerId = readerId;
+    readerSelected(evt) {
+      this.readerId = evt.readerId;
+      this.module = evt.module;
       this.pageView = 1;
       // TODO add to vue store
     },
@@ -59,7 +63,7 @@ export default {
     );
   },
 
-  components: { ReadersList, Consent },
+  components: { ReadersList, Consent, GenericCardView },
 };
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->

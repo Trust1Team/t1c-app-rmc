@@ -42,7 +42,15 @@
           <i class="fas fa-keyboard"></i>
         </span>
       </div>
-      <div @click="selectReader(reader.id)" class="reader-select">
+      <div
+        @click="
+          selectReader(
+            reader.id,
+            reader.card.modules[0] ? reader.card.modules[0] : null
+          )
+        "
+        class="reader-select"
+      >
         <svg
           version="1.1"
           id="Capa_1"
@@ -105,11 +113,14 @@ export default {
         }
       );
     },
-    selectReader(readerId) {
-      this.$emit("readerSelected", readerId);
+    selectReader(readerId, module) {
+      this.$emit("readerSelected", {
+        readerId: readerId,
+        module: module,
+      });
     },
     copyAtr(reader) {
-      console.log(reader.card.atr);
+      this.copyTextToClipboard(reader.card.atr);
     },
     copyReaderName(reader) {
       this.copyTextToClipboard(reader.name);
@@ -177,6 +188,11 @@ export default {
   align-items: center;
   grid-gap: 10px;
   margin-bottom: 15px;
+  border-bottom: 5px solid #f0f0f0;
+}
+
+.reader-item:hover {
+  border-bottom: 5px solid #dddddd;
 }
 
 .reader-name {
