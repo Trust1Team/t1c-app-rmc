@@ -5,18 +5,32 @@
     <p>Once it is connected, this page will automatically detect it</p>
   </div>
 
-  <div class="readers-header" v-if="readers">
+  <div class="readers-header" v-if="readers && readers.length > 0">
     <h1>Choose your Reader</h1>
-    <p v-if="readers">Please select the reader you want to use</p>
+    <p>Please select the reader you want to use</p>
   </div>
 
-  <div class="readers-container">
+  <div class="readers-header" v-if="readers && readers.length === 0">
+    <h1>Could not find any readers connected</h1>
+    <p>Please connect your smart card reader and refresh the list</p>
+  </div>
+
+  <div class="refresh">
+    <button @click="getReaders()" class="btn btn-primary">
+      <i class="fas fa-sync-alt refresh-icon"></i>
+    </button>
+  </div>
+
+  <div class="readers-container" v-if="readers && readers.length > 0">
     <div v-for="reader in readers" v-bind:key="reader.id" class="reader-item">
-      <div class="reader-name">
+      <div @click="copyReaderName(reader)" class="reader-name">
         {{ reader.name }}
       </div>
       <div>
-        {{ reader.card.modules[0] }}
+        <span v-if="reader.card.modules" @click="copyAtr(reader)">{{
+          reader.card.modules[0]
+        }}</span>
+        <span v-else>No module detected</span>
       </div>
       <div>
         <span
@@ -69,9 +83,9 @@ export default {
       readers: null,
     };
   },
+  emits: ["readerSelected"],
   methods: {
     getReaders() {
-      console.log("Get readers");
       Trust1ConnectorService.init().then(
         (client) => {
           client
@@ -92,10 +106,52 @@ export default {
       );
     },
     selectReader(readerId) {
-      console.log(readerId);
+      this.$emit("readerSelected", readerId);
     },
-    copyAtr() {},
-    copyReaderName() {},
+    copyAtr(reader) {
+      console.log(reader.card.atr);
+    },
+    copyReaderName(reader) {
+      this.copyTextToClipboard(reader.name);
+    },
+    fallbackCopyTextToClipboard(text) {
+      var textArea = document.createElement("textarea");
+      textArea.value = text;
+
+      // Avoid scrolling to bottom
+      textArea.style.top = "0";
+      textArea.style.left = "0";
+      textArea.style.position = "fixed";
+
+      document.body.appendChild(textArea);
+      textArea.focus();
+      textArea.select();
+
+      try {
+        var successful = document.execCommand("copy");
+        var msg = successful ? "successful" : "unsuccessful";
+        console.log("Fallback: Copying text command was " + msg);
+      } catch (err) {
+        console.error("Fallback: Oops, unable to copy", err);
+      }
+
+      document.body.removeChild(textArea);
+    },
+    copyTextToClipboard(text) {
+      if (!navigator.clipboard) {
+        this.fallbackCopyTextToClipboard(text);
+        return;
+      }
+      // TODO use toast for copy clipboard notification
+      navigator.clipboard.writeText(text).then(
+        function () {
+          console.log("Async: Copying to clipboard was successful!");
+        },
+        function (err) {
+          console.error("Async: Could not copy text: ", err);
+        }
+      );
+    },
   },
   created() {
     this.getReaders();
@@ -173,5 +229,19 @@ a {
 
 .isNotPinpad {
   color: #ff0000;
+}
+
+.refresh {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.refresh-icon {
+  transition: all 0.2s ease-in;
+}
+
+.refresh button:hover .refresh-icon {
+  transform: rotate(180deg);
 }
 </style>

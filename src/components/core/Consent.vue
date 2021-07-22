@@ -2,16 +2,14 @@
   <div class="consent-container">
     <p>To use the Read My Cards application we need your consent.</p>
     <p>
-      Please click on the button below to provide your <strong>consent</strong> to
-      continue.
+      Please click on the button below to provide your
+      <strong>consent</strong> to continue.
     </p>
-    <p ref="consentData" class="consent-data">{{ consentData }}</p>
 
     <button type="button" class="btn btn-primary consent-btn" @click="consent">
       Consent
     </button>
   </div>
-
 </template>
 
 <script>
@@ -25,18 +23,10 @@ export default {
   emits: ["consented"],
   methods: {
     consent() {
-      let range = document.createRange();
-      range.selectNode(this.$refs.consentData);
-      window.getSelection().addRange(range);
-      try {
-        document.execCommand("copy");
-      } catch (err) {
-        console.log("Oops, unable to copy");
-      }
-      window.getSelection().removeRange(range);
+      this.copyTextToClipboard(this.consentData);
       Trust1ConnectorService.getErrorClient()
         .core()
-        .getImplicitConsent(this.$refs.consentData.textContent)
+        .getImplicitConsent(this.consentData)
         .then(
           (consentRes) => {
             Trust1ConnectorService.setClient(consentRes);
@@ -46,13 +36,51 @@ export default {
               .version()
               .then((versionResult) => {
                 console.log("T1C running on core " + versionResult);
-                this.$emit("consented", true);
+                this.$emit("consented");
               });
           },
           (err) => {
             console.error(err);
           }
         );
+    },
+    fallbackCopyTextToClipboard(text) {
+      var textArea = document.createElement("textarea");
+      textArea.value = text;
+
+      // Avoid scrolling to bottom
+      textArea.style.top = "0";
+      textArea.style.left = "0";
+      textArea.style.position = "fixed";
+
+      document.body.appendChild(textArea);
+      textArea.focus();
+      textArea.select();
+
+      try {
+        var successful = document.execCommand("copy");
+        var msg = successful ? "successful" : "unsuccessful";
+        console.log("Fallback: Copying text command was " + msg);
+      } catch (err) {
+        console.error("Fallback: Oops, unable to copy", err);
+      }
+
+      document.body.removeChild(textArea);
+    },
+    copyTextToClipboard(text) {
+      if (!navigator.clipboard) {
+        this.fallbackCopyTextToClipboard(text);
+        return;
+      }
+      // TODO use toast for copy clipboard notification
+      navigator.clipboard.writeText(text).then(
+        function () {
+          console.log("Async: Copying to clipboard was successful!");
+        },
+        function (err) {
+          console.error("Async: Could not copy text: ", err);
+        }
+      );
     },
   },
   props: {},
