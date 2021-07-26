@@ -43,6 +43,7 @@ export default {
       this.readerId = evt.readerId;
       this.module = evt.module;
       this.pageView = 1;
+      console.log(this.readerId);
       // TODO add to vue store
     },
     goBack() {
