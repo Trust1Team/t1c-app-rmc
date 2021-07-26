@@ -46,7 +46,9 @@
         @click="
           selectReader(
             reader.id,
-            reader.card.modules[0] ? reader.card.modules[0] : null
+            reader.card && reader.card.modules && reader.card.modules[0]
+              ? reader.card.modules[0]
+              : null
           )
         "
         class="reader-select"
@@ -116,7 +118,7 @@ export default {
     selectReader(readerId, module) {
       this.$emit("readerSelected", {
         readerId: readerId,
-        module: module,
+        module: module ? module : "beid",
       });
     },
     copyAtr(reader) {
