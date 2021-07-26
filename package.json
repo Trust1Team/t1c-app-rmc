@@ -6,7 +6,7 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "docker-build": "docker build -t trust1team/read-my-cards ."
+    "docker-build": "docker build -t eu.gcr.io/t1t-pre-prod/read-my-cards ."
   },
   "dependencies": {
     "bootstrap": "^5.0.2",

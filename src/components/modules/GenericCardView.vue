@@ -32,7 +32,6 @@ export default {
       if (this.client && this.module) {
         this.client.allData(this.module).then(
           (allDataRes) => {
-            console.log(allDataRes.data);
             this.biometric = allDataRes.data.biometric;
             this.address = allDataRes.data.address;
             this.picture = allDataRes.data.picture;

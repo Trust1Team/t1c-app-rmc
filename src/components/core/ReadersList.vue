@@ -23,7 +23,7 @@
 
   <div class="readers-container" v-if="readers && readers.length > 0">
     <div v-for="reader in readers" v-bind:key="reader.id" class="reader-item">
-      <div @click="copyReaderName(reader)" class="reader-name">
+      <div @click="copyReaderId(reader)" class="reader-name">
         {{ reader.name }}
       </div>
       <div>
@@ -122,8 +122,8 @@ export default {
     copyAtr(reader) {
       this.copyTextToClipboard(reader.card.atr);
     },
-    copyReaderName(reader) {
-      this.copyTextToClipboard(reader.name);
+    copyReaderId(reader) {
+      this.copyTextToClipboard(reader.id);
     },
     fallbackCopyTextToClipboard(text) {
       var textArea = document.createElement("textarea");
