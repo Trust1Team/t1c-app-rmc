@@ -17,7 +17,8 @@ function makeid(length) {
 
 export default {
   init() {
-    // TODO make the variables configurable via docker
+    console.log(window.VUE_APP_ENV_T1C_URL);
+    console.log(window.VUE_APP_ENV_T1C_PORT);
     // Return a initialised T1C client
     if (client != null)
       return new Promise((resolve) => {
@@ -27,8 +28,10 @@ export default {
       return T1CClient.initialize(
         new T1CConfig(
           new T1CConfigOptions(
-            "https://t1c.t1t.io",
-            51883,
+            window.VUE_APP_ENV_T1C_URL
+              ? window.VUE_APP_ENV_T1C_URL
+              : "https://t1c.t1t.io",
+            window.VUE_APP_ENV_T1C_PORT ? window.VUE_APP_ENV_T1C_PORT : 51883,
             null,
             null,
             null,
