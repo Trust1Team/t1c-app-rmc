@@ -17,8 +17,6 @@ function makeid(length) {
 
 export default {
   init() {
-    console.log(window.VUE_APP_ENV_T1C_URL);
-    console.log(window.VUE_APP_ENV_T1C_PORT);
     // Return a initialised T1C client
     if (client != null)
       return new Promise((resolve) => {
