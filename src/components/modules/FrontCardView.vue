@@ -40,7 +40,7 @@
         <div class="tag col-6" >
           Geboorteplaats en -datum/Place and date of birth
         </div>
-        <div class="data float-right col-2">Geslacht/Sex</div>
+        <div class="data float-right col-2 small-font">Geslacht/Sex</div>
       </div>
 
       <div class="row">
@@ -91,10 +91,10 @@
         <div class="tag col-12">&nbsp;</div>
       </div>
       <div class="row">
-        <div class="tag" style="width: 100%">&nbsp;</div>
+        <div class="tag col-12">&nbsp;</div>
       </div>
       <div class="row">
-        <div class="tag" style="width: 100%">&nbsp;</div>
+        <div class="tag col-12">&nbsp;</div>
       </div>
       <div class="row">
         <img
@@ -146,5 +146,9 @@ export default {
   bottom: 0;
   margin-bottom: 5px;
   width: 100px;
+}
+
+.small-font {
+  font-size: 8px !important;
 }
 </style>

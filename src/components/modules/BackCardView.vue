@@ -32,6 +32,7 @@
         <div class="tag">&nbsp;</div>
         <div class="tag">&nbsp;</div>
         <div class="tag">&nbsp;</div>
+        <div class="tag">&nbsp;</div>
       </div>
       <div class="row">
         <div class="tag signature col-12">{{ biometric.signature }}</div>

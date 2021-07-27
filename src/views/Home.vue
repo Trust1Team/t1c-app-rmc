@@ -10,7 +10,8 @@
             <i class="fas fa-arrow-left go-back-icon"></i>
           </button>
         </div>
-        <GenericCardView :reader-id="readerId" :module="module" />
+        <br>
+        <GenericCardView v-if="readerName" :reader-id="readerId" :module="module" :reader-name="readerName" />
       </div>
     </div>
 
@@ -31,6 +32,7 @@ export default {
     return {
       consentRequired: false,
       readerId: null,
+      readerName: null,
       module: null,
       pageView: 0,
     };
@@ -41,9 +43,9 @@ export default {
     },
     readerSelected(evt) {
       this.readerId = evt.readerId;
+      this.readerName = evt.readerName;
       this.module = evt.module;
       this.pageView = 1;
-      console.log(this.readerId);
       // TODO add to vue store
     },
     goBack() {

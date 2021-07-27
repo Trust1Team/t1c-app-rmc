@@ -45,7 +45,7 @@
       <div
         @click="
           selectReader(
-            reader.id,
+            reader.id, reader.name,
             reader.card && reader.card.modules && reader.card.modules[0]
               ? reader.card.modules[0]
               : null
@@ -115,9 +115,10 @@ export default {
         }
       );
     },
-    selectReader(readerId, module) {
+    selectReader(readerId, readerName, module) {
       this.$emit("readerSelected", {
         readerId: readerId,
+        readerName: readerName,
         module: module ? module : "beid",
       });
     },
