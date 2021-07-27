@@ -23,24 +23,34 @@
     <div class="card-body">
       <div class="row">
         <div class="tag" style="width: 30%">Naam/Name</div>
-        <div class="data" style="width: 50%"><b>{{ biometric.name }}</b></div>
+        <div class="data" style="width: 50%">
+          <b>{{ biometric.name }}</b>
+        </div>
       </div>
 
       <div class="row">
         <div class="tag" style="width: 30%">Voornamen/Given names</div>
-        <div class="data" style="width: 50%"><b>{{ biometric.firstNames + " " + biometric.thirdName }}</b></div>
+        <div class="data" style="width: 50%">
+          <b>{{ biometric.firstNames + " " + biometric.thirdName }}</b>
+        </div>
       </div>
 
       <div class="row">
         <div class="tag" style="width: 30%"></div>
-        <div class="tag" style="width: 50%">Geboorteplaats en -datum/Place and date of birth</div>
+        <div class="tag" style="width: 50%">
+          Geboorteplaats en -datum/Place and date of birth
+        </div>
         <div class="data float-right" style="width: 20%">Geslacht/Sex</div>
       </div>
 
       <div class="row">
         <div class="tag" style="width: 30%"></div>
-        <div class="data" style="width: 50%"><b>{{ biometric.birthLocation + " " + biometric.birthDate}}</b></div>
-        <div class="data float-right" style="width: 20%"><b>{{ biometric.sex }}</b></div>
+        <div class="data" style="width: 50%">
+          <b>{{ biometric.birthLocation + " " + biometric.birthDate }}</b>
+        </div>
+        <div class="data float-right" style="width: 20%">
+          <b>{{ biometric.sex }}</b>
+        </div>
       </div>
 
       <div class="row">
@@ -49,7 +59,9 @@
       </div>
       <div class="row">
         <div class="tag" style="width: 30%"></div>
-        <div class="data" style="width: 50%">Nationality <b>{{ biometric.nationalNumber }}</b></div>
+        <div class="data" style="width: 50%">
+          Nationality <b>{{ biometric.nationalNumber }}</b>
+        </div>
       </div>
       <div class="row">
         <div class="tag" style="width: 30%"></div>
@@ -57,13 +69,23 @@
       </div>
       <div class="row">
         <div class="tag" style="width: 30%"></div>
-        <div class="data" style="width: 50%"><b>{{ biometric.cardNumber }}</b></div>
+        <div class="data" style="width: 50%">
+          <b>{{ biometric.cardNumber }}</b>
+        </div>
       </div>
       <div class="row">
-        <div class="tag" style="width: 50%">Geldig van - tot/Valid from - until</div>
+        <div class="tag" style="width: 50%">
+          Geldig van - tot/Valid from - until
+        </div>
       </div>
       <div class="row">
-        <div class="data" style="width: 50%"><b>{{ biometric.cardValidityDateBegin + " - " + biometric.cardValidityDateEnd }}</b></div>
+        <div class="data" style="width: 50%">
+          <b>{{
+            biometric.cardValidityDateBegin +
+            " - " +
+            biometric.cardValidityDateEnd
+          }}</b>
+        </div>
       </div>
       <div class="row">
         <div class="tag" style="width: 100%">&nbsp;</div>
@@ -75,7 +97,11 @@
         <div class="tag" style="width: 100%">&nbsp;</div>
       </div>
       <div class="row">
-        <img class="image" src="../../assets/be_id_card_45x35mm.jpg" alt="">
+        <img
+          class="image"
+          :src="'data:image/png;base64,' + picture.picture"
+          alt=""
+        />
       </div>
     </div>
   </div>
@@ -84,8 +110,8 @@
 <script>
 export default {
   name: "FrontCardView",
-  props:["biometric", "picture"]
-}
+  props: ["biometric", "picture"],
+};
 </script>
 
 <style scoped>
