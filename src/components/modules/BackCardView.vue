@@ -2,34 +2,39 @@
   <div class="card">
     <div class="card-body">
       <div class="row">
-        <div class="tag" style="width: 50%">Identificatienummer van het Rijksregister</div>
-        <div class="data" style="width: 50%"></div>
+        <div class="tag col-6">Identificatienummer van het Rijksregister</div>
+        <div class="data col-6"></div>
       </div>
 
       <div class="row">
-        <div class="tag" style="width: 50%">Identification number of the National Register</div>
-        <div class="data" style="width: 50%"></div>
+        <div class="tag col-6">Identification number of the National Register</div>
+        <div class="data col-6"></div>
       </div>
 
       <div class="row">
-        <div class="tag" style="width: 50%"><b>{{ biometric.chipNumber }}</b></div>
+        <div class="tag col-6"><b>{{ biometric.chipNumber }}</b></div>
       </div>
 
       <div class="row">
-        <div class="tag" style="width: 100%">&nbsp;</div>
+        <div class="tag col-12">&nbsp;</div>
       </div>
 
       <div class="row">
-        <div class="tag" style="width: 50%">Plaats van afgifte/Place of issue</div>
+        <div class="tag col-6">Plaats van afgifte/Place of issue</div>
       </div>
       <div class="row">
-        <div class="data" style="width: 30%"><b>{{ biometric.cardDeliveryMunicipality }}</b></div>
+        <div class="data col-4"><b>{{ biometric.cardDeliveryMunicipality }}</b></div>
       </div>
       <div class="row">
-        <div class="tag" style="width: 100%">&nbsp;</div>
+        <div class="tag">&nbsp;</div>
+        <div class="tag">&nbsp;</div>
+        <div class="tag">&nbsp;</div>
+        <div class="tag">&nbsp;</div>
+        <div class="tag">&nbsp;</div>
+        <div class="tag">&nbsp;</div>
       </div>
       <div class="row">
-        <div class="tag signature" style="width: 100%">{{ biometric.signature }}</div>
+        <div class="tag signature col-12">{{ biometric.signature }}</div>
       </div>
     </div>
   </div>
