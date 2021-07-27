@@ -41,27 +41,28 @@ export default {
     getAllData() {
       if (this.client && this.module) {
         this.client.allData(this.module).then(
-            (allDataRes) => {
-              this.biometric = allDataRes.data.biometric;
-              this.address = allDataRes.data.address;
-              this.picture = allDataRes.data.picture;
-              console.log(this.biometric)},
-            (err) => {
-              console.error("Could not fetch alldata", err);
-            }
+          (allDataRes) => {
+            this.biometric = allDataRes.data.biometric;
+            this.address = allDataRes.data.address;
+            this.picture = allDataRes.data.picture;
+            console.log(this.biometric);
+          },
+          (err) => {
+            console.error("Could not fetch alldata", err);
+          }
         );
       }
     },
   },
   created() {
     Trust1ConnectorService.init().then(
-        (client) => {
-          this.client = client.generic(this.readerId);
-          this.getAllData(this.readerId);
-        },
-        (err) => {
-          console.error(err);
-        }
+      (client) => {
+        this.client = client.generic(this.readerId);
+        this.getAllData(this.readerId);
+      },
+      (err) => {
+        console.error(err);
+      }
     );
   },
 };
