@@ -1,11 +1,14 @@
 import { createStore } from "vuex";
-import * as SelectedReader from "./modules/SelectedReader";
+import { Reader } from "./modules/Reader";
+import { Card } from "./modules/Card";
 
 export default createStore({
   state: {},
   mutations: {},
   actions: {},
+  getters: {},
   modules: {
-    SelectedReader,
+    reader: Reader,
+    card: Card,
   },
 });
