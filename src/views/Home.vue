@@ -15,15 +15,16 @@
           <Loading :show="loading"></Loading>
         </div>
         <GenericCardView
-          :biometric="biometric"
-          :picture="picture"
-          :address="address"
-          :rootCertificate="rootCertificate"
-          :intermediateCertificates="intermediateCertificates"
-          :authenticationCertificate="authenticationCertificate"
-          :nonRepudiationCertificate="nonRepudiationCertificate"
-          :encryptionCertificate="encryptionCertificate"
-          :issuerCertificate="issuerCertificate"
+          v-if="!loading"
+          :biometric="getBiometric"
+          :picture="getPicture"
+          :address="getAddress"
+          :rootCertificate="getRootCertificate"
+          :intermediateCertificates="getIntermediateCertificates"
+          :authenticationCertificate="getAuthenticationCertificate"
+          :nonRepudiationCertificate="getNonRepudiationCertificate"
+          :encryptionCertificate="getEncryptionCertificate"
+          :issuerCertificate="getIssuerCertificate"
         />
       </div>
     </div>
@@ -45,19 +46,8 @@ export default {
   data() {
     return {
       loading: true,
-      readerId: null,
-      module: null,
       consentRequired: false,
       pageView: 0,
-      biometric: null,
-      address: null,
-      picture: null,
-      rootCertificate: null,
-      intermediateCertificates: null,
-      authenticationCertificate: null,
-      nonRepudiationCertificate: null,
-      encryptionCertificate: null,
-      issuerCertificate: null,
     };
   },
   methods: {
@@ -75,7 +65,6 @@ export default {
       this.pageView = 0;
     },
     getAllData() {
-      this.resetCardData();
       this.loading = true;
       if (this.getReader && this.getReader.id) {
         const module = this.getReader.card.module
@@ -87,9 +76,9 @@ export default {
             c.allData(module).then(
               (allDataRes) => {
                 this.loading = false;
-                this.biometric = allDataRes.data.biometric;
-                this.address = allDataRes.data.address;
-                this.picture = allDataRes.data.picture;
+                this.$store.dispatch("card/setAllData", allDataRes).then(() => {
+                  this.loading = false;
+                });
               },
               (err) => {
                 console.error("Could not fetch alldata", err);
@@ -101,17 +90,6 @@ export default {
           }
         );
       }
-    },
-    resetCardData() {
-      this.biometric = null;
-      this.address = null;
-      this.picture = null;
-      this.rootCertificate = null;
-      this.intermediateCertificates = null;
-      this.authenticationCertificate = null;
-      this.nonRepudiationCertificate = null;
-      this.encryptionCertificate = null;
-      this.issuerCertificate = null;
     },
   },
   created() {
@@ -134,6 +112,33 @@ export default {
   computed: {
     getReader() {
       return this.$store.getters["reader/getSelectedReader"];
+    },
+    getBiometric() {
+      return this.$store.getters["card/getBiometric"];
+    },
+    getAddress() {
+      return this.$store.getters["card/getAddress"];
+    },
+    getPicture() {
+      return this.$store.getters["card/getPicture"];
+    },
+    getRootCertificate() {
+      return this.$store.getters["card/getRootCertificate"];
+    },
+    getIntermediateCertificates() {
+      return this.$store.getters["card/getIntermediateCertificates"];
+    },
+    getAuthenticationCertificate() {
+      return this.$store.getters["card/getAuthenticationCertificate"];
+    },
+    getNonRepudiationCertificate() {
+      return this.$store.getters["card/getNonRepudiationCertificate"];
+    },
+    getEncryptionCertificate() {
+      return this.$store.getters["card/getEncryptionCertificate"];
+    },
+    getIssuerCertificate() {
+      return this.$store.getters["card/getIssuerCertificate"];
     },
   },
   components: { ReadersList, Consent, GenericCardView, Loading },
