@@ -14,7 +14,6 @@
         <div class="loading">
           <Loading :show="loading"></Loading>
         </div>
-
         <GenericCardView
           :biometric="biometric"
           :picture="picture"
@@ -66,11 +65,11 @@ export default {
       this.consentRequired = false;
     },
     readerSelected(reader) {
-      this.readerId = reader.id;
-      this.module = reader.card.module ? reader.card.module[0] : "beid";
       this.getAllData();
-      this.pageView = 1;
-      this.$store.dispatch("setSelectedReader", reader);
+      this.$store.dispatch("reader/setSelectedReader", reader).then(() => {
+        this.getAllData();
+        this.pageView = 1;
+      });
     },
     goBack() {
       this.pageView = 0;
@@ -78,11 +77,14 @@ export default {
     getAllData() {
       this.resetCardData();
       this.loading = true;
-      if (this.readerId && this.module) {
+      if (this.getReader && this.getReader.id) {
+        const module = this.getReader.card.module
+          ? this.getReader.card.module[0]
+          : "beid";
         Trust1ConnectorService.init().then(
           (client) => {
-            const c = client.generic(this.readerId);
-            c.allData(this.module).then(
+            const c = client.generic(this.getReader.id);
+            c.allData(module).then(
               (allDataRes) => {
                 this.loading = false;
                 this.biometric = allDataRes.data.biometric;
@@ -117,10 +119,10 @@ export default {
       (res) => {
         this.consentRequired = false;
         Trust1ConnectorService.setClient(res);
-        // console.log(this.$store);
-        // if (this.$store.SelectedReader.state.selectedReader != null) {
-        //   this.readerId = this.$store.SelectedReader.state.selectedReader.id;
-        // }
+        if (this.getReader) {
+          this.getAllData();
+          this.pageView = 1;
+        }
       },
       (err) => {
         console.log(err);
@@ -131,23 +133,7 @@ export default {
   },
   computed: {
     getReader() {
-      console.log(this.$store.getters.getSelectedReader());
-      if (this.$store.state.selectedReader) {
-        return this.$store.state.selectedReader.id;
-      } else {
-        return null;
-      }
-    },
-    getModule() {
-      if (
-        this.$store.state.selectedReader &&
-        this.$store.state.selectedReader.card &&
-        this.$store.state.selectedReader.card.modules
-      ) {
-        return this.$store.state.selectedReader.card.modules[0];
-      } else {
-        return "beid";
-      }
+      return this.$store.getters["reader/getSelectedReader"];
     },
   },
   components: { ReadersList, Consent, GenericCardView, Loading },
