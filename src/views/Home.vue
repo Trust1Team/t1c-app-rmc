@@ -76,6 +76,7 @@ export default {
       this.pageView = 0;
     },
     getAllData() {
+      this.resetCardData();
       this.loading = true;
       if (this.readerId && this.module) {
         Trust1ConnectorService.init().then(
@@ -98,6 +99,17 @@ export default {
           }
         );
       }
+    },
+    resetCardData() {
+      this.biometric = null;
+      this.address = null;
+      this.picture = null;
+      this.rootCertificate = null;
+      this.intermediateCertificates = null;
+      this.authenticationCertificate = null;
+      this.nonRepudiationCertificate = null;
+      this.encryptionCertificate = null;
+      this.issuerCertificate = null;
     },
   },
   created() {
