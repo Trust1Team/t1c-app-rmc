@@ -7,53 +7,22 @@
 </template>
 
 <script>
-import Trust1ConnectorService from "../../services/Trust1ConnectorService";
-
 export default {
   name: "GenericCardView",
-  props: ["readerId", "module"],
-  data() {
-    return {
-      client: null,
-      biometric: null,
-      address: null,
-      picture: null,
-      rootCertificate: null,
-      intermediateCertificates: null,
-      authenticationCertificate: null,
-      nonRepudiationCertificate: null,
-      encryptionCertificate: null,
-      issuerCertificate: null,
-    };
+  props: {
+    biometric: Object,
+    address: Object,
+    picture: Object,
+    rootCertificate: Object,
+    intermediateCertificates: Object,
+    authenticationCertificate: Object,
+    nonRepudiationCertificate: Object,
+    encryptionCertificate: Object,
+    issuerCertificate: Object,
   },
   emits: ["goBack"],
-  methods: {
-    getAllData() {
-      if (this.client && this.module) {
-        this.client.allData(this.module).then(
-          (allDataRes) => {
-            this.biometric = allDataRes.data.biometric;
-            this.address = allDataRes.data.address;
-            this.picture = allDataRes.data.picture;
-          },
-          (err) => {
-            console.error("Could not fetch alldata", err);
-          }
-        );
-      }
-    },
-  },
-  created() {
-    Trust1ConnectorService.init().then(
-      (client) => {
-        this.client = client.generic(this.readerId);
-        this.getAllData(this.readerId);
-      },
-      (err) => {
-        console.error(err);
-      }
-    );
-  },
+  methods: {},
+  created() {},
 };
 </script>
 

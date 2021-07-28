@@ -10,11 +10,24 @@
             <i class="fas fa-arrow-left go-back-icon"></i>
           </button>
         </div>
-        <GenericCardView :reader-id="readerId" :module="module" />
+
+        <div class="loading">
+          <Loading :show="loading"></Loading>
+        </div>
+
+        <GenericCardView
+          :biometric="biometric"
+          :picture="picture"
+          :address="address"
+          :rootCertificate="rootCertificate"
+          :intermediateCertificates="intermediateCertificates"
+          :authenticationCertificate="authenticationCertificate"
+          :nonRepudiationCertificate="nonRepudiationCertificate"
+          :encryptionCertificate="encryptionCertificate"
+          :issuerCertificate="issuerCertificate"
+        />
       </div>
     </div>
-
-    <button @click="getReader">Reader</button>
 
     <Consent v-if="consentRequired" @consented="consented" />
   </div>
@@ -25,16 +38,27 @@
 import Trust1ConnectorService from "../services/Trust1ConnectorService";
 import ReadersList from "../components/core/ReadersList";
 import Consent from "../components/core/Consent";
+import Loading from "../components/core/Loading";
 import GenericCardView from "../components/modules/GenericCardView";
 
 export default {
   name: "Home",
   data() {
     return {
+      loading: true,
       readerId: null,
       module: null,
       consentRequired: false,
       pageView: 0,
+      biometric: null,
+      address: null,
+      picture: null,
+      rootCertificate: null,
+      intermediateCertificates: null,
+      authenticationCertificate: null,
+      nonRepudiationCertificate: null,
+      encryptionCertificate: null,
+      issuerCertificate: null,
     };
   },
   methods: {
@@ -44,11 +68,36 @@ export default {
     readerSelected(reader) {
       this.readerId = reader.id;
       this.module = reader.card.module ? reader.card.module[0] : "beid";
+      this.getAllData();
       this.pageView = 1;
       this.$store.dispatch("setSelectedReader", reader);
     },
     goBack() {
       this.pageView = 0;
+    },
+    getAllData() {
+      this.loading = true;
+      if (this.readerId && this.module) {
+        Trust1ConnectorService.init().then(
+          (client) => {
+            const c = client.generic(this.readerId);
+            c.allData(this.module).then(
+              (allDataRes) => {
+                this.loading = false;
+                this.biometric = allDataRes.data.biometric;
+                this.address = allDataRes.data.address;
+                this.picture = allDataRes.data.picture;
+              },
+              (err) => {
+                console.error("Could not fetch alldata", err);
+              }
+            );
+          },
+          (err) => {
+            console.error(err);
+          }
+        );
+      }
     },
   },
   created() {
@@ -89,7 +138,7 @@ export default {
       }
     },
   },
-  components: { ReadersList, Consent, GenericCardView },
+  components: { ReadersList, Consent, GenericCardView, Loading },
 };
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
@@ -105,5 +154,11 @@ export default {
 
 .go-back button:hover .go-back-icon {
   transform: translateX(-3px);
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  margin: 10px;
 }
 </style>
