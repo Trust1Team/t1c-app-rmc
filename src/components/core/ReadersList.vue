@@ -1,24 +1,31 @@
 <template>
-  <div class="readers-header" v-if="!readers">
+  <div class="readers-header" v-if="!readers && !loading">
     <h1>Connect your Reader</h1>
     <p>Please connect your <b>smartcard reader</b> to your computer.</p>
     <p>Once it is connected, this page will automatically detect it</p>
   </div>
 
-  <div class="readers-header" v-if="readers && readers.length > 0">
+  <div class="readers-header" v-if="readers && readers.length > 0 && !loading">
     <h1>Choose your Reader</h1>
     <p>Please select the reader you want to use</p>
   </div>
 
-  <div class="readers-header" v-if="readers && readers.length === 0">
+  <div
+    class="readers-header"
+    v-if="readers && readers.length === 0 && !loading"
+  >
     <h1>Could not find any readers connected</h1>
     <p>Please connect your smart card reader and refresh the list</p>
   </div>
 
   <div class="refresh">
-    <button @click="getReaders()" class="btn btn-primary">
+    <button @click="getReaders()" class="btn btn-primary" :disabled="loading">
       <i class="fas fa-sync-alt refresh-icon"></i>
     </button>
+  </div>
+
+  <div class="loading">
+    <Loading :show="loading" />
   </div>
 
   <div class="readers-container" v-if="readers && readers.length > 0">
@@ -42,12 +49,7 @@
           <i class="fas fa-keyboard"></i>
         </span>
       </div>
-      <div
-        @click="
-          selectReader(reader)
-        "
-        class="reader-select"
-      >
+      <div @click="selectReader(reader)" class="reader-select">
         <svg
           version="1.1"
           id="Capa_1"
@@ -80,17 +82,21 @@
 
 <script>
 import Trust1ConnectorService from "../../services/Trust1ConnectorService";
+import Loading from "./Loading";
 
 export default {
   name: "ReadersList",
   data() {
     return {
       readers: null,
+      loading: true,
     };
   },
   emits: ["readerSelected"],
   methods: {
     getReaders() {
+      this.readers = null;
+      this.loading = true;
       Trust1ConnectorService.init().then(
         (client) => {
           client
@@ -98,14 +104,17 @@ export default {
             .readersCardAvailable()
             .then(
               (res) => {
+                this.loading = false;
                 this.readers = res.data;
               },
               (err) => {
+                this.loading = false;
                 console.log(err);
               }
             );
         },
         (err) => {
+          this.loading = false;
           console.error(err);
         }
       );
@@ -161,6 +170,7 @@ export default {
   created() {
     this.getReaders();
   },
+  components: { Loading },
 };
 </script>
 
@@ -253,5 +263,11 @@ a {
 
 .refresh button:hover .refresh-icon {
   transform: rotate(180deg);
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  margin: 10px;
 }
 </style>
