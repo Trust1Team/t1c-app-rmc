@@ -9,40 +9,24 @@
         Card reading: <b>{{ biometric.nationalNumber }} eID</b>
       </div>
       <div class="card-body">
-        <div class="col-12 row">
+        <div class="row">
           <div class="col-6">
-            <div class="col-11 alert alert-success text-center p-1 mx-auto">
-              <i class="fa fa-check-circle"></i>&nbsp;&nbsp;&nbsp;&nbsp;All certificates are valid
-            </div>
-            <FrontCardView :biometric="biometric" :picture="picture" />
+            <Alert state="alert-success" icon="fa-check-circle" text="All certificates are valid" />
           </div>
           <div class="col-6">
-            <div class="col-11 alert alert-dark text-center p-1 mx-auto">
-              <i class="fa fa-question-circle"></i>&nbsp;&nbsp;&nbsp;&nbsp;Click to check the pin
-            </div>
-            <BackCardView :biometric="biometric" :picture="picture" />
+            <Alert state="alert-dark" icon="fa-question-circle" text="Click to check the pin" />
           </div>
+        </div>
+        <div class="col-12">
+          <IDCard :biometric="biometric" :picture="picture" />
         </div>
         <br>
         <div class="col-12">
-          <div class="col-4 alert alert-warning text-center p-1 mx-auto">
-            Print legal copy of card
+          <div class="col-4 m-auto">
+            <Alert state="alert-warning" text="Print legal copy of card" />
           </div>
-          <div class="col-12 row">
-            <div class="col-6">
-              <h5 class="text-warning">Additional information</h5>
-              <ul>
-                <li>Address: {{ address.streetAndNumber }}</li>
-                <li>city: {{ address.municipality }}</li>
-                <li>xxx: {{ address.zipcode }}</li>
-              </ul>
-            </div>
-            <div class="col-6">
-              <h5 class="text-warning">General information</h5>
-              <ul>
-                <li>Chip number: {{ biometric.chipNumber }}</li>
-              </ul>
-            </div>
+          <div class="col-12">
+            <OtherInformation :biometric="biometric" :address="address"/>
           </div>
           <div class="col-4 alert alert-dark text-white text-center p-1 mx-auto">
             Show generated information
@@ -55,13 +39,14 @@
 
 <script>
 import Trust1ConnectorService from "../../services/Trust1ConnectorService";
-import BackCardView from "./BackCardView";
-import FrontCardView from "./FrontCardView";
+import IDCard from "./IDCard";
+import Alert from "../UIComponents/Alert";
+import OtherInformation from "./OtherInformation";
 
 export default {
   name: "GenericCardView",
   props: ["readerId", "module", "readerName"],
-  components: { BackCardView, FrontCardView },
+  components: { IDCard, Alert, OtherInformation },
   data() {
     return {
       client: null,
@@ -124,18 +109,5 @@ export default {
   background-color: #e05512;
   font-size: 26px !important;
   font-weight: normal;
-}
-
-.alert-warning {
-  background-color: #e05512;
-  color: white;
-}
-
-.text-warning {
-  color: #e05512 !important;
-}
-
-ul {
-  list-style-type: none;
 }
 </style>

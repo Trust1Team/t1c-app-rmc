@@ -1,5 +1,5 @@
 <template>
-  <div class="card">
+  <div class="card col-10">
     <div class="card-header">
       <div class="row">
         <div class="col-3">
@@ -40,7 +40,7 @@
         <div class="tag col-6" >
           Geboorteplaats en -datum/Place and date of birth
         </div>
-        <div class="data float-right col-2 small-font">Geslacht/Sex</div>
+        <div class="data float-right col-2">Geslacht/Sex</div>
       </div>
 
       <div class="row">
@@ -116,8 +116,10 @@ export default {
 
 <style scoped>
 .card {
-  width: 80%;
-  margin: auto;
+  margin-left: auto;
+  margin-right: auto;
+  width: 13cm;
+  height: 6.5cm;
 }
 
 .tag {
@@ -146,9 +148,5 @@ export default {
   bottom: 0;
   margin-bottom: 5px;
   width: 100px;
-}
-
-.small-font {
-  font-size: 8px !important;
 }
 </style>
