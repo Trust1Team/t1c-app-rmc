@@ -38,7 +38,6 @@
 </template>
 
 <script>
-import Trust1ConnectorService from "../../services/Trust1ConnectorService";
 import IDCard from "./IDCard";
 import Alert from "../UIComponents/Alert";
 import OtherInformation from "./OtherInformation";
@@ -57,6 +56,7 @@ export default {
     issuerCertificate: Object,
     readerName: String
   },
+  components: { IDCard, Alert, OtherInformation },
   emits: ["goBack"],
   methods: {},
   created() {},

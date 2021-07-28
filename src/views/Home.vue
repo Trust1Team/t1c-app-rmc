@@ -25,6 +25,7 @@
           :nonRepudiationCertificate="getNonRepudiationCertificate"
           :encryptionCertificate="getEncryptionCertificate"
           :issuerCertificate="getIssuerCertificate"
+          :reader-name="getReader.name"
         />
       </div>
     </div>
