@@ -1,9 +1,6 @@
-import { createStore } from "vuex";
-
-export default createStore({
-  state: {
-    selectedReader: null,
-  },
+export const Reader = {
+  namespaced: true,
+  state: { selectedReader: null },
   mutations: {},
   actions: {
     setSelectedReader(reader) {
@@ -15,7 +12,4 @@ export default createStore({
       return state.selectedReader;
     },
   },
-  modules: {
-    // Reader,
-  },
-});
+};

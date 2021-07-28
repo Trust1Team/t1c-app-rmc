@@ -14,6 +14,8 @@
       </div>
     </div>
 
+    <button @click="getReader">Reader</button>
+
     <Consent v-if="consentRequired" @consented="consented" />
   </div>
 </template>
@@ -29,9 +31,9 @@ export default {
   name: "Home",
   data() {
     return {
-      consentRequired: false,
       readerId: null,
       module: null,
+      consentRequired: false,
       pageView: 0,
     };
   },
@@ -39,11 +41,11 @@ export default {
     consented() {
       this.consentRequired = false;
     },
-    readerSelected(evt) {
-      this.readerId = evt.readerId;
-      this.module = evt.module;
+    readerSelected(reader) {
+      this.readerId = reader.id;
+      this.module = reader.card.module ? reader.card.module[0] : "beid";
       this.pageView = 1;
-      // TODO add to vue store
+      this.$store.dispatch("setSelectedReader", reader);
     },
     goBack() {
       this.pageView = 0;
@@ -54,6 +56,10 @@ export default {
       (res) => {
         this.consentRequired = false;
         Trust1ConnectorService.setClient(res);
+        // console.log(this.$store);
+        // if (this.$store.SelectedReader.state.selectedReader != null) {
+        //   this.readerId = this.$store.SelectedReader.state.selectedReader.id;
+        // }
       },
       (err) => {
         console.log(err);
@@ -62,7 +68,27 @@ export default {
       }
     );
   },
-
+  computed: {
+    getReader() {
+      console.log(this.$store.getters.getSelectedReader());
+      if (this.$store.state.selectedReader) {
+        return this.$store.state.selectedReader.id;
+      } else {
+        return null;
+      }
+    },
+    getModule() {
+      if (
+        this.$store.state.selectedReader &&
+        this.$store.state.selectedReader.card &&
+        this.$store.state.selectedReader.card.modules
+      ) {
+        return this.$store.state.selectedReader.card.modules[0];
+      } else {
+        return "beid";
+      }
+    },
+  },
   components: { ReadersList, Consent, GenericCardView },
 };
 </script>

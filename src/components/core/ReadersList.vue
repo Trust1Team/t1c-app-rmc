@@ -44,12 +44,7 @@
       </div>
       <div
         @click="
-          selectReader(
-            reader.id,
-            reader.card && reader.card.modules && reader.card.modules[0]
-              ? reader.card.modules[0]
-              : null
-          )
+          selectReader(reader)
         "
         class="reader-select"
       >
@@ -115,11 +110,8 @@ export default {
         }
       );
     },
-    selectReader(readerId, module) {
-      this.$emit("readerSelected", {
-        readerId: readerId,
-        module: module ? module : "beid",
-      });
+    selectReader(reader) {
+      this.$emit("readerSelected", reader);
     },
     copyAtr(reader) {
       this.copyTextToClipboard(reader.card.atr);
