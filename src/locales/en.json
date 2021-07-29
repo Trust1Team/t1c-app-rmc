@@ -1,0 +1,62 @@
+{
+  "navigation" : {
+    "Read my cards" : "Read my cards",
+    "Home" : "Home",
+    "Modules" : "Modules",
+    "ID/Tokens" : "ID/Tokens",
+    "Payment" : "Payment",
+    "PKI" : "PKI",
+    "Remote loading" : "Remote loading",
+    "Transport" : "Transport",
+    "File exchange" : "File exchange",
+    "Other" : "Other",
+    "Certificate manager" : "Certificate manager",
+    "Admin panel" : "Admin panel",
+    "Contact us" : "Contact us"
+  },
+  "deviceInfo": {
+    "Trust1Connector version": "Trust1Connector version",
+    "Trust1Connector javascript": "Trust1Connector javascript",
+    "Device": "Device",
+    "Device ID": "Device ID",
+    "Status": "Status",
+    "Log level": "Log level",
+    "Operating system": "Operating system",
+    "Platform": "Platform",
+    "Version": "Version"
+  },
+  "userInfo": {
+    "User": "User",
+    "Username": "Username",
+    "Home directory": "Home directory"
+  },
+  "consent": {
+    "consentMessage": "To use the Read My Cards application we need your consent.",
+    "askToConfirm": "Please click on the button below to provide your",
+    "to continue": "to continue",
+    "consent": "consent",
+    "Consent": "Consent"
+  },
+  "readersList": {
+    "Connect your Reader": "Connect your Reader",
+    "Please connect your": "Please connect your",
+    "smartcard reader": "smartcard reader",
+    "to your computer": "to your computer",
+    "detectMessage": "Once it is connected, this page will automatically detect it",
+    "Choose your Reader": "Choose your Reader",
+    "askToSelect": "Please select the reader you want to use",
+    "readersNotFound": "Could not find any readers connected",
+    "askToConnect": "Please connect your smart card reader and refresh the list",
+    "No module detected": "No module detected"
+  },
+  "admin": {
+    "Device information": "Device information",
+    "User information": "User information"
+  },
+  "contact": {
+    "Contact us": "Contact us"
+  },
+  "fileExplorer": {
+    "File explorer": "File explorer"
+  }
+}

@@ -2,13 +2,12 @@
   <div class="container">
     <Consent v-if="consentRequired" @consented="consented" />
     <div v-if="!consentRequired">
-      <h1>Device information</h1>
+      <h1>{{ $t('admin.Device information') }}</h1>
       <DeviceInfo :info="info" :js-version="jsVersion" />
 
-      <h1>User information</h1>
+      <h1>{{ $t('admin.User information') }}</h1>
       <UserInfo :info="info" />
     </div>
-
   </div>
 </template>
 

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>File explorer</h1>
+    <h1>{{ $t('fileExplorer.File explorer') }}</h1>
   </div>
 </template>
 

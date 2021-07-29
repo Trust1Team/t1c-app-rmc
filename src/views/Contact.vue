@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Contact us</h1>
+    <h1>{{ $t('contact.Contact us') }}Contact us</h1>
   </div>
 </template>
 <script>
