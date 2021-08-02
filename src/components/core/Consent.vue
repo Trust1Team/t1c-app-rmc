@@ -1,13 +1,13 @@
 <template>
   <div class="consent-container">
-    <p>To use the Read My Cards application we need your consent.</p>
+    <p>{{ $t('consent.consentMessage') }}</p>
     <p>
-      Please click on the button below to provide your
-      <strong>consent</strong> to continue.
+      {{ $t('consent.askToConfirm') }}
+      <strong>{{ $t('consent.consent') }}</strong> {{ $t('consent.to continue') }}.
     </p>
 
     <button type="button" class="btn btn-primary consent-btn" @click="consent">
-      Consent
+      {{ $t('consent.Consent') }}
     </button>
   </div>
 </template>

@@ -1,16 +1,16 @@
 <template>
   <div class="installation-info-container" v-if="info != null">
     <div class="installation-info-item">
-      <h3>User</h3>
+      <h3>{{ $t('userInfo.User') }}</h3>
       <span>User</span>
       <p>{{ info.t1CInfoUser.name }}</p>
 
-      <span>Username</span>
+      <span>{{ $t('userInfo.Username') }}</span>
       <p>{{ info.t1CInfoUser.username }}</p>
     </div>
 
     <div class="installation-info-item">
-      <h3>Home directory</h3>
+      <h3>{{ $t('userInfo.Home directory') }}</h3>
       <p>{{ info.t1CInfoUser.home }}</p>
     </div>
   </div>

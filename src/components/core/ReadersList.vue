@@ -1,21 +1,21 @@
 <template>
   <div class="readers-header" v-if="!readers && !loading">
-    <h1>Connect your Reader</h1>
-    <p>Please connect your <b>smartcard reader</b> to your computer.</p>
-    <p>Once it is connected, this page will automatically detect it</p>
+    <h1>{{ $t('readersList.Connect your Reader') }}</h1>
+    <p>{{ $t('readersList.Please connect your') }} <b>{{ $t('readersList.smartcard reader') }}</b> {{ $t('readersList.to your computer') }}.</p>
+    <p>{{ $t('readersList.detectMessage') }}</p>
   </div>
 
   <div class="readers-header" v-if="readers && readers.length > 0 && !loading">
-    <h1>Choose your Reader</h1>
-    <p>Please select the reader you want to use</p>
+    <h1>{{ $t('readersList.Choose your Reader') }}</h1>
+    <p>{{ $t('readersList.askToSelect') }}</p>
   </div>
 
   <div
     class="readers-header"
     v-if="readers && readers.length === 0 && !loading"
   >
-    <h1>Could not find any readers connected</h1>
-    <p>Please connect your smart card reader and refresh the list</p>
+    <h1>{{ $t('readersList.readersNotFound') }}</h1>
+    <p>{{ $t('readersList.askToConnect') }}</p>
   </div>
 
   <div class="refresh">
@@ -37,7 +37,7 @@
         <span v-if="reader.card.modules" @click="copyAtr(reader)">{{
           reader.card.modules[0]
         }}</span>
-        <span v-else>No module detected</span>
+        <span v-else>{{ $t('readersList.No module detected') }}</span>
       </div>
       <div>
         <span
