@@ -1,13 +1,14 @@
 <template>
   <div class="consent-container">
-    <p>{{ $t('consent.consentMessage') }}</p>
+    <p>{{ $t("consent.consentMessage") }}</p>
     <p>
-      {{ $t('consent.askToConfirm') }}
-      <strong>{{ $t('consent.consent') }}</strong> {{ $t('consent.to continue') }}.
+      {{ $t("consent.askToConfirm") }}
+      <strong>{{ $t("consent.consent") }}</strong>
+      {{ $t("consent.to continue") }}.
     </p>
 
     <button type="button" class="btn btn-primary consent-btn" @click="consent">
-      {{ $t('consent.Consent') }}
+      {{ $t("consent.Consent") }}
     </button>
   </div>
 </template>

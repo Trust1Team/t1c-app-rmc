@@ -1,35 +1,50 @@
 <template>
   <div v-if="biometric">
     <div class="text-center text-black-50">
-      {{ $t('genericCardView.We have detected the') }} <b>Belgium eID</b> {{ $t('genericCardView.card in the') }} <b>{{ readerName }}</b>
+      {{ $t("genericCardView.We have detected the") }} <b>Belgium eID</b>
+      {{ $t("genericCardView.card in the") }} <b>{{ readerName }}</b>
     </div>
-    <br>
+    <br />
     <div class="card card-border">
       <div class="card-header header">
-        {{ $t('genericCardView.Card reading') }}: <b>{{ biometric.nationalNumber }} eID</b>
+        {{ $t("genericCardView.Card reading") }}:
+        <b>{{ biometric.nationalNumber }} eID</b>
       </div>
       <div class="card-body">
         <div class="row">
           <div class="col-6">
-            <Alert state="alert-success" icon="fa-check-circle" :text="$t('genericCardView.All certificates are valid')" />
+            <Alert
+              state="alert-success"
+              icon="fa-check-circle"
+              :text="$t('genericCardView.All certificates are valid')"
+            />
           </div>
           <div class="col-6">
-            <Alert state="alert-dark" icon="fa-question-circle" :text="$t('genericCardView.Click to check the pin')" />
+            <Alert
+              state="alert-dark"
+              icon="fa-question-circle"
+              :text="$t('genericCardView.Click to check the pin')"
+            />
           </div>
         </div>
         <div class="col-12">
           <IDCard :biometric="biometric" :picture="picture" />
         </div>
-        <br>
+        <br />
         <div class="col-12">
           <div class="col-4 m-auto">
-            <Alert state="alert-warning" :text="$t('genericCardView.Print legal copy of card')" />
+            <Alert
+              state="alert-warning"
+              :text="$t('genericCardView.Print legal copy of card')"
+            />
           </div>
           <div class="col-12">
-            <OtherInformation :biometric="biometric" :address="address"/>
+            <OtherInformation :biometric="biometric" :address="address" />
           </div>
-          <div class="col-4 alert alert-dark text-white text-center p-1 mx-auto">
-            {{ $t('genericCardView.Show generated information') }}
+          <div
+            class="col-4 alert alert-dark text-white text-center p-1 mx-auto"
+          >
+            {{ $t("genericCardView.Show generated information") }}
           </div>
         </div>
       </div>
@@ -54,7 +69,7 @@ export default {
     nonRepudiationCertificate: Object,
     encryptionCertificate: Object,
     issuerCertificate: Object,
-    readerName: String
+    readerName: String,
   },
   components: { IDCard, Alert, OtherInformation },
   emits: ["goBack"],

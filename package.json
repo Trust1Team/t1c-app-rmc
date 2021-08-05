@@ -14,7 +14,7 @@
   "dependencies": {
     "bootstrap": "^5.0.2",
     "core-js": "^3.6.5",
-    "t1c-sdk-js": "^3.5.0-RC2",
+    "t1c-sdk-js": "^3.5.0-RC6",
     "vue": "^3.0.0",
     "vue-clipboard3": "^1.0.1",
     "vue-i18n": "^9.1.7",

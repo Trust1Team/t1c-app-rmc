@@ -7,8 +7,8 @@
 <script>
 export default {
   name: "Alert",
-  props: ["state", "icon", "text"]
-}
+  props: ["state", "icon", "text"],
+};
 </script>
 
 <style scoped>

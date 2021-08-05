@@ -4,7 +4,7 @@
       <FrontCardView :biometric="biometric" :picture="picture" />
     </div>
     <div class="col-6">
-      <BackCardView :biometric="biometric" :picture="picture"/>
+      <BackCardView :biometric="biometric" :picture="picture" />
     </div>
   </div>
 </template>
@@ -17,7 +17,7 @@ export default {
   name: "IDCard",
   props: ["biometric", "picture"],
   components: { BackCardView, FrontCardView },
-}
+};
 </script>
 
 <style scoped>

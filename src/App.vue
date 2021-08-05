@@ -21,10 +21,28 @@
       <p>Copyright 2021 Trust1Team - All rights reserved</p>
     </div>
     <div>
-      <a href="" class="clickable" :class="activeLang === 'en' ? 'active' : ''" @click.prevent="switchLanguage('en')">EN</a>
-      <a href="" class="clickable" :class="activeLang === 'nl' ? 'active' : ''" @click.prevent="switchLanguage('nl')">NL</a>
-      <a href="" class="clickable" :class="activeLang === 'fr' ? 'active' : ''" @click.prevent="switchLanguage('fr')">FR</a>
-      </div>
+      <a
+        href=""
+        class="clickable"
+        :class="activeLang === 'en' ? 'active' : ''"
+        @click.prevent="switchLanguage('en')"
+        >EN</a
+      >
+      <a
+        href=""
+        class="clickable"
+        :class="activeLang === 'nl' ? 'active' : ''"
+        @click.prevent="switchLanguage('nl')"
+        >NL</a
+      >
+      <a
+        href=""
+        class="clickable"
+        :class="activeLang === 'fr' ? 'active' : ''"
+        @click.prevent="switchLanguage('fr')"
+        >FR</a
+      >
+    </div>
   </footer>
 </template>
 
@@ -39,8 +57,8 @@ export default {
   },
   data() {
     return {
-      activeLang: null
-    }
+      activeLang: null,
+    };
   },
   created() {
     this.activeLang = this.$i18n.locale;
@@ -49,8 +67,8 @@ export default {
     switchLanguage(lang) {
       this.$i18n.locale = lang;
       window.VUE_APP_ENV_DEFAULT_LANGUAGE = lang;
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -61,13 +79,6 @@ export default {
   justify-content: center;
   height: 100px;
   margin-bottom: 30px;
-}
-
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
 }
 
 .app-container {
@@ -113,26 +124,20 @@ export default {
   min-height: calc(100vh - 130px);
 }
 
-.header {
-  width: 100%;
-  height: 65px;
-}
-
 a {
   color: white !important;
   text-decoration: none;
 }
 
 a:hover {
-  color:#00A0C6;
-  cursor:pointer;
+  color: #00a0c6;
+  cursor: pointer;
   text-decoration: underline;
 }
 
 .clickable {
   padding-left: 4px;
   cursor: pointer;
-  cursor: hand;
 }
 
 .active {

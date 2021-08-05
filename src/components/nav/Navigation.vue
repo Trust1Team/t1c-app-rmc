@@ -6,7 +6,7 @@
         src="../../assets/t1c-logo.png"
         alt="T1C logo"
       />
-      <h1>{{ $t('navigation.Read my cards') }}</h1>
+      <h1>{{ $t("navigation.Read my cards") }}</h1>
     </div>
 
     <div class="nav-content">
@@ -17,7 +17,7 @@
               type="button"
               class="list-group-item list-group-item-action"
             >
-              {{ $t('navigation.Home') }}
+              {{ $t("navigation.Home") }}
             </button>
           </router-link>
         </div>
@@ -28,7 +28,7 @@
             type="button"
             class="list-group-item list-group-item-action dropdown-btn"
           >
-            <span>{{ $t('navigation.Modules') }}</span>
+            <span>{{ $t("navigation.Modules") }}</span>
             <i
               v-bind:class="{ active: dropdown_active }"
               class="fas fa-sort-down"
@@ -40,7 +40,7 @@
                 type="button"
                 class="list-sub-group-item list-group-item-action"
               >
-                {{ $t('navigation.ID/Tokens') }}
+                {{ $t("navigation.ID/Tokens") }}
               </button>
             </router-link>
             <router-link to="/modules/payment">
@@ -48,7 +48,7 @@
                 type="button"
                 class="list-sub-group-item list-group-item-action"
               >
-                {{ $t('navigation.Payment') }}
+                {{ $t("navigation.Payment") }}
               </button>
             </router-link>
             <router-link to="/modules/">
@@ -56,7 +56,7 @@
                 type="button"
                 class="list-sub-group-item list-group-item-action"
               >
-                {{ $t('navigation.PKI') }}
+                {{ $t("navigation.PKI") }}
               </button>
             </router-link>
             <router-link to="/modules/pki">
@@ -64,7 +64,7 @@
                 type="button"
                 class="list-sub-group-item list-group-item-action"
               >
-                {{ $t('navigation.Remote loading') }}
+                {{ $t("navigation.Remote loading") }}
               </button>
             </router-link>
             <router-link to="/modules/transport">
@@ -72,7 +72,7 @@
                 type="button"
                 class="list-sub-group-item list-group-item-action"
               >
-                {{ $t('navigation.Transport') }}
+                {{ $t("navigation.Transport") }}
               </button>
             </router-link>
             <router-link to="/modules/file-exchange">
@@ -80,7 +80,7 @@
                 type="button"
                 class="list-sub-group-item list-group-item-action"
               >
-                {{ $t('navigation.File exchange') }}
+                {{ $t("navigation.File exchange") }}
               </button>
             </router-link>
             <router-link to="/modules/other">
@@ -88,7 +88,7 @@
                 type="button"
                 class="list-sub-group-item list-group-item-action"
               >
-                {{ $t('navigation.Other') }}
+                {{ $t("navigation.Other") }}
               </button>
             </router-link>
           </div>
@@ -100,7 +100,7 @@
               type="button"
               class="list-group-item list-group-item-action"
             >
-              {{ $t('navigation.Certificate manager') }}
+              {{ $t("navigation.Certificate manager") }}
             </button>
           </router-link>
         </div>
@@ -111,7 +111,7 @@
               type="button"
               class="list-group-item list-group-item-action"
             >
-              {{ $t('navigation.Admin panel') }}
+              {{ $t("navigation.Admin panel") }}
             </button>
           </router-link>
         </div>
@@ -126,7 +126,7 @@
               type="button"
               class="list-group-item list-group-item-action"
             >
-              {{ $t('navigation.Contact us') }}
+              {{ $t("navigation.Contact us") }}
             </button>
           </router-link>
         </div>

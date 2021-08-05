@@ -29,7 +29,7 @@
       </div>
 
       <div class="row">
-        <div class="tag col-4" >Voornamen/Given names</div>
+        <div class="tag col-4">Voornamen/Given names</div>
         <div class="data col-8">
           <b>{{ biometric.firstNames + " " + biometric.thirdName }}</b>
         </div>
@@ -37,7 +37,7 @@
 
       <div class="row">
         <div class="tag col-4"></div>
-        <div class="tag col-6" >
+        <div class="tag col-6">
           Geboorteplaats en -datum/Place and date of birth
         </div>
         <div class="data float-right col-2">Geslacht/Sex</div>
@@ -74,9 +74,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="tag col-6">
-          Geldig van - tot/Valid from - until
-        </div>
+        <div class="tag col-6">Geldig van - tot/Valid from - until</div>
       </div>
       <div class="row">
         <div class="data col-6">
