@@ -20,13 +20,16 @@
       </p>
       <p>Copyright 2021 Trust1Team - All rights reserved</p>
     </div>
-    <div class="i18n">NL EN</div>
+    <div>
+      <a href="" class="clickable" :class="activeLang === 'en' ? 'active' : ''" @click.prevent="switchLanguage('en')">EN</a>
+      <a href="" class="clickable" :class="activeLang === 'nl' ? 'active' : ''" @click.prevent="switchLanguage('nl')">NL</a>
+      <a href="" class="clickable" :class="activeLang === 'fr' ? 'active' : ''" @click.prevent="switchLanguage('fr')">FR</a>
+      </div>
   </footer>
 </template>
 
 <script>
 // @ is an alias to /src
-
 import Navigation from "./components/nav/Navigation";
 
 export default {
@@ -34,10 +37,24 @@ export default {
   components: {
     Navigation,
   },
+  data() {
+    return {
+      activeLang: null
+    }
+  },
+  created() {
+    this.activeLang = this.$i18n.locale;
+  },
+  methods: {
+    switchLanguage(lang) {
+      this.$i18n.locale = lang;
+      window.VUE_APP_ENV_DEFAULT_LANGUAGE = lang;
+    }
+  }
 };
 </script>
 
-<style>
+<style scoped>
 .t1c-logo {
   margin-top: 30px;
   display: flex;
@@ -85,10 +102,6 @@ export default {
   margin: 5px 0 5px 0;
 }
 
-#footer .i18n {
-  font-weight: bold;
-}
-
 #footer .logo {
   width: 40px;
 }
@@ -103,5 +116,26 @@ export default {
 .header {
   width: 100%;
   height: 65px;
+}
+
+a {
+  color: white !important;
+  text-decoration: none;
+}
+
+a:hover {
+  color:#00A0C6;
+  cursor:pointer;
+  text-decoration: underline;
+}
+
+.clickable {
+  padding-left: 4px;
+  cursor: pointer;
+  cursor: hand;
+}
+
+.active {
+  font-weight: 700;
 }
 </style>
