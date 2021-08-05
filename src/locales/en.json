@@ -26,6 +26,7 @@
     "Version": "Version"
   },
   "userInfo": {
+    "Name": "Name",
     "User": "User",
     "Username": "Username",
     "Home directory": "Home directory"

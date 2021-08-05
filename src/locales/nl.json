@@ -2,78 +2,79 @@
   "navigation" : {
     "Read my cards" : "Read my cards",
     "Home" : "Home",
-    "Modules" : "Modules",
+    "Modules" : "Modulen",
     "ID/Tokens" : "ID/Tokens",
-    "Payment" : "Payment",
+    "Payment" : "Betaling",
     "PKI" : "PKI",
     "Remote loading" : "Remote loading",
     "Transport" : "Transport",
     "File exchange" : "File exchange",
-    "Other" : "Other",
-    "Certificate manager" : "Certificate manager",
-    "Admin panel" : "Admin panel",
-    "Contact us" : "Contact us"
+    "Other" : "Andere",
+    "Certificate manager" : "Certificate beheerder",
+    "Admin panel" : "Administratie",
+    "Contact us" : "Contacteer ons"
   },
   "deviceInfo": {
-    "Trust1Connector version": "Trust1Connector version",
+    "Trust1Connector version": "Trust1Connector versie",
     "Trust1Connector javascript": "Trust1Connector javascript",
-    "Device": "Device",
-    "Device ID": "Device ID",
+    "Device": "Toestel",
+    "Device ID": "Toestel ID",
     "Status": "Status",
-    "Log level": "Log level",
-    "Operating system": "Operating system",
+    "Log level": "Log niveau",
+    "Operating system": "Bestuurstysteem",
     "Platform": "Platform",
-    "Version": "Version"
+    "Version": "Versie"
   },
   "userInfo": {
-    "User": "User",
-    "Username": "Username",
-    "Home directory": "Home directory"
+    "Name": "Naam",
+    "User": "Gebruiker",
+    "Username": "Gebruikersnaam",
+    "Home directory": "Thuis folder"
   },
   "consent": {
-    "consentMessage": "To use the Read My Cards application we need your consent.",
-    "askToConfirm": "Please click on the button below to provide your",
-    "to continue": "to continue",
-    "consent": "consent",
-    "Consent": "Consent"
+    "consentMessage": "Om Read My Cards te gebruiken hebben we jouw toestemming nodig.",
+    "askToConfirm": "Klik op de onderstaande knop om je toestemming te geven.",
+    "to continue": "om verder te gaan",
+    "consent": "toestemming",
+    "Consent": "Toestemming"
   },
   "readersList": {
-    "Connect your Reader": "Connect your Reader",
-    "Please connect your": "Please connect your",
-    "smartcard reader": "smartcard reader",
-    "to your computer": "to your computer",
-    "detectMessage": "Once it is connected, this page will automatically detect it",
-    "Choose your Reader": "Choose your Reader",
-    "askToSelect": "Please select the reader you want to use",
-    "readersNotFound": "Could not find any readers connected",
-    "askToConnect": "Please connect your smart card reader and refresh the list",
-    "No module detected": "No module detected"
+    "Connect your Reader": "Verbind je kaartlezer",
+    "Please connect your": "Verbind je",
+    "smartcard reader": "smartcard lezer",
+    "to your computer": "aan je computer",
+    "detectMessage": "Wanneer het verbonden is zal deze pagina dit automatisch herkennen",
+    "Choose your Reader": "Kies je lezer",
+    "askToSelect": "Selecteer de lezer dat je wenst te gebruiken",
+    "readersNotFound": "Kon geen verbonden lezers vinden",
+    "askToConnect": "Verbind je kaart lezer en vernieuw de lijst",
+    "No module detected": "Geen module gevonden"
   },
   "admin": {
-    "Device information": "Device information",
-    "User information": "User information"
+    "Device information": "Toestel informatie",
+    "User information": "Gebruiker informatie"
   },
   "contact": {
-    "Contact us": "Contact us"
+    "Contact us": "Contacteer ons"
   },
   "fileExplorer": {
-    "File explorer": "File explorer"
+    "File explorer": "Bestanden verkennen"
   },
   "genericCardView": {
-    "We have detected the": "We have detected the",
-    "card in the": "card in the",
-    "Card reading": "Card reading",
-    "All certificates are valid": "All certificates are valid",
-    "Click to check the pin": "Click to check the pin",
-    "Print legal copy of card": "Print legal copy of card",
-    "Show generated information": "Show generated information"
+    "We have detected the": "We hebben gevonden,",
+    "card in the": "kaart in de",
+    "Card reading": "Kaart word uitgelezen",
+    "All certificates are valid": "Alle certificaten zijn geldig",
+    "Click to check the pin": "Klik hier om de pin code te controleren",
+    "Print legal copy of card": "Maak een legaal geldige kopie van de kaart",
+    "Show generated information": "Toon gegenereerde informatie"
   },
   "otherInformation": {
-    "Additional information": "Additional information",
-    "Address": "Address",
-    "city": "city",
-    "Postal code": "Postal code",
-    "General information": "General information",
-    "Chip number": "Chip number"
+    "Additional information": "Meer informatie",
+    "Address": "Adres",
+    "city": "Stad",
+    "Postal code": "Postcode",
+    "General information": "Algemene informatie",
+    "Chip number": "Chip nummer"
   }
 }
