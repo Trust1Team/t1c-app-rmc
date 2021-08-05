@@ -2,11 +2,10 @@
   <div class="installation-info-container" v-if="info != null">
     <div class="installation-info-item">
       <h3>{{ $t("deviceInfo.Trust1Connector version") }}</h3>
-      <p>{{ info.t1CInfoAPI.version }}</p>
-    </div>
 
-    <div class="installation-info-item">
-      <h3>{{ $t("deviceInfo.Trust1Connector javascript") }}</h3>
+      <span>{{ $t("deviceInfo.api-version") }}</span>
+      <p>{{ info.t1CInfoAPI.version }}</p>
+      <span>{{ $t("deviceInfo.js-version") }}</span>
       <p>{{ jsVersion }}</p>
     </div>
 
@@ -50,6 +49,10 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+p {
+  word-break: break-all;
+}
+
 .installation-info-container {
   width: 100%;
   display: flex;

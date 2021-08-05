@@ -15,6 +15,8 @@
     "Contact us" : "Contacteer ons"
   },
   "deviceInfo": {
+    "api-version": "API versie",
+    "js-version": "Javascript versie",
     "Trust1Connector version": "Trust1Connector versie",
     "Trust1Connector javascript": "Trust1Connector javascript",
     "Device": "Toestel",

@@ -7,6 +7,9 @@
 
       <h1>{{ $t("admin.User information") }}</h1>
       <UserInfo :info="info" />
+
+      <h1>{{ $t("admin.reader") }}</h1>
+      <AdminReadersList />
     </div>
   </div>
 </template>
@@ -16,6 +19,7 @@ import Trust1ConnectorService from "../services/Trust1ConnectorService";
 import Consent from "../components/core/Consent";
 import DeviceInfo from "../components/Admin/DeviceInfo";
 import UserInfo from "../components/Admin/UserInfo";
+import AdminReadersList from "../components/Admin/AdminReadersList";
 
 export default {
   name: "Admin",
@@ -67,7 +71,7 @@ export default {
     );
   },
 
-  components: { Consent, DeviceInfo, UserInfo },
+  components: { AdminReadersList, Consent, DeviceInfo, UserInfo },
 };
 </script>
 

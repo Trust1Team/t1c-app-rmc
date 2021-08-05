@@ -3,77 +3,80 @@
     "Read my cards" : "Read my cards",
     "Home" : "Home",
     "Modules" : "Modules",
-    "ID/Tokens" : "ID/Tokens",
-    "Payment" : "Payment",
+    "ID/Tokens" : "ID/Jetons",
+    "Payment" : "Paiement",
     "PKI" : "PKI",
-    "Remote loading" : "Remote loading",
+    "Remote loading" : "Téléchargement à distance",
     "Transport" : "Transport",
-    "File exchange" : "File exchange",
-    "Other" : "Other",
-    "Certificate manager" : "Certificate manager",
-    "Admin panel" : "Admin panel",
-    "Contact us" : "Contact us"
+    "File exchange" : "Échangeur de fichiers",
+    "Other" : "Autres",
+    "Certificate manager" : "Gestionnaire de Certificats",
+    "Admin panel" : "Panneau de Configuration",
+    "Contact us" : "Contactez-nous"
   },
   "deviceInfo": {
+    "api-version": "Version API",
+    "js-version": "Version javascript",
     "Trust1Connector version": "Trust1Connector version",
     "Trust1Connector javascript": "Trust1Connector javascript",
-    "Device": "Device",
-    "Device ID": "Device ID",
-    "Status": "Status",
+    "Device": "Dispositif",
+    "Device ID": "ID du Dispositif",
+    "Status": "Statuts",
     "Log level": "Log level",
-    "Operating system": "Operating system",
-    "Platform": "Platform",
+    "Operating system": "Système d'Exploitation",
+    "Platform": "Plateforme",
     "Version": "Version"
   },
   "userInfo": {
-    "User": "User",
-    "Username": "Username",
-    "Home directory": "Home directory"
+    "Name": "Nom",
+    "User": "Utilisateur",
+    "Username": "Identifiant",
+    "Home directory": "Répertoire principal"
   },
   "consent": {
-    "consentMessage": "To use the Read My Cards application we need your consent.",
-    "askToConfirm": "Please click on the button below to provide your",
-    "to continue": "to continue",
-    "consent": "consent",
-    "Consent": "Consent"
+    "consentMessage": "Pour utiliser l'application Read My Cards, nous avons besoin de votre consentement.",
+    "askToConfirm": "Veuillez cliquer sur le bouton ci-dessous pour fournir votre",
+    "to continue": "Continuer",
+    "consent": "Consentir",
+    "Consent": "Consentir"
   },
   "readersList": {
-    "Connect your Reader": "Connect your Reader",
-    "Please connect your": "Please connect your",
-    "smartcard reader": "smartcard reader",
-    "to your computer": "to your computer",
-    "detectMessage": "Once it is connected, this page will automatically detect it",
-    "Choose your Reader": "Choose your Reader",
-    "askToSelect": "Please select the reader you want to use",
-    "readersNotFound": "Could not find any readers connected",
-    "askToConnect": "Please connect your smart card reader and refresh the list",
-    "No module detected": "No module detected"
+    "Connect your Reader": "Connectez votre lecteur de carte",
+    "Please connect your": "Veuillez connecter votre",
+    "smartcard reader": "lecteur de carte",
+    "to your computer": "à votre ordinateur",
+    "detectMessage": "Une fois qu'il est connecté, cette page le détectera automatiquement.",
+    "Choose your Reader": "Choisissez votre lecteur",
+    "askToSelect": "Veuillez sélectionner le lecteur que vous souhaitez utiliser",
+    "readersNotFound": "Nous n'avons pas trouvé de lecteurs connectés",
+    "askToConnect": "Veuillez connecter votre lecteur de carte et rafraîchir la liste.",
+    "No module detected": "Aucun module détecté"
   },
   "admin": {
-    "Device information": "Device information",
-    "User information": "User information"
+    "Device information": "Informations sur le dispositif",
+    "User information": "Informations sur l'utilisateur"
   },
   "contact": {
-    "Contact us": "Contact us"
+    "Contact us": "Contactez-nous"
   },
   "fileExplorer": {
-    "File explorer": "File explorer"
+    "File explorer": "Échangeur de fichiers"
   },
   "genericCardView": {
-    "We have detected the": "We have detected the",
-    "card in the": "card in the",
-    "Card reading": "Card reading",
-    "All certificates are valid": "All certificates are valid",
-    "Click to check the pin": "Click to check the pin",
-    "Print legal copy of card": "Print legal copy of card",
-    "Show generated information": "Show generated information"
+    "We have detected the": "Nous avons détecté le",
+    "card in the": "carte dans le",
+    "Card reading": "Lecture de la carte",
+    "All certificates are valid": "Tous les certificats sont valides",
+    "Click to check the pin": "Cliquez ici pour vérifier le code pin",
+    "Print legal copy of card": "Imprimer une copie légale de la carte",
+    "Show generated information": "Afficher les informations générées"
   },
   "otherInformation": {
-    "Additional information": "Additional information",
-    "Address": "Address",
-    "city": "city",
-    "Postal code": "Postal code",
-    "General information": "General information",
-    "Chip number": "Chip number"
+    "Additional information": "Informations complémentaires",
+    "Address": "Adresse",
+    "city": "Ville",
+    "Postal code": "Code Postal",
+    "General information": "Information Général",
+    "Chip number": "Numéro de la puce"
   }
 }
