@@ -7,7 +7,9 @@
 
   <div class="status-container">
     <div class="status-item">
-      <div class="status-item-service">Trust1Connector API</div>
+      <div class="status-item-service">
+        {{ $t("admin.dependencyInfo.t1cApi") }}
+      </div>
       <div class="status-item-icon">
         <div class="loading" v-if="!t1c">
           <Loading size="30" show="true"></Loading>
@@ -24,7 +26,9 @@
     </div>
 
     <div class="status-item">
-      <div class="status-item-service">Validation service</div>
+      <div class="status-item-service">
+        {{ $t("admin.dependencyInfo.validationService") }}
+      </div>
       <div class="status-item-icon">
         <div class="loading" v-if="!validation">
           <Loading size="30" show="true"></Loading>
@@ -47,7 +51,9 @@
     </div>
 
     <div class="status-item">
-      <div class="status-item-service">Distribution server</div>
+      <div class="status-item-service">
+        {{ $t("admin.dependencyInfo.distributionServer") }}
+      </div>
       <div class="status-item-icon">
         <div class="loading" v-if="!ds">
           <Loading size="30" show="true"></Loading>

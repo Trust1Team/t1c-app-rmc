@@ -56,7 +56,12 @@
     "Device information": "Device information",
     "User information": "User information",
     "reader": "Card readers",
-    "dependency": "Dependencies status"
+    "dependency": "Dependencies status",
+    "dependencyInfo": {
+      "t1cApi": "Trust1Connector API",
+      "validationService": "Validation Service",
+      "distributionServer": "Distribution Server"
+    }
   },
   "contact": {
     "Contact us": "Contact us"
