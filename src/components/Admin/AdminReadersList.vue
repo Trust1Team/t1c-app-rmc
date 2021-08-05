@@ -183,7 +183,8 @@ export default {
 }
 
 .readers-container {
-  margin-top: 50px;
+  margin-top: 10px;
+  margin-bottom: 50px;
   width: 100%;
 }
 

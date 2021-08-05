@@ -1,8 +1,8 @@
 <template>
   <div v-if="show">
     <div class="fulfilling-bouncing-circle-spinner">
-      <div class="circle"></div>
-      <div class="orbit"></div>
+      <div :style="cssVars" class="circle"></div>
+      <div :style="cssVars" class="orbit"></div>
     </div>
   </div>
 </template>
@@ -13,6 +13,20 @@ export default {
   methods: {},
   props: {
     show: Boolean,
+    size: Number,
+  },
+  computed: {
+    cssVars() {
+      if (this.size) {
+        return {
+          "--size": this.size + "px",
+        };
+      } else {
+        return {
+          "--size": "60px",
+        };
+      }
+    },
   },
 };
 </script>
@@ -25,15 +39,15 @@ export default {
 }
 
 .fulfilling-bouncing-circle-spinner {
-  height: 60px;
-  width: 60px;
+  height: var(--size);
+  width: var(--size);
   position: relative;
   animation: fulfilling-bouncing-circle-spinner-animation infinite 4000ms ease;
 }
 
 .fulfilling-bouncing-circle-spinner .orbit {
-  height: 60px;
-  width: 60px;
+  height: var(--size);
+  width: var(--size);
   position: absolute;
   top: 0;
   left: 0;
@@ -44,13 +58,13 @@ export default {
 }
 
 .fulfilling-bouncing-circle-spinner .circle {
-  height: 60px;
-  width: 60px;
+  height: var(--size);
+  width: var(--size);
   color: #e05512;
   display: block;
   border-radius: 50%;
   position: relative;
-  border: calc(60px * 0.1) solid #e05512;
+  border: calc(var(--size) * 0.1) solid #e05512;
   animation: fulfilling-bouncing-circle-spinner-circle-animation infinite 4000ms
     ease;
   transform: rotate(0deg) scale(1);

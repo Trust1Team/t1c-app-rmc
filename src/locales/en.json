@@ -55,7 +55,8 @@
   "admin": {
     "Device information": "Device information",
     "User information": "User information",
-    "reader": "Card readers"
+    "reader": "Card readers",
+    "dependency": "Dependencies status"
   },
   "contact": {
     "Contact us": "Contact us"

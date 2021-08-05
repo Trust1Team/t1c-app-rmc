@@ -9,7 +9,10 @@
       <UserInfo :info="info" />
 
       <h1>{{ $t("admin.reader") }}</h1>
-      <AdminReadersList />
+      <AdminReadersList class="admin-reader-list" />
+
+      <h1>{{ $t("admin.dependency") }}</h1>
+      <DependencyInfo />
     </div>
   </div>
 </template>
@@ -20,6 +23,7 @@ import Consent from "../components/core/Consent";
 import DeviceInfo from "../components/Admin/DeviceInfo";
 import UserInfo from "../components/Admin/UserInfo";
 import AdminReadersList from "../components/Admin/AdminReadersList";
+import DependencyInfo from "../components/Admin/DependencyInfo";
 
 export default {
   name: "Admin",
@@ -71,8 +75,18 @@ export default {
     );
   },
 
-  components: { AdminReadersList, Consent, DeviceInfo, UserInfo },
+  components: {
+    AdminReadersList,
+    Consent,
+    DeviceInfo,
+    UserInfo,
+    DependencyInfo,
+  },
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.admin-reader-list {
+  margin-bottom: 50px;
+}
+</style>
