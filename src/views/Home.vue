@@ -41,6 +41,7 @@ import ReadersList from "../components/core/ReadersList";
 import Consent from "../components/core/Consent";
 import Loading from "../components/core/Loading";
 import GenericCardView from "../components/modules/GenericCardView";
+import DistributionService from "../services/DistributionService";
 
 export default {
   name: "Home",
@@ -107,6 +108,15 @@ export default {
         console.log(err);
         this.consentRequired = true;
         Trust1ConnectorService.setErrorClient(err.client);
+      }
+    );
+
+    DistributionService.getLatestVersion().then(
+      (res) => {
+        console.log(res);
+      },
+      (err) => {
+        console.log("DSERROR", err);
       }
     );
   },

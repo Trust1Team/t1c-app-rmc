@@ -1,16 +1,59 @@
 import axios from "axios";
 
-const apiClient = axios.create({
-  baseURL: "https://acc-ds.t1t.io",
-  withCredentials: true,
-  headers: {
-    Accept: "application/json",
-    "Content-Type": "application/json",
-  },
-});
+function apiClient(jwt) {
+  if (jwt) {
+    return axios.create({
+      baseURL: "https://acc-ds.t1t.io",
+      withCredentials: true,
+      headers: {
+        Authorization: "Bearer " + jwt,
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    });
+  } else {
+    return axios.create({
+      baseURL: "https://acc-ds.t1t.io",
+      withCredentials: true,
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    });
+  }
+}
 
 export default {
   getSystemInfo() {
-    return apiClient.get("/v3_5/system/status", null);
+    return apiClient(null).get("/v3_5/system/status", null);
+  },
+
+  getLatestVersion() {
+    return new Promise((resolve, reject) => {
+      this.getJWT().then(
+        (jwtRes) => {
+          apiClient(jwtRes.data)
+            .get("/v3_5/versions/latest")
+            .then(
+              (res) => {
+                resolve(res);
+              },
+              (err) => {
+                reject(err);
+              }
+            );
+        },
+        (err) => {
+          reject(err);
+        }
+      );
+    });
+  },
+  getJWT() {
+    return apiClient(null).get("/v3_5/tokens/application", {
+      headers: {
+        apikey: window.VUE_APP_ENV_API_KEY,
+      },
+    });
   },
 };
