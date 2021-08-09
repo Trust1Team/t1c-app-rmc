@@ -23,9 +23,11 @@
         {{ reader.name }}
       </div>
       <div class="reader-module">
-        <span v-if="reader.card.modules" @click="copyAtr(reader)">{{
-          reader.card.modules[0]
-        }}</span>
+        <span
+          v-if="reader.card && reader.card.modules"
+          @click="copyAtr(reader)"
+          >{{ reader.card.modules[0] }}</span
+        >
         <span v-else>{{ $t("readersList.No module detected") }}</span>
       </div>
       <div class="reader-pinpad">

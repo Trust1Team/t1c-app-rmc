@@ -9,7 +9,7 @@
       <UserInfo :info="info" />
 
       <h1>{{ $t("admin.reader") }}</h1>
-      <AdminReadersList class="admin-reader-list" />
+      <AdminReadersList />
 
       <h1>{{ $t("admin.dependency") }}</h1>
       <DependencyInfo />

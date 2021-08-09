@@ -12,7 +12,7 @@
       </div>
       <div class="status-item-icon">
         <div class="loading" v-if="!t1c">
-          <Loading size="30" show="true"></Loading>
+          <Loading :size="30" :show="t1c"></Loading>
         </div>
         <div v-if="t1c">
           <i v-if="t1c.error" class="fas fa-exclamation-circle fa-2x red"></i>
@@ -31,7 +31,7 @@
       </div>
       <div class="status-item-icon">
         <div class="loading" v-if="!validation">
-          <Loading size="30" show="true"></Loading>
+          <Loading :size="30" :show="validation"></Loading>
         </div>
         <div v-if="validation">
           <i
@@ -56,7 +56,7 @@
       </div>
       <div class="status-item-icon">
         <div class="loading" v-if="!ds">
-          <Loading size="30" show="true"></Loading>
+          <Loading :size="30" :show="ds"></Loading>
         </div>
         <div v-if="ds">
           <i v-if="ds.error" class="fas fa-exclamation-circle fa-2x red"></i>
@@ -197,6 +197,7 @@ export default {
   font-weight: bold;
   margin-left: 20px;
 }
+
 .status-item-icon {
   display: flex;
   align-items: center;

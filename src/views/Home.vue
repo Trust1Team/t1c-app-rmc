@@ -116,7 +116,7 @@ export default {
         console.log(res);
       },
       (err) => {
-        console.log("DSERROR", err);
+        console.log(err);
       }
     );
   },
