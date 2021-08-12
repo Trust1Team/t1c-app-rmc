@@ -15,7 +15,7 @@
 
 <script>
 export default {
-  name: "CardActions",
+  name: "GenericPaymentCardActions",
   props: {
     address: Object,
   },

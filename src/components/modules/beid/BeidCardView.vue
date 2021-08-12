@@ -11,9 +11,9 @@
     </div>
 
     <div class="token-details">
-      <AddressInformation :address="address" />
+      <GenericTokenAddressInformation :address="address" />
 
-      <CertificateInformation
+      <GenericTokenCertificateInformation
         :authentication-certificate="authenticationCertificate"
         :root-certificate="rootCertificate"
         :non-repudiation-certificate="nonRepudiationCertificate"
@@ -22,7 +22,7 @@
         :intermediate-certificates="intermediateCertificates"
       />
 
-      <CardActions />
+      <GenericTokenCardActions />
     </div>
   </div>
 </template>
@@ -30,9 +30,9 @@
 <script>
 import BeidFrontCardView from "./BeidFrontCardView";
 import BeidBackCardView from "./BeidBackCardView";
-import CertificateInformation from "../CertificateInformation";
-import AddressInformation from "../AddressInformation";
-import CardActions from "../CardActions";
+import GenericTokenCertificateInformation from "../genericToken/GenericTokenCertificateInformation";
+import GenericTokenAddressInformation from "../genericToken/GenericTokenAddressInformation";
+import GenericTokenCardActions from "../genericToken/GenericTokenCardActions";
 
 export default {
   name: "BeidCardView",
@@ -51,9 +51,9 @@ export default {
   components: {
     BeidFrontCardView,
     BeidBackCardView,
-    CertificateInformation,
-    AddressInformation,
-    CardActions,
+    GenericTokenCertificateInformation,
+    GenericTokenAddressInformation,
+    GenericTokenCardActions,
   },
   emits: ["goBack"],
   created() {},

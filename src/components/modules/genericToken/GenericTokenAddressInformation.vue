@@ -32,7 +32,7 @@
 
 <script>
 export default {
-  name: "AddressInformation",
+  name: "GenericTokenAddressInformation",
   props: {
     address: Object,
   },

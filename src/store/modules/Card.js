@@ -1,6 +1,7 @@
 export const Card = {
   namespaced: true,
   state: {
+    // Token
     biometric: null,
     address: null,
     picture: null,
@@ -10,6 +11,13 @@ export const Card = {
     nonRepudiationCertificate: null,
     encryptionCertificate: null,
     issuerCertificate: null,
+
+    // Payment
+    applicationData: null,
+    applications: null,
+    issuerPublicCertificate: null,
+    ICCPublicCertificate: null,
+
     loadingData: true,
     loadingCertificates: true,
   },
@@ -18,6 +26,8 @@ export const Card = {
       state.biometric = res.data.biometric;
       state.address = res.data.address;
       state.picture = res.data.picture;
+      state.applicationData = res.data.applicationData;
+      state.applications = res.data.applications;
     },
     SET_ALL_CERTIFICATES(state, res) {
       state.rootCertificate = res.data.rootCertificate;
@@ -26,6 +36,8 @@ export const Card = {
       state.nonRepudiationCertificate = res.data.nonRepudiationCertificate;
       state.encryptionCertificate = res.data.encryptionCertificate;
       state.issuerCertificate = res.data.issuerCertificate;
+      state.issuerPublicCertificate = res.data.issuerPublicCertificate;
+      state.ICCPublicCertificate = res.data.ICCPublicCertificate;
     },
     SET_DATA_LOADING(state, loading) {
       state.loadingData = loading;
@@ -45,6 +57,11 @@ export const Card = {
       state.issuerCertificate = null;
       state.loadingData = true;
       state.loadingCertificates = true;
+
+      state.applicationData = null;
+      state.applications = null;
+      state.issuerPublicCertificate = null;
+      state.ICCPublicCertificate = null;
     },
   },
   actions: {
@@ -97,6 +114,19 @@ export const Card = {
     },
     getCertificateLoading: (state) => {
       return state.loadingCertificates;
+    },
+
+    getApplications: (state) => {
+      return state.applications;
+    },
+    getApplicationData: (state) => {
+      return state.applicationData;
+    },
+    getICCPublicCertificate: (state) => {
+      return state.ICCPublicCertificate;
+    },
+    getIssuerPublicCertificate: (state) => {
+      return state.issuerPublicCertificate;
     },
   },
 };

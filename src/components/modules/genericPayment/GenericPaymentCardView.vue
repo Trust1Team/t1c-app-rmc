@@ -13,7 +13,7 @@
     <div class="token-details">
       <GenericTokenAddressInformation :address="address" />
 
-      <GenericTokenCertificateInformation
+      <CertificateInformation
         :authentication-certificate="authenticationCertificate"
         :root-certificate="rootCertificate"
         :non-repudiation-certificate="nonRepudiationCertificate"
@@ -22,7 +22,7 @@
         :intermediate-certificates="intermediateCertificates"
       />
 
-      <GenericTokenCardActions />
+      <CardActions />
     </div>
   </div>
 </template>
@@ -30,9 +30,9 @@
 <script>
 import GenericTokenFrontCardView from "./GenericTokenFrontCardView";
 import GenericTokenBackCardView from "./GenericTokenBackCardView";
-import GenericTokenCertificateInformation from "../GenericTokenCertificateInformation";
+import CertificateInformation from "../CertificateInformation";
 import GenericTokenAddressInformation from "../GenericTokenAddressInformation";
-import GenericTokenCardActions from "../GenericTokenCardActions";
+import CardActions from "../CardActions";
 
 export default {
   name: "GenericTokenCardView",
@@ -51,9 +51,9 @@ export default {
   components: {
     GenericTokenFrontCardView,
     GenericTokenBackCardView,
-    GenericTokenCertificateInformation,
+    CertificateInformation,
     GenericTokenAddressInformation,
-    GenericTokenCardActions,
+    CardActions,
   },
   emits: ["goBack"],
   created() {},

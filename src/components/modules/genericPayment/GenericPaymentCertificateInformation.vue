@@ -170,7 +170,7 @@
 import Loading from "../core/Loading";
 
 export default {
-  name: "AddressInformation",
+  name: "GenericPaymentCertificateInformation",
   props: {
     rootCertificate: Object,
     intermediateCertificates: Object,

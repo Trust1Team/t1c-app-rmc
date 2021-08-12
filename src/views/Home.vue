@@ -14,18 +14,7 @@
         <div class="loading">
           <Loading :show="getDataLoading"></Loading>
         </div>
-        <BeidCardView
-          :biometric="getBiometric"
-          :picture="getPicture"
-          :address="getAddress"
-          :rootCertificate="getRootCertificate"
-          :intermediateCertificates="getIntermediateCertificates"
-          :authenticationCertificate="getAuthenticationCertificate"
-          :nonRepudiationCertificate="getNonRepudiationCertificate"
-          :encryptionCertificate="getEncryptionCertificate"
-          :issuerCertificate="getIssuerCertificate"
-          :reader-name="getReader.name"
-        />
+        <ModuleSwitch />
       </div>
     </div>
 
@@ -42,7 +31,7 @@ import ReadersList from "../components/core/ReadersList";
 import Consent from "../components/core/Consent";
 import Installation from "../components/core/Installation";
 import Loading from "../components/core/Loading";
-import BeidCardView from "../components/modules/beid/BeidCardView";
+import ModuleSwitch from "../components/modules/ModuleSwitch";
 import DistributionService from "../services/DistributionService";
 
 export default {
@@ -141,33 +130,6 @@ export default {
     getReader() {
       return this.$store.getters["reader/getSelectedReader"];
     },
-    getBiometric() {
-      return this.$store.getters["card/getBiometric"];
-    },
-    getAddress() {
-      return this.$store.getters["card/getAddress"];
-    },
-    getPicture() {
-      return this.$store.getters["card/getPicture"];
-    },
-    getRootCertificate() {
-      return this.$store.getters["card/getRootCertificate"];
-    },
-    getIntermediateCertificates() {
-      return this.$store.getters["card/getIntermediateCertificates"];
-    },
-    getAuthenticationCertificate() {
-      return this.$store.getters["card/getAuthenticationCertificate"];
-    },
-    getNonRepudiationCertificate() {
-      return this.$store.getters["card/getNonRepudiationCertificate"];
-    },
-    getEncryptionCertificate() {
-      return this.$store.getters["card/getEncryptionCertificate"];
-    },
-    getIssuerCertificate() {
-      return this.$store.getters["card/getIssuerCertificate"];
-    },
     getConsent() {
       return this.$store.getters["getConsent"];
     },
@@ -181,7 +143,7 @@ export default {
       return this.$store.getters["card/getCertificateLoading"];
     },
   },
-  components: { ReadersList, Consent, BeidCardView, Loading, Installation },
+  components: { ReadersList, Consent, ModuleSwitch, Loading, Installation },
 };
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
