@@ -19,11 +19,11 @@
         </div>
       </div>
 
-      <div class="card-row" v-if="getMrz">
+      <div class="card-row" v-if="mrz">
         <div class="machine-readable">
-          <p>{{ getMrz[0] }}</p>
-          <p>{{ getMrz[1] }}</p>
-          <p>{{ getMrz[2] }}</p>
+          <p>{{ mrz[0] }}</p>
+          <p>{{ mrz[1] }}</p>
+          <p>{{ mrz[2] }}</p>
         </div>
       </div>
     </div>
@@ -102,8 +102,16 @@ function calculate(string) {
 }
 
 export default {
-  name: "BeidBackCardView",
+  name: "GenericTokenBackCardView",
   props: ["biometric", "picture"],
+  data() {
+    return {
+      mrz: null,
+    };
+  },
+  created() {
+    this.mrz = this.constructMachineReadableStrings(this.biometric);
+  },
   methods: {
     constructMachineReadableStrings(rnData) {
       const mrs = [];
@@ -150,11 +158,7 @@ export default {
       return mrs;
     },
   },
-  computed: {
-    getMrz() {
-      return this.constructMachineReadableStrings(this.biometric);
-    },
-  },
+  computed: {},
 };
 </script>
 

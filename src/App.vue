@@ -82,7 +82,6 @@ export default {
 }
 
 .app-container {
-  width: 100%;
   min-height: calc(100vh - 70px);
   display: flex;
   flex-direction: row;
@@ -92,7 +91,7 @@ export default {
   height: 70px;
   background-color: #e05512;
   padding: 5px 10px;
-  width: 100%;
+
   display: flex;
   justify-content: space-between;
   align-items: center;

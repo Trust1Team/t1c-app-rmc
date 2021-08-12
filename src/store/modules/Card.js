@@ -10,7 +10,6 @@ export const Card = {
     nonRepudiationCertificate: null,
     encryptionCertificate: null,
     issuerCertificate: null,
-
     loadingData: true,
     loadingCertificates: true,
   },
@@ -34,6 +33,19 @@ export const Card = {
     SET_CERTIFICATE_LOADING(state, loading) {
       state.loadingCertificates = loading;
     },
+    RESET_STATE(state) {
+      state.biometric = null;
+      state.address = null;
+      state.picture = null;
+      state.rootCertificate = null;
+      state.intermediateCertificates = null;
+      state.authenticationCertificate = null;
+      state.nonRepudiationCertificate = null;
+      state.encryptionCertificate = null;
+      state.issuerCertificate = null;
+      state.loadingData = true;
+      state.loadingCertificates = true;
+    },
   },
   actions: {
     setAllData(context, res) {
@@ -47,6 +59,9 @@ export const Card = {
     },
     setCertificateLoading(context, loading) {
       context.commit("SET_CERTIFICATE_LOADING", loading);
+    },
+    resetState(context) {
+      context.commit("RESET_STATE");
     },
   },
   getters: {

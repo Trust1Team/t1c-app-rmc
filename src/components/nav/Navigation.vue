@@ -168,6 +168,7 @@ export default {
 }
 
 .nav-container {
+  padding: 10px;
   width: 300px;
   background-color: #e05512;
   display: flex;

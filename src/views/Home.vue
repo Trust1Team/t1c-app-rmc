@@ -70,8 +70,7 @@ export default {
       this.pageView = 0;
     },
     getAllData() {
-      this.$store.dispatch("card/setDataLoading", true);
-      this.$store.dispatch("card/setCertificateLoading", true);
+      this.$store.dispatch("card/resetState");
       if (this.getReader && this.getReader.id) {
         const module = this.getReader.card.module
           ? this.getReader.card.module[0]
