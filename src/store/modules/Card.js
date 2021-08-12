@@ -10,6 +10,9 @@ export const Card = {
     nonRepudiationCertificate: null,
     encryptionCertificate: null,
     issuerCertificate: null,
+
+    loadingData: true,
+    loadingCertificates: true,
   },
   mutations: {
     SET_ALL_DATA(state, res) {
@@ -25,6 +28,12 @@ export const Card = {
       state.encryptionCertificate = res.data.encryptionCertificate;
       state.issuerCertificate = res.data.issuerCertificate;
     },
+    SET_DATA_LOADING(state, loading) {
+      state.loadingData = loading;
+    },
+    SET_CERTIFICATE_LOADING(state, loading) {
+      state.loadingCertificates = loading;
+    },
   },
   actions: {
     setAllData(context, res) {
@@ -32,6 +41,12 @@ export const Card = {
     },
     setAllCertificates(context, res) {
       context.commit("SET_ALL_CERTIFICATES", res);
+    },
+    setDataLoading(context, loading) {
+      context.commit("SET_DATA_LOADING", loading);
+    },
+    setCertificateLoading(context, loading) {
+      context.commit("SET_CERTIFICATE_LOADING", loading);
     },
   },
   getters: {
@@ -61,6 +76,12 @@ export const Card = {
     },
     getIssuerCertificate: (state) => {
       return state.issuerCertificate;
+    },
+    getDataLoading: (state) => {
+      return state.loadingData;
+    },
+    getCertificateLoading: (state) => {
+      return state.loadingCertificates;
     },
   },
 };

@@ -1,7 +1,7 @@
 <template>
   <div class="container">
-    <Consent v-if="consentRequired" @consented="consented" />
-    <div v-if="!consentRequired">
+    <Consent v-if="getInstalled && !getConsent" @consented="consented" />
+    <div v-if="getConsent && getInstalled">
       <h1>{{ $t("admin.Device information") }}</h1>
       <DeviceInfo :info="info" :js-version="jsVersion" />
 
@@ -30,13 +30,13 @@ export default {
   data() {
     return {
       info: null,
-      consentRequired: false,
+      installed: false,
       jsVersion: null,
     };
   },
   methods: {
     consented() {
-      this.consentRequired = false;
+      this.$store.dispatch("SET_CONSENT", true);
     },
   },
   created() {
@@ -74,7 +74,14 @@ export default {
       }
     );
   },
-
+  computed: {
+    getConsent() {
+      return this.$store.getters["getConsent"];
+    },
+    getInstalled() {
+      return this.$store.getters["getInstalled"];
+    },
+  },
   components: {
     AdminReadersList,
     Consent,

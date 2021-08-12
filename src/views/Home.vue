@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div v-if="!consentRequired">
+    <div v-if="getConsent && getInstalled">
       <div v-if="pageView === 0">
         <ReadersList @readerSelected="readerSelected($event)" />
       </div>
@@ -12,10 +12,9 @@
         </div>
 
         <div class="loading">
-          <Loading :show="loading"></Loading>
+          <Loading :show="getDataLoading"></Loading>
         </div>
-        <GenericCardView
-          v-if="!loading"
+        <BeidCardView
           :biometric="getBiometric"
           :picture="getPicture"
           :address="getAddress"
@@ -30,7 +29,9 @@
       </div>
     </div>
 
-    <Consent v-if="consentRequired" @consented="consented" />
+    <Consent v-if="getInstalled && !getConsent" @consented="consented" />
+
+    <Installation v-if="!getInstalled" />
   </div>
 </template>
 
@@ -39,22 +40,24 @@
 import Trust1ConnectorService from "../services/Trust1ConnectorService";
 import ReadersList from "../components/core/ReadersList";
 import Consent from "../components/core/Consent";
+import Installation from "../components/core/Installation";
 import Loading from "../components/core/Loading";
-import GenericCardView from "../components/modules/GenericCardView";
+import BeidCardView from "../components/modules/beid/BeidCardView";
 import DistributionService from "../services/DistributionService";
 
 export default {
   name: "Home",
   data() {
     return {
-      loading: true,
-      consentRequired: false,
       pageView: 0,
     };
   },
   methods: {
+    installed() {
+      this.$store.dispatch("setInstalled", true);
+    },
     consented() {
-      this.consentRequired = false;
+      this.$store.dispatch("setConsent", true);
     },
     readerSelected(reader) {
       this.getAllData();
@@ -67,7 +70,8 @@ export default {
       this.pageView = 0;
     },
     getAllData() {
-      this.loading = true;
+      this.$store.dispatch("card/setDataLoading", true);
+      this.$store.dispatch("card/setCertificateLoading", true);
       if (this.getReader && this.getReader.id) {
         const module = this.getReader.card.module
           ? this.getReader.card.module[0]
@@ -77,13 +81,24 @@ export default {
             const c = client.generic(this.getReader.id);
             c.allData(module).then(
               (allDataRes) => {
-                this.loading = false;
                 this.$store.dispatch("card/setAllData", allDataRes).then(() => {
-                  this.loading = false;
+                  this.$store.dispatch("card/setDataLoading", false);
                 });
               },
               (err) => {
                 console.error("Could not fetch alldata", err);
+              }
+            );
+            c.allCerts(module).then(
+              (allCertsRes) => {
+                this.$store
+                  .dispatch("card/setAllCertificates", allCertsRes)
+                  .then(() => {
+                    this.$store.dispatch("card/setCertificateLoading", false);
+                  });
+              },
+              (err) => {
+                console.error("Could not fetch allCerts", err);
               }
             );
           },
@@ -97,7 +112,8 @@ export default {
   created() {
     Trust1ConnectorService.init().then(
       (res) => {
-        this.consentRequired = false;
+        this.installed();
+        this.consented();
         Trust1ConnectorService.setClient(res);
         if (this.getReader) {
           this.getAllData();
@@ -106,7 +122,9 @@ export default {
       },
       (err) => {
         console.log(err);
-        this.consentRequired = true;
+        if (err !== 12999) {
+          this.installed();
+        }
         Trust1ConnectorService.setErrorClient(err.client);
       }
     );
@@ -151,8 +169,20 @@ export default {
     getIssuerCertificate() {
       return this.$store.getters["card/getIssuerCertificate"];
     },
+    getConsent() {
+      return this.$store.getters["getConsent"];
+    },
+    getInstalled() {
+      return this.$store.getters["getInstalled"];
+    },
+    getDataLoading() {
+      return this.$store.getters["card/getDataLoading"];
+    },
+    getCertificateLoading() {
+      return this.$store.getters["card/getCertificateLoading"];
+    },
   },
-  components: { ReadersList, Consent, GenericCardView, Loading },
+  components: { ReadersList, Consent, BeidCardView, Loading, Installation },
 };
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->

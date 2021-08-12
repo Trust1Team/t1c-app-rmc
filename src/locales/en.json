@@ -78,12 +78,30 @@
     "Print legal copy of card": "Print legal copy of card",
     "Show generated information": "Show generated information"
   },
-  "otherInformation": {
-    "Additional information": "Additional information",
-    "Address": "Address",
-    "city": "city",
-    "Postal code": "Postal code",
-    "General information": "General information",
-    "Chip number": "Chip number"
+  "addressInformation": {
+    "header": "Address details",
+    "address": "Address",
+    "city": "City",
+    "postalCode": "Postal code",
+    "generalInformation": "General information"
+  },
+  "certificateInformation": {
+    "header": "Certificate details",
+    "nonRepudiationCertificate": "Non repudiation certificate",
+    "authenticationCertificate": "Authentication certificate",
+    "encryptionCertificate": "Encryption certificate",
+    "issuerCertificate": "Issuer certificate",
+    "intermediateCertificates": "Intermediate certificate",
+    "rootCertificate": "Root certificate",
+    "noCertFound": "No certificate was found"
+  },
+  "cardActions": {
+    "header": "Actions",
+    "legalCopy": "Print legal copy",
+    "checkPin": "Check pin code"
+  },
+  "installation": {
+    "welcome": "Welcome to the web application {0} of Trust1Team!",
+    "install": "To use this application, please install the Trust1Connector software"
   }
 }

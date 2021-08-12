@@ -12,8 +12,8 @@
     "docker": "yarn docker-build && yarn docker-tag && yarn docker-push"
   },
   "dependencies": {
-    "bootstrap": "^5.0.2",
     "core-js": "^3.6.5",
+    "lodash": "^4.17.21",
     "t1c-sdk-js": "^3.5.0-RC6",
     "vue": "^3.0.0",
     "vue-clipboard3": "^1.0.1",
@@ -22,7 +22,6 @@
     "vuex": "^4.0.0-0"
   },
   "devDependencies": {
-    "@types/bootstrap": "^5.0.16",
     "@vue/cli-plugin-babel": "~4.5.0",
     "@vue/cli-plugin-eslint": "~4.5.0",
     "@vue/cli-plugin-router": "~4.5.0",

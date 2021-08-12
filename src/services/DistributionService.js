@@ -30,23 +30,18 @@ export default {
 
   getLatestVersion() {
     return new Promise((resolve, reject) => {
-      this.getJWT().then(
-        (jwtRes) => {
-          apiClient(jwtRes.data)
-            .get("/v3_5/versions/latest")
-            .then(
-              (res) => {
-                resolve(res);
-              },
-              (err) => {
-                reject(err);
-              }
-            );
-        },
-        (err) => {
-          reject(err);
-        }
-      );
+      this.getJWT().then((jwt) => {
+        apiClient(jwt.data)
+          .get("/v3_5/versions/latest")
+          .then(
+            (res) => {
+              resolve(res);
+            },
+            (err) => {
+              reject(err);
+            }
+          );
+      });
     });
   },
   getJWT() {
