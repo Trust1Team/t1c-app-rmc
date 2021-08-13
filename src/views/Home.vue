@@ -2,7 +2,10 @@
   <div class="container">
     <div v-if="getConsent && getInstalled">
       <div v-if="pageView === 0">
-        <ReadersList @readerSelected="readerSelected($event)" />
+        <ReadersList
+          :unknown-modules-disabled="true"
+          @readerSelected="readerSelected($event)"
+        />
       </div>
       <div v-if="pageView === 1">
         <div class="go-back">

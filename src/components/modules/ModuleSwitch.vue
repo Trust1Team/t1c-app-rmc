@@ -15,7 +15,7 @@
 
   <GenericTokenCardView
     v-if="
-      !getReader.card.modules.includes('beid') ||
+      !getReader.card.modules.includes('beid') &&
       !getReader.card.modules.includes('emv')
     "
     :biometric="getBiometric"
