@@ -95,6 +95,19 @@
     "rootCertificate": "Root certificate",
     "noCertFound": "No certificate was found"
   },
+  "paymentCertificateInformation": {
+    "header": "Certificate details",
+    "issuerPublicCertificate": "Issuer public certificate",
+    "iccPublicCertificate": "ICC public certificate",
+    "noCertFound": "No certificate was found",
+    "aid": "Aid",
+    "priority": "Priority"
+  },
+  "genericPaymentApplications": {
+    "header": "Application details",
+    "aid": "Aid",
+    "priority": "Priority"
+  },
   "cardActions": {
     "header": "Actions",
     "legalCopy": "Print legal copy",

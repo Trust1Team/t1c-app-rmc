@@ -61,34 +61,93 @@ export default {
     getAllData() {
       this.$store.dispatch("card/resetState");
       if (this.getReader && this.getReader.id) {
-        const module = this.getReader.card.module
-          ? this.getReader.card.module[0]
+        const module = this.getReader.card.modules
+          ? this.getReader.card.modules[0]
           : "beid";
+
         Trust1ConnectorService.init().then(
           (client) => {
-            const c = client.generic(this.getReader.id);
-            c.allData(module).then(
-              (allDataRes) => {
-                this.$store.dispatch("card/setAllData", allDataRes).then(() => {
-                  this.$store.dispatch("card/setDataLoading", false);
-                });
-              },
-              (err) => {
-                console.error("Could not fetch alldata", err);
-              }
-            );
-            c.allCerts(module).then(
-              (allCertsRes) => {
-                this.$store
-                  .dispatch("card/setAllCertificates", allCertsRes)
-                  .then(() => {
-                    this.$store.dispatch("card/setCertificateLoading", false);
+            // TODO this is a bit dirty, cleanup later
+            let c = client.generic(this.getReader.id);
+            if (
+              this.getReader.card.modules.includes("emv") ||
+              this.getReader.card.modules.includes("crelan")
+            ) {
+              c = client.paymentGeneric(this.getReader.id);
+              c.readData(module).then(
+                (allDataRes) => {
+                  let certsFetched = 0;
+                  allDataRes.data.applications.forEach((app) => {
+                    c.allCerts(module, app.aid).then(
+                      (allCertsRes) => {
+                        certsFetched += 1;
+                        this.$store
+                          .dispatch("card/setPaymentCertificates", {
+                            aid: app.aid,
+                            data: allCertsRes.data,
+                          })
+                          .then(() => {
+                            if (
+                              certsFetched ===
+                              allDataRes.data.applications.length
+                            ) {
+                              this.$store.dispatch(
+                                "card/setCertificateLoading",
+                                false
+                              );
+                            }
+                          });
+                      },
+                      (err) => {
+                        console.error("Could not fetch allCerts", err);
+                      }
+                    );
                   });
-              },
-              (err) => {
-                console.error("Could not fetch allCerts", err);
-              }
-            );
+
+                  this.$store.dispatch("card/setApplications", allDataRes);
+                },
+                (err) => {
+                  console.error("Could not fetch alldata", err);
+                }
+              );
+              c.readApplicationData(module).then(
+                (applicationDataRes) => {
+                  this.$store
+                    .dispatch("card/setApplicationData", applicationDataRes)
+                    .then(() => {
+                      this.$store.dispatch("card/setDataLoading", false);
+                    });
+                },
+                (err) => {
+                  console.error("Could not fetch readApplicationData", err);
+                }
+              );
+            } else {
+              c.allData(module).then(
+                (allDataRes) => {
+                  this.$store
+                    .dispatch("card/setAllData", allDataRes)
+                    .then(() => {
+                      this.$store.dispatch("card/setDataLoading", false);
+                    });
+                },
+                (err) => {
+                  console.error("Could not fetch alldata", err);
+                }
+              );
+              c.allCerts(module).then(
+                (allCertsRes) => {
+                  this.$store
+                    .dispatch("card/setAllCertificates", allCertsRes)
+                    .then(() => {
+                      this.$store.dispatch("card/setCertificateLoading", false);
+                    });
+                },
+                (err) => {
+                  console.error("Could not fetch allCerts", err);
+                }
+              );
+            }
           },
           (err) => {
             console.error(err);

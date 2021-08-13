@@ -119,10 +119,6 @@ p {
   background-color: unset !important;
 }
 
-.names div {
-  margin-right: 10px;
-}
-
 .chip-spacing {
   margin-left: 130px;
 }

@@ -1,67 +1,39 @@
 <template>
-  <div class="token-container" v-if="biometric">
+  <div class="token-container" v-if="applicationData">
     <div class="token-card">
       <div class="card-side">
-        <GenericTokenFrontCardView :biometric="biometric" :picture="picture" />
-      </div>
-
-      <div class="card-side">
-        <GenericTokenBackCardView :biometric="biometric" :picture="picture" />
+        <GenericPaymentFrontCardView :application-data="applicationData" />
       </div>
     </div>
 
     <div class="token-details">
-      <GenericTokenAddressInformation :address="address" />
-
-      <CertificateInformation
-        :authentication-certificate="authenticationCertificate"
-        :root-certificate="rootCertificate"
-        :non-repudiation-certificate="nonRepudiationCertificate"
-        :issuer-certificate="issuerCertificate"
-        :encryption-certificate="encryptionCertificate"
-        :intermediate-certificates="intermediateCertificates"
-      />
-
-      <CardActions />
+      <GenericPaymentApplications :applications="applications" />
+      <GenericPaymentCertificateInformation />
+      <GenericPaymentCardActions />
     </div>
   </div>
 </template>
 
 <script>
-import GenericTokenFrontCardView from "./GenericTokenFrontCardView";
-import GenericTokenBackCardView from "./GenericTokenBackCardView";
-import CertificateInformation from "../CertificateInformation";
-import GenericTokenAddressInformation from "../GenericTokenAddressInformation";
-import CardActions from "../CardActions";
+import GenericPaymentFrontCardView from "./GenericPaymentFrontCardView";
+import GenericPaymentCertificateInformation from "./GenericPaymentCertificateInformation";
+import GenericPaymentCardActions from "./GenericPaymentCardActions";
+import GenericPaymentApplications from "./GenericPaymentApplications";
 
 export default {
-  name: "GenericTokenCardView",
+  name: "GenericPaymentCardView",
   props: {
-    biometric: Object,
-    address: Object,
-    picture: Object,
-    rootCertificate: Object,
-    intermediateCertificates: Object,
-    authenticationCertificate: Object,
-    nonRepudiationCertificate: Object,
-    encryptionCertificate: Object,
-    issuerCertificate: Object,
-    readerName: String,
+    applications: Object,
+    applicationData: Object,
   },
   components: {
-    GenericTokenFrontCardView,
-    GenericTokenBackCardView,
-    CertificateInformation,
-    GenericTokenAddressInformation,
-    CardActions,
+    GenericPaymentFrontCardView,
+    GenericPaymentCertificateInformation,
+    GenericPaymentCardActions,
+    GenericPaymentApplications,
   },
-  emits: ["goBack"],
   created() {},
-  computed: {
-    getCertificateLoading() {
-      return this.$store.getters["card/getCertificateLoading"];
-    },
-  },
+  computed: {},
 };
 </script>
 

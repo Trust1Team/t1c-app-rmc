@@ -2,11 +2,7 @@
   <div class="token-details-item">
     <h3>{{ $t("cardActions.header") }}</h3>
     <div class="action-buttons">
-      <button class="btn btn-primary" :disabled="getCertificateLoading">
-        {{ $t("cardActions.legalCopy") }}
-      </button>
-
-      <button class="btn btn-primary" :disabled="getCertificateLoading">
+      <button class="btn btn-primary">
         {{ $t("cardActions.checkPin") }}
       </button>
     </div>
@@ -16,14 +12,8 @@
 <script>
 export default {
   name: "GenericPaymentCardActions",
-  props: {
-    address: Object,
-  },
-  computed: {
-    getCertificateLoading() {
-      return this.$store.getters["card/getCertificateLoading"];
-    },
-  },
+  props: {},
+  computed: {},
 };
 </script>
 

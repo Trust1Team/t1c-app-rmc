@@ -1,74 +1,84 @@
 <template>
   <div class="card-container">
     <div class="card-content">
+      <div class="chip">
+        <img src="../../../assets/credit-card.svg" alt="Credit card chip" />
+      </div>
       <div class="card-row">
-        <div>
-          <p><i>Name</i></p>
-          <p><i>Given names</i></p>
+        <div class="text-title">
+          <p><i>Card number</i></p>
         </div>
         <div class="text-spacing">
-          <p class="bold">{{ biometric.name }}</p>
-          <p class="bold">
-            {{ biometric.firstNames }} {{ biometric.thirdName }}
-          </p>
+          <p class="bold">{{ constructCardNumber }}</p>
         </div>
       </div>
-      <div class="card-row-2 chip-spacing">
-        <div>
-          <p><i>Place and date of birth</i></p>
-          <p class="bold">
-            {{ biometric.birthLocation }} {{ biometric.birthDate }}
-          </p>
+      <div class="card-row" v-if="applicationData.name">
+        <div class="text-title">
+          <p><i>Card number</i></p>
         </div>
-        <div>
-          <p><i>Sex</i></p>
-          <p class="bold">{{ biometric.sex }}</p>
+        <div class="text-spacing">
+          <p class="bold">{{ applicationData.name }}</p>
         </div>
       </div>
-      <div class="card-row chip-spacing">
-        <div>
-          <p><i>Nationality</i></p>
-          <p class="bold">{{ biometric.nationality }}</p>
-        </div>
-      </div>
-      <div class="card-row chip-spacing">
-        <div>
-          <p><i>Card no</i></p>
-          <p class="bold">{{ biometric.cardNumber }}</p>
-        </div>
-      </div>
-
       <div class="card-row">
-        <div>
-          <p><i>Valid from- until</i></p>
+        <div class="text-title">
+          <p><i>Expires</i></p>
+        </div>
+        <div class="text-spacing">
           <p class="bold">
-            {{ biometric.cardValidityDateBegin }} -
-            {{ biometric.cardValidityDateEnd }}
+            {{ constructExpirationDate }}
           </p>
         </div>
-      </div>
-
-      <div>
-        <img
-          class="image"
-          :src="'data:image/png;base64,' + picture.picture"
-          alt=""
-        />
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import moment from "moment";
+import * as _ from "lodash";
+
 export default {
-  name: "GenericTokenFrontCardView",
-  props: ["biometric", "picture"],
+  name: "GenericPaymentFrontCardView",
+  props: ["applicationData"],
+  methods: {},
+  computed: {
+    constructCardNumber() {
+      let cardNumber = "";
+      _.forEach(this.applicationData.pan, (comp, idx) => {
+        idx % 4 === 0 ? (cardNumber += " " + comp) : (cardNumber += comp);
+      });
+      return cardNumber;
+    },
+
+    constructExpirationDate() {
+      return moment(this.applicationData.expirationDate, "YYMMDD").format(
+        "DD/MM/YY"
+      );
+    },
+  },
 };
 </script>
 
 <style scoped>
 p {
   margin-bottom: unset;
+}
+
+.chip {
+  width: 60px;
+  margin-left: 50px;
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+
+.chip img {
+  width: 100%;
+}
+
+.text-title {
+  width: 125px;
+  margin-left: 50px;
 }
 
 .card-container {
@@ -85,56 +95,21 @@ p {
 
 .card-content {
   padding: 5px;
-  font-size: 10px;
   margin-top: 35px;
 }
 
-.names div {
-  margin-right: 10px;
-}
-
-.chip-spacing {
-  margin-left: 130px;
-}
 .text-spacing {
   margin-left: 10px;
-}
-
-.card-row-2 {
-  display: flex;
-  line-height: 15px;
-  margin-top: 5px;
-}
-
-.card-row-2 div:last-of-type {
-  text-align: right;
-  margin-left: 30px;
 }
 
 .card-row {
   margin-top: 5px;
   display: flex;
   line-height: 15px;
+  margin-bottom: 30px;
 }
 
 .bold {
   font-weight: bold;
-}
-
-.title {
-  font-size: 14px;
-}
-
-.sub-title {
-  font-size: 9px;
-}
-
-.image {
-  position: absolute;
-  right: 5px;
-  bottom: 0;
-  margin-bottom: 5px;
-  width: 100px;
-  border-radius: 10px;
 }
 </style>

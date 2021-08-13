@@ -1,5 +1,6 @@
 <template>
   <BeidCardView
+    v-if="getReader.card.modules.includes('beid')"
     :biometric="getBiometric"
     :picture="getPicture"
     :address="getAddress"
@@ -11,14 +12,22 @@
     :issuerCertificate="getIssuerCertificate"
     :reader-name="getReader.name"
   />
+
+  <GenericPaymentCardView
+    v-if="getApplications"
+    :application-data="getApplicationData"
+    :applications="getApplications.applications"
+    :reader-name="getReader.name"
+  />
 </template>
 
 <script>
 import BeidCardView from "./beid/BeidCardView";
+import GenericPaymentCardView from "./genericPayment/GenericPaymentCardView";
 
 export default {
   name: "ModuleSwitch",
-  components: { BeidCardView },
+  components: { BeidCardView, GenericPaymentCardView },
   computed: {
     getReader() {
       return this.$store.getters["reader/getSelectedReader"];
@@ -61,6 +70,13 @@ export default {
     },
     getCertificateLoading() {
       return this.$store.getters["card/getCertificateLoading"];
+    },
+
+    getApplications() {
+      return this.$store.getters["card/getApplications"];
+    },
+    getApplicationData() {
+      return this.$store.getters["card/getApplicationData"];
     },
   },
 };

@@ -55,7 +55,6 @@ export default {
     GenericTokenAddressInformation,
     GenericTokenCardActions,
   },
-  emits: ["goBack"],
   created() {},
   computed: {
     getCertificateLoading() {

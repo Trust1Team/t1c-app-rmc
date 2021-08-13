@@ -26,8 +26,22 @@ export const Card = {
       state.biometric = res.data.biometric;
       state.address = res.data.address;
       state.picture = res.data.picture;
-      state.applicationData = res.data.applicationData;
-      state.applications = res.data.applications;
+    },
+    SET_APPLICATION_DATA(state, res) {
+      state.applicationData = res.data;
+    },
+    SET_APPLICATIONS(state, res) {
+      state.applications = res.data;
+    },
+    SET_PAYMENT_CERTIFICATES(state, res) {
+      if (state.issuerPublicCertificate === null) {
+        state.issuerPublicCertificate = {};
+      }
+      if (state.ICCPublicCertificate === null) {
+        state.ICCPublicCertificate = {};
+      }
+      state.issuerPublicCertificate[res.aid] = res.data.issuerPublicCertificate;
+      state.ICCPublicCertificate[res.aid] = res.data.ICCPublicCertificate;
     },
     SET_ALL_CERTIFICATES(state, res) {
       state.rootCertificate = res.data.rootCertificate;
@@ -36,8 +50,6 @@ export const Card = {
       state.nonRepudiationCertificate = res.data.nonRepudiationCertificate;
       state.encryptionCertificate = res.data.encryptionCertificate;
       state.issuerCertificate = res.data.issuerCertificate;
-      state.issuerPublicCertificate = res.data.issuerPublicCertificate;
-      state.ICCPublicCertificate = res.data.ICCPublicCertificate;
     },
     SET_DATA_LOADING(state, loading) {
       state.loadingData = loading;
@@ -67,6 +79,15 @@ export const Card = {
   actions: {
     setAllData(context, res) {
       context.commit("SET_ALL_DATA", res);
+    },
+    setApplicationData(context, res) {
+      context.commit("SET_APPLICATION_DATA", res);
+    },
+    setApplications(context, res) {
+      context.commit("SET_APPLICATIONS", res);
+    },
+    setPaymentCertificates(context, res) {
+      context.commit("SET_PAYMENT_CERTIFICATES", res);
     },
     setAllCertificates(context, res) {
       context.commit("SET_ALL_CERTIFICATES", res);
