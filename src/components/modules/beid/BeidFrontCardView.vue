@@ -23,6 +23,9 @@
     </div>
 
     <div class="card-content">
+      <div class="chip">
+        <img src="../../../assets/credit-card.svg" alt="Credit card chip" />
+      </div>
       <div class="card-row">
         <div>
           <p><i>Naam/Name</i></p>
@@ -91,6 +94,17 @@ export default {
 <style scoped>
 p {
   margin-bottom: unset;
+}
+
+.chip {
+  top: 120px;
+  left: 25px;
+  position: absolute;
+  width: 80px;
+}
+
+.chip img {
+  width: 100%;
 }
 
 .card-container {

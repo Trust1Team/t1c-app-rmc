@@ -30,9 +30,9 @@
 <script>
 import GenericTokenFrontCardView from "./GenericTokenFrontCardView";
 import GenericTokenBackCardView from "./GenericTokenBackCardView";
-import GenericTokenCertificateInformation from "../GenericTokenCertificateInformation";
-import GenericTokenAddressInformation from "../GenericTokenAddressInformation";
-import GenericTokenCardActions from "../GenericTokenCardActions";
+import GenericTokenCertificateInformation from "./GenericTokenCertificateInformation";
+import GenericTokenAddressInformation from "./GenericTokenAddressInformation";
+import GenericTokenCardActions from "./GenericTokenCardActions";
 
 export default {
   name: "GenericTokenCardView",

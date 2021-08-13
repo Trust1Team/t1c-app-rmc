@@ -3,7 +3,6 @@
     <div class="card-content">
       <div class="card-row">
         <div>
-          <p><i>Identificatienummer van het Rijksregister</i></p>
           <p><i>Identification number of the National Register</i></p>
           <p class="bold">{{ biometric.chipNumber }}</p>
         </div>
@@ -14,7 +13,7 @@
 
       <div class="card-row">
         <div>
-          <p><i>Plaats van afgifte/Place of issue</i></p>
+          <p><i>Place of issue</i></p>
           <p class="bold">{{ biometric.cardDeliveryMunicipality }}</p>
         </div>
       </div>

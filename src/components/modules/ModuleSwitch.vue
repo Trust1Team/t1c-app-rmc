@@ -13,8 +13,25 @@
     :reader-name="getReader.name"
   />
 
+  <GenericTokenCardView
+    v-if="
+      !getReader.card.modules.includes('beid') ||
+      !getReader.card.modules.includes('emv')
+    "
+    :biometric="getBiometric"
+    :picture="getPicture"
+    :address="getAddress"
+    :rootCertificate="getRootCertificate"
+    :intermediateCertificates="getIntermediateCertificates"
+    :authenticationCertificate="getAuthenticationCertificate"
+    :nonRepudiationCertificate="getNonRepudiationCertificate"
+    :encryptionCertificate="getEncryptionCertificate"
+    :issuerCertificate="getIssuerCertificate"
+    :reader-name="getReader.name"
+  />
+
   <GenericPaymentCardView
-    v-if="getApplications"
+    v-if="getApplications && getReader.card.modules.includes('emv')"
     :application-data="getApplicationData"
     :applications="getApplications.applications"
     :reader-name="getReader.name"
@@ -24,10 +41,11 @@
 <script>
 import BeidCardView from "./beid/BeidCardView";
 import GenericPaymentCardView from "./genericPayment/GenericPaymentCardView";
+import GenericTokenCardView from "./genericToken/GenericTokenCardView";
 
 export default {
   name: "ModuleSwitch",
-  components: { BeidCardView, GenericPaymentCardView },
+  components: { BeidCardView, GenericPaymentCardView, GenericTokenCardView },
   computed: {
     getReader() {
       return this.$store.getters["reader/getSelectedReader"];
