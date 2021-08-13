@@ -52,11 +52,27 @@ export default {
       this.$store.dispatch("setConsent", true);
     },
     readerSelected(reader) {
-      this.getAllData();
-      this.$store.dispatch("reader/setSelectedReader", reader).then(() => {
-        this.getAllData();
-        this.pageView = 1;
-      });
+      Trust1ConnectorService.getClient()
+        .core()
+        .readersCardAvailable()
+        .then(
+          (readerRes) => {
+            const foundReader = readerRes.data.find((r) => r.id === reader.id);
+            if (foundReader && foundReader.card && foundReader.card.modules) {
+              this.$store
+                .dispatch("reader/setSelectedReader", foundReader)
+                .then(() => {
+                  this.getAllData();
+                  this.pageView = 1;
+                });
+            } else {
+              console.error("Choosen reader could not be found anymore");
+            }
+          },
+          () => {
+            console.error("cannot select reader");
+          }
+        );
     },
     goBack() {
       this.pageView = 0;
