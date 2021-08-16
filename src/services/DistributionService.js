@@ -31,7 +31,7 @@ export default {
   getLatestVersion() {
     return new Promise((resolve, reject) => {
       this.getJWT().then((jwt) => {
-        apiClient(jwt.data)
+        apiClient(jwt.data.data)
           .get("/v3_5/versions/latest")
           .then(
             (res) => {
