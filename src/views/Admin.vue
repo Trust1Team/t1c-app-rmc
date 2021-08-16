@@ -1,7 +1,6 @@
 <template>
   <div class="container">
-    <Consent v-if="getInstalled && !getConsent" @consented="consented" />
-    <div v-if="getConsent && getInstalled">
+    <div>
       <h1>{{ $t("admin.Device information") }}</h1>
       <DeviceInfo :info="info" :js-version="jsVersion" />
 
@@ -13,36 +12,34 @@
 
       <h1>{{ $t("admin.dependency") }}</h1>
       <DependencyInfo />
+
+      <h1>{{ $t("admin.binaries") }}</h1>
+      <Installation />
     </div>
   </div>
 </template>
 
 <script>
 import Trust1ConnectorService from "../services/Trust1ConnectorService";
-import Consent from "../components/core/Consent";
 import DeviceInfo from "../components/Admin/DeviceInfo";
 import UserInfo from "../components/Admin/UserInfo";
 import AdminReadersList from "../components/Admin/AdminReadersList";
 import DependencyInfo from "../components/Admin/DependencyInfo";
+import router from "../router";
+import Installation from "../components/core/Installation";
 
 export default {
   name: "Admin",
   data() {
     return {
       info: null,
-      installed: false,
       jsVersion: null,
     };
   },
-  methods: {
-    consented() {
-      this.$store.dispatch("SET_CONSENT", true);
-    },
-  },
+  methods: {},
   created() {
     Trust1ConnectorService.init().then(
       (res) => {
-        this.consentRequired = false;
         Trust1ConnectorService.setClient(res);
         res
           .core()
@@ -69,31 +66,20 @@ export default {
       },
       (err) => {
         console.log(err);
-        this.consentRequired = true;
         Trust1ConnectorService.setErrorClient(err.client);
+        router.push({ name: "Home" });
       }
     );
   },
-  computed: {
-    getConsent() {
-      return this.$store.getters["getConsent"];
-    },
-    getInstalled() {
-      return this.$store.getters["getInstalled"];
-    },
-  },
+  computed: {},
   components: {
     AdminReadersList,
-    Consent,
     DeviceInfo,
     UserInfo,
     DependencyInfo,
+    Installation,
   },
 };
 </script>
 
-<style scoped>
-.admin-reader-list {
-  margin-bottom: 50px;
-}
-</style>
+<style scoped></style>

@@ -20,10 +20,15 @@
         <ModuleSwitch />
       </div>
     </div>
-
     <Consent v-if="getInstalled && !getConsent" @consented="consented" />
 
-    <Installation v-if="!getInstalled" />
+    <div class="installer" v-if="!getInstalled">
+      <i18n-t keypath="installation.welcome" tag="h1" class="head">
+        <span class="highlight">Read My Cards</span>
+      </i18n-t>
+      <h2>{{ $t("installation.install") }}</h2>
+      <Installation />
+    </div>
   </div>
 </template>
 
@@ -186,11 +191,10 @@ export default {
         }
       },
       (err) => {
-        console.log(err);
-        if (err !== 12999) {
+        if (err.code === "814501" || err.code === "814501") {
           this.installed();
+          Trust1ConnectorService.setErrorClient(err.client);
         }
-        Trust1ConnectorService.setErrorClient(err.client);
       }
     );
   },
@@ -216,6 +220,22 @@ export default {
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.head {
+  margin-bottom: 40px;
+}
+.installer h1,
+h2 {
+  text-align: center;
+}
+
+.installer h2 {
+  margin-bottom: 60px;
+}
+
+.highlight {
+  color: #e05512;
+}
+
 .go-back {
   width: 100%;
   display: flex;

@@ -53,6 +53,7 @@
     "No module detected": "No module detected"
   },
   "admin": {
+    "binaries": "Trust1Connector installers",
     "Device information": "Device information",
     "User information": "User information",
     "reader": "Card readers",
@@ -115,6 +116,18 @@
   },
   "installation": {
     "welcome": "Welcome to the web application {0} of Trust1Team!",
-    "install": "To use this application, please install the Trust1Connector software"
+    "install": "To use this application, please install the Trust1Connector software",
+    "windows": "Here you can download the Windows version of the Trust1Connector, both 64- and 32-bit versions are available",
+    "macos": "Here you can download the MacOS version of the Trust1Connector, both Intel and Apple silicon versions are available",
+    "linux": "Here you can download the Linux version of the Trust1Connector, both 64- and 32-bit versions are available",
+    "windows64bit": "Windows 64 bit",
+    "windows32bit": "Windows 32 bit",
+    "linux64bit": "Linux 64 bit",
+    "linux32bit": "Linux 32 bit",
+    "macosapple": "MacOS Apple silicon",
+    "macosintel": "MacOS Intel",
+    "windowsheader": "Windows",
+    "macosheader": "MacOS",
+    "linuxheader": "Linux"
   }
 }
