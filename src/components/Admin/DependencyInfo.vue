@@ -153,7 +153,7 @@ export default {
 
       DistributionService.getSystemInfo().then(
         (res) => {
-          if (res.data.isAlive) {
+          if (res.data.data.isAlive) {
             this.ds = {
               error: false,
               success: true,

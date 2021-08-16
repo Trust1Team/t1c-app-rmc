@@ -35,7 +35,6 @@ import Consent from "../components/core/Consent";
 import Installation from "../components/core/Installation";
 import Loading from "../components/core/Loading";
 import ModuleSwitch from "../components/modules/ModuleSwitch";
-import DistributionService from "../services/DistributionService";
 
 export default {
   name: "Home",
@@ -192,15 +191,6 @@ export default {
           this.installed();
         }
         Trust1ConnectorService.setErrorClient(err.client);
-      }
-    );
-
-    DistributionService.getLatestVersion().then(
-      (res) => {
-        console.log(res);
-      },
-      (err) => {
-        console.log(err);
       }
     );
   },

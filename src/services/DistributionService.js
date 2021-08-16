@@ -4,7 +4,7 @@ function apiClient(jwt) {
   if (jwt) {
     return axios.create({
       baseURL: "https://acc-ds.t1t.io",
-      withCredentials: true,
+      withCredentials: false,
       headers: {
         Authorization: "Bearer " + jwt,
         Accept: "application/json",
@@ -14,7 +14,7 @@ function apiClient(jwt) {
   } else {
     return axios.create({
       baseURL: "https://acc-ds.t1t.io",
-      withCredentials: true,
+      withCredentials: false,
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
