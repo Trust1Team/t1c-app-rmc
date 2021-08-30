@@ -3,7 +3,9 @@ import axios from "axios";
 function apiClient(jwt) {
   if (jwt) {
     return axios.create({
-      baseURL: "https://acc-ds.t1t.io",
+      baseURL: window.VUE_APP_ENV_DS_URL
+        ? window.VUE_APP_ENV_DS_URL
+        : "https://acc-ds.t1t.io",
       withCredentials: false,
       headers: {
         Authorization: "Bearer " + jwt,
@@ -13,7 +15,9 @@ function apiClient(jwt) {
     });
   } else {
     return axios.create({
-      baseURL: "https://acc-ds.t1t.io",
+      baseURL: window.VUE_APP_ENV_DS_URL
+        ? window.VUE_APP_ENV_DS_URL
+        : "https://acc-ds.t1t.io",
       withCredentials: false,
       headers: {
         Accept: "application/json",
