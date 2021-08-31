@@ -17,6 +17,7 @@
               type="button"
               class="list-group-item list-group-item-action"
             >
+              <i class="fa fa-home"></i>
               {{ $t("navigation.Home") }}
             </button>
           </router-link>
@@ -28,11 +29,8 @@
             type="button"
             class="list-group-item list-group-item-action dropdown-btn"
           >
-            <span>{{ $t("navigation.Modules") }}</span>
-            <i
-              v-bind:class="{ active: dropdown_active }"
-              class="fas fa-sort-down"
-            ></i>
+            <span><i class="fa fa-cubes"></i>&nbsp;{{ $t("navigation.Modules") }}</span>
+            <i v-bind:class="{ active: dropdown_active }" class="fas fa-sort-down"></i>
           </button>
           <div class="modules-list" v-if="dropdown_active">
             <router-link to="/modules/tokens">
@@ -100,6 +98,7 @@
               type="button"
               class="list-group-item list-group-item-action"
             >
+              <i class="fa fa-cog"></i>
               {{ $t("navigation.Certificate manager") }}
             </button>
           </router-link>
@@ -111,6 +110,7 @@
               type="button"
               class="list-group-item list-group-item-action"
             >
+              <i class="fa fa-user-cog"></i>
               {{ $t("navigation.Admin panel") }}
             </button>
           </router-link>
@@ -126,6 +126,7 @@
               type="button"
               class="list-group-item list-group-item-action"
             >
+              <i class="fa fa-headset"></i>
               {{ $t("navigation.Contact us") }}
             </button>
           </router-link>

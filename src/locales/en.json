@@ -65,7 +65,24 @@
     }
   },
   "contact": {
-    "Contact us": "Contact us"
+    "Contact us": "Contact us",
+    "contactUsSubtitle": "Do you need more information about the Trust1Connector? Do you have a problem with the application? Tell us about it!",
+    "Name": "Name",
+    "Company": "Company",
+    "Email Address": "Email Address",
+    "Phone Number": "Phone Number",
+    "Your message": "Your message",
+    "I want more information": "I want more information.",
+    "I have technical issue": "I have technical issue.",
+    "Validation": "Validation",
+    "Get in Touch": "Get in Touch",
+    "I have read the": "I have read the ",
+    "privacyPolicy": "Privacy Policy",
+    "I agree to the": "I agree to the ",
+    "termsCondition": "Terms and Condition",
+    "t1tAgreement": "I agree that Trust1Team may collect and use my personal data provided in this form for sending me Trust1Team news and marketing materials, that I have agreed to receive in accordance with EU & Belgian regulations, including GPDR compliance. You may unsubscribe from this list at any time.",
+    "exportMessage": "I want to export the data and send it to Trust1Team to help them better understand the problem I am facing",
+    "Submit": "Submit"
   },
   "fileExplorer": {
     "File explorer": "File explorer"
