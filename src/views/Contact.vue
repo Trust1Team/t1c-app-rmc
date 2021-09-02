@@ -31,11 +31,11 @@
         <br>
         <div class="row">
           <div class="col-12 float-left check-text">
-            <input type="checkbox" id="informationCheck" name="informationCheck" v-model="informationCheck" class="form-check-input">&nbsp;
+            <input type="checkbox" :disabled="technicalCheck" id="informationCheck" name="informationCheck" v-model="informationCheck" class="form-check-input">&nbsp;
             <label class="form-check-label" for="informationCheck">{{ $t("contact.I want more information") }}</label>
           </div>
           <div class="col-12 float-left check-text">
-            <input type="checkbox" id="technicalCheck" name="technicalCheck" v-model="technicalCheck" class="form-check-input">&nbsp;
+            <input type="checkbox" :disabled="informationCheck" id="technicalCheck" name="technicalCheck" v-model="technicalCheck" class="form-check-input">&nbsp;
             <label class="form-check-label" for="technicalCheck">{{ $t("contact.I have technical issue") }}</label>
           </div>
         </div>
@@ -69,7 +69,10 @@
                     <input type="checkbox" id="privacyPolicy" name="privacyPolicy" v-model="privacyPolicy" class="form-check-input">&nbsp;
                   </div>
                   <div class="col-10">
-                    <label class="form-check-label" for="privacyPolicy">{{ $t("contact.I have read the") }}</label>
+                    <label class="form-check-label" for="privacyPolicy">
+                      {{ $t("contact.I have read the") }}
+                      <a href="https://www.trust1team.com/privacy-policy" target="_blank">{{ $t("contact.Privacy Policy") }}</a>
+                    </label>
                   </div>
                 </div>
                 <div class="row float-left check-text">
@@ -77,7 +80,10 @@
                     <input type="checkbox" id="termsCondition" name="termsCondition" v-model="termsCondition" class="form-check-input">&nbsp;
                   </div>
                   <div class="col-10">
-                    <label class="form-check-label" for="termsCondition">{{ $t("contact.termsCondition") }}</label>
+                    <label class="form-check-label" for="termsCondition">
+                      {{ $t("contact.I agree to the") }}
+                      <a href="https://www.trust1team.com/terms-conditions" target="_blank">{{ $t("contact.termsCondition") }}</a>
+                    </label>
                   </div>
                 </div>
                 <div class="row float-left check-text">
