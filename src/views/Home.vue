@@ -8,6 +8,17 @@
         />
       </div>
       <div v-if="pageView === 1">
+        <h1>Enter your pin/can to unlock the card</h1>
+<!--        TODO PINTYPE SWITCH-->
+        <div class="form-check form-switch">
+          <input class="form-check-input" type="checkbox" id="pinTypeSwitch" v-model="pinType">
+          <label class="form-check-label" for="pinTypeSwitch" v-if="pinType">Pin/Can</label>
+          <label class="form-check-label" for="pinTypeSwitch">Pin/Can</label>
+
+        </div>
+        <pinpad @confirmPin="pinSelected"></pinpad>
+      </div>
+      <div v-if="pageView === 2">
         <div class="go-back">
           <button @click="goBack()" class="btn btn-primary">
             <i class="fas fa-arrow-left go-back-icon"></i>
@@ -40,12 +51,14 @@ import Consent from "../components/core/Consent";
 import Installation from "../components/core/Installation";
 import Loading from "../components/core/Loading";
 import ModuleSwitch from "../components/modules/ModuleSwitch";
+import Pinpad from "../components/UIComponents/Pinpad";
 
 export default {
   name: "Home",
   data() {
     return {
       pageView: 0,
+      pinType: false,
     };
   },
   methods: {
@@ -55,19 +68,51 @@ export default {
     consented() {
       this.$store.dispatch("setConsent", true);
     },
+    switchPinType(event) {
+      console.log(event)
+    },
+    pinSelected(pin) {
+      this.$store.dispatch("reader/setSelectedPin", pin).then(() => {
+        const reader = this.getReader();
+        Trust1ConnectorService.getClient()
+          .core()
+          .readersCardAvailable()
+          .then(
+            (readerRes) => {
+              if (readerRes.data.find((r) => r.id === reader.id)) {
+                this.$store
+                  .dispatch("reader/setSelectedReader", reader)
+                  .then(() => {
+                    this.getAllData();
+                    this.pageView = 2;
+                  });
+              } else {
+                console.error("Choosen reader could not be found anymore");
+              }
+            },
+            () => {
+              console.error("cannot select reader");
+            }
+          );
+        this.readerSelected(this.getReader());
+      });
+    },
     readerSelected(reader) {
       Trust1ConnectorService.getClient()
         .core()
         .readersCardAvailable()
         .then(
           (readerRes) => {
-            const foundReader = readerRes.data.find((r) => r.id === reader.id);
-            if (foundReader && foundReader.card && foundReader.card.modules) {
+            if (readerRes.data.find((r) => r.id === reader.id)) {
               this.$store
-                .dispatch("reader/setSelectedReader", foundReader)
+                .dispatch("reader/setSelectedReader", reader)
                 .then(() => {
-                  this.getAllData();
-                  this.pageView = 1;
+                  if (reader.card.modules.includes("beid")) {
+                    this.pageView = 1;
+                  } else {
+                    this.getAllData();
+                    this.pageView = 2;
+                  }
                 });
             } else {
               console.error("Choosen reader could not be found anymore");
@@ -78,20 +123,21 @@ export default {
           }
         );
     },
-    goBack() {
-      this.pageView = 0;
-    },
-    getAllData() {
-      this.$store.dispatch("card/resetState");
-      if (this.getReader && this.getReader.id) {
-        const module = this.getReader.card.modules
-          ? this.getReader.card.modules[0]
-          : "beid";
+  },
+  goBack() {
+    this.pageView = 0;
+  },
+  getAllData() {
+    this.$store.dispatch("card/resetState");
+    if (this.getReader && this.getReader.id) {
+      const module = this.getReader.card.modules
+        ? this.getReader.card.modules[0]
+        : null;
 
+      if (module != null) {
         Trust1ConnectorService.init().then(
           (client) => {
-            // TODO this is a bit dirty, cleanup later
-            let c = client.generic(this.getReader.id);
+            let c = client.generic(this.getReader.id, this.getPin);
             if (
               this.getReader.card.modules.includes("emv") ||
               this.getReader.card.modules.includes("crelan")
@@ -176,8 +222,10 @@ export default {
             console.error(err);
           }
         );
+      } else {
+        console.error("No module was found for selected reader");
       }
-    },
+    }
   },
   created() {
     Trust1ConnectorService.init().then(
@@ -187,7 +235,7 @@ export default {
         Trust1ConnectorService.setClient(res);
         if (this.getReader) {
           this.getAllData();
-          this.pageView = 1;
+          this.pageView = 2;
         }
       },
       (err) => {
@@ -202,6 +250,12 @@ export default {
     getReader() {
       return this.$store.getters["reader/getSelectedReader"];
     },
+    getPin() {
+      return this.$store.getters["reader/getSelectedPin"];
+    },
+    getPinType() {
+      return this.$store.getters["reader/getSelectedPinType"];
+    },
     getConsent() {
       return this.$store.getters["getConsent"];
     },
@@ -215,7 +269,14 @@ export default {
       return this.$store.getters["card/getCertificateLoading"];
     },
   },
-  components: { ReadersList, Consent, ModuleSwitch, Loading, Installation },
+  components: {
+    Pinpad,
+    ReadersList,
+    Consent,
+    ModuleSwitch,
+    Loading,
+    Installation,
+  },
 };
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
@@ -223,6 +284,7 @@ export default {
 .head {
   margin-bottom: 40px;
 }
+
 .installer h1,
 h2 {
   text-align: center;

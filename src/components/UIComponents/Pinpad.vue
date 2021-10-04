@@ -55,7 +55,6 @@ export default {
       this.pin = this.pin.substr(0, this.pin.length-1);
     },
     submitPin() {
-      alert('Inside emit');
       this.$emit("confirmPin", this.pin);
     }
   }
