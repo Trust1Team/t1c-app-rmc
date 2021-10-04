@@ -1,69 +1,37 @@
 <template>
-  <div>
-    <div class="card">
-      <div class="card-header">
-        <h4 class="title">{{ $t("pinpad.Enter PIN code") }}</h4>
-      </div>
-      <br>
-      <div class="card-body">
-        <div class="form">
-          <form @submit.prevent>
-            <div class="row">
-              <div class="col-12">
-                <input class="form-control" required type="password" v-model="pin" :placeholder="$t('pinpad.Enter PIN code')" >
-              </div>
-            </div>
-            <br>
-            <div class="col-11 m-auto">
-              <div class="row">
-                <div class="col-4">
-                  <button type="button" class="btn form-control btn-outline-primary" @click="enteredNumber(1)">1</button>
-                </div>
-                <div class="col-4">
-                  <button type="button" class="btn form-control btn-outline-primary" @click="enteredNumber(2)">2</button>
-                </div>
-                <div class="col-4">
-                  <button type="button" class="btn form-control btn-outline-primary" @click="enteredNumber(3)">3</button>
-                </div>
-              </div>
-              <br>
-              <div class="row">
-                <div class="col-4">
-                  <button type="button" class="btn form-control btn-outline-primary" @click="enteredNumber(4)">4</button>
-                </div>
-                <div class="col-4">
-                  <button type="button" class="btn form-control btn-outline-primary" @click="enteredNumber(5)">5</button>
-                </div>
-                <div class="col-4">
-                  <button type="button" class="btn form-control btn-outline-primary" @click="enteredNumber(6)">6</button>
-                </div>
-              </div>
-              <br>
-              <div class="row">
-                <div class="col-4">
-                  <button type="button" class="btn form-control btn-outline-primary" @click="enteredNumber(7)">7</button>
-                </div>
-                <div class="col-4">
-                  <button type="button" class="btn form-control btn-outline-primary" @click="enteredNumber(8)">8</button>
-                </div>
-                <div class="col-4">
-                  <button type="button" class="btn form-control btn-outline-primary" @click="enteredNumber(9)">9</button>
-                </div>
-              </div>
-              <br>
-              <div class="row">
-                <div class="col-4">
-                  <button type="button" class="btn form-control btn-primary" @click="clearField">C</button>
-                </div>
-                <div class="col-4">
-                  <button type="button" class="btn form-control btn-outline-primary" @click="enteredNumber(0)">0</button>
-                </div>
-                <div class="col-4">
-                  <button type="submit" class="btn form-control btn-success" @click="submitPin">OK</button>
-                </div>
-              </div>
-            </div>
-          </form>
+  <div class="pin-container">
+    <div class="pin-input-container">
+      <input class="form-control" required type="password" v-model="pin" :placeholder="$t('pinpad.Enter PIN code')">
+    </div>
+    <div class="pin-pad">
+      <div>
+        <div class="row">
+          <button type="button" class="btn form-control btn-outline-primary" @click="enteredNumber(1)">1</button>
+
+          <button type="button" class="btn form-control btn-outline-primary" @click="enteredNumber(2)">2</button>
+
+          <button type="button" class="btn form-control btn-outline-primary" @click="enteredNumber(3)">3</button>
+        </div>
+        <div class="row">
+          <button type="button" class="btn form-control btn-outline-primary" @click="enteredNumber(4)">4</button>
+
+          <button type="button" class="btn form-control btn-outline-primary" @click="enteredNumber(5)">5</button>
+
+          <button type="button" class="btn form-control btn-outline-primary" @click="enteredNumber(6)">6</button>
+        </div>
+        <div class="row">
+          <button type="button" class="btn form-control btn-outline-primary" @click="enteredNumber(7)">7</button>
+
+          <button type="button" class="btn form-control btn-outline-primary" @click="enteredNumber(8)">8</button>
+
+          <button type="button" class="btn form-control btn-outline-primary" @click="enteredNumber(9)">9</button>
+        </div>
+        <div class="row">
+          <button type="button" class="btn form-control btn-error" @click="clearField">C</button>
+
+          <button type="button" class="btn form-control btn-outline-primary" @click="enteredNumber(0)">0</button>
+
+          <button type="submit" class="btn form-control btn-success" @click="submitPin">OK</button>
         </div>
       </div>
     </div>
@@ -78,13 +46,13 @@ export default {
       pin: '',
     }
   },
-  emits:["confirmPin"],
+  emits: ["confirmPin"],
   methods: {
     enteredNumber(number) {
       this.pin += number;
     },
     clearField() {
-      this.pin = '';
+      this.pin = this.pin.substr(0, this.pin.length-1);
     },
     submitPin() {
       alert('Inside emit');
@@ -95,12 +63,54 @@ export default {
 </script>
 
 <style scoped>
-.title {
+
+.btn-error {
+  color: #ffffff !important;
+  background-color: #d74747 !important;
+  border-color: #dc1515 !important;
+}
+
+.btn-error:hover {
+  background-color: #bd3535 !important;
+}
+
+.pin-container {
   display: flex;
-  align-items: center;
   justify-content: center;
-  font-size: 20px;
-  height: 30px;
-  color: #d24d0d;
+  flex-wrap: wrap;
+  width: 300px;
+}
+
+.pin-input-container {
+  width: 300px;
+  margin-bottom: 20px;
+}
+
+.pin-input-container input {
+  border-color: #D9400E !important;
+  transition: all .5s ease-in !important;
+  text-align: center;
+}
+
+.pin-input-container input:hover {
+  border-color: #c8694e !important;
+}
+
+.pin-pad {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.row {
+  margin-bottom: 15px;
+  display: flex;
+}
+
+.row button {
+  margin: 5px;
+  width: 70px;
+  height: 50px;
+  display: inline-block;
 }
 </style>

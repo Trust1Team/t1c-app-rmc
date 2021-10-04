@@ -59,7 +59,7 @@
       <div class="card-row chip-spacing">
         <div>
           <p><i>Kaartnr/Card no</i></p>
-          <p class="bold">{{ biometric.cardNumber }}</p>
+          <p class="bold">{{ biometric.cardNumber.substr(0,3) }}-{{ biometric.cardNumber.substr(3,7) }}-{{ biometric.cardNumber.substr(10,2) }}</p>
         </div>
       </div>
 
