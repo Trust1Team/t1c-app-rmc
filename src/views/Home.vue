@@ -8,15 +8,29 @@
         />
       </div>
       <div v-if="pageView === 1">
-        <h1>Enter your pin/can to unlock the card</h1>
-<!--        TODO PINTYPE SWITCH-->
-        <div class="form-check form-switch">
-          <input class="form-check-input" type="checkbox" id="pinTypeSwitch" v-model="pinType">
-          <label class="form-check-label" for="pinTypeSwitch" v-if="pinType">Pin/Can</label>
-          <label class="form-check-label" for="pinTypeSwitch">Pin/Can</label>
-
+        <div class="pin-pad-container">
+          <h1>Enter your pin/can to unlock the card</h1>
+          <div class="pin-pad">
+            <div class="form-check form-switch form-pace">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="pinTypeSwitch"
+                v-model="pinType"
+              />
+              <label class="form-check-label" for="pinTypeSwitch" v-if="pinType"
+                >Can</label
+              >
+              <label
+                class="form-check-label"
+                for="pinTypeSwitch"
+                v-if="!pinType"
+                >Pin</label
+              >
+            </div>
+            <pinpad @confirmPin="pinSelected"></pinpad>
+          </div>
         </div>
-        <pinpad @confirmPin="pinSelected"></pinpad>
       </div>
       <div v-if="pageView === 2">
         <div class="go-back">
@@ -68,33 +82,14 @@ export default {
     consented() {
       this.$store.dispatch("setConsent", true);
     },
-    switchPinType(event) {
-      console.log(event)
-    },
     pinSelected(pin) {
       this.$store.dispatch("reader/setSelectedPin", pin).then(() => {
-        const reader = this.getReader();
-        Trust1ConnectorService.getClient()
-          .core()
-          .readersCardAvailable()
-          .then(
-            (readerRes) => {
-              if (readerRes.data.find((r) => r.id === reader.id)) {
-                this.$store
-                  .dispatch("reader/setSelectedReader", reader)
-                  .then(() => {
-                    this.getAllData();
-                    this.pageView = 2;
-                  });
-              } else {
-                console.error("Choosen reader could not be found anymore");
-              }
-            },
-            () => {
-              console.error("cannot select reader");
-            }
-          );
-        this.readerSelected(this.getReader());
+        this.$store
+          .dispatch("reader/setSelectedPinType", this.pinType ? "Can" : "Pin")
+          .then(() => {
+            this.getAllData();
+            this.pageView = 2;
+          });
       });
     },
     readerSelected(reader) {
@@ -107,7 +102,8 @@ export default {
               this.$store
                 .dispatch("reader/setSelectedReader", reader)
                 .then(() => {
-                  if (reader.card.modules.includes("beid")) {
+                  // When a Pace enabled card then we show the pinpad view first
+                  if (reader.card.modules.includes("luxeid")) {
                     this.pageView = 1;
                   } else {
                     this.getAllData();
@@ -123,109 +119,118 @@ export default {
           }
         );
     },
-  },
-  goBack() {
-    this.pageView = 0;
-  },
-  getAllData() {
-    this.$store.dispatch("card/resetState");
-    if (this.getReader && this.getReader.id) {
-      const module = this.getReader.card.modules
-        ? this.getReader.card.modules[0]
-        : null;
+    goBack() {
+      this.pageView = 0;
+    },
+    getAllData() {
+      this.$store.dispatch("card/resetState");
+      if (this.getReader && this.getReader.id) {
+        const module = this.getReader.card.modules
+          ? this.getReader.card.modules[0]
+          : null;
 
-      if (module != null) {
-        Trust1ConnectorService.init().then(
-          (client) => {
-            let c = client.generic(this.getReader.id, this.getPin);
-            if (
-              this.getReader.card.modules.includes("emv") ||
-              this.getReader.card.modules.includes("crelan")
-            ) {
-              c = client.paymentGeneric(this.getReader.id);
-              c.readData(module).then(
-                (allDataRes) => {
-                  let certsFetched = 0;
-                  allDataRes.data.applications.forEach((app) => {
-                    c.allCerts(module, app.aid).then(
-                      (allCertsRes) => {
-                        certsFetched += 1;
-                        this.$store
-                          .dispatch("card/setPaymentCertificates", {
-                            aid: app.aid,
-                            data: allCertsRes.data,
-                          })
-                          .then(() => {
-                            if (
-                              certsFetched ===
-                              allDataRes.data.applications.length
-                            ) {
-                              this.$store.dispatch(
-                                "card/setCertificateLoading",
-                                false
-                              );
-                            }
-                          });
-                      },
-                      (err) => {
-                        console.error("Could not fetch allCerts", err);
-                      }
-                    );
-                  });
+        if (module != null) {
+          Trust1ConnectorService.init().then(
+            (client) => {
+              let c = client.generic(
+                this.getReader.id,
+                this.getPin,
+                this.getPinType
+              );
+              if (
+                this.getReader.card.modules.includes("emv") ||
+                this.getReader.card.modules.includes("crelan")
+              ) {
+                c = client.paymentGeneric(this.getReader.id);
+                c.readData(module).then(
+                  (allDataRes) => {
+                    let certsFetched = 0;
+                    allDataRes.data.applications.forEach((app) => {
+                      c.allCerts(module, app.aid).then(
+                        (allCertsRes) => {
+                          certsFetched += 1;
+                          this.$store
+                            .dispatch("card/setPaymentCertificates", {
+                              aid: app.aid,
+                              data: allCertsRes.data,
+                            })
+                            .then(() => {
+                              if (
+                                certsFetched ===
+                                allDataRes.data.applications.length
+                              ) {
+                                this.$store.dispatch(
+                                  "card/setCertificateLoading",
+                                  false
+                                );
+                              }
+                            });
+                        },
+                        (err) => {
+                          console.error("Could not fetch allCerts", err);
+                        }
+                      );
+                    });
 
-                  this.$store.dispatch("card/setApplications", allDataRes);
-                },
-                (err) => {
-                  console.error("Could not fetch alldata", err);
-                }
-              );
-              c.readApplicationData(module).then(
-                (applicationDataRes) => {
-                  this.$store
-                    .dispatch("card/setApplicationData", applicationDataRes)
-                    .then(() => {
-                      this.$store.dispatch("card/setDataLoading", false);
-                    });
-                },
-                (err) => {
-                  console.error("Could not fetch readApplicationData", err);
-                }
-              );
-            } else {
-              c.allData(module).then(
-                (allDataRes) => {
-                  this.$store
-                    .dispatch("card/setAllData", allDataRes)
-                    .then(() => {
-                      this.$store.dispatch("card/setDataLoading", false);
-                    });
-                },
-                (err) => {
-                  console.error("Could not fetch alldata", err);
-                }
-              );
-              c.allCerts(module).then(
-                (allCertsRes) => {
-                  this.$store
-                    .dispatch("card/setAllCertificates", allCertsRes)
-                    .then(() => {
-                      this.$store.dispatch("card/setCertificateLoading", false);
-                    });
-                },
-                (err) => {
-                  console.error("Could not fetch allCerts", err);
-                }
-              );
+                    this.$store.dispatch("card/setApplications", allDataRes);
+                  },
+                  (err) => {
+                    console.error("Could not fetch alldata", err);
+                  }
+                );
+                c.readApplicationData(module).then(
+                  (applicationDataRes) => {
+                    this.$store
+                      .dispatch("card/setApplicationData", applicationDataRes)
+                      .then(() => {
+                        this.$store.dispatch("card/setDataLoading", false);
+                      });
+                  },
+                  (err) => {
+                    console.error("Could not fetch readApplicationData", err);
+                  }
+                );
+              } else {
+                c.allData(module).then(
+                  (allDataRes) => {
+                    this.$store
+                      .dispatch("card/setAllData", allDataRes)
+                      .then(() => {
+                        this.$store.dispatch("card/setDataLoading", false);
+                      });
+                  },
+                  (err) => {
+                    this.$store.dispatch("card/setDataLoading", false);
+                    console.error("Could not fetch alldata", err);
+                  }
+                );
+                c.allCerts(module).then(
+                  (allCertsRes) => {
+                    this.$store
+                      .dispatch("card/setAllCertificates", allCertsRes)
+                      .then(() => {
+                        this.$store.dispatch(
+                          "card/setCertificateLoading",
+                          false
+                        );
+                      });
+                  },
+                  (err) => {
+                    this.$store.dispatch("card/setCertificateLoading", false);
+                    console.error("Could not fetch allCerts", err);
+                  }
+                );
+              }
+            },
+            (err) => {
+              console.error(err);
             }
-          },
-          (err) => {
-            console.error(err);
-          }
-        );
-      } else {
-        console.error("No module was found for selected reader");
+          );
+        } else {
+          console.error("No module was found for selected reader");
+        }
       }
-    }
+    },
   },
   created() {
     Trust1ConnectorService.init().then(
@@ -315,5 +320,33 @@ h2 {
   display: flex;
   justify-content: center;
   margin: 10px;
+}
+
+.pin-pad-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.pin-pad-container h1 {
+  width: 100%;
+  text-align: center;
+  font-size: 1.7rem;
+  color: #dc623b;
+}
+
+.pin-pad {
+  width: 300px;
+}
+
+.form-pace {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 15px;
+}
+
+.form-pace input {
+  margin-right: 10px;
 }
 </style>

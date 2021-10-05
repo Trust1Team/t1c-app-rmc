@@ -24,7 +24,7 @@ export const Reader = {
       context.commit("SET_SELECTED_PIN", pin);
     },
     setSelectedPinType(context, pinType) {
-      context.commit("SET_SELECTED_PIN_Type", pinType);
+      context.commit("SET_SELECTED_PIN_TYPE", pinType);
     },
   },
   getters: {
