@@ -2,7 +2,6 @@
   <div class="token-details-item">
     <h3>{{ $t("certificateInformation.header") }}</h3>
 
-
     <div class="text-container">
       <div class="text-label">
         {{ $t("certificateInformation.nonRepudiationCertificate") }}
@@ -28,14 +27,13 @@
           <i class="fas fa-sort-down fa-lg cert-expand-icon"></i>
         </div>
 
-        <div 
-          class="cert-copy "
-          v-if="nonRepudiationCertificate && !getCertificateLoading" 
-          @click="copyCertToClipboard(nonRepudiationCertificate.certificate)"
+        <div
+          class="cert-copy"
+          v-if="nonRepudiationCertificate && !getCertificateLoading"
+          @click="copyTextToClipboard(nonRepudiationCertificate.certificate)"
         >
           <i class="far fa-copy"></i>
         </div>
-
       </div>
     </div>
 
@@ -64,10 +62,10 @@
           <i class="fas fa-sort-down fa-lg cert-expand-icon"></i>
         </div>
 
-        <div 
-          class="cert-copy" 
-          v-if="authenticationCertificate && !getCertificateLoading" 
-          @click="copyCertToClipboard(authenticationCertificate.certificate)"
+        <div
+          class="cert-copy"
+          v-if="authenticationCertificate && !getCertificateLoading"
+          @click="copyTextToClipboard(authenticationCertificate.certificate)"
         >
           <i class="far fa-copy"></i>
         </div>
@@ -99,10 +97,10 @@
           <i class="fas fa-sort-down fa-lg cert-expand-icon"></i>
         </div>
 
-        <div 
-          class="cert-copy" 
-          v-if="encryptionCertificate && !getCertificateLoading" 
-          @click="copyCertToClipboard(encryptionCertificate.certificate)"
+        <div
+          class="cert-copy"
+          v-if="encryptionCertificate && !getCertificateLoading"
+          @click="copyTextToClipboard(encryptionCertificate.certificate)"
         >
           <i class="far fa-copy"></i>
         </div>
@@ -134,10 +132,10 @@
           <i class="fas fa-sort-down fa-lg cert-expand-icon"></i>
         </div>
 
-        <div 
-          class="cert-copy" 
-          v-if="issuerCertificate && !getCertificateLoading" 
-          @click="copyCertToClipboard(issuerCertificate.certificate)"
+        <div
+          class="cert-copy"
+          v-if="issuerCertificate && !getCertificateLoading"
+          @click="copyTextToClipboard(issuerCertificate.certificate)"
         >
           <i class="far fa-copy"></i>
         </div>
@@ -169,10 +167,10 @@
           <i class="fas fa-sort-down fa-lg cert-expand-icon"></i>
         </div>
 
-        <div 
-          class="cert-copy" 
-          v-if="intermediateCertificates && !getCertificateLoading" 
-          @click="copyCertToClipboard(intermediateCertificates.certificate)"
+        <div
+          class="cert-copy"
+          v-if="intermediateCertificates && !getCertificateLoading"
+          @click="copyTextToClipboard(intermediateCertificates.certificate)"
         >
           <i class="far fa-copy"></i>
         </div>
@@ -204,10 +202,10 @@
           <i class="fas fa-sort-down fa-lg cert-expand-icon"></i>
         </div>
 
-        <div 
-          class="cert-copy" 
-          v-if="rootCertificate && !getCertificateLoading" 
-          @click="copyCertToClipboard(rootCertificate.certificate)"
+        <div
+          class="cert-copy"
+          v-if="rootCertificate && !getCertificateLoading"
+          @click="copyTextToClipboard(rootCertificate.certificate)"
         >
           <i class="far fa-copy"></i>
         </div>
@@ -218,6 +216,7 @@
 
 <script>
 import Loading from "../../core/Loading";
+import copyMixin from "@/mixins/copyMixin";
 
 export default {
   name: "GenericTokenCertificateInformation",
@@ -234,41 +233,6 @@ export default {
       event.target.parentNode.parentNode.classList.toggle("cert-open");
       event.target.classList.toggle("cert-expand-rotated");
     },
-    copyCertToClipboard(cert){
-      if(!navigator.clipboard){
-        this.fallbackCopyCertToClipboard(cert)
-        return 
-      }
-      navigator.clipboard.writeText(cert)
-      .then(function(){
-        console.log("Async: Copying to clipboard was successful!");
-      }, function(error){
-        console.log("Async: Could not copy certificate: " + error)
-      })
-    },
-    fallbackCopyCertToClipboard(cert) {
-      var textArea = document.createElement("textarea");
-      textArea.value = cert;
-
-      // Avoid scrolling to bottom
-      textArea.style.top = "0";
-      textArea.style.left = "0";
-      textArea.style.position = "fixed";
-
-      document.body.appendChild(textArea);
-      textArea.focus();
-      textArea.select();
-
-      try {
-        var successful = document.execCommand("copy");
-        var msg = successful ? "successful" : "unsuccessful";
-        console.log("Fallback: Copying cert command was " + msg);
-      } catch (err) {
-        console.error("Fallback: Oops, unable to copy", err);
-      }
-
-      document.body.removeChild(textArea);
-    },
   },
   computed: {
     getCertificateLoading() {
@@ -276,6 +240,7 @@ export default {
     },
   },
   components: { Loading },
+  mixins: [copyMixin],
 };
 </script>
 
@@ -312,14 +277,16 @@ export default {
   transition: all 0.2s ease-in;
 }
 
-.cert-expand, .cert-copy {
+.cert-expand,
+.cert-copy {
   height: 15px;
   color: #e05512;
   margin-left: 10px;
   margin-top: 5px;
 }
 
-.cert-expand:hover, .cert-copy:hover {
+.cert-expand:hover,
+.cert-copy:hover {
   cursor: pointer;
 }
 
