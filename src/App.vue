@@ -1,6 +1,7 @@
 <template>
   <div class="app-container">
     <Navigation />
+    <NotificationContainer />
     <div id="content">
       <div class="t1c-logo">
         <img src="./assets/t1c-logo-full.png" alt="t1c-logo" />
@@ -49,11 +50,13 @@
 <script>
 // @ is an alias to /src
 import Navigation from "./components/nav/Navigation";
+import NotificationContainer from "./components/UIComponents/NotificationContainer";
 
 export default {
   name: "App",
   components: {
     Navigation,
+    NotificationContainer
   },
   data() {
     return {

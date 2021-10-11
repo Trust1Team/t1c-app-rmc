@@ -1,6 +1,7 @@
 import { createStore } from "vuex";
 import { Reader } from "./modules/Reader";
 import { Card } from "./modules/Card";
+import { Notification } from "./modules/Notification"
 
 export default createStore({
   state: {
@@ -34,5 +35,6 @@ export default createStore({
   modules: {
     reader: Reader,
     card: Card,
+    notification: Notification
   },
 });

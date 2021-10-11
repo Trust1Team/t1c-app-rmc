@@ -15,15 +15,18 @@
 
 <script>
 import Trust1ConnectorService from "../../services/Trust1ConnectorService";
-
+import copyMixin from "@/mixins/copyMixin"
 export default {
   name: "Consent",
-  data: () => ({
-    consentData: null,
-  }),
+  data () {
+    return {
+      consentData: null
+    }
+  },
   emits: ["consented"],
   methods: {
     consent() {
+      console.log(this.consentData)
       this.copyTextToClipboard(this.consentData);
       Trust1ConnectorService.getErrorClient()
         .core()
@@ -39,13 +42,14 @@ export default {
                 console.log("T1C running on core " + versionResult);
                 this.$emit("consented");
               });
+            this.copyConsentToClipboard(this.consentData)
           },
           (err) => {
             console.error(err);
           }
         );
     },
-    fallbackCopyTextToClipboard(text) {
+    fallbackCopyConsentToClipboard(text) {
       var textArea = document.createElement("textarea");
       textArea.value = text;
 
@@ -68,12 +72,11 @@ export default {
 
       document.body.removeChild(textArea);
     },
-    copyTextToClipboard(text) {
+    copyConsentToClipboard(text) {
       if (!navigator.clipboard) {
-        this.fallbackCopyTextToClipboard(text);
+        this.fallbackCopyConsentToClipboard(text);
         return;
       }
-      // TODO use toast for copy clipboard notification
       navigator.clipboard.writeText(text).then(
         function () {
           console.log("Async: Copying to clipboard was successful!");
@@ -85,6 +88,7 @@ export default {
     },
   },
   props: {},
+  mixins: [copyMixin],
   created() {
     this.consentData = Trust1ConnectorService.getRand(15);
   },
