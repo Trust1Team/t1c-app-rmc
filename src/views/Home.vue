@@ -1,6 +1,9 @@
 <template>
   <div class="container">
     <div v-if="getConsent && getInstalled">
+      <div v-if="error">
+        <Error :text="error" />
+      </div>
       <div v-if="pageView === 0">
         <ReadersList
           :unknown-modules-disabled="true"
@@ -66,6 +69,7 @@ import Installation from "../components/core/Installation";
 import Loading from "../components/core/Loading";
 import ModuleSwitch from "../components/modules/ModuleSwitch";
 import Pinpad from "../components/UIComponents/Pinpad";
+import Error from "../components/UIComponents/Error";
 
 export default {
   name: "Home",
@@ -73,16 +77,20 @@ export default {
     return {
       pageView: 0,
       pinType: false,
+      error: null,
     };
   },
   methods: {
     installed() {
+      this.resetError();
       this.$store.dispatch("setInstalled", true);
     },
     consented() {
+      this.resetError();
       this.$store.dispatch("setConsent", true);
     },
     pinSelected(pin) {
+      this.resetError();
       this.$store.dispatch("reader/setSelectedPin", pin).then(() => {
         this.$store
           .dispatch("reader/setSelectedPinType", this.pinType ? "Can" : "Pin")
@@ -93,6 +101,7 @@ export default {
       });
     },
     readerSelected(reader) {
+      this.resetError();
       Trust1ConnectorService.getClient()
         .core()
         .readersCardAvailable()
@@ -120,9 +129,14 @@ export default {
         );
     },
     goBack() {
+      this.resetError();
       this.pageView = 0;
     },
+    resetError() {
+      this.error = null;
+    },
     getAllData() {
+      this.resetError();
       this.$store.dispatch("card/resetState");
       if (this.getReader && this.getReader.id) {
         const module = this.getReader.card.modules
@@ -167,6 +181,8 @@ export default {
                             });
                         },
                         (err) => {
+                          this.error =
+                            "Could not fetch allCerts: " + err.description;
                           console.error("Could not fetch allCerts", err);
                         }
                       );
@@ -175,6 +191,7 @@ export default {
                     this.$store.dispatch("card/setApplications", allDataRes);
                   },
                   (err) => {
+                    this.error = "Could not fetch alldata: " + err.description;
                     console.error("Could not fetch alldata", err);
                   }
                 );
@@ -187,6 +204,8 @@ export default {
                       });
                   },
                   (err) => {
+                    this.error =
+                      "Could not fetch readApplicationData: " + err.description;
                     console.error("Could not fetch readApplicationData", err);
                   }
                 );
@@ -201,6 +220,7 @@ export default {
                   },
                   (err) => {
                     this.$store.dispatch("card/setDataLoading", false);
+                    this.error = "Could not fetch alldata: " + err.description;
                     console.error("Could not fetch alldata", err);
                   }
                 );
@@ -217,22 +237,26 @@ export default {
                   },
                   (err) => {
                     this.$store.dispatch("card/setCertificateLoading", false);
+                    this.error = "Could not fetch allCerts: " + err.description;
                     console.error("Could not fetch allCerts", err);
                   }
                 );
               }
             },
             (err) => {
+              this.error = err.description;
               console.error(err);
             }
           );
         } else {
+          this.error = "No module was found for selected reader";
           console.error("No module was found for selected reader");
         }
       }
     },
   },
   created() {
+    this.resetError();
     Trust1ConnectorService.init().then(
       (res) => {
         this.installed();
@@ -281,6 +305,7 @@ export default {
     ModuleSwitch,
     Loading,
     Installation,
+    Error,
   },
 };
 </script>

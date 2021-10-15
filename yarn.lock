@@ -8298,10 +8298,10 @@ svgo@^1.0.0:
     unquote "~1.1.1"
     util.promisify "~1.0.0"
 
-t1c-sdk-js@^3.5.0-RC6:
-  version "3.5.0-RC6"
-  resolved "https://registry.yarnpkg.com/t1c-sdk-js/-/t1c-sdk-js-3.5.0-RC6.tgz#ec0df0c91f3a18eaacb02ebb038237dfb3aad513"
-  integrity sha512-txBtMpzULRj1Lp/oaB2tUHv9jTqxAoPObHk7dmTHuUxcuRJLaFxSAYv1/upymSPmh34Xb4nxgCgwIKI1OodA+Q==
+t1c-sdk-js@^3.5.1:
+  version "3.5.1"
+  resolved "https://registry.yarnpkg.com/t1c-sdk-js/-/t1c-sdk-js-3.5.1.tgz#e29bdd96e573bf3c139f6e753848689c38e2daf5"
+  integrity sha512-l1Dmg+eJzEg7H2nnrZuqshQvFoKaW3UfoZKq/rpqKns88K8zOR9KCsEnJnNWnCwj5x6W4sgg8oz7t+2h+8GY/Q==
   dependencies:
     "@types/lodash" "^4.14.150"
     "@types/pkijs" "^0.0.3"
