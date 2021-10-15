@@ -2,6 +2,7 @@
   <div class="token-details-item">
     <h3>{{ $t("certificateInformation.header") }}</h3>
 
+
     <div class="text-container">
       <div class="text-label">
         {{ $t("certificateInformation.nonRepudiationCertificate") }}
@@ -26,6 +27,15 @@
         >
           <i class="fas fa-sort-down fa-lg cert-expand-icon"></i>
         </div>
+
+        <div 
+          class="cert-copy "
+          v-if="nonRepudiationCertificate && !getCertificateLoading" 
+          @click="copyCertToClipboard(nonRepudiationCertificate.certificate)"
+        >
+          <i class="far fa-copy"></i>
+        </div>
+
       </div>
     </div>
 
@@ -52,6 +62,14 @@
           @click="toggleCert"
         >
           <i class="fas fa-sort-down fa-lg cert-expand-icon"></i>
+        </div>
+
+        <div 
+          class="cert-copy" 
+          v-if="authenticationCertificate && !getCertificateLoading" 
+          @click="copyCertToClipboard(authenticationCertificate.certificate)"
+        >
+          <i class="far fa-copy"></i>
         </div>
       </div>
     </div>
@@ -80,6 +98,14 @@
         >
           <i class="fas fa-sort-down fa-lg cert-expand-icon"></i>
         </div>
+
+        <div 
+          class="cert-copy" 
+          v-if="encryptionCertificate && !getCertificateLoading" 
+          @click="copyCertToClipboard(encryptionCertificate.certificate)"
+        >
+          <i class="far fa-copy"></i>
+        </div>
       </div>
     </div>
 
@@ -106,6 +132,14 @@
           @click="toggleCert"
         >
           <i class="fas fa-sort-down fa-lg cert-expand-icon"></i>
+        </div>
+
+        <div 
+          class="cert-copy" 
+          v-if="issuerCertificate && !getCertificateLoading" 
+          @click="copyCertToClipboard(issuerCertificate.certificate)"
+        >
+          <i class="far fa-copy"></i>
         </div>
       </div>
     </div>
@@ -134,6 +168,14 @@
         >
           <i class="fas fa-sort-down fa-lg cert-expand-icon"></i>
         </div>
+
+        <div 
+          class="cert-copy" 
+          v-if="intermediateCertificates && !getCertificateLoading" 
+          @click="copyCertToClipboard(intermediateCertificates.certificate)"
+        >
+          <i class="far fa-copy"></i>
+        </div>
       </div>
     </div>
 
@@ -161,6 +203,14 @@
         >
           <i class="fas fa-sort-down fa-lg cert-expand-icon"></i>
         </div>
+
+        <div 
+          class="cert-copy" 
+          v-if="rootCertificate && !getCertificateLoading" 
+          @click="copyCertToClipboard(rootCertificate.certificate)"
+        >
+          <i class="far fa-copy"></i>
+        </div>
       </div>
     </div>
   </div>
@@ -183,6 +233,41 @@ export default {
     toggleCert: function (event) {
       event.target.parentNode.parentNode.classList.toggle("cert-open");
       event.target.classList.toggle("cert-expand-rotated");
+    },
+    copyCertToClipboard(cert){
+      if(!navigator.clipboard){
+        this.fallbackCopyCertToClipboard(cert)
+        return 
+      }
+      navigator.clipboard.writeText(cert)
+      .then(function(){
+        console.log("Async: Copying to clipboard was successful!");
+      }, function(error){
+        console.log("Async: Could not copy certificate: " + error)
+      })
+    },
+    fallbackCopyCertToClipboard(cert) {
+      var textArea = document.createElement("textarea");
+      textArea.value = cert;
+
+      // Avoid scrolling to bottom
+      textArea.style.top = "0";
+      textArea.style.left = "0";
+      textArea.style.position = "fixed";
+
+      document.body.appendChild(textArea);
+      textArea.focus();
+      textArea.select();
+
+      try {
+        var successful = document.execCommand("copy");
+        var msg = successful ? "successful" : "unsuccessful";
+        console.log("Fallback: Copying cert command was " + msg);
+      } catch (err) {
+        console.error("Fallback: Oops, unable to copy", err);
+      }
+
+      document.body.removeChild(textArea);
     },
   },
   computed: {
@@ -227,14 +312,14 @@ export default {
   transition: all 0.2s ease-in;
 }
 
-.cert-expand {
+.cert-expand, .cert-copy {
   height: 15px;
   color: #e05512;
-  margin-left: 5px;
+  margin-left: 10px;
   margin-top: 5px;
 }
 
-.cert-expand:hover {
+.cert-expand:hover, .cert-copy:hover {
   cursor: pointer;
 }
 
