@@ -11,8 +11,8 @@
 import Pinpad from "../components/UIComponents/Pinpad";
 export default {
   name: "FileExplorer",
-  components:{
-    Pinpad
-  }
+  components: {
+    Pinpad,
+  },
 };
 </script>
