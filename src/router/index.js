@@ -4,12 +4,12 @@ import Home from "../views/Home.vue";
 const routes = [
   {
     path: "/",
-    name: "Home",
+    name: "home",
     component: Home,
   },
   {
     path: "/admin",
-    name: "Admin",
+    name: "admin",
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
@@ -18,13 +18,18 @@ const routes = [
   },
   {
     path: "/contact",
-    name: "Contact",
+    name: "contact",
     component: () => import("../views/Contact.vue"),
   },
   {
     path: "/file-explorer",
-    name: "File explorer",
+    name: "file-explorer",
     component: () => import("../views/FileExplorer.vue"),
+  },
+  {
+    path: "/under-construction",
+    name: "under-construction",
+    component: () => import("../views/UnderConstruction.vue"),
   },
 ];
 

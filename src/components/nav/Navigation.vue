@@ -12,7 +12,7 @@
     <div class="nav-content">
       <div class="list-group-flush">
         <div class="nav-item-container">
-          <router-link to="/">
+          <router-link :to="{ name: 'home' }">
             <button
               type="button"
               class="list-group-item list-group-item-action"
@@ -40,7 +40,7 @@
             ></i>
           </button>
           <div class="modules-list" v-if="dropdown_active">
-            <router-link to="/modules/tokens">
+            <router-link :to="{ name: 'under-construction' }">
               <button
                 type="button"
                 class="list-sub-group-item list-group-item-action"
@@ -48,7 +48,7 @@
                 {{ $t("navigation.ID/Tokens") }}
               </button>
             </router-link>
-            <router-link to="/modules/payment">
+            <router-link :to="{ name: 'under-construction' }">
               <button
                 type="button"
                 class="list-sub-group-item list-group-item-action"
@@ -56,7 +56,7 @@
                 {{ $t("navigation.Payment") }}
               </button>
             </router-link>
-            <router-link to="/modules/">
+            <router-link :to="{ name: 'under-construction' }">
               <button
                 type="button"
                 class="list-sub-group-item list-group-item-action"
@@ -64,7 +64,7 @@
                 {{ $t("navigation.PKI") }}
               </button>
             </router-link>
-            <router-link to="/modules/pki">
+            <router-link :to="{ name: 'under-construction' }">
               <button
                 type="button"
                 class="list-sub-group-item list-group-item-action"
@@ -72,7 +72,7 @@
                 {{ $t("navigation.Remote loading") }}
               </button>
             </router-link>
-            <router-link to="/modules/transport">
+            <router-link :to="{ name: 'under-construction' }">
               <button
                 type="button"
                 class="list-sub-group-item list-group-item-action"
@@ -80,7 +80,7 @@
                 {{ $t("navigation.Transport") }}
               </button>
             </router-link>
-            <router-link to="/modules/file-exchange">
+            <router-link :to="{ name: 'under-construction' }">
               <button
                 type="button"
                 class="list-sub-group-item list-group-item-action"
@@ -88,7 +88,7 @@
                 {{ $t("navigation.File exchange") }}
               </button>
             </router-link>
-            <router-link to="/modules/other">
+            <router-link :to="{ name: 'under-construction' }">
               <button
                 type="button"
                 class="list-sub-group-item list-group-item-action"
@@ -100,7 +100,7 @@
         </div>
 
         <div class="nav-item-container">
-          <router-link to="/file-explorer">
+          <router-link :to="{ name: 'under-construction' }">
             <button
               type="button"
               class="list-group-item list-group-item-action"
@@ -112,7 +112,7 @@
         </div>
 
         <div class="nav-item-container">
-          <router-link to="/admin">
+          <router-link :to="{ name: 'admin' }">
             <button
               type="button"
               class="list-group-item list-group-item-action"
@@ -128,7 +128,7 @@
     <div class="nav-footer">
       <div class="list-group-flush">
         <div class="nav-item-container contact">
-          <router-link to="/contact">
+          <router-link :to="{ name: 'contact' }">
             <button
               type="button"
               class="list-group-item list-group-item-action"
