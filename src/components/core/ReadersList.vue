@@ -41,7 +41,31 @@
         <span v-if="reader.card.modules" @click="copyAtr(reader)">{{
           reader.card.modules[0]
         }}</span>
-        <span v-else>{{ $t("readersList.No module detected") }}</span>
+        <span class="span-row" v-else
+          >{{ $t("readersList.No module detected") }}
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          <div class="dropdown">
+            <button
+              class="btn btn-primary dropdown-toggle"
+              type="button"
+              id="dropdownMenuButton"
+              data-bs-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            ></button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <li
+                v-for="module in modules"
+                :key="module"
+                class="dropdown-item"
+                :value="module"
+                @click="selectModule(reader, module)"
+              >
+                {{ module }}
+              </li>
+            </div>
+          </div>
+        </span>
       </div>
       <div class="reader-pinpad">
         <span
@@ -134,6 +158,23 @@ export default {
     return {
       readers: null,
       loading: true,
+      modules: [
+        "beid",
+        "emv",
+        "crelan",
+        "aventra",
+        "oberthur",
+        "idemia",
+        "luxeid",
+        "diplad",
+        "certigna",
+        "certinomis",
+        "dnie",
+        "safenet",
+        "eherkenning",
+        "jcop",
+        "airbus",
+      ],
     };
   },
   emits: ["readerSelected"],
@@ -173,6 +214,50 @@ export default {
     },
     copyReaderId(reader) {
       this.copyTextToClipboard(reader.id);
+    },
+    fallbackCopyTextToClipboard(text) {
+      var textArea = document.createElement("textarea");
+      textArea.value = text;
+
+      // Avoid scrolling to bottom
+      textArea.style.top = "0";
+      textArea.style.left = "0";
+      textArea.style.position = "fixed";
+
+      document.body.appendChild(textArea);
+      textArea.focus();
+      textArea.select();
+
+      try {
+        var successful = document.execCommand("copy");
+        var msg = successful ? "successful" : "unsuccessful";
+        console.log("Fallback: Copying text command was " + msg);
+      } catch (err) {
+        console.error("Fallback: Oops, unable to copy", err);
+      }
+
+      document.body.removeChild(textArea);
+    },
+    copyTextToClipboard(text) {
+      if (!navigator.clipboard) {
+        this.fallbackCopyTextToClipboard(text);
+        return;
+      }
+      // TODO use toast for copy clipboard notification
+      navigator.clipboard.writeText(text).then(
+        function () {
+          console.log("Async: Copying to clipboard was successful!");
+        },
+        function (err) {
+          console.error("Async: Could not copy text: ", err);
+        }
+      );
+    },
+    selectModule(reader, module) {
+      reader.card.description = [module];
+      reader.card.modules = [module];
+      console.log(reader.card);
+      console.log(module);
     },
   },
   created() {
@@ -299,5 +384,9 @@ a {
 .readerDisabled:hover svg {
   fill: lightgray;
   cursor: not-allowed;
+}
+
+.span-row {
+  display: flex;
 }
 </style>

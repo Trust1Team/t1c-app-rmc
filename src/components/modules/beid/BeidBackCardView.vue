@@ -5,7 +5,13 @@
         <div>
           <p><i>Identificatienummer van het Rijksregister</i></p>
           <p><i>Identification number of the National Register</i></p>
-          <p class="bold">{{ biometric.nationalNumber.substr(0,2) }}.{{ biometric.nationalNumber.substr(2,2) }}.{{ biometric.nationalNumber.substr(4,2) }}-{{ biometric.nationalNumber.substr(6,3) }}.{{ biometric.nationalNumber.substr(9,2) }}</p>
+          <p class="bold">
+            {{ biometric.nationalNumber.substr(0, 2) }}.{{
+              biometric.nationalNumber.substr(2, 2)
+            }}.{{ biometric.nationalNumber.substr(4, 2) }}-{{
+              biometric.nationalNumber.substr(6, 3)
+            }}.{{ biometric.nationalNumber.substr(9, 2) }}
+          </p>
         </div>
         <div class="barcode">
           {{ biometric.nationalNumber }}{{ biometric.cardNumber.substr(3) }}

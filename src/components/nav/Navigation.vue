@@ -29,8 +29,15 @@
             type="button"
             class="list-group-item list-group-item-action dropdown-btn"
           >
-            <span><i class="fa fa-cubes"></i>&nbsp;{{ $t("navigation.Modules") }}</span>
-            <i v-bind:class="{ active: dropdown_active }" class="fas fa-sort-down"></i>
+            <span
+              ><i class="fa fa-cubes"></i>&nbsp;{{
+                $t("navigation.Modules")
+              }}</span
+            >
+            <i
+              v-bind:class="{ active: dropdown_active }"
+              class="fas fa-sort-down"
+            ></i>
           </button>
           <div class="modules-list" v-if="dropdown_active">
             <router-link to="/modules/tokens">
