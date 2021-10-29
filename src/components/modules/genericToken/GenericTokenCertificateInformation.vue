@@ -26,6 +26,14 @@
         >
           <i class="fas fa-sort-down fa-lg cert-expand-icon"></i>
         </div>
+
+        <div
+          class="cert-copy"
+          v-if="nonRepudiationCertificate && !getCertificateLoading"
+          @click="copyTextToClipboard(nonRepudiationCertificate.certificate)"
+        >
+          <i class="far fa-copy"></i>
+        </div>
       </div>
     </div>
 
@@ -52,6 +60,14 @@
           @click="toggleCert"
         >
           <i class="fas fa-sort-down fa-lg cert-expand-icon"></i>
+        </div>
+
+        <div
+          class="cert-copy"
+          v-if="authenticationCertificate && !getCertificateLoading"
+          @click="copyTextToClipboard(authenticationCertificate.certificate)"
+        >
+          <i class="far fa-copy"></i>
         </div>
       </div>
     </div>
@@ -80,6 +96,14 @@
         >
           <i class="fas fa-sort-down fa-lg cert-expand-icon"></i>
         </div>
+
+        <div
+          class="cert-copy"
+          v-if="encryptionCertificate && !getCertificateLoading"
+          @click="copyTextToClipboard(encryptionCertificate.certificate)"
+        >
+          <i class="far fa-copy"></i>
+        </div>
       </div>
     </div>
 
@@ -106,6 +130,14 @@
           @click="toggleCert"
         >
           <i class="fas fa-sort-down fa-lg cert-expand-icon"></i>
+        </div>
+
+        <div
+          class="cert-copy"
+          v-if="issuerCertificate && !getCertificateLoading"
+          @click="copyTextToClipboard(issuerCertificate.certificate)"
+        >
+          <i class="far fa-copy"></i>
         </div>
       </div>
     </div>
@@ -134,6 +166,14 @@
         >
           <i class="fas fa-sort-down fa-lg cert-expand-icon"></i>
         </div>
+
+        <div
+          class="cert-copy"
+          v-if="intermediateCertificates && !getCertificateLoading"
+          @click="copyTextToClipboard(intermediateCertificates.certificate)"
+        >
+          <i class="far fa-copy"></i>
+        </div>
       </div>
     </div>
 
@@ -161,6 +201,14 @@
         >
           <i class="fas fa-sort-down fa-lg cert-expand-icon"></i>
         </div>
+
+        <div
+          class="cert-copy"
+          v-if="rootCertificate && !getCertificateLoading"
+          @click="copyTextToClipboard(rootCertificate.certificate)"
+        >
+          <i class="far fa-copy"></i>
+        </div>
       </div>
     </div>
   </div>
@@ -168,6 +216,7 @@
 
 <script>
 import Loading from "../../core/Loading";
+import copyMixin from "@/mixins/copyMixin";
 
 export default {
   name: "GenericTokenCertificateInformation",
@@ -191,6 +240,7 @@ export default {
     },
   },
   components: { Loading },
+  mixins: [copyMixin],
 };
 </script>
 
@@ -227,14 +277,16 @@ export default {
   transition: all 0.2s ease-in;
 }
 
-.cert-expand {
+.cert-expand,
+.cert-copy {
   height: 15px;
   color: #e05512;
-  margin-left: 5px;
+  margin-left: 10px;
   margin-top: 5px;
 }
 
-.cert-expand:hover {
+.cert-expand:hover,
+.cert-copy:hover {
   cursor: pointer;
 }
 

@@ -22,7 +22,7 @@
         :intermediate-certificates="intermediateCertificates"
       />
 
-<!--      <GenericTokenCardActions />-->
+      <!--      <GenericTokenCardActions />-->
     </div>
   </div>
 </template>
