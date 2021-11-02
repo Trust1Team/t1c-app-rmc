@@ -3,22 +3,24 @@
     <div class="card-content">
       <div class="card-row">
         <div class="birth-place">
-          <p><i>Sünnikoht/Place of birth</i></p>
+          <p class="text-blue">Sünnikoht/Place of birth</p>
           <p class="bold">{{biometric.birthLocation}}</p>
+          <div class="barcode">
+            38025457264
+          </div>
         </div>
         <div>
-          <p><i>Välja antud/Date of Issue</i></p>
+          <p class="text-blue">Välja antud/Date of Issue</p>
           <p class="bold">{{ biometric.cardValidityDateBegin }}</p>
+          <div class="barcode">
+            {{ biometric.nationalNumber }}{{ biometric.cardNumber.substr(3) }}
+          </div>
+        </div>
+        <div class="qrcode">
+          <img src="../../../../assets/qr-code-placeholder.png" alt="Qr Code"  class="qrcode-img"/>
         </div>
       </div>
-      <div class="card-row barcode-left">
-        <div class="barcode">
-          38025457264
-        </div>
-        <div class="barcode">
-          {{ biometric.nationalNumber }}{{ biometric.cardNumber.substr(3) }}
-        </div>
-      </div>
+
       <div class="personal-code">
         <div>
           38025457264
@@ -114,7 +116,7 @@ function calculate(string) {
 }
 
 export default {
-  name: "BeidBackCardView",
+  name: "EstonianBackCardView2019",
   props: ["biometric", "picture"],
   methods: {
     constructMachineReadableStrings(rnData) {
@@ -186,6 +188,11 @@ p {
   margin-bottom: unset;
   text-transform: uppercase;
 }
+
+.text-blue {
+  color: #483D8B
+}
+
 .card-container {
   /*Ratio is 8/5*/
   width: 480px;
@@ -203,12 +210,17 @@ p {
   font-size: 10px;
 }
 
+.qrcode-img {
+  width: 70px;
+  background-color: white;
+}
+
 .birth-place {
   margin-left: 1.5%
 }
 
 .chip {
-  top: 120px;
+  top: 110px;
   left: 25px;
   position: absolute;
   width: 80px;
@@ -222,7 +234,7 @@ p {
   font-family: "Libre Barcode 39", cursive;
   transform: scale(1.55, 5.3);
   margin-top: 30px;
-  margin-right: 25px;
+  margin-left: 30px;
 }
 
 .personal-code {

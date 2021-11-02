@@ -2,31 +2,44 @@
   <div class="card-container" v-if="biometric">
     <div class="card-content">
       <div class="card-row">
-        <div class="birth-place">
-          <p class="text-blue">Sünnikoht/Place of birth</p>
-          <p class="bold text-center">{{biometric.birthLocation}}</p>
+        <div>
+          <p class="bold">Markused/Remarks</p>
+          <p>Not valid for travel</p>
         </div>
       </div>
       <div class="card-row">
         <div>
-          <p class="text-blue">Välja antud/Date of Issue</p>
-          <p class="bold text-center">{{ biometric.cardValidityDateBegin }}</p>
+          <p class="bold">Välja antud/<i>Date of Issue</i></p>
+          <p>{{ biometric.cardValidityDateBegin }}</p>
+        </div>
+        <div class="authority">
+          <p class="bold">Väljaandja/<i>Authorithy</i></p>
+          <p>PPA/PBGB</p>
         </div>
       </div>
-      <div class="card-row first-barcode">
+      <div class="card-row chip-spacing">
+        <div class="birth-place">
+          <p class="bold">Sünnikoht/<i>Place of birth</i></p>
+          <p>{{biometric.birthLocation}}</p>
+        </div>
+      </div>
+      <div class="card-row barcodes-container chip-spacing">
         <div>
-          <div class="barcode text-center">
-            38025457264
-          </div>
-          <div class="personal-code text-center">
+          <p class="bold">Isikukood/<i>Personal code</i></p>
+          <div class="barcode first">
             38025457264
           </div>
         </div>
+        <div class="second-barcode">
+          <p class="bold">Dokumendi number/<i>Document number</i></p>
+          <div class="barcode second">
+            {{ biometric.nationalNumber }}{{ biometric.cardNumber.substr(3) }}
+          </div>
+        </div>
       </div>
-
-      <div class="card-row second-barcode">
-        <div class="barcode">
-          {{ biometric.nationalNumber }}{{ biometric.cardNumber.substr(3) }}
+      <div class="personal-code">
+        <div>
+          38025457264
         </div>
       </div>
 
@@ -119,7 +132,7 @@ function calculate(string) {
 }
 
 export default {
-  name: "BeidBackCardView",
+  name: "EstonianResidentBackCardView",
   props: ["biometric", "picture"],
   methods: {
     constructMachineReadableStrings(rnData) {
@@ -189,12 +202,7 @@ export default {
 
 p {
   margin-bottom: unset;
-  text-transform: uppercase;  
-}
-
-.text-blue {
-  color: #483D8B;
-  font-size: 0.5rem;
+  text-transform: uppercase;
 }
 .card-container {
   /*Ratio is 8/5*/
@@ -213,13 +221,13 @@ p {
   font-size: 10px;
 }
 
-.birth-place {
-  margin-left: 1.5%
+.authority {
+  margin-left: 10px;
 }
 
 .chip {
   top: 120px;
-  left: 25px;
+  left: 35px;
   position: absolute;
   width: 80px;
 }
@@ -228,45 +236,52 @@ p {
   width: 100%;
 }
 
+.chip-spacing {
+  margin-left: 150px;
+}
+
 .barcode {
   font-family: "Libre Barcode 39", cursive;
-  transform: scale(1.55, 5.3);
-  margin-top: 30px;
-  margin-right: 25px;
+  transform: scale(1.55, 4.3);
+  margin-top: 20px;
+}
+
+.first {
+  margin-left: 25px;
+}
+
+.second {
+  margin-left: 37px;
 }
 
 .personal-code {
   position: absolute;
-  bottom: 52%;
-  right: 44%
+  margin-left: 34%;
+  top: 61%;
 }
 
 .card-row {
   margin-top: 5px;
   display: flex;
-  justify-content: center;
   line-height: 15px;
 }
 
-.first-barcode {
-  margin-left: 25px;
+.barcodes-container {
+  justify-content: space-between;
 }
 
 .second-barcode {
-  margin-top: 20px;
-  margin-left: 20px;
+  margin-left: 15px;
 }
-
 
 .bold {
   font-weight: bold;
 }
 
 .machine-readable {
-  margin-top: 5px;
+  margin-top: 20px;
   font-size: 1.5rem;
   line-height: 1;
   font-family: "OCR-B", monospace;
 }
-
 </style>

@@ -2,11 +2,11 @@
   <div class="token-container" v-if="biometric">
     <div class="token-card">
       <div class="card-side">
-        <EstonianFrontCardView :biometric="biometric" :picture="picture" />
+        <EstonianResidentFrontCardView :biometric="biometric" :picture="picture" />
       </div>
 
       <div class="card-side">
-        <EstonianBackCardView :biometric="biometric" :picture="picture" />
+        <EstonianResidentBackCardView :biometric="biometric" :picture="picture" />
       </div>
     </div>
 
@@ -28,14 +28,14 @@
 </template>
 
 <script>
-import EstonianFrontCardView from "./EstonianFrontCardView";
-import EstonianBackCardView from "./EstonianBackCardView";
+import EstonianResidentFrontCardView from "./EstonianResidentFrontCardView";
+import EstonianResidentBackCardView from "./EstonianResidentBackCardView";
 import GenericTokenCertificateInformation from "../../genericToken/GenericTokenCertificateInformation";
 import GenericTokenAddressInformation from "../../genericToken/GenericTokenAddressInformation";
 // import GenericTokenCardActions from "../genericToken/GenericTokenCardActions";
 
 export default {
-  name: "EstonianCardView",
+  name: "ResidentCardView",
   props: {
     biometric: Object,
     address: Object,
@@ -49,8 +49,8 @@ export default {
     readerName: String,
   },
   components: {
-    EstonianFrontCardView,
-    EstonianBackCardView,
+    EstonianResidentFrontCardView,
+    EstonianResidentBackCardView,
     GenericTokenCertificateInformation,
     GenericTokenAddressInformation,
     // GenericTokenCardActions,
@@ -64,7 +64,6 @@ export default {
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .token-container {
   display: flex;
