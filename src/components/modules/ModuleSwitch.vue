@@ -12,6 +12,19 @@
     :issuerCertificate="getIssuerCertificate"
     :reader-name="getReader.name"
   />
+  <EstonianCardView
+    v-if="getReader.card.modules.includes('beid')"
+    :biometric="getBiometric"
+    :picture="getPicture"
+    :address="getAddress"
+    :rootCertificate="getRootCertificate"
+    :intermediateCertificates="getIntermediateCertificates"
+    :authenticationCertificate="getAuthenticationCertificate"
+    :nonRepudiationCertificate="getNonRepudiationCertificate"
+    :encryptionCertificate="getEncryptionCertificate"
+    :issuerCertificate="getIssuerCertificate"
+    :reader-name="getReader.name"
+  />
 
   <GenericTokenCardView
     v-if="
@@ -40,12 +53,13 @@
 
 <script>
 import BeidCardView from "./beid/BeidCardView";
+import EstonianCardView from "./estonian/3.5/EstonianCardView";
 import GenericPaymentCardView from "./genericPayment/GenericPaymentCardView";
 import GenericTokenCardView from "./genericToken/GenericTokenCardView";
 
 export default {
   name: "ModuleSwitch",
-  components: { BeidCardView, GenericPaymentCardView, GenericTokenCardView },
+  components: { BeidCardView, GenericPaymentCardView, GenericTokenCardView, EstonianCardView },
   computed: {
     getReader() {
       return this.$store.getters["reader/getSelectedReader"];
