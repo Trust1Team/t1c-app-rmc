@@ -44,7 +44,7 @@
             <div class="col-4 float-right small-font mx-5">
               <div class="row">
                 <div class="col-9 valid-thru">
-                  VALID THRU
+                  VALID<br/>THRU
                 </div>
                 <div class="col-3 small-font m-auto">
                   <i class="fa fa-2x fa-caret-right"></i>
