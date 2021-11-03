@@ -1,18 +1,18 @@
 <template>
   <div>
     <h1>{{ $t("fileExplorer.File explorer") }}</h1>
-    <div class="col-6 m-auto">
-      <pinpad />
+    <div class="col-4 m-auto">
+      <EuropeMastercardVisa />
     </div>
   </div>
 </template>
 
 <script>
-import Pinpad from "../components/UIComponents/Pinpad";
+import EuropeMastercardVisa from "../components/modules/paymentModules/EuropeMastercardVisa";
 export default {
   name: "FileExplorer",
   components: {
-    Pinpad,
+    EuropeMastercardVisa,
   },
 };
 </script>
