@@ -71,17 +71,7 @@
 <script>
 export default {
   name: "EuropeMastercardVisa",
-  data() {
-    return {
-      cardInfo: {
-        bankName: "CIB",
-        cardNumber: "1234 5678 9876 5432",
-        cvv: "1234",
-        validThru: "12/99",
-        cardHolder: "JHON DOE JHON DOE",
-      }
-    }
-  }
+  props: ['cardInfo']
 }
 </script>
 
