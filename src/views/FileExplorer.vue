@@ -2,17 +2,26 @@
   <div>
     <h1>{{ $t("fileExplorer.File explorer") }}</h1>
     <div class="col-6 m-auto">
-      <pinpad />
+      <BelgiumLawyer :card-info="cardInfo" />
     </div>
   </div>
 </template>
 
 <script>
-import Pinpad from "../components/UIComponents/Pinpad";
+import BelgiumLawyer from "../components/modules/belgiumLawyer/BelgiumLawyer";
 export default {
   name: "FileExplorer",
   components: {
-    Pinpad,
+    BelgiumLawyer,
   },
+  data() {
+    return {
+      cardInfo: {
+        name: "Jhon Doe",
+        givenName: "Jhon Doe",
+        validUntil: "02.04.2017"
+      }
+    }
+  }
 };
 </script>
