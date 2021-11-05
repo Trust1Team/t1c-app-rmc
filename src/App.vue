@@ -51,12 +51,15 @@
 // @ is an alias to /src
 import Navigation from "./components/nav/Navigation";
 import NotificationContainer from "./components/UIComponents/NotificationContainer";
+import { GDialogRoot } from "gitart-vue-dialog";
 
 export default {
   name: "App",
   components: {
     Navigation,
     NotificationContainer,
+    // eslint-disable-next-line vue/no-unused-components
+    GDialogRoot,
   },
   data() {
     return {

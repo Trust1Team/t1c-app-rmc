@@ -22,7 +22,7 @@
         :intermediate-certificates="intermediateCertificates"
       />
 
-      <!--      <GenericTokenCardActions />-->
+      <BeidTokenCardActions />
     </div>
   </div>
 </template>
@@ -32,7 +32,7 @@ import BeidFrontCardView from "./BeidFrontCardView";
 import BeidBackCardView from "./BeidBackCardView";
 import GenericTokenCertificateInformation from "../genericToken/GenericTokenCertificateInformation";
 import GenericTokenAddressInformation from "../genericToken/GenericTokenAddressInformation";
-// import GenericTokenCardActions from "../genericToken/GenericTokenCardActions";
+import BeidTokenCardActions from "./BeidTokenCardActions";
 
 export default {
   name: "BeidCardView",
@@ -53,7 +53,7 @@ export default {
     BeidBackCardView,
     GenericTokenCertificateInformation,
     GenericTokenAddressInformation,
-    // GenericTokenCardActions,
+    BeidTokenCardActions,
   },
   created() {},
   computed: {
