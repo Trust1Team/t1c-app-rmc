@@ -46,7 +46,8 @@
     "vue-router": "^4.0.3",
     "vuex": "^4.0.0",
     "xlsx": "^0.16.9",
-    "zoom-vanilla.js": "^2.0.6"
+    "zoom-vanilla.js": "^2.0.6",
+    "t1c-sdk-js": "^3.5.3"
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",

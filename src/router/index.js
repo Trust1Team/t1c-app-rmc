@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import SideMenu from '../layouts/side-menu/Main.vue'
 // import TopMenu from '../layouts/top-menu/Main.vue'
 import Home from '../views/home/Main.vue'
+import Admin from '../views/admin/Main.vue'
 import ErrorPage from '../views/_framework/error-page/Main'
 
 const routes = [
@@ -17,7 +18,7 @@ const routes = [
       {
         path: 'admin',
         name: 'side-menu-admin',
-        component: Home
+        component: Admin
       },
       {
         path: 'modules',

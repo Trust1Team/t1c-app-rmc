@@ -25,7 +25,7 @@ import DeviceInfo from './DeviceInfo'
 import UserInfo from './UserInfo'
 import AdminReadersList from './AdminReadersList'
 import DependencyInfo from './DependencyInfo'
-import Installation from '../core/Installation'
+import Installation from '../../components/core/Installation'
 import router from '@/router'
 
 export default {

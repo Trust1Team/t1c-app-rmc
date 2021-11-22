@@ -73,7 +73,7 @@
 
 <script>
 import DistributionService from "../../services/DistributionService";
-import Loading from "../core/Loading";
+import Loading from "../../components/core/Loading";
 import ValidationService from "../../services/ValidationService";
 import Trust1ConnectorService from "../../services/Trust1ConnectorService";
 
