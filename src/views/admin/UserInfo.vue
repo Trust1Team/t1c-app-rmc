@@ -2,10 +2,10 @@
   <div class="installation-info-container" v-if="info != null">
     <div class="installation-info-item">
       <h3>{{ $t("userInfo.User") }}</h3>
-      <span>{{ $t("userInfo.Name") }}</span>
+      <h6>{{ $t("userInfo.Name") }}</h6>
       <p>{{ info.t1CInfoUser.name }}</p>
 
-      <span>{{ $t("userInfo.Username") }}</span>
+      <h6>{{ $t("userInfo.Username") }}</h6>
       <p>{{ info.t1CInfoUser.username }}</p>
     </div>
 
@@ -49,6 +49,11 @@ export default {
 .installation-info-item h3 {
   font-size: 1.3rem;
   color: #e05512;
+  margin-bottom: 10px;
+}
+
+.installation-info-item h6 {
+  margin-top: 15px !important;
 }
 
 .installation-info-item p {

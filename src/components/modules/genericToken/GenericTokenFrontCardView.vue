@@ -2,34 +2,29 @@
   <div class="card-container">
     <div class="card-header">
       <div>
-        <div class="title"><b>BELGIE</b></div>
-        <div class="sub-title">IDENTITEITSKAART</div>
+        <div class="title"><b>IDENTITEITSKAART</b></div>
       </div>
 
       <div class="">
-        <div class="title"><b>BELGIQUE</b></div>
-        <div class="sub-title">CARD D'IDENTITE</div>
+        <div class="title"><b>CARD D'IDENTITE</b></div>
       </div>
 
       <div>
-        <div class="title"><b>BELGIEN</b></div>
-        <div class="sub-title">PERSONALAUSWEIS</div>
+        <div class="title"><b>PERSONALAUSWEIS</b></div>
       </div>
 
       <div>
-        <div class="title"><b>BELGIUM</b></div>
-        <div class="sub-title">IDENTITY CARD</div>
+        <div class="title"><b>IDENTITY CARD</b></div>
       </div>
     </div>
-
     <div class="card-content">
       <div class="chip">
-        <img src="../../../assets/credit-card.svg" alt="Credit card chip" />
+        <img src="../../../assets/images/credit-card.svg" alt="Credit card chip" />
       </div>
       <div class="card-row">
         <div>
-          <p><i>Naam/Name</i></p>
-          <p><i>Voornamen/Given names</i></p>
+          <p><i>Name</i></p>
+          <p><i>Given names</i></p>
         </div>
         <div class="text-spacing">
           <p class="bold">{{ biometric.name }}</p>
@@ -38,38 +33,36 @@
           </p>
         </div>
       </div>
-      <div class="card-row-2 chip-spacing">
+      <div class="card-row chip-spacing">
         <div>
-          <p><i>Geboorteplaats en -datum/Place and date of birth</i></p>
+          <p><i>Place and date of birth</i></p>
           <p class="bold">
             {{ biometric.birthLocation }} {{ biometric.birthDate }}
           </p>
         </div>
+      </div>
+      <div class="card-row chip-spacing">
         <div>
-          <p><i>Geslacht/Sex</i></p>
+          <p><i>Sex</i></p>
           <p class="bold">{{ biometric.sex }}</p>
         </div>
       </div>
       <div class="card-row chip-spacing">
         <div>
-          <p><i>Nationaliteit/Nationality</i></p>
+          <p><i>Nationality</i></p>
           <p class="bold">{{ biometric.nationality }}</p>
         </div>
       </div>
       <div class="card-row chip-spacing">
         <div>
-          <p><i>Kaartnr/Card no</i></p>
-          <p class="bold">
-            {{ biometric.cardNumber.substr(0, 3) }}-{{
-              biometric.cardNumber.substr(3, 7)
-            }}-{{ biometric.cardNumber.substr(10, 2) }}
-          </p>
+          <p><i>Card no</i></p>
+          <p class="bold">{{ biometric.cardNumber }}</p>
         </div>
       </div>
 
       <div class="card-row">
         <div>
-          <p><i>Geldig van- tot/Valid from- until</i></p>
+          <p><i>Valid from- until</i></p>
           <p class="bold">
             {{ biometric.cardValidityDateBegin }} -
             {{ biometric.cardValidityDateEnd }}
@@ -90,7 +83,7 @@
 
 <script>
 export default {
-  name: "BeidFrontCardView",
+  name: "GenericTokenFrontCardView",
   props: ["biometric", "picture"],
 };
 </script>
@@ -101,7 +94,7 @@ p {
 }
 
 .chip {
-  top: 120px;
+  top: 130px;
   left: 25px;
   position: absolute;
   width: 80px;
@@ -126,15 +119,7 @@ p {
 .card-content {
   padding: 5px;
   font-size: 10px;
-  margin-top: 15px;
-}
-
-.card-header {
-  display: flex;
-  flex-wrap: nowrap;
-  flex-direction: row;
-  justify-content: space-between;
-  background-color: unset !important;
+  margin-top: 10px;
 }
 
 .chip-spacing {
@@ -166,13 +151,12 @@ p {
 }
 
 .title {
-  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  height: 30px;
 }
-
-.sub-title {
-  font-size: 9px;
-}
-
 .image {
   position: absolute;
   right: 5px;
@@ -180,5 +164,12 @@ p {
   margin-bottom: 5px;
   width: 100px;
   border-radius: 10px;
+}
+.card-header {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: unset !important;
 }
 </style>

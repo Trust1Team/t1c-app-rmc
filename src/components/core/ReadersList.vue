@@ -9,9 +9,9 @@
     <p>{{ $t("readersList.detectMessage") }}</p>
   </div>
 
-  <div class="readers-header" v-if="readers && readers.length > 0 && !loading">
-    <h1>{{ $t("readersList.Choose your Reader") }}</h1>
-    <p>{{ $t("readersList.askToSelect") }}</p>
+  <div class="readers-header mt-6" v-if="readers && readers.length > 0 && !loading">
+    <h1 class="font-medium text-4xl">{{ $t("readersList.Choose your Reader") }}</h1>
+    <p class="mt-3">{{ $t("readersList.askToSelect") }}</p>
   </div>
 
   <div

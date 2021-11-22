@@ -1,12 +1,12 @@
 <template>
   <div>
-    <h1 class="title">{{ $t("contact.Contact us") }}</h1>
+    <h1 class="title text-4xl my-5 font-medium">{{ $t("contact.Contact us") }}</h1>
     <p class="subtitle">{{ $t("contact.contactUsSubtitle") }}</p>
     <br />
     <div class="form">
       <form @submit.prevent>
-        <div class="row">
-          <div class="col-6">
+        <div class="grid grid-cols-12">
+          <div class="col-span-6 mr-3">
             <input
               class="form-control"
               type="text"
@@ -14,7 +14,7 @@
               :placeholder="$t('contact.Name')"
             />
           </div>
-          <div class="col-6">
+          <div class="col-span-6 ml-3">
             <input
               class="form-control"
               type="text"
@@ -24,8 +24,8 @@
           </div>
         </div>
         <br />
-        <div class="row">
-          <div class="col-6">
+        <div class="grid grid-cols-12">
+          <div class="col-span-6 mr-3">
             <input
               class="form-control"
               type="text"
@@ -33,7 +33,7 @@
               :placeholder="$t('contact.Email Address')"
             />
           </div>
-          <div class="col-6">
+          <div class="col-span-6 ml-3">
             <input
               class="form-control"
               type="text"
@@ -54,8 +54,8 @@
           </div>
         </div>
         <br />
-        <div class="row">
-          <div class="col-12 float-left check-text">
+        <div class="grid grid-cols-12">
+          <div class="col-span-12 float-left check-text">
             <input
               type="checkbox"
               :disabled="technicalCheck"
@@ -64,11 +64,11 @@
               v-model="informationCheck"
               class="form-check-input"
             />&nbsp;
-            <label class="form-check-label" for="informationCheck">{{
+            <label class="form-check-label text-gray-500" for="informationCheck">{{
               $t("contact.I want more information")
             }}</label>
           </div>
-          <div class="col-12 float-left check-text">
+          <div class="col-span-12 float-left check-text">
             <input
               type="checkbox"
               :disabled="informationCheck"
@@ -77,7 +77,7 @@
               v-model="technicalCheck"
               class="form-check-input"
             />&nbsp;
-            <label class="form-check-label" for="technicalCheck">{{
+            <label class="form-check-label text-gray-500" for="technicalCheck">{{
               $t("contact.I have technical issue")
             }}</label>
           </div>
@@ -86,7 +86,7 @@
           <div class="col-12 float-right check-text">
             <button
               type="button"
-              class="btn btn-secondary"
+              class="btn bg-gray-600 text-white"
               data-bs-toggle="modal"
               data-bs-target="#validateModal"
             >
@@ -264,7 +264,6 @@ export default {
   color: #e05512;
   text-align: center;
 }
-
 .subtitle {
   color: #97a0af;
   text-align: center;
@@ -272,26 +271,21 @@ export default {
   width: 60%;
   margin: auto;
 }
-
 .form {
   text-align: center;
   width: 60%;
   margin: auto;
 }
-
 .float-left {
   text-align: left;
 }
-
 .float-right {
   text-align: right;
 }
-
 .check-text {
   font-style: italic;
   color: #97a0af;
 }
-
 .modal-title {
   color: #97a0af;
 }

@@ -140,10 +140,12 @@
       <!-- BEGIN: Content -->
       <div class="content">
         <TopBar />
+        <div class="flex justify-center mt-10"><img src="@/assets/images/t1c-logo-full.png" alt="logo T1C"></div>
         <router-view />
       </div>
       <!-- END: Content -->
     </div>
+    <Footer />
   </div>
 </template>
 
@@ -152,10 +154,12 @@ import { defineComponent, computed, onMounted, ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useStore } from '@/store'
 import { helper as $h } from '@/utils/helper'
-import TopBar from '@/components/top-bar/Main.vue'
-import MobileMenu from '@/components/mobile-menu/Main.vue'
-import DarkModeSwitcher from '@/components/dark-mode-switcher/Main.vue'
-import SideMenuTooltip from '@/components/side-menu-tooltip/Main.vue'
+import TopBar from '@/components/_framework/top-bar/Main.vue'
+import MobileMenu from '@/components/_framework/mobile-menu/Main.vue'
+import DarkModeSwitcher from '@/components/_framework/dark-mode-switcher/Main.vue'
+import SideMenuTooltip from '@/components/_framework/side-menu-tooltip/Main.vue'
+import Footer from '../footer/Main'
+
 import { linkTo, nestedMenu, enter, leave } from './index'
 
 export default defineComponent({
@@ -163,7 +167,8 @@ export default defineComponent({
     TopBar,
     MobileMenu,
     DarkModeSwitcher,
-    SideMenuTooltip
+    SideMenuTooltip,
+    Footer
   },
   setup() {
     const route = useRoute()

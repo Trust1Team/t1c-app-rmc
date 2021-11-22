@@ -17,6 +17,7 @@ module.exports = {
       ...primaryColors,
       white: 'white',
       black: 'black',
+      t1c: '#E05512',
       current: 'current',
       transparent: 'transparent',
       theme: {

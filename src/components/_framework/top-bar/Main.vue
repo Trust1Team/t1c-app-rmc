@@ -5,7 +5,7 @@
     <div class="-intro-x breadcrumb mr-auto hidden sm:flex">
       <a href="">Read my cards</a>
       <ChevronRightIcon class="breadcrumb__icon" />
-      <a href="" class="breadcrumb--active">Dashboard</a>
+      <a href="" class="breadcrumb--active">{{ currentRouteName }}</a>
     </div>
     <!-- END: Breadcrumb -->
   </div>
@@ -31,6 +31,20 @@ export default defineComponent({
       searchDropdown,
       showSearchDropdown,
       hideSearchDropdown
+    }
+  },
+  computed: {
+    currentRouteName() {
+      let route = this.$route.name
+      if(route === 'side-menu-home'){
+        return 'Home'
+      } else if (route === 'side-menu-admin'){
+        return 'Admin'
+      } else if (route === 'side-menu-contact'){
+        return 'Contact'
+      } else {
+        return 'Home'
+      }
     }
   }
 })

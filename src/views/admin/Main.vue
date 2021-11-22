@@ -1,19 +1,19 @@
 <template>
   <div class="container">
     <div>
-      <h1>{{ $t("admin.Device information") }}</h1>
+      <h1 class="text-4xl font-medium my-4">{{ $t("admin.Device information") }}</h1>
       <DeviceInfo :info="info" :js-version="jsVersion" />
 
-      <h1>{{ $t("admin.User information") }}</h1>
+      <h1 class="text-4xl font-medium my-4">{{ $t("admin.User information") }}</h1>
       <UserInfo :info="info" />
 
-      <h1>{{ $t("admin.reader") }}</h1>
+      <h1 class="text-4xl font-medium my-4">{{ $t("admin.reader") }}</h1>
       <AdminReadersList />
 
-      <h1>{{ $t("admin.dependency") }}</h1>
+      <h1 class="text-4xl font-medium my-4">{{ $t("admin.dependency") }}</h1>
       <DependencyInfo />
 
-      <h1>{{ $t("admin.binaries") }}</h1>
+      <h1 class="text-4xl font-medium my-4">{{ $t("admin.binaries") }}</h1>
       <Installation />
     </div>
   </div>

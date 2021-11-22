@@ -35,7 +35,7 @@
 
 <script>
 import { defineComponent, onMounted } from 'vue'
-import DarkModeSwitcher from '@/components/dark-mode-switcher/Main.vue'
+import DarkModeSwitcher from '@/components/_framework/dark-mode-switcher/Main.vue'
 
 export default defineComponent({
   components: {

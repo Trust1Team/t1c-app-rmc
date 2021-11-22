@@ -3,6 +3,7 @@ import SideMenu from '../layouts/side-menu/Main.vue'
 // import TopMenu from '../layouts/top-menu/Main.vue'
 import Home from '../views/home/Main.vue'
 import Admin from '../views/admin/Main.vue'
+import Contact from '../views/contact/Main.vue'
 import ErrorPage from '../views/_framework/error-page/Main'
 
 const routes = [
@@ -35,9 +36,8 @@ const routes = [
       {
         path: 'contact',
         name: 'side-menu-contact',
-        component: Home
+        component: Contact
       }
-
     ]
   },
   {

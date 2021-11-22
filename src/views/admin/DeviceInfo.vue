@@ -2,33 +2,32 @@
   <div class="installation-info-container" v-if="info != null">
     <div class="installation-info-item">
       <h3>{{ $t("deviceInfo.Trust1Connector version") }}</h3>
-
-      <span>{{ $t("deviceInfo.api-version") }}</span>
+      <h6>{{ $t("deviceInfo.api-version") }}</h6>
       <p>{{ info.t1CInfoAPI.version }}</p>
-      <span>{{ $t("deviceInfo.js-version") }}</span>
+      <h6>{{ $t("deviceInfo.js-version") }}</h6>
       <p>{{ jsVersion }}</p>
     </div>
 
     <div class="installation-info-item">
       <h3>{{ $t("deviceInfo.Device") }}</h3>
-      <span>{{ $t("deviceInfo.Device ID") }}</span>
+      <h6>{{ $t("deviceInfo.Device ID") }}</h6>
       <p>{{ info.t1CInfoAPI.uid }}</p>
-      <span>{{ $t("deviceInfo.Status") }}</span>
+      <h6>{{ $t("deviceInfo.Status") }}</h6>
       <p>{{ info.t1CInfoAPI.status }}</p>
 
-      <span>{{ $t("deviceInfo.Log level") }}</span>
+      <h6>{{ $t("deviceInfo.Log level") }}</h6>
       <p>{{ info.t1CInfoAPI.logLevel }}</p>
     </div>
 
     <div class="installation-info-item">
       <h3>{{ $t("deviceInfo.Operating system") }}</h3>
       <div>
-        <span>{{ $t("deviceInfo.Platform") }}</span>
+        <h6>{{ $t("deviceInfo.Platform") }}</h6>
         <p>{{ info.t1CInfoOS.platform }}</p>
       </div>
 
       <div>
-        <span>{{ $t("deviceInfo.Version") }}</span>
+        <h6>{{ $t("deviceInfo.Version") }}</h6>
         <p>{{ info.t1CInfoOS.version }} - {{ info.t1CInfoOS.architecture }}</p>
       </div>
     </div>
@@ -73,6 +72,11 @@ p {
 .installation-info-item h3 {
   font-size: 1.3rem;
   color: #e05512;
+  margin-bottom: 10px;
+}
+
+.installation-info-item h6 {
+  margin-top: 15px;
 }
 
 .installation-info-item p {
