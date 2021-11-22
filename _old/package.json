@@ -1,0 +1,41 @@
+{
+  "name": "t1c-app-rmc",
+  "version": "0.1.10",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build --dest dist",
+    "lint": "vue-cli-service lint",
+    "docker-build": "docker build -t eu.gcr.io/t1t-pre-prod/read-my-cards .",
+    "docker-tag": "docker image tag eu.gcr.io/t1t-pre-prod/read-my-cards eu.gcr.io/t1t-pre-prod/read-my-cards:${npm_package_version} && docker image tag eu.gcr.io/t1t-pre-prod/read-my-cards eu.gcr.io/t1t-pre-prod/read-my-cards:latest",
+    "docker-push": "docker image push --all-tags eu.gcr.io/t1t-pre-prod/read-my-cards",
+    "docker": "yarn docker-build && yarn docker-tag && yarn docker-push"
+  },
+  "dependencies": {
+    "bootstrap": "^5.0.2",
+    "core-js": "^3.6.5",
+    "gitart-vue-dialog": "^1.1.0",
+    "lodash": "^4.17.21",
+    "moment": "^2.29.1",
+    "t1c-sdk-js": "^3.5.1",
+    "vue": "^3.0.0",
+    "vue-i18n": "^9.1.7",
+    "vue-router": "^4.0.0-0",
+    "vuex": "^4.0.0-0"
+  },
+  "devDependencies": {
+    "@types/bootstrap": "^5.0.16",
+    "@vue/cli-plugin-babel": "~4.5.0",
+    "@vue/cli-plugin-eslint": "~4.5.0",
+    "@vue/cli-plugin-router": "~4.5.0",
+    "@vue/cli-plugin-vuex": "~4.5.0",
+    "@vue/cli-service": "~4.5.0",
+    "@vue/compiler-sfc": "^3.0.0",
+    "@vue/eslint-config-prettier": "^6.0.0",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^6.7.2",
+    "eslint-plugin-prettier": "^3.3.1",
+    "eslint-plugin-vue": "^7.0.0",
+    "prettier": "^2.2.1"
+  }
+}

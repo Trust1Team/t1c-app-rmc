@@ -19,135 +19,135 @@ export const Card = {
     ICCPublicCertificate: null,
 
     loadingData: true,
-    loadingCertificates: true,
+    loadingCertificates: true
   },
   mutations: {
     SET_ALL_DATA(state, res) {
-      state.biometric = res.data.biometric;
-      state.address = res.data.address;
-      state.picture = res.data.picture;
+      state.biometric = res.data.biometric
+      state.address = res.data.address
+      state.picture = res.data.picture
     },
     SET_APPLICATION_DATA(state, res) {
-      state.applicationData = res.data;
+      state.applicationData = res.data
     },
     SET_APPLICATIONS(state, res) {
-      state.applications = res.data;
+      state.applications = res.data
     },
     SET_PAYMENT_CERTIFICATES(state, res) {
       if (state.issuerPublicCertificate === null) {
-        state.issuerPublicCertificate = {};
+        state.issuerPublicCertificate = {}
       }
       if (state.ICCPublicCertificate === null) {
-        state.ICCPublicCertificate = {};
+        state.ICCPublicCertificate = {}
       }
-      state.issuerPublicCertificate[res.aid] = res.data.issuerPublicCertificate;
-      state.ICCPublicCertificate[res.aid] = res.data.ICCPublicCertificate;
+      state.issuerPublicCertificate[res.aid] = res.data.issuerPublicCertificate
+      state.ICCPublicCertificate[res.aid] = res.data.ICCPublicCertificate
     },
     SET_ALL_CERTIFICATES(state, res) {
-      state.rootCertificate = res.data.rootCertificate;
-      state.intermediateCertificates = res.data.intermediateCertificates;
-      state.authenticationCertificate = res.data.authenticationCertificate;
-      state.nonRepudiationCertificate = res.data.nonRepudiationCertificate;
-      state.encryptionCertificate = res.data.encryptionCertificate;
-      state.issuerCertificate = res.data.issuerCertificate;
+      state.rootCertificate = res.data.rootCertificate
+      state.intermediateCertificates = res.data.intermediateCertificates
+      state.authenticationCertificate = res.data.authenticationCertificate
+      state.nonRepudiationCertificate = res.data.nonRepudiationCertificate
+      state.encryptionCertificate = res.data.encryptionCertificate
+      state.issuerCertificate = res.data.issuerCertificate
     },
     SET_DATA_LOADING(state, loading) {
-      state.loadingData = loading;
+      state.loadingData = loading
     },
     SET_CERTIFICATE_LOADING(state, loading) {
-      state.loadingCertificates = loading;
+      state.loadingCertificates = loading
     },
     RESET_STATE(state) {
-      state.biometric = null;
-      state.address = null;
-      state.picture = null;
-      state.rootCertificate = null;
-      state.intermediateCertificates = null;
-      state.authenticationCertificate = null;
-      state.nonRepudiationCertificate = null;
-      state.encryptionCertificate = null;
-      state.issuerCertificate = null;
-      state.loadingData = true;
-      state.loadingCertificates = true;
+      state.biometric = null
+      state.address = null
+      state.picture = null
+      state.rootCertificate = null
+      state.intermediateCertificates = null
+      state.authenticationCertificate = null
+      state.nonRepudiationCertificate = null
+      state.encryptionCertificate = null
+      state.issuerCertificate = null
+      state.loadingData = true
+      state.loadingCertificates = true
 
-      state.applicationData = null;
-      state.applications = null;
-      state.issuerPublicCertificate = null;
-      state.ICCPublicCertificate = null;
-    },
+      state.applicationData = null
+      state.applications = null
+      state.issuerPublicCertificate = null
+      state.ICCPublicCertificate = null
+    }
   },
   actions: {
     setAllData(context, res) {
-      context.commit("SET_ALL_DATA", res);
+      context.commit('SET_ALL_DATA', res)
     },
     setApplicationData(context, res) {
-      context.commit("SET_APPLICATION_DATA", res);
+      context.commit('SET_APPLICATION_DATA', res)
     },
     setApplications(context, res) {
-      context.commit("SET_APPLICATIONS", res);
+      context.commit('SET_APPLICATIONS', res)
     },
     setPaymentCertificates(context, res) {
-      context.commit("SET_PAYMENT_CERTIFICATES", res);
+      context.commit('SET_PAYMENT_CERTIFICATES', res)
     },
     setAllCertificates(context, res) {
-      context.commit("SET_ALL_CERTIFICATES", res);
+      context.commit('SET_ALL_CERTIFICATES', res)
     },
     setDataLoading(context, loading) {
-      context.commit("SET_DATA_LOADING", loading);
+      context.commit('SET_DATA_LOADING', loading)
     },
     setCertificateLoading(context, loading) {
-      context.commit("SET_CERTIFICATE_LOADING", loading);
+      context.commit('SET_CERTIFICATE_LOADING', loading)
     },
     resetState(context) {
-      context.commit("RESET_STATE");
-    },
+      context.commit('RESET_STATE')
+    }
   },
   getters: {
     getBiometric: (state) => {
-      return state.biometric;
+      return state.biometric
     },
     getAddress: (state) => {
-      return state.address;
+      return state.address
     },
     getPicture: (state) => {
-      return state.picture;
+      return state.picture
     },
     getRootCertificate: (state) => {
-      return state.rootCertificate;
+      return state.rootCertificate
     },
     getIntermediateCertificates: (state) => {
-      return state.intermediateCertificates;
+      return state.intermediateCertificates
     },
     getAuthenticationCertificate: (state) => {
-      return state.authenticationCertificate;
+      return state.authenticationCertificate
     },
     getNonRepudiationCertificate: (state) => {
-      return state.nonRepudiationCertificate;
+      return state.nonRepudiationCertificate
     },
     getEncryptionCertificate: (state) => {
-      return state.encryptionCertificate;
+      return state.encryptionCertificate
     },
     getIssuerCertificate: (state) => {
-      return state.issuerCertificate;
+      return state.issuerCertificate
     },
     getDataLoading: (state) => {
-      return state.loadingData;
+      return state.loadingData
     },
     getCertificateLoading: (state) => {
-      return state.loadingCertificates;
+      return state.loadingCertificates
     },
 
     getApplications: (state) => {
-      return state.applications;
+      return state.applications
     },
     getApplicationData: (state) => {
-      return state.applicationData;
+      return state.applicationData
     },
     getICCPublicCertificate: (state) => {
-      return state.ICCPublicCertificate;
+      return state.ICCPublicCertificate
     },
     getIssuerPublicCertificate: (state) => {
-      return state.issuerPublicCertificate;
-    },
-  },
-};
+      return state.issuerPublicCertificate
+    }
+  }
+}

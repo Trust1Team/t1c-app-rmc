@@ -1,21 +1,19 @@
-import { createApp } from "vue";
-import App from "./App.vue";
-import router from "./router";
-import store from "./store";
+import { createApp } from 'vue'
+import App from './App.vue'
+import router from './router'
+import store from './store'
+import globalComponents from './global-components'
+import utils from './utils'
+import './libs'
 
-// Dialog
-import { plugin as dialogPlugin } from "gitart-vue-dialog";
-import "gitart-vue-dialog/dist/style.css";
+// SASS Theme
+import './assets/sass/app.scss'
 
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap";
+const app = createApp(App)
+  .use(store)
+  .use(router)
 
-import i18n from "./i18n";
+globalComponents(app)
+utils(app)
 
-const app = createApp(App);
-app.use(router);
-app.use(i18n);
-app.use(store);
-app.use(dialogPlugin);
-
-app.mount("#app");
+app.mount('#app')
