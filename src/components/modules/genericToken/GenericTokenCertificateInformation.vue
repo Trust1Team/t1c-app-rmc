@@ -215,33 +215,33 @@
 </template>
 
 <script>
-import Loading from "../../core/Loading";
-import copyMixin from "@/mixins/copyMixin";
+import Loading from '../../core/Loading'
+import copyMixin from '@/mixins/copyMixin'
 
 export default {
-  name: "GenericTokenCertificateInformation",
+  name: 'GenericTokenCertificateInformation',
   props: {
     rootCertificate: Object,
     intermediateCertificates: Object,
     authenticationCertificate: Object,
     nonRepudiationCertificate: Object,
     encryptionCertificate: Object,
-    issuerCertificate: Object,
+    issuerCertificate: Object
   },
   methods: {
     toggleCert: function (event) {
-      event.target.parentNode.parentNode.classList.toggle("cert-open");
-      event.target.classList.toggle("cert-expand-rotated");
-    },
+      event.target.parentNode.parentNode.classList.toggle('cert-open')
+      event.target.classList.toggle('cert-expand-rotated')
+    }
   },
   computed: {
     getCertificateLoading() {
-      return this.$store.getters["card/getCertificateLoading"];
-    },
+      return this.$store.getters['card/getCertificateLoading']
+    }
   },
   components: { Loading },
-  mixins: [copyMixin],
-};
+  mixins: [copyMixin]
+}
 </script>
 
 <style scoped>

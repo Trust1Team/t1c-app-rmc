@@ -210,25 +210,25 @@
 
 <script>
 export default {
-  name: "Contact",
+  name: 'Contact',
   data() {
     return {
-      name: "",
-      company: "",
-      email: "",
-      phoneNumber: "",
-      message: "",
+      name: '',
+      company: '',
+      email: '',
+      phoneNumber: '',
+      message: '',
       informationCheck: false,
       technicalCheck: false,
       privacyPolicy: false,
       termsCondition: false,
-      t1tAgreement: false,
-    };
+      t1tAgreement: false
+    }
   },
   methods: {
     submitForm() {
-      //TODO save submitted data
-      let formData = {
+      // TODO save submitted data
+      const formData = {
         name: this.name,
         company: this.company,
         email: this.email,
@@ -238,25 +238,25 @@ export default {
         technicalCheck: this.technicalCheck,
         privacyPolicy: this.privacyPolicy,
         termsCondition: this.termsCondition,
-        t1tAgreement: this.t1tAgreement,
-      };
-      console.log(formData);
-      this.clearForm();
+        t1tAgreement: this.t1tAgreement
+      }
+      console.log(formData)
+      this.clearForm()
     },
     clearForm() {
-      this.name = "";
-      this.company = "";
-      this.email = "";
-      this.phoneNumber = "";
-      this.message = "";
-      this.informationCheck = false;
-      this.technicalCheck = false;
-      this.privacyPolicy = false;
-      this.termsCondition = false;
-      this.t1tAgreement = false;
-    },
-  },
-};
+      this.name = ''
+      this.company = ''
+      this.email = ''
+      this.phoneNumber = ''
+      this.message = ''
+      this.informationCheck = false
+      this.technicalCheck = false
+      this.privacyPolicy = false
+      this.termsCondition = false
+      this.t1tAgreement = false
+    }
+  }
+}
 </script>
 
 <style scoped>

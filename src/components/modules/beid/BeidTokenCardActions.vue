@@ -23,21 +23,21 @@
 </template>
 
 <script>
-import PinDialog from "../../UIComponents/PinDialog";
+import PinDialog from '../../UIComponents/PinDialog'
 
 export default {
-  name: "BeidTokenCardActions",
+  name: 'BeidTokenCardActions',
   data() {
     return {
-      pinDialogVisible: false,
-    };
+      pinDialogVisible: false
+    }
   },
   methods: {
     pinSelected(pin) {
-      this.pinDialogVisible = false;
-      console.log(pin);
+      this.pinDialogVisible = false
+      console.log(pin)
       // Get reader
-      console.log(this.getReader.id);
+      console.log(this.getReader.id)
       // get module
 
       // execute verify pin
@@ -46,19 +46,19 @@ export default {
     },
     pinPadDialog() {
       // Open pin dialog
-      this.pinDialogVisible = true;
-    },
+      this.pinDialogVisible = true
+    }
   },
   computed: {
     getCertificateLoading() {
-      return this.$store.getters["card/getCertificateLoading"];
+      return this.$store.getters['card/getCertificateLoading']
     },
     getReader() {
-      return this.$store.getters["reader/getSelectedReader"];
-    },
+      return this.$store.getters['reader/getSelectedReader']
+    }
   },
-  components: { PinDialog },
-};
+  components: { PinDialog }
+}
 </script>
 
 <style scoped>

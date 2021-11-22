@@ -36,14 +36,14 @@
 
 <script>
 export default {
-  name: "DeviceInfo",
+  name: 'DeviceInfo',
   props: {
     info: Object,
-    jsVersion: String,
+    jsVersion: String
   },
   methods: {},
-  created() {},
-};
+  created() {}
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

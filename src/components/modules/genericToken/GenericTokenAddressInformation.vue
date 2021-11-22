@@ -32,11 +32,11 @@
 
 <script>
 export default {
-  name: "GenericTokenAddressInformation",
+  name: 'GenericTokenAddressInformation',
   props: {
-    address: Object,
-  },
-};
+    address: Object
+  }
+}
 </script>
 
 <style scoped>

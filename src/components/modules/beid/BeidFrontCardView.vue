@@ -90,9 +90,9 @@
 
 <script>
 export default {
-  name: "BeidFrontCardView",
-  props: ["biometric", "picture"],
-};
+  name: 'BeidFrontCardView',
+  props: ['biometric', 'picture']
+}
 </script>
 
 <style scoped>

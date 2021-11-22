@@ -72,25 +72,25 @@
 </template>
 
 <script>
-import DistributionService from "../../services/DistributionService";
-import Loading from "../../components/core/Loading";
-import ValidationService from "../../services/ValidationService";
-import Trust1ConnectorService from "../../services/Trust1ConnectorService";
+import DistributionService from '../../services/DistributionService'
+import Loading from '../../components/core/Loading'
+import ValidationService from '../../services/ValidationService'
+import Trust1ConnectorService from '../../services/Trust1ConnectorService'
 
 export default {
-  name: "DependencyInfo",
+  name: 'DependencyInfo',
   data() {
     return {
       ds: null,
       validation: null,
-      t1c: null,
-    };
+      t1c: null
+    }
   },
   methods: {
     fetchDependencies() {
-      this.ds = null;
-      this.t1c = null;
-      this.validation = null;
+      this.ds = null
+      this.t1c = null
+      this.validation = null
 
       Trust1ConnectorService.init().then(
         (client) => {
@@ -99,57 +99,57 @@ export default {
             .info()
             .then(
               (res) => {
-                if (res.t1CInfoAPI.status === "ACTIVATED") {
+                if (res.t1CInfoAPI.status === 'ACTIVATED') {
                   this.t1c = {
                     error: false,
                     success: true,
-                    warning: false,
-                  };
+                    warning: false
+                  }
                 } else {
                   this.t1c = {
                     error: false,
                     success: false,
-                    warning: true,
-                  };
+                    warning: true
+                  }
                 }
               },
               (err) => {
                 this.t1c = {
                   error: false,
                   success: false,
-                  warning: true,
-                };
-                console.log(err);
+                  warning: true
+                }
+                console.log(err)
               }
-            );
+            )
         },
         (err) => {
           this.t1c = {
             error: true,
             success: false,
-            warning: false,
-          };
-          console.error(err);
+            warning: false
+          }
+          console.error(err)
         }
-      );
+      )
 
       ValidationService.getStatus().then(
         () => {
           this.validation = {
             error: false,
             success: true,
-            warning: false,
-          };
+            warning: false
+          }
         },
         (err) => {
           this.validation = {
             error: true,
             success: false,
-            warning: false,
-          };
-          console.error(err);
+            warning: false
+          }
+          console.error(err)
         }
-      );
+      )
 
       DistributionService.getSystemInfo().then(
         (res) => {
@@ -157,32 +157,32 @@ export default {
             this.ds = {
               error: false,
               success: true,
-              warning: false,
-            };
+              warning: false
+            }
           } else {
             this.ds = {
               error: false,
               success: false,
-              warning: true,
-            };
+              warning: true
+            }
           }
         },
         (err) => {
           this.ds = {
             error: true,
             success: false,
-            warning: false,
-          };
-          console.error(err);
+            warning: false
+          }
+          console.error(err)
         }
-      );
-    },
+      )
+    }
   },
   created() {
-    this.fetchDependencies();
+    this.fetchDependencies()
   },
-  components: { Loading },
-};
+  components: { Loading }
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

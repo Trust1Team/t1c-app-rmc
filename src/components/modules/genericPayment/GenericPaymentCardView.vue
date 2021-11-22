@@ -15,26 +15,26 @@
 </template>
 
 <script>
-import GenericPaymentFrontCardView from "./GenericPaymentFrontCardView";
-import GenericPaymentCertificateInformation from "./GenericPaymentCertificateInformation";
-import GenericPaymentCardActions from "./GenericPaymentCardActions";
-import GenericPaymentApplications from "./GenericPaymentApplications";
+import GenericPaymentFrontCardView from './GenericPaymentFrontCardView'
+import GenericPaymentCertificateInformation from './GenericPaymentCertificateInformation'
+import GenericPaymentCardActions from './GenericPaymentCardActions'
+import GenericPaymentApplications from './GenericPaymentApplications'
 
 export default {
-  name: "GenericPaymentCardView",
+  name: 'GenericPaymentCardView',
   props: {
     applications: Object,
-    applicationData: Object,
+    applicationData: Object
   },
   components: {
     GenericPaymentFrontCardView,
     GenericPaymentCertificateInformation,
     GenericPaymentCardActions,
-    GenericPaymentApplications,
+    GenericPaymentApplications
   },
   created() {},
-  computed: {},
-};
+  computed: {}
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

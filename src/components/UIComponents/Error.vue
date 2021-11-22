@@ -6,9 +6,9 @@
 
 <script>
 export default {
-  name: "Error",
-  props: ["state", "icon", "text"],
-};
+  name: 'Error',
+  props: ['state', 'icon', 'text']
+}
 </script>
 
 <style scoped>

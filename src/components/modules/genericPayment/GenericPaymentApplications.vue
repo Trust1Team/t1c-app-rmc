@@ -36,12 +36,12 @@
 
 <script>
 export default {
-  name: "GenericPaymentApplications",
+  name: 'GenericPaymentApplications',
   props: {
-    applications: Object,
+    applications: Object
   },
-  computed: {},
-};
+  computed: {}
+}
 </script>
 
 <style scoped>

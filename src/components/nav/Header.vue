@@ -7,9 +7,9 @@
 export default {
   components: {},
   data() {
-    return {};
-  },
-};
+    return {}
+  }
+}
 </script>
 <style scoped>
 .logo {

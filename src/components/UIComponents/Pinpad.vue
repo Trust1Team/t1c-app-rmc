@@ -118,25 +118,25 @@
 
 <script>
 export default {
-  name: "Pinpad",
+  name: 'Pinpad',
   data() {
     return {
-      pin: "",
-    };
+      pin: ''
+    }
   },
-  emits: ["confirmPin"],
+  emits: ['confirmPin'],
   methods: {
     enteredNumber(number) {
-      this.pin += number;
+      this.pin += number
     },
     clearField() {
-      this.pin = this.pin.substr(0, this.pin.length - 1);
+      this.pin = this.pin.substr(0, this.pin.length - 1)
     },
     submitPin() {
-      this.$emit("confirmPin", this.pin);
-    },
-  },
-};
+      this.$emit('confirmPin', this.pin)
+    }
+  }
+}
 </script>
 
 <style scoped>

@@ -45,20 +45,19 @@ export default {
     return {
       activeLang: null,
       year: new Date().getFullYear()
-    };
+    }
   },
   created() {
-    this.activeLang = this.$i18n.locale;
+    this.activeLang = this.$i18n.locale
   },
   methods: {
     switchLanguage(lang) {
-      this.$i18n.locale = lang;
-      window.VUE_APP_ENV_DEFAULT_LANGUAGE = lang;
-    },
-  },
+      this.$i18n.locale = lang
+      window.VUE_APP_ENV_DEFAULT_LANGUAGE = lang
+    }
+  }
 }
 </script>
-
 
 <style scoped>
 .footer-logo {

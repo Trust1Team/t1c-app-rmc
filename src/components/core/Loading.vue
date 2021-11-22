@@ -9,26 +9,26 @@
 
 <script>
 export default {
-  name: "Loading",
+  name: 'Loading',
   methods: {},
   props: {
     show: Boolean,
-    size: Number,
+    size: Number
   },
   computed: {
     cssVars() {
       if (this.size) {
         return {
-          "--size": this.size + "px",
-        };
+          '--size': this.size + 'px'
+        }
       } else {
         return {
-          "--size": "60px",
-        };
+          '--size': '60px'
+        }
       }
-    },
-  },
-};
+    }
+  }
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

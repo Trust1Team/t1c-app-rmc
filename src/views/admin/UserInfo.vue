@@ -18,13 +18,13 @@
 
 <script>
 export default {
-  name: "UserInfo",
+  name: 'UserInfo',
   props: {
-    info: Object,
+    info: Object
   },
   methods: {},
-  created() {},
-};
+  created() {}
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

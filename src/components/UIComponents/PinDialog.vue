@@ -8,47 +8,47 @@
 </template>
 
 <script>
-import Pinpad from "./Pinpad";
+import Pinpad from './Pinpad'
 
-import { computed } from "vue";
-import { GDialog } from "gitart-vue-dialog";
+import { computed } from 'vue'
+import { GDialog } from 'gitart-vue-dialog'
 
 export default {
-  name: "PinDialog",
+  name: 'PinDialog',
   props: {
     modelValue: {
       type: Boolean,
-      default: false,
+      default: false
     },
     info: {
       type: String,
-      required: true,
-    },
+      required: true
+    }
   },
 
   setup(props, { emit }) {
     const value = computed({
       get() {
-        return props.modelValue;
+        return props.modelValue
       },
 
       set(val) {
-        emit("update:modelValue", val);
-      },
-    });
+        emit('update:modelValue', val)
+      }
+    })
 
     return {
-      value,
-    };
+      value
+    }
   },
   methods: {
     pinSelected(pin) {
       // TODO check if we can use the store to save the pin temporary until the use-case has finished
-      this.$emit("confirmPin", pin);
-    },
+      this.$emit('confirmPin', pin)
+    }
   },
-  components: { Pinpad, GDialog },
-};
+  components: { Pinpad, GDialog }
+}
 </script>
 
 <style scoped>

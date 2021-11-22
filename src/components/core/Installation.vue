@@ -135,42 +135,42 @@
   </div>
 </template>
 <script>
-import DistributionService from "../../services/DistributionService";
+import DistributionService from '../../services/DistributionService'
 
 export default {
-  name: "Installation",
+  name: 'Installation',
   data() {
     return {
       selectedOS: null,
-      latestVersion: null,
-    };
+      latestVersion: null
+    }
   },
   methods: {
     setSelectedOS(os) {
-      this.selectedOS = os;
+      this.selectedOS = os
     },
     downloadVersion(version) {
-      const v = this.latestVersion.uris.find((u) => u.os !== version);
+      const v = this.latestVersion.uris.find((u) => u.os !== version)
       if (v) {
-        window.open(v.uri, "_blank").focus();
+        window.open(v.uri, '_blank').focus()
       } else {
-        console.error("Could not find uri");
+        console.error('Could not find uri')
       }
-    },
+    }
   },
   props: {},
   created() {
     DistributionService.getLatestVersion().then(
       (res) => {
-        this.latestVersion = res.data.data;
+        this.latestVersion = res.data.data
       },
       (err) => {
-        console.error(err);
+        console.error(err)
       }
-    );
+    )
   },
-  computed: {},
-};
+  computed: {}
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

@@ -145,43 +145,43 @@
 </template>
 
 <script>
-import Trust1ConnectorService from "../../services/Trust1ConnectorService";
-import Loading from "./Loading";
-import copyMixin from "@/mixins/copyMixin";
+import Trust1ConnectorService from '../../services/Trust1ConnectorService'
+import Loading from './Loading'
+import copyMixin from '@/mixins/copyMixin'
 
 export default {
-  name: "ReadersList",
+  name: 'ReadersList',
   props: {
-    unknownModulesDisabled: Boolean,
+    unknownModulesDisabled: Boolean
   },
   data() {
     return {
       readers: null,
       loading: true,
       modules: [
-        "beid",
-        "emv",
-        "crelan",
-        "aventra",
-        "oberthur",
-        "idemia",
-        "luxeid",
-        "diplad",
-        "certigna",
-        "certinomis",
-        "dnie",
-        "safenet",
-        "eherkenning",
-        "jcop",
-        "airbus",
-      ],
-    };
+        'beid',
+        'emv',
+        'crelan',
+        'aventra',
+        'oberthur',
+        'idemia',
+        'luxeid',
+        'diplad',
+        'certigna',
+        'certinomis',
+        'dnie',
+        'safenet',
+        'eherkenning',
+        'jcop',
+        'airbus'
+      ]
+    }
   },
-  emits: ["readerSelected"],
+  emits: ['readerSelected'],
   methods: {
     getReaders() {
-      this.readers = null;
-      this.loading = true;
+      this.readers = null
+      this.loading = true
       Trust1ConnectorService.init().then(
         (client) => {
           client
@@ -189,83 +189,83 @@ export default {
             .readersCardAvailable()
             .then(
               (res) => {
-                this.loading = false;
-                this.readers = res.data;
+                this.loading = false
+                this.readers = res.data
               },
               (err) => {
-                this.loading = false;
-                console.log(err);
+                this.loading = false
+                console.log(err)
               }
-            );
+            )
         },
         (err) => {
-          this.loading = false;
-          console.error(err);
+          this.loading = false
+          console.error(err)
         }
-      );
+      )
     },
     selectReader(reader) {
       if (reader.card.modules) {
-        this.$emit("readerSelected", reader);
+        this.$emit('readerSelected', reader)
       }
     },
     copyAtr(reader) {
-      this.copyTextToClipboard(reader.card.atr);
+      this.copyTextToClipboard(reader.card.atr)
     },
     copyReaderId(reader) {
-      this.copyTextToClipboard(reader.id);
+      this.copyTextToClipboard(reader.id)
     },
     fallbackCopyTextToClipboard(text) {
-      var textArea = document.createElement("textarea");
-      textArea.value = text;
+      const textArea = document.createElement('textarea')
+      textArea.value = text
 
       // Avoid scrolling to bottom
-      textArea.style.top = "0";
-      textArea.style.left = "0";
-      textArea.style.position = "fixed";
+      textArea.style.top = '0'
+      textArea.style.left = '0'
+      textArea.style.position = 'fixed'
 
-      document.body.appendChild(textArea);
-      textArea.focus();
-      textArea.select();
+      document.body.appendChild(textArea)
+      textArea.focus()
+      textArea.select()
 
       try {
-        var successful = document.execCommand("copy");
-        var msg = successful ? "successful" : "unsuccessful";
-        console.log("Fallback: Copying text command was " + msg);
+        const successful = document.execCommand('copy')
+        const msg = successful ? 'successful' : 'unsuccessful'
+        console.log('Fallback: Copying text command was ' + msg)
       } catch (err) {
-        console.error("Fallback: Oops, unable to copy", err);
+        console.error('Fallback: Oops, unable to copy', err)
       }
 
-      document.body.removeChild(textArea);
+      document.body.removeChild(textArea)
     },
     copyTextToClipboard(text) {
       if (!navigator.clipboard) {
-        this.fallbackCopyTextToClipboard(text);
-        return;
+        this.fallbackCopyTextToClipboard(text)
+        return
       }
       // TODO use toast for copy clipboard notification
       navigator.clipboard.writeText(text).then(
         function () {
-          console.log("Async: Copying to clipboard was successful!");
+          console.log('Async: Copying to clipboard was successful!')
         },
         function (err) {
-          console.error("Async: Could not copy text: ", err);
+          console.error('Async: Could not copy text: ', err)
         }
-      );
+      )
     },
     selectModule(reader, module) {
-      reader.card.description = [module];
-      reader.card.modules = [module];
-      console.log(reader.card);
-      console.log(module);
-    },
+      reader.card.description = [module]
+      reader.card.modules = [module]
+      console.log(reader.card)
+      console.log(module)
+    }
   },
   created() {
-    this.getReaders();
+    this.getReaders()
   },
   components: { Loading },
-  mixins: [copyMixin],
-};
+  mixins: [copyMixin]
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

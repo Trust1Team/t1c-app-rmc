@@ -55,23 +55,23 @@
 </template>
 
 <script>
-import Trust1ConnectorService from "../../services/Trust1ConnectorService";
-import Loading from "../../components/core/Loading";
-import copyMixin from "@/mixins/copyMixin";
+import Trust1ConnectorService from '../../services/Trust1ConnectorService'
+import Loading from '../../components/core/Loading'
+import copyMixin from '@/mixins/copyMixin'
 
 export default {
-  name: "AdminReadersList",
+  name: 'AdminReadersList',
   data() {
     return {
       readers: null,
-      loading: true,
-    };
+      loading: true
+    }
   },
-  emits: ["readerSelected"],
+  emits: ['readerSelected'],
   methods: {
     getReaders() {
-      this.readers = null;
-      this.loading = true;
+      this.readers = null
+      this.loading = true
       Trust1ConnectorService.init().then(
         (client) => {
           client
@@ -79,34 +79,34 @@ export default {
             .readers()
             .then(
               (res) => {
-                this.loading = false;
-                this.readers = res.data;
+                this.loading = false
+                this.readers = res.data
               },
               (err) => {
-                this.loading = false;
-                console.log(err);
+                this.loading = false
+                console.log(err)
               }
-            );
+            )
         },
         (err) => {
-          this.loading = false;
-          console.error(err);
+          this.loading = false
+          console.error(err)
         }
-      );
+      )
     },
     copyAtr(reader) {
-      this.copyTextToClipboard(reader.card.atr);
+      this.copyTextToClipboard(reader.card.atr)
     },
     copyReaderId(reader) {
-      this.copyTextToClipboard(reader.id);
-    },
+      this.copyTextToClipboard(reader.id)
+    }
   },
   created() {
-    this.getReaders();
+    this.getReaders()
   },
   components: { Loading },
-  mixins: [copyMixin],
-};
+  mixins: [copyMixin]
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

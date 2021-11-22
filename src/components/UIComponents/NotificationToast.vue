@@ -23,29 +23,29 @@ export default {
   props: {
     notification: {
       type: Object,
-      required: true,
-    },
+      required: true
+    }
   },
   data() {
     return {
-      timeout: null,
-    };
+      timeout: null
+    }
   },
   mounted() {
     this.timeout = setTimeout(
-      () => this.$store.dispatch("notification/remove", this.notification),
+      () => this.$store.dispatch('notification/remove', this.notification),
       3000
-    );
+    )
   },
   beforeUnmount() {
-    clearTimeout(this.timeout);
+    clearTimeout(this.timeout)
   },
   methods: {
     dismissToast() {
-      this.$store.dispatch("notification/remove", this.notification);
-    },
-  },
-};
+      this.$store.dispatch('notification/remove', this.notification)
+    }
+  }
+}
 </script>
 
 <style scoped>

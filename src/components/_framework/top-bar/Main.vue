@@ -35,12 +35,12 @@ export default defineComponent({
   },
   computed: {
     currentRouteName() {
-      let route = this.$route.name
-      if(route === 'side-menu-home'){
+      const route = this.$route.name
+      if (route === 'side-menu-home') {
         return 'Home'
-      } else if (route === 'side-menu-admin'){
+      } else if (route === 'side-menu-admin') {
         return 'Admin'
-      } else if (route === 'side-menu-contact'){
+      } else if (route === 'side-menu-contact') {
         return 'Contact'
       } else {
         return 'Home'

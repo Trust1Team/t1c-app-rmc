@@ -83,9 +83,9 @@
 
 <script>
 export default {
-  name: "GenericTokenFrontCardView",
-  props: ["biometric", "picture"],
-};
+  name: 'GenericTokenFrontCardView',
+  props: ['biometric', 'picture']
+}
 </script>
 
 <style scoped>

@@ -140,7 +140,6 @@
       <!-- BEGIN: Content -->
       <div class="content">
         <TopBar />
-        <div class="flex justify-center mt-10"><img src="@/assets/images/t1c-logo-full.png" alt="logo T1C"></div>
         <router-view />
       </div>
       <!-- END: Content -->

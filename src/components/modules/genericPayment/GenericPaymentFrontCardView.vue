@@ -35,29 +35,29 @@
 </template>
 
 <script>
-import moment from "moment";
-import * as _ from "lodash";
+import moment from 'moment'
+import * as _ from 'lodash'
 
 export default {
-  name: "GenericPaymentFrontCardView",
-  props: ["applicationData"],
+  name: 'GenericPaymentFrontCardView',
+  props: ['applicationData'],
   methods: {},
   computed: {
     constructCardNumber() {
-      let cardNumber = "";
+      let cardNumber = ''
       _.forEach(this.applicationData.pan, (comp, idx) => {
-        idx % 4 === 0 ? (cardNumber += " " + comp) : (cardNumber += comp);
-      });
-      return cardNumber;
+        idx % 4 === 0 ? (cardNumber += ' ' + comp) : (cardNumber += comp)
+      })
+      return cardNumber
     },
 
     constructExpirationDate() {
-      return moment(this.applicationData.expirationDate, "YYMMDD").format(
-        "DD/MM/YY"
-      );
-    },
-  },
-};
+      return moment(this.applicationData.expirationDate, 'YYMMDD').format(
+        'DD/MM/YY'
+      )
+    }
+  }
+}
 </script>
 
 <style scoped>
