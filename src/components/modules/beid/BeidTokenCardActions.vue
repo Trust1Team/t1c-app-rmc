@@ -90,6 +90,7 @@ import PinDialog from '@/components/UIComponents/PinDialog'
 import NotificationToast from '@/components/UIComponents/NotificationToast'
 import Trust1ConnectorService from '@/services/Trust1ConnectorService.js'
 import { onMounted, provide, ref } from 'vue'
+import { useToast } from 'vue-toastification'
 
 export default {
   name: 'BeidTokenCardActions',
@@ -109,6 +110,8 @@ export default {
         alert('No more files please!')
       })
     })
+    const toast = useToast()
+    return { toast }
   },
   data() {
     return {
@@ -119,6 +122,7 @@ export default {
   },
   methods: {
     pinPadDialog() {
+      this.pinErrorDescription = undefined
       this.$refs.pinDialog.showDialog()
     },
 
@@ -135,17 +139,16 @@ export default {
       client.verifyPin('beid', data).then(res => {
         if (res && res.success && res.data.verified) {
           this.$refs.pinDialog.hideDialog()
-          // this.$refs.notificationToast.setProps('Verify pin success', 'Successfully verified the pin code')
-          this.$refs.notificationToast.successNotification('Verify pin success', 'Successfully verified the pin code', 5000)
+          this.pinErrorDescription = undefined
+          this.toast.success('Successfully verified the pin code')
         } else {
           this.$refs.pinDialog.hideDialog()
-          // this.$refs.notificationToast.setProps('Verify pin failed', 'Pin code is not correct')
-          this.$refs.notificationToast.failNotification('Verify pin failed', 'Pin code is not correct', 5000)
+          this.pinErrorDescription = 'Pin code is not correct'
+          this.toast.error('Pin code is not correct')
         }
       }, err => {
         this.pinErrorDescription = err.description
-        // this.$refs.notificationToast.setProps('Verify pin failed', err.description)
-        this.$refs.notificationToast.failNotification('Verify pin failed', err.description, 5000)
+        this.toast.error(err.description)
       })
     }
   },
