@@ -1,7 +1,7 @@
 const webpack = require('webpack')
 
 module.exports = {
-  parallel: false,
+  parallel: true,
   configureWebpack: {
     plugins: [
       new webpack.ProvidePlugin({

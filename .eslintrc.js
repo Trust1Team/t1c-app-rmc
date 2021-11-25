@@ -8,8 +8,8 @@ module.exports = {
     parser: 'babel-eslint'
   },
   rules: {
-    'no-tabs': 'off',
     eqeqeq: 'off',
+    'no-tabs': 'off',
     'no-new': 'off',
     'no-unused-expressions': 'off',
     'space-before-function-paren': 'off',

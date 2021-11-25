@@ -43,7 +43,7 @@
         </div>
 
         <div class="loading">
-          <Loading :show="getDataLoading"></Loading>
+          <loading v-if="getDataLoading" icon="bars" size="40"></loading>
         </div>
         <ModuleSwitch />
       </div>
@@ -66,7 +66,7 @@ import Trust1ConnectorService from '@/services/Trust1ConnectorService.js'
 import ReadersList from '@/components/core/ReadersList'
 import Consent from '@/components/core/Consent'
 import Installation from '@/components/core/Installation'
-import Loading from '@/components/core/Loading'
+import Loading from '@/global-components/loading-icon/Main'
 import ModuleSwitch from '@/components/modules/ModuleSwitch'
 import Pinpad from '@/components/UIComponents/Pinpad'
 import Error from '@/components/UIComponents/Error'

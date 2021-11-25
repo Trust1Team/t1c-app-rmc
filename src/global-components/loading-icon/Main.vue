@@ -2,7 +2,7 @@
   <span>
     <svg
       v-if="icon == 'audio'"
-      width="15"
+      :width="size"
       viewBox="0 0 55 80"
       xmlns="http://www.w3.org/2000/svg"
       :fill="iconColor"
@@ -53,7 +53,7 @@
     </svg>
     <svg
       v-else-if="icon == 'ball-triangle'"
-      width="20"
+      :width="size"
       viewBox="0 0 57 57"
       xmlns="http://www.w3.org/2000/svg"
       class="w-full h-full"
@@ -125,7 +125,7 @@
     </svg>
     <svg
       v-else-if="icon == 'bars'"
-      width="20"
+      :width="size"
       viewBox="0 0 135 140"
       xmlns="http://www.w3.org/2000/svg"
       :fill="iconColor"
@@ -224,7 +224,7 @@
     </svg>
     <svg
       v-else-if="icon == 'circles'"
-      width="20"
+      :width="size"
       viewBox="0 0 135 135"
       xmlns="http://www.w3.org/2000/svg"
       :fill="iconColor"
@@ -257,7 +257,7 @@
     </svg>
     <svg
       v-else-if="icon == 'grid'"
-      width="20"
+      :width="size"
       viewBox="0 0 105 105"
       xmlns="http://www.w3.org/2000/svg"
       :fill="iconColor"
@@ -356,7 +356,7 @@
     </svg>
     <svg
       v-else-if="icon == 'hearts'"
-      width="30"
+      :width="size"
       viewBox="0 0 140 64"
       xmlns="http://www.w3.org/2000/svg"
       :fill="iconColor"
@@ -394,7 +394,7 @@
     </svg>
     <svg
       v-else-if="icon == 'oval'"
-      width="25"
+      :width="size"
       viewBox="-2 -2 42 42"
       xmlns="http://www.w3.org/2000/svg"
       :stroke="iconColor"
@@ -418,7 +418,7 @@
     </svg>
     <svg
       v-else-if="icon == 'puff'"
-      width="25"
+      :width="size"
       viewBox="0 0 44 44"
       xmlns="http://www.w3.org/2000/svg"
       :stroke="iconColor"
@@ -473,7 +473,7 @@
     </svg>
     <svg
       v-else-if="icon == 'rings'"
-      width="30"
+      :width="size"
       viewBox="0 0 45 45"
       xmlns="http://www.w3.org/2000/svg"
       :stroke="iconColor"
@@ -551,7 +551,7 @@
     </svg>
     <svg
       v-else-if="icon == 'spinning-circles'"
-      width="20"
+      :width="size"
       viewBox="0 0 58 58"
       xmlns="http://www.w3.org/2000/svg"
       class="w-full h-full"
@@ -643,7 +643,7 @@
     </svg>
     <svg
       v-else-if="icon == 'tail-spin'"
-      width="20"
+      :width="size"
       viewBox="0 0 38 38"
       xmlns="http://www.w3.org/2000/svg"
       class="w-full h-full"
@@ -687,7 +687,7 @@
     </svg>
     <svg
       v-else-if="icon == 'three-dots'"
-      width="25"
+      :width="size"
       viewBox="0 0 120 30"
       xmlns="http://www.w3.org/2000/svg"
       :fill="iconColor"
@@ -772,6 +772,10 @@ export default defineComponent({
     icon: {
       type: String,
       default: ''
+    },
+    size: {
+      type: String,
+      default: '20'
     },
     color: {
       type: String,
