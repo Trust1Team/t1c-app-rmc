@@ -1,13 +1,16 @@
 {
-  "name": "rubick",
-  "version": "4.0.0",
+  "name": "t1c-app-rmc",
+  "version": "0.5.0",
   "private": true,
-  "description": "TailwindCSS HTML Admin Template",
   "author": "Left4code",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "docker-build": "docker build -t eu.gcr.io/t1t-pre-prod/read-my-cards .",
+    "docker-tag": "docker image tag eu.gcr.io/t1t-pre-prod/read-my-cards eu.gcr.io/t1t-pre-prod/read-my-cards:${npm_package_version} && docker image tag eu.gcr.io/t1t-pre-prod/read-my-cards eu.gcr.io/t1t-pre-prod/read-my-cards:latest",
+    "docker-push": "docker image push --all-tags eu.gcr.io/t1t-pre-prod/read-my-cards",
+    "docker": "yarn docker-build && yarn docker-tag && yarn docker-push"
   },
   "dependencies": {
     "@ckeditor/ckeditor5-build-balloon": "^29.1.0",
@@ -28,7 +31,6 @@
     "@vuelidate/validators": "^2.0.0-alpha.11",
     "@zhuowenli/vue-feather-icons": "^5.0.2",
     "axios": "^0.24.0",
-    "bootstrap": "^5.1.3",
     "cash-dom": "^8.1.0",
     "chart.js": "^2.9.4",
     "core-js": "^3.8.3",

@@ -78,53 +78,17 @@
     </div>
   </div>
 
-<!--  PINPAD MODAL BEGIN-->
-  <div
-      id="pin-pad-modal"
-      class="modal"
-      tabindex="-1"
-      aria-hidden="true"
-  >
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-body flex justify-center">
-          <pinpad @confirmPin="pinSelected"></pinpad>
-        </div>
-      </div>
-    </div>
-  </div>
-<!--  PINPAD MODAL END-->
+  <!--  User ref to be able to call the functions inside this component -->
+  <PinDialog ref="pinDialog" @confirmPin="pinSelected" :pin-error-description="pinErrorDescription"/>
 
-  <!-- BEGIN: Notification Content -->
-  <div id="success-notification-content" class="toastify-content hidden flex">
-    <CheckCircleIcon class="text-theme-9" />
-    <div class="ml-4 mr-4">
-      <div class="font-medium">Pin verified!</div>
-      <div class="text-gray-600 mt-1">
-        Verification of pin was successful.
-      </div>
-    </div>
-  </div>
-  <!-- END: Notification Content -->
+  <notification-toast ref="notificationToast" />
 
-  <!-- BEGIN: Notification Content -->
-  <div id="fail-notification-content" class="toastify-content hidden flex">
-    <AlertCircleIcon class="text-theme-6" />
-    <div class="ml-4 mr-4">
-      <div class="font-medium">Pin Failed!</div>
-      <div class="text-gray-600 mt-1">
-        <span v-if="pinErrorDescription">{{pinErrorDescription}}</span>
-        <span v-else>Verification of pin was not successful.</span>
-      </div>
-    </div>
-  </div>
-  <!-- END: Notification Content -->
 </template>
 
 <script>
-import Pinpad from '@/components/UIComponents/Pinpad'
+import PinDialog from '@/components/UIComponents/PinDialog'
+import NotificationToast from '@/components/UIComponents/NotificationToast'
 import Trust1ConnectorService from '@/services/Trust1ConnectorService.js'
-import Toastify from 'toastify-js'
 import { onMounted, provide, ref } from 'vue'
 
 export default {
@@ -148,41 +112,16 @@ export default {
   },
   data() {
     return {
-      pinDialogVisible: false,
-      pinErrorDescription: undefined
+      pinErrorDescription: undefined,
+      toastDescription: undefined,
+      toastTitle: undefined
     }
   },
   methods: {
     pinPadDialog() {
-      cash('#pin-pad-modal').modal('show')
-      // console.log('open pin dialog')
+      this.$refs.pinDialog.showDialog()
     },
-    successNotification() {
-      Toastify({
-        node: cash('#success-notification-content')
-          .clone()
-          .removeClass('hidden')[0],
-        duration: 5000,
-        newWindow: true,
-        close: true,
-        gravity: 'top',
-        position: 'right',
-        stopOnFocus: true
-      }).showToast()
-    },
-    failNotification() {
-      Toastify({
-        node: cash('#fail-notification-content')
-          .clone()
-          .removeClass('hidden')[0],
-        duration: 5000,
-        newWindow: true,
-        close: true,
-        gravity: 'top',
-        position: 'right',
-        stopOnFocus: true
-      }).showToast()
-    },
+
     pinSelected(pin) {
       const client = Trust1ConnectorService.getClient().generic(
         this.getReader.id,
@@ -195,15 +134,18 @@ export default {
 
       client.verifyPin('beid', data).then(res => {
         if (res && res.success && res.data.verified) {
-          cash('#pin-pad-modal').modal('hide')
-          this.successNotification()
+          this.$refs.pinDialog.hideDialog()
+          // this.$refs.notificationToast.setProps('Verify pin success', 'Successfully verified the pin code')
+          this.$refs.notificationToast.successNotification('Verify pin success', 'Successfully verified the pin code', 5000)
         } else {
-          this.failNotification()
+          this.$refs.pinDialog.hideDialog()
+          // this.$refs.notificationToast.setProps('Verify pin failed', 'Pin code is not correct')
+          this.$refs.notificationToast.failNotification('Verify pin failed', 'Pin code is not correct', 5000)
         }
       }, err => {
-        console.log(err)
         this.pinErrorDescription = err.description
-        this.failNotification()
+        // this.$refs.notificationToast.setProps('Verify pin failed', err.description)
+        this.$refs.notificationToast.failNotification('Verify pin failed', err.description, 5000)
       })
     }
   },
@@ -221,7 +163,7 @@ export default {
       return this.$store.getters['reader/getSelectedPinType']
     }
   },
-  components: { Pinpad }
+  components: { NotificationToast, PinDialog }
 }
 </script>
 

@@ -1,71 +1,87 @@
 <template>
-  <div
-    class="notification-toast"
-    role="alert"
-    aria-live="assertive"
-    aria-atomic="true"
-  >
-    <div class="toast-body">
-      {{ notification.text }}
-      <button
-        type="button"
-        class="btn-close"
-        data-bs-dismiss="toast"
-        aria-label="Close"
-        @click="dismissToast"
-      ></button>
+  <!-- BEGIN: Notification Content -->
+  <div id="success-notification-content" class="toastify-content hidden flex">
+    <CheckCircleIcon class="text-theme-9" />
+    <div class="ml-4 mr-4">
+      <div class="font-medium">{{getTitle}}</div>
+      <div class="text-gray-600 mt-1">
+        {{ getDescription }}
+      </div>
     </div>
   </div>
+  <!-- END: Notification Content -->
+
+  <!-- BEGIN: Notification Content -->
+  <div id="fail-notification-content" class="toastify-content hidden flex">
+    <AlertCircleIcon class="text-theme-6" />
+    <div class="ml-4 mr-4">
+      <div class="font-medium">{{ getTitle }}</div>
+      <div class="text-gray-600 mt-1">
+        {{ getDescription }}
+      </div>
+    </div>
+  </div>
+  <!-- END: Notification Content -->
 </template>
 
 <script>
+import Toastify from 'toastify-js'
+
 export default {
-  props: {
-    notification: {
-      type: Object,
-      required: true
-    }
-  },
+  name: 'NotificationToast',
   data() {
     return {
-      timeout: null
+      title: undefined,
+      description: undefined
     }
   },
-  mounted() {
-    this.timeout = setTimeout(
-      () => this.$store.dispatch('notification/remove', this.notification),
-      3000
-    )
-  },
-  beforeUnmount() {
-    clearTimeout(this.timeout)
-  },
+  // props: ['title', 'description'],
   methods: {
-    dismissToast() {
-      this.$store.dispatch('notification/remove', this.notification)
+    setProps(title, description) {
+      this.title = title
+      this.description = description
+    },
+    successNotification(title, description, duration) {
+      this.title = title
+      this.description = description
+      Toastify({
+        node: cash('#success-notification-content')
+          .clone()
+          .removeClass('hidden')[0],
+        duration: duration,
+        newWindow: true,
+        close: true,
+        gravity: 'top',
+        position: 'right',
+        stopOnFocus: true
+      }).showToast()
+    },
+    failNotification(title, description, duration) {
+      this.title = title
+      this.description = description
+      Toastify({
+        node: cash('#fail-notification-content')
+          .clone()
+          .removeClass('hidden')[0],
+        duration: duration,
+        newWindow: true,
+        close: true,
+        gravity: 'top',
+        position: 'right',
+        stopOnFocus: true
+      }).showToast()
+    }
+  },
+  computed: {
+    getTitle() {
+      return this.title
+    },
+    getDescription() {
+      return this.description
     }
   }
 }
 </script>
 
 <style scoped>
-.notification-toast {
-  max-width: 100%;
-  font-size: 0.875rem;
-  pointer-events: auto;
-  background-clip: padding-box;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 15%);
-  border-radius: 0.25rem;
-  width: auto;
-  background-color: #333;
-  color: white;
-  margin-top: 10px;
-  padding-right: 7%;
-  opacity: 0.95;
-}
-
-.toast-body {
-  display: flex;
-}
 </style>
