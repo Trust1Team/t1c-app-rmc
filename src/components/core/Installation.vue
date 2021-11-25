@@ -136,9 +136,14 @@
 </template>
 <script>
 import DistributionService from '../../services/DistributionService'
+import { useToast } from 'vue-toastification'
 
 export default {
   name: 'Installation',
+  setup() {
+    const toast = useToast()
+    return { toast }
+  },
   data() {
     return {
       selectedOS: null,
@@ -150,10 +155,11 @@ export default {
       this.selectedOS = os
     },
     downloadVersion(version) {
-      const v = this.latestVersion.uris.find((u) => u.os !== version)
+      const v = this.latestVersion.uris.find((u) => u.os === version)
       if (v) {
         window.open(v.uri, '_blank').focus()
       } else {
+        this.toast.error('Could not find uri')
         console.error('Could not find uri')
       }
     }
