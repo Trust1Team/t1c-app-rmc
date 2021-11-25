@@ -87,7 +87,6 @@
 
 <script>
 import PinDialog from '@/components/UIComponents/PinDialog'
-import NotificationToast from '@/components/UIComponents/NotificationToast'
 import Trust1ConnectorService from '@/services/Trust1ConnectorService.js'
 import { onMounted, provide, ref } from 'vue'
 import { useToast } from 'vue-toastification'
@@ -166,7 +165,7 @@ export default {
       return this.$store.getters['reader/getSelectedPinType']
     }
   },
-  components: { NotificationToast, PinDialog }
+  components: { PinDialog }
 }
 </script>
 
