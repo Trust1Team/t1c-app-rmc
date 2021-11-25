@@ -4,7 +4,7 @@
       <h3>
         <i class="fab fa-windows"></i> {{ $t("installation.windowsheader") }}
       </h3>
-      <div>
+      <div class="mt-3">
         <p>
           {{ $t("installation.windows") }}
         </p>
@@ -49,7 +49,7 @@
 
     <div class="binary-os">
       <h3><i class="fab fa-apple"></i> {{ $t("installation.macosheader") }}</h3>
-      <div>
+      <div class="mt-3">
         <p>
           {{ $t("installation.macos") }}
         </p>
@@ -92,7 +92,7 @@
 
     <div class="binary-os">
       <h3><i class="fab fa-linux"></i> {{ $t("installation.linuxheader") }}</h3>
-      <div>
+      <div class="mt-3">
         <p>
           {{ $t("installation.linux") }}
         </p>
@@ -135,46 +135,47 @@
   </div>
 </template>
 <script>
-import DistributionService from "../../services/DistributionService";
+import DistributionService from '../../services/DistributionService'
 
 export default {
-  name: "Installation",
+  name: 'Installation',
   data() {
     return {
       selectedOS: null,
-      latestVersion: null,
-    };
+      latestVersion: null
+    }
   },
   methods: {
     setSelectedOS(os) {
-      this.selectedOS = os;
+      this.selectedOS = os
     },
     downloadVersion(version) {
-      const v = this.latestVersion.uris.find((u) => u.os !== version);
+      const v = this.latestVersion.uris.find((u) => u.os !== version)
       if (v) {
-        window.open(v.uri, "_blank").focus();
+        window.open(v.uri, '_blank').focus()
       } else {
-        console.error("Could not find uri");
+        console.error('Could not find uri')
       }
-    },
+    }
   },
   props: {},
   created() {
     DistributionService.getLatestVersion().then(
       (res) => {
-        this.latestVersion = res.data.data;
+        this.latestVersion = res.data.data
       },
       (err) => {
-        console.error(err);
+        console.error(err)
       }
-    );
+    )
   },
-  computed: {},
-};
+  computed: {}
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+
 .binary-os {
   flex-grow: 1;
   margin-left: 10px;
@@ -197,7 +198,7 @@ export default {
 .binary-os button {
   border: none;
   border-radius: 4px;
-  padding: 10px;
+  padding: 15px;
   width: 100%;
 }
 
@@ -275,4 +276,5 @@ export default {
     width: 100%;
   }
 }
+
 </style>

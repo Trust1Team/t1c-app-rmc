@@ -11,15 +11,15 @@
 </template>
 
 <script>
-import NotificationToast from "@/components/UIComponents/NotificationToast.vue";
-import { mapState } from "vuex";
+import NotificationToast from '@/components/UIComponents/NotificationToast.vue'
+import { mapState } from 'vuex'
 
 export default {
   components: {
-    NotificationToast,
+    NotificationToast
   },
-  computed: mapState("notification", ["notifications"]),
-};
+  computed: mapState('notification', ['notifications'])
+}
 </script>
 
 <style scoped>

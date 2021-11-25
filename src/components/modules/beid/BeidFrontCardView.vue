@@ -1,5 +1,5 @@
 <template>
-  <div class="card-container">
+  <div class="card-container p-4">
     <div class="card-header">
       <div>
         <div class="title"><b>BELGIE</b></div>
@@ -24,7 +24,7 @@
 
     <div class="card-content">
       <div class="chip">
-        <img src="../../../assets/credit-card.svg" alt="Credit card chip" />
+        <img src="../../../assets/images/credit-card.svg" alt="Credit card chip" />
       </div>
       <div class="card-row">
         <div>
@@ -90,9 +90,9 @@
 
 <script>
 export default {
-  name: "BeidFrontCardView",
-  props: ["biometric", "picture"],
-};
+  name: 'BeidFrontCardView',
+  props: ['biometric', 'picture']
+}
 </script>
 
 <style scoped>

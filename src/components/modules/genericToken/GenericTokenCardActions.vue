@@ -15,16 +15,16 @@
 
 <script>
 export default {
-  name: "GenericTokenCardActions",
+  name: 'GenericTokenCardActions',
   props: {
-    address: Object,
+    address: Object
   },
   computed: {
     getCertificateLoading() {
-      return this.$store.getters["card/getCertificateLoading"];
-    },
-  },
-};
+      return this.$store.getters['card/getCertificateLoading']
+    }
+  }
+}
 </script>
 
 <style scoped>

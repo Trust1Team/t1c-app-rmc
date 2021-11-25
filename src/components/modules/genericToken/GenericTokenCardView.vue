@@ -28,14 +28,14 @@
 </template>
 
 <script>
-import GenericTokenFrontCardView from "./GenericTokenFrontCardView";
-import GenericTokenBackCardView from "./GenericTokenBackCardView";
-import GenericTokenCertificateInformation from "./GenericTokenCertificateInformation";
-import GenericTokenAddressInformation from "./GenericTokenAddressInformation";
-import GenericTokenCardActions from "./GenericTokenCardActions";
+import GenericTokenFrontCardView from './GenericTokenFrontCardView'
+import GenericTokenBackCardView from './GenericTokenBackCardView'
+import GenericTokenCertificateInformation from './GenericTokenCertificateInformation'
+import GenericTokenAddressInformation from './GenericTokenAddressInformation'
+import GenericTokenCardActions from './GenericTokenCardActions'
 
 export default {
-  name: "GenericTokenCardView",
+  name: 'GenericTokenCardView',
   props: {
     biometric: Object,
     address: Object,
@@ -46,23 +46,23 @@ export default {
     nonRepudiationCertificate: Object,
     encryptionCertificate: Object,
     issuerCertificate: Object,
-    readerName: String,
+    readerName: String
   },
   components: {
     GenericTokenFrontCardView,
     GenericTokenBackCardView,
     GenericTokenCertificateInformation,
     GenericTokenAddressInformation,
-    GenericTokenCardActions,
+    GenericTokenCardActions
   },
-  emits: ["goBack"],
+  emits: ['goBack'],
   created() {},
   computed: {
     getCertificateLoading() {
-      return this.$store.getters["card/getCertificateLoading"];
-    },
-  },
-};
+      return this.$store.getters['card/getCertificateLoading']
+    }
+  }
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

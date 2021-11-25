@@ -11,10 +11,10 @@
 
 <script>
 export default {
-  name: "GenericPaymentCardActions",
+  name: 'GenericPaymentCardActions',
   props: {},
-  computed: {},
-};
+  computed: {}
+}
 </script>
 
 <style scoped>

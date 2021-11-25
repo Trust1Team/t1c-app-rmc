@@ -30,14 +30,14 @@
 </template>
 
 <script>
-import * as _ from "lodash";
+import * as _ from 'lodash'
 
 function pad(string) {
-  return _.padEnd(_.truncate(string, { length: 30, omission: "" }), 30, "<");
+  return _.padEnd(_.truncate(string, { length: 30, omission: '' }), 30, '<')
 }
 function calculate(string) {
   const dict = {
-    "<": 0,
+    '<': 0,
     0: 0,
     1: 1,
     2: 2,
@@ -73,92 +73,92 @@ function calculate(string) {
     W: 32,
     X: 33,
     Y: 34,
-    Z: 35,
-  };
+    Z: 35
+  }
   return (
     _.sum(
       _.map(
         _.map(string, (letter) => {
-          return dict[letter.toUpperCase()];
+          return dict[letter.toUpperCase()]
         }),
         (val, index) => {
-          let weighted = val;
+          let weighted = val
           switch (index % 3) {
             case 0:
-              weighted = val * 7;
-              break;
+              weighted = val * 7
+              break
             case 1:
-              weighted = val * 3;
-              break;
+              weighted = val * 3
+              break
             case 2:
-              break;
+              break
           }
-          return weighted;
+          return weighted
         }
       )
     ) % 10
-  );
+  )
 }
 
 export default {
-  name: "GenericTokenBackCardView",
-  props: ["biometric", "picture"],
+  name: 'GenericTokenBackCardView',
+  props: ['biometric', 'picture'],
   data() {
     return {
-      mrz: null,
-    };
+      mrz: null
+    }
   },
   created() {
-    this.mrz = this.constructMachineReadableStrings(this.biometric);
+    this.mrz = this.constructMachineReadableStrings(this.biometric)
   },
   methods: {
     constructMachineReadableStrings(rnData) {
-      const mrs = [];
+      const mrs = []
       // First line
-      const prefix = "ID";
+      const prefix = 'ID'
       let first =
-        "BEL" +
+        'BEL' +
         rnData.cardNumber.substr(0, 9) +
-        "<" +
-        rnData.cardNumber.substr(9);
-      first += calculate(first);
-      first = pad(prefix + first);
-      mrs.push(first.toUpperCase());
+        '<' +
+        rnData.cardNumber.substr(9)
+      first += calculate(first)
+      first = pad(prefix + first)
+      mrs.push(first.toUpperCase())
 
       // Second line
-      let second = rnData.nationalNumber.substr(0, 6);
-      second += calculate(second);
-      second += rnData.sex;
+      let second = rnData.nationalNumber.substr(0, 6)
+      second += calculate(second)
+      second += rnData.sex
       const validity =
         rnData.cardValidityDateEnd.substr(8, 2) +
         rnData.cardValidityDateEnd.substr(3, 2) +
-        rnData.cardValidityDateEnd.substr(0, 2);
-      second += validity + calculate(validity);
-      second += rnData.nationality.substr(0, 3);
-      second += rnData.nationalNumber;
+        rnData.cardValidityDateEnd.substr(0, 2)
+      second += validity + calculate(validity)
+      second += rnData.nationality.substr(0, 3)
+      second += rnData.nationalNumber
       const finalCheck =
         rnData.cardNumber.substr(0, 10) +
         rnData.nationalNumber.substr(0, 6) +
         validity +
-        rnData.nationalNumber;
-      second += calculate(finalCheck);
-      second = pad(second);
-      mrs.push(second.toUpperCase());
+        rnData.nationalNumber
+      second += calculate(finalCheck)
+      second = pad(second)
+      mrs.push(second.toUpperCase())
 
       // Third line
       let third =
-        _.join(_.split(rnData.name, " "), "<") +
-        "<<" +
-        _.join(_.split(rnData.firstNames, " "), "<") +
-        "<" +
-        _.join(_.split(rnData.thirdName, " "), "<");
-      third = pad(third);
-      mrs.push(third.toUpperCase());
-      return mrs;
-    },
+        _.join(_.split(rnData.name, ' '), '<') +
+        '<<' +
+        _.join(_.split(rnData.firstNames, ' '), '<') +
+        '<' +
+        _.join(_.split(rnData.thirdName, ' '), '<')
+      third = pad(third)
+      mrs.push(third.toUpperCase())
+      return mrs
+    }
   },
-  computed: {},
-};
+  computed: {}
+}
 </script>
 
 <style scoped>

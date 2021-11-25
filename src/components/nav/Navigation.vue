@@ -145,19 +145,19 @@
 
 <script>
 export default {
-  name: "Navigation",
+  name: 'Navigation',
   data: () => {
     return {
-      dropdown_active: false,
-    };
+      dropdown_active: false
+    }
   },
   methods: {
     dropdown() {
-      this.dropdown_active = !this.dropdown_active;
-    },
+      this.dropdown_active = !this.dropdown_active
+    }
   },
-  props: {},
-};
+  props: {}
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

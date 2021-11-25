@@ -1,40 +1,50 @@
-import { createStore } from "vuex";
-import { Reader } from "./modules/Reader";
-import { Card } from "./modules/Card";
-import { Notification } from "./modules/Notification";
+import { createStore } from 'vuex'
+import main from './main'
+import sideMenu from './side-menu'
+import { Reader } from './modules/Reader'
+import { Card } from './modules/Card'
+import { Notification } from './modules/Notification'
 
-export default createStore({
+const store = createStore({
   state: {
     installed: false,
-    consent: false,
+    consent: false
   },
   mutations: {
     SET_INSTALLED(state, installed) {
-      state.installed = installed;
+      state.installed = installed
     },
     SET_CONSENT(state, consent) {
-      state.consent = consent;
-    },
+      state.consent = consent
+    }
   },
   actions: {
     setInstalled(context, installed) {
-      context.commit("SET_INSTALLED", installed);
+      context.commit('SET_INSTALLED', installed)
     },
     setConsent(context, consent) {
-      context.commit("SET_CONSENT", consent);
-    },
+      context.commit('SET_CONSENT', consent)
+    }
   },
   getters: {
     getInstalled: (state) => {
-      return state.installed;
+      return state.installed
     },
     getConsent: (state) => {
-      return state.consent;
-    },
+      return state.consent
+    }
   },
   modules: {
+    main,
+    sideMenu,
     reader: Reader,
     card: Card,
-    notification: Notification,
-  },
-});
+    notification: Notification
+  }
+})
+
+export function useStore() {
+  return store
+}
+
+export default store

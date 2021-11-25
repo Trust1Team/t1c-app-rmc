@@ -77,33 +77,33 @@
 </template>
 
 <script>
-import Loading from "../../core/Loading";
+import Loading from '../../core/Loading'
 
 export default {
-  name: "GenericPaymentCertificateInformation",
+  name: 'GenericPaymentCertificateInformation',
   props: {},
   methods: {
     toggleCert: function (event) {
-      event.target.parentNode.parentNode.classList.toggle("cert-open");
-      event.target.classList.toggle("cert-expand-rotated");
-    },
+      event.target.parentNode.parentNode.classList.toggle('cert-open')
+      event.target.classList.toggle('cert-expand-rotated')
+    }
   },
   computed: {
     getCertificateLoading() {
-      return this.$store.getters["card/getCertificateLoading"];
+      return this.$store.getters['card/getCertificateLoading']
     },
     getApplications() {
-      return this.$store.getters["card/getApplications"];
+      return this.$store.getters['card/getApplications']
     },
     getICCPublicCertificate() {
-      return this.$store.getters["card/getICCPublicCertificate"];
+      return this.$store.getters['card/getICCPublicCertificate']
     },
     getIssuerPublicCertificate() {
-      return this.$store.getters["card/getIssuerPublicCertificate"];
-    },
+      return this.$store.getters['card/getIssuerPublicCertificate']
+    }
   },
-  components: { Loading },
-};
+  components: { Loading }
+}
 </script>
 
 <style scoped>
