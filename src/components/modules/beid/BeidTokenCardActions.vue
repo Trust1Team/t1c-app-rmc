@@ -10,63 +10,19 @@
               :options="{
                   url: 'https://httpbin.org/post',
                   thumbnailWidth: 150,
-                  maxFilesize: 0.5,
+                  maxFilesize: 100,
                   maxFiles: 1,
-                  headers: { 'My-Awesome-Header': 'header value' }
                 }"
               class="dropzone"
           >
             <div class="text-lg font-medium">
-              Drop files here or click to upload.
+              Drop your file here or click to upload to start the signing process.
             </div>
             <div class="text-gray-600">
-              This is just a demo dropzone. Selected files are
-              <span class="font-medium">not</span> actually uploaded.
             </div>
           </Dropzone>
         </div>
-        <div class="source-code hidden">
-          <button
-              data-target="#copy-single-file-upload"
-              class="copy-code btn py-1 px-2 btn-outline-secondary"
-          >
-            <FileIcon class="w-4 h-4 mr-2" /> Copy example code
-          </button>
-          <div class="overflow-y-auto mt-3 rounded-md">
-            <Highlight id="copy-single-file-upload" class="source-preview">
-              <code
-                  class="text-xs p-0 rounded-md html pl-5 pt-8 pb-4 -mb-10 -mt-10"
-              >
-                    <textarea>
-                      <Dropzone
-                        ref-key="dropzoneSingleRef"
-                        :options="{
-                          url: 'https://httpbin.org/post',
-                          thumbnailWidth: 150,
-                          maxFilesize: 0.5,
-                          maxFiles: 1,
-                          headers: { 'My-Awesome-Header': 'header value' }
-                        }"
-                        class="dropzone"
-                      >
-                        <div class="text-lg font-medium">
-                          Drop files here or click to upload.
-                        </div>
-                        <div class="text-gray-600">
-                          This is just a demo dropzone. Selected files are
-                          <span class="font-medium">not</span> actually uploaded.
-                        </div>
-                      </Dropzone>
-                    </textarea>
-              </code>
-            </Highlight>
-          </div>
-        </div>
       </div>
-
-      <button class="btn btn-primary" :disabled="getCertificateLoading">
-        {{ $t("cardActions.legalCopy") }}
-      </button>
 
       <button
         class="btn btn-primary"
@@ -149,7 +105,8 @@ export default {
   data() {
     return {
       pinDialogVisible: false,
-      pinErrorDescription: undefined
+      pinErrorDescription: undefined,
+      file: ''
     }
   },
   methods: {

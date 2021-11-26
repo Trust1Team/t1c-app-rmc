@@ -1,6 +1,6 @@
 <template>
   <div class="readers-header" v-if="!readers && !loading">
-    <h1>{{ $t("readersList.Connect your Reader") }}</h1>
+    <h1 class="text-4xl font medium py-2">{{ $t("readersList.Connect your Reader") }}</h1>
     <p>
       {{ $t("readersList.Please connect your") }}
       <b>{{ $t("readersList.smartcard reader") }}</b>
@@ -18,7 +18,7 @@
     class="readers-header"
     v-if="readers && readers.length === 0 && !loading"
   >
-    <h1>{{ $t("readersList.readersNotFound") }}</h1>
+    <h1 class="text-4xl font-medium py-2">{{ $t("readersList.readersNotFound") }}</h1>
     <p>{{ $t("readersList.askToConnect") }}</p>
   </div>
 

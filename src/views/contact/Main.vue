@@ -3,7 +3,7 @@
     <h1 class="title text-4xl my-5 font-medium">{{ $t("contact.Contact us") }}</h1>
     <p class="subtitle">{{ $t("contact.contactUsSubtitle") }}</p>
     <br />
-    <div class="form">
+    <div class="form pt-10">
       <form @submit.prevent>
         <div class="grid grid-cols-12">
           <div class="col-span-6 mr-3">
