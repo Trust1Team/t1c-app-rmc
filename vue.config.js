@@ -5,7 +5,6 @@ module.exports = {
   configureWebpack: {
     plugins: [
       new webpack.ProvidePlugin({
-        cash: 'cash-dom',
         Popper: '@popperjs/core'
       })
     ]
