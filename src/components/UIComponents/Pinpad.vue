@@ -2,10 +2,11 @@
   <div class="pin-container">
     <div class="pin-input-container">
       <input
-        class="form-control"
+        class="form-control pin-field"
         required
         type="password"
         v-model="pin"
+        ref="pinField"
         :placeholder="$t('pinpad.Enter PIN code')"
       />
     </div>
@@ -14,7 +15,7 @@
         <div class="row">
           <button
             type="button"
-            class="btn form-control btn-outline-primary"
+            class="btn form-control btn-outline-secondary"
             @click="enteredNumber(1)"
           >
             1
@@ -22,7 +23,7 @@
 
           <button
             type="button"
-            class="btn form-control btn-outline-primary"
+            class="btn form-control btn-outline-secondary"
             @click="enteredNumber(2)"
           >
             2
@@ -30,7 +31,7 @@
 
           <button
             type="button"
-            class="btn form-control btn-outline-primary"
+            class="btn form-control btn-outline-secondary"
             @click="enteredNumber(3)"
           >
             3
@@ -39,7 +40,7 @@
         <div class="row">
           <button
             type="button"
-            class="btn form-control btn-outline-primary"
+            class="btn form-control btn-outline-secondary"
             @click="enteredNumber(4)"
           >
             4
@@ -47,7 +48,7 @@
 
           <button
             type="button"
-            class="btn form-control btn-outline-primary"
+            class="btn form-control btn-outline-secondary"
             @click="enteredNumber(5)"
           >
             5
@@ -55,7 +56,7 @@
 
           <button
             type="button"
-            class="btn form-control btn-outline-primary"
+            class="btn form-control btn-outline-secondary"
             @click="enteredNumber(6)"
           >
             6
@@ -64,7 +65,7 @@
         <div class="row">
           <button
             type="button"
-            class="btn form-control btn-outline-primary"
+            class="btn form-control btn-outline-secondary"
             @click="enteredNumber(7)"
           >
             7
@@ -72,7 +73,7 @@
 
           <button
             type="button"
-            class="btn form-control btn-outline-primary"
+            class="btn form-control btn-outline-secondary"
             @click="enteredNumber(8)"
           >
             8
@@ -80,7 +81,7 @@
 
           <button
             type="button"
-            class="btn form-control btn-outline-primary"
+            class="btn form-control btn-outline-secondary"
             @click="enteredNumber(9)"
           >
             9
@@ -90,14 +91,14 @@
           <button
             type="button"
             class="btn form-control btn-error"
-            @click="clearField"
+            @click="resetNumber"
           >
             C
           </button>
 
           <button
             type="button"
-            class="btn form-control btn-outline-primary"
+            class="btn form-control btn-outline-secondary"
             @click="enteredNumber(0)"
           >
             0
@@ -117,6 +118,7 @@
 </template>
 
 <script>
+
 export default {
   name: 'Pinpad',
   data() {
@@ -124,16 +126,20 @@ export default {
       pin: ''
     }
   },
-  emits: ['confirmPin'],
+  emits: ['submitPin'],
   methods: {
+    focusInput() {
+      this.$refs.pinField.focus()
+    },
     enteredNumber(number) {
       this.pin += number
     },
-    clearField() {
+    resetNumber() {
       this.pin = this.pin.substr(0, this.pin.length - 1)
     },
     submitPin() {
-      this.$emit('confirmPin', this.pin)
+      this.$emit('submitPin', this.pin)
+      this.pin = ''
     }
   }
 }

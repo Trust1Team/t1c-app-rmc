@@ -1,15 +1,17 @@
-import Toastify from 'toastify-js';
+import Toastify from 'toastify-js'
 
-(function(cash) {
+import $ from 'cash-dom'
+
+(function() {
   'use strict'
 
   // Copy original code
-  cash('body').on('click', '.copy-code', function() {
-    const elementId = cash(this).data('target')
-    cash(elementId)
+  $('body').on('click', '.copy-code', function() {
+    const elementId = $(this).data('target')
+    $(elementId)
       .find('textarea')[0]
       .select()
-    cash(elementId)
+    $(elementId)
       .find('textarea')[0]
       .setSelectionRange(0, 99999)
     document.execCommand('copy')
@@ -25,4 +27,4 @@ import Toastify from 'toastify-js';
       className: 'toastify-content'
     }).showToast()
   })
-})(cash)
+})()

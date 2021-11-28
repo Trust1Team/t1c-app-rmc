@@ -12,7 +12,7 @@
 
 <script>
 import { defineComponent, provide, ref, onMounted } from 'vue'
-
+import $ from 'cash-dom'
 export default defineComponent({
   props: {
     tag: {
@@ -29,7 +29,7 @@ export default defineComponent({
 
     const toggleTooltip = () => {
       const el = tippyRef.value
-      if (cash(window).width() <= 1260) {
+      if ($(window).width() <= 1260) {
         el._tippy.enable()
       } else {
         el._tippy.disable()

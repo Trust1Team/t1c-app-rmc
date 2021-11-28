@@ -11,12 +11,13 @@ import { copySource } from './index'
 import jsBeautify from 'js-beautify'
 import hljs from 'highlight.js'
 import _ from 'lodash'
+import $ from 'cash-dom'
 
 export default defineComponent({
   directives: {
     highlight: {
       beforeMount(el) {
-        let source = cash(el)
+        let source = $(el)
           .find('code')
           .find('textarea')
           .html()
@@ -35,11 +36,11 @@ export default defineComponent({
         source = _.replace(source, /</g, '&lt;')
         source = _.replace(source, />/g, '&gt;')
 
-        cash(el)
+        $(el)
           .find('code')
           .html(source)
 
-        hljs.highlightElement(cash(el).find('code')[0])
+        hljs.highlightElement($(el).find('code')[0])
       }
     }
   },

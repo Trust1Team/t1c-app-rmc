@@ -8,6 +8,10 @@ COPY public /usr/src/app/public
 COPY package.json /usr/src/app/
 COPY babel.config.js /usr/src/app/
 COPY .eslintrc.js /usr/src/app/src
+COPY vue.config.js /usr/src/app/
+COPY tailwind.config.js /usr/src/app/
+COPY postcss.config.js /usr/src/app/
+COPY jsconfig.json /usr/src/app/
 WORKDIR /usr/src/app/
 RUN yarn install
 RUN yarn build

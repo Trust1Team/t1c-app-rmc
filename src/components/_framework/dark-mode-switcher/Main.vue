@@ -16,7 +16,7 @@
 <script>
 import { defineComponent, onMounted, computed } from 'vue'
 import { useStore } from '@/store'
-
+import $ from 'cash-dom'
 export default defineComponent({
   setup() {
     const store = useStore()
@@ -24,8 +24,8 @@ export default defineComponent({
 
     const setDarkModeClass = () => {
       darkMode.value
-        ? cash('html').addClass('dark')
-        : cash('html').removeClass('dark')
+        ? $('html').addClass('dark')
+        : $('html').removeClass('dark')
     }
 
     const switchMode = () => {

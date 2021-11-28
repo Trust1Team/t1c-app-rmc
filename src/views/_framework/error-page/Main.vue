@@ -36,14 +36,14 @@
 <script>
 import { defineComponent, onMounted } from 'vue'
 import DarkModeSwitcher from '@/components/_framework/dark-mode-switcher/Main.vue'
-
+import $ from 'cash-dom'
 export default defineComponent({
   components: {
     DarkModeSwitcher
   },
   setup() {
     onMounted(() => {
-      cash('body')
+      $('body')
         .removeClass('main')
         .removeClass('login')
         .addClass('error-page')

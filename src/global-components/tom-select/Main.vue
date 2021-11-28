@@ -7,23 +7,24 @@
 <script>
 import { defineComponent, computed, watch } from 'vue'
 import { setValue, init, reInit } from './index'
+import $ from 'cash-dom'
 
 export default defineComponent({
   directives: {
     select: {
       mounted(el, { value }) {
         // Clone the select element to prevent tom select remove the original element
-        const clonedEl = cash(el)
+        const clonedEl = $(el)
           .clone()
           .insertAfter(el)[0]
-        cash(el).attr('hidden', true)
+        $(el).attr('hidden', true)
 
         // Initialize tom select
         setValue(clonedEl, value.props)
         init(clonedEl, value.emit, value.computedOptions)
       },
       updated(el, { value }) {
-        const clonedEl = cash(el).next()[0]
+        const clonedEl = $(el).next()[0]
         setValue(clonedEl, value.props)
         reInit(clonedEl, value.props, value.emit, value.computedOptions)
       }
