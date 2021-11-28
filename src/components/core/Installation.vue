@@ -1,6 +1,6 @@
 <template>
   <div class="binaries-container">
-    <div class="binary-os">
+    <div class="binary-os intro-x box">
       <h3>
         <i class="fab fa-windows"></i> {{ $t("installation.windowsheader") }}
       </h3>
@@ -47,7 +47,7 @@
       </div>
     </div>
 
-    <div class="binary-os">
+    <div class="binary-os intro-x box">
       <h3><i class="fab fa-apple"></i> {{ $t("installation.macosheader") }}</h3>
       <div class="mt-3">
         <p>
@@ -90,7 +90,7 @@
       </div>
     </div>
 
-    <div class="binary-os">
+    <div class="binary-os intro-x box">
       <h3><i class="fab fa-linux"></i> {{ $t("installation.linuxheader") }}</h3>
       <div class="mt-3">
         <p>

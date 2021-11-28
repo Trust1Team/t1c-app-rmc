@@ -2,11 +2,11 @@
   <div class="token-details-item">
     <h3>{{ $t("certificateInformation.header") }}</h3>
 
-    <div class="text-container">
+    <div class="text-container mt-3">
       <div class="text-label">
         {{ $t("certificateInformation.nonRepudiationCertificate") }}
       </div>
-      <div class="text-content cert">
+      <div class="text-content cert intro-x box">
         <div>
           <span v-if="nonRepudiationCertificate && !getCertificateLoading">
             {{ nonRepudiationCertificate.certificate }}
@@ -41,7 +41,7 @@
       <div class="text-label">
         {{ $t("certificateInformation.authenticationCertificate") }}
       </div>
-      <div class="text-content cert">
+      <div class="text-content cert intro-x box">
         <div>
           <span v-if="authenticationCertificate && !getCertificateLoading">
             {{ authenticationCertificate.certificate }}
@@ -76,7 +76,7 @@
       <div class="text-label">
         {{ $t("certificateInformation.encryptionCertificate") }}
       </div>
-      <div class="text-content cert">
+      <div class="text-content cert intro-x box">
         <div>
           <span v-if="encryptionCertificate && !getCertificateLoading">
             {{ encryptionCertificate.certificate }}
@@ -111,7 +111,7 @@
       <div class="text-label">
         {{ $t("certificateInformation.issuerCertificate") }}
       </div>
-      <div class="text-content cert">
+      <div class="text-content cert intro-x box">
         <div>
           <span v-if="issuerCertificate && !getCertificateLoading">
             {{ issuerCertificate.certificate }}
@@ -146,7 +146,7 @@
       <div class="text-label">
         {{ $t("certificateInformation.intermediateCertificates") }}
       </div>
-      <div class="text-content cert">
+      <div class="text-content cert intro-x box">
         <div>
           <span v-if="intermediateCertificates && !getCertificateLoading">
             {{ intermediateCertificates.certificate }}
@@ -181,7 +181,7 @@
       <div class="text-label">
         {{ $t("certificateInformation.rootCertificate") }}
       </div>
-      <div class="text-content cert">
+      <div class="text-content cert intro-x box">
         <div>
           <span v-if="rootCertificate && !getCertificateLoading">
             {{ rootCertificate.certificate }}
@@ -260,7 +260,6 @@ export default {
 
 .text-content {
   padding: 15px;
-  background-color: #f5f7f9;
   border-radius: 5px;
   word-break: break-word;
 }

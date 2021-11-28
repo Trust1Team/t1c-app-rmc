@@ -62,22 +62,22 @@
               id="informationCheck"
               name="informationCheck"
               v-model="informationCheck"
-              class="form-check-input"
+              class="form-check-input contact-checkbox"
             />&nbsp;
-            <label class="form-check-label text-gray-500" for="informationCheck">{{
+            <label class="form-check-label text-gray-600" for="informationCheck">{{
               $t("contact.I want more information")
             }}</label>
           </div>
-          <div class="col-span-12 float-left check-text">
+          <div class="col-span-12 float-left check-text mt-1">
             <input
               type="checkbox"
               :disabled="informationCheck"
               id="technicalCheck"
               name="technicalCheck"
               v-model="technicalCheck"
-              class="form-check-input"
+              class="form-check-input contact-checkbox"
             />&nbsp;
-            <label class="form-check-label text-gray-500" for="technicalCheck">{{
+            <label class="form-check-label text-gray-600" for="technicalCheck">{{
               $t("contact.I have technical issue")
             }}</label>
           </div>
@@ -260,6 +260,10 @@ export default {
 </script>
 
 <style scoped>
+.contact-checkbox {
+  background-color: white;
+}
+
 .title {
   color: #e05512;
   text-align: center;
