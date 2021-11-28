@@ -1,6 +1,6 @@
 <template>
   <!-- BEGIN: Top Bar -->
-  <div class="top-bar">
+  <div class="top-bar mb-3">
     <!-- BEGIN: Breadcrumb -->
     <div class="-intro-x breadcrumb mr-auto hidden sm:flex">
       <a href="">Read my cards</a>

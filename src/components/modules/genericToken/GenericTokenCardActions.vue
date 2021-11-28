@@ -8,7 +8,7 @@
           <Dropzone
               ref-key="dropzoneSingleRef"
               :options="{
-                  url: 'https://httpbin.org/post',
+                  url: 'http://localhost:9000/v1/sign/upload',
                   thumbnailWidth: 150,
                   maxFilesize: 100,
                   maxFiles: 1,
@@ -82,12 +82,10 @@ import Pinpad from '@/components/UIComponents/Pinpad'
 import Trust1ConnectorService from '@/services/Trust1ConnectorService.js'
 import Toastify from 'toastify-js'
 import { onMounted, provide, ref } from 'vue'
+import store from '@/store'
 
 export default {
-  name: 'Generic',
-  props: {
-    address: Object
-  },
+  name: 'BeidTokenCardActions',
   setup() {
     const dropzoneSingleRef = ref()
 
@@ -102,6 +100,11 @@ export default {
       })
       elDropzoneSingleRef.dropzone.on('error', () => {
         alert('No more files please!')
+      })
+      elDropzoneSingleRef.dropzone.on('sending', function(file, xhr, formData) {
+        formData.append('non-repudiation-certificate', store.getters['card/getNonRepudiationCertificate'].certificate)
+        formData.append('root-certificate', store.getters['card/getRootCertificate'].certificate)
+        formData.append('intermediate-certificate', store.getters['card/getIntermediateCertificates'].certificate)
       })
     })
   },

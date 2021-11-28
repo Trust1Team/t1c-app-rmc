@@ -1,6 +1,6 @@
 <template>
   <div class="installation-info-container" v-if="info != null">
-    <div class="installation-info-item">
+    <div class="installation-info-item intro-y box">
       <h3>{{ $t("deviceInfo.Trust1Connector version") }}</h3>
       <h6>{{ $t("deviceInfo.api-version") }}</h6>
       <p>{{ info.t1CInfoAPI.version }}</p>
@@ -8,7 +8,7 @@
       <p>{{ jsVersion }}</p>
     </div>
 
-    <div class="installation-info-item">
+    <div class="installation-info-item intro-y box">
       <h3>{{ $t("deviceInfo.Device") }}</h3>
       <h6>{{ $t("deviceInfo.Device ID") }}</h6>
       <p>{{ info.t1CInfoAPI.uid }}</p>
@@ -19,7 +19,7 @@
       <p>{{ info.t1CInfoAPI.logLevel }}</p>
     </div>
 
-    <div class="installation-info-item">
+    <div class="installation-info-item intro-y box">
       <h3>{{ $t("deviceInfo.Operating system") }}</h3>
       <div>
         <h6>{{ $t("deviceInfo.Platform") }}</h6>
@@ -64,8 +64,6 @@ p {
   width: 300px;
   min-height: 200px;
   border-radius: 15px;
-  border-bottom: 5px solid #e8e8e8;
-  background-color: #f6f6f6;
   padding: 15px;
 }
 

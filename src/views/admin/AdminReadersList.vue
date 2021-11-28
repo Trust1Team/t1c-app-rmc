@@ -18,7 +18,7 @@
   </div>
 
   <div class="readers-container" v-if="readers && readers.length > 0">
-    <div v-for="reader in readers" v-bind:key="reader.id" class="reader-item">
+    <div v-for="reader in readers" v-bind:key="reader.id" class="intro-x box flex py-5 px-3">
       <div @click="copyReaderId(reader)" class="reader-name">
         {{ reader.name }}
       </div>
