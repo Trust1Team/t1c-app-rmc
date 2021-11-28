@@ -51,7 +51,7 @@ export default {
   getJWT() {
     return apiClient(null).get('/v3_5/tokens/application', {
       headers: {
-        apikey: window.VUE_APP_ENV_API_KEY
+        apikey: window.VUE_APP_ENV_API_KEY ? window.VUE_APP_ENV_API_KEY : '799f2350-7aee-4dd6-8f6f-ab82be18b21a'
       }
     })
   }

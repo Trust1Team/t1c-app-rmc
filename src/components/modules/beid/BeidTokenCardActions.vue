@@ -81,8 +81,6 @@
   <!--  User ref to be able to call the functions inside this component -->
   <PinDialog ref="pinDialog" @confirmPin="pinSelected" :pin-error-description="pinErrorDescription"/>
 
-  <notification-toast ref="notificationToast" />
-
 </template>
 
 <script>

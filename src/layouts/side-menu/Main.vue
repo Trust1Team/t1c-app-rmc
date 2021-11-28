@@ -158,7 +158,7 @@ import MobileMenu from '@/components/_framework/mobile-menu/Main.vue'
 import DarkModeSwitcher from '@/components/_framework/dark-mode-switcher/Main.vue'
 import SideMenuTooltip from '@/components/_framework/side-menu-tooltip/Main.vue'
 import Footer from '../footer/Main'
-
+import $ from 'cash-dom'
 import { linkTo, nestedMenu, enter, leave } from './index'
 
 export default defineComponent({
@@ -186,7 +186,7 @@ export default defineComponent({
     )
 
     onMounted(() => {
-      cash('body')
+      $('body')
         .removeClass('error-page')
         .removeClass('login')
         .addClass('main')

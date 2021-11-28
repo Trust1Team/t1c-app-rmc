@@ -6,7 +6,7 @@
 import { defineComponent, onMounted, ref, inject, watch } from 'vue'
 import { helper as $h } from '@/utils/helper'
 import Chart from 'chart.js'
-
+import $ from 'cash-dom'
 export default defineComponent({
   props: {
     type: {
@@ -61,13 +61,13 @@ export default defineComponent({
 
     const setSize = () => {
       if (props.width) {
-        cash(chartRef.value).attr({
+        $(chartRef.value).attr({
           width: props.width
         })
       }
 
       if (props.height) {
-        cash(chartRef.value).attr({
+        $(chartRef.value).attr({
           height: props.height
         })
       }

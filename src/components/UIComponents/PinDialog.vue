@@ -30,6 +30,7 @@
 
 <script>
 import Pinpad from '@/components/UIComponents/Pinpad'
+import $ from 'cash-dom'
 
 export default {
   name: 'PinDialog',
@@ -37,11 +38,11 @@ export default {
   emits: ['confirmPin'],
   methods: {
     showDialog() {
-      cash('#pin-pad-modal').modal('show')
+      $('#pin-pad-modal').modal('show')
       this.$refs.pinpad.focusInput()
     },
     hideDialog() {
-      cash('#pin-pad-modal').modal('hide')
+      $('#pin-pad-modal').modal('hide')
     },
     pinSelected(pin) {
       this.$emit('confirmPin', pin)

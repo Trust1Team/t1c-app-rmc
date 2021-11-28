@@ -1,8 +1,7 @@
 {
   "name": "t1c-app-rmc",
-  "version": "0.5.0",
+  "version": "0.5.2",
   "private": true,
-  "author": "Left4code",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
