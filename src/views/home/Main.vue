@@ -43,7 +43,7 @@
         </div>
 
         <div class="loading">
-          <loading v-if="getDataLoading" icon="bars" size="40"></loading>
+          <loading v-if="getDataLoading" icon="puff" size="40"></loading>
         </div>
         <ModuleSwitch />
       </div>

@@ -130,8 +130,8 @@
   },
   "cardActions": {
     "header": "Actions",
-    "legalCopy": "Print legal copy",
-    "checkPin": "Check pin code"
+    "legalCopy": "Sign uploaded document",
+    "checkPin": "Verify pin code"
   },
   "installation": {
     "welcome": "Welcome to the web application {0} of Trust1Team!",
