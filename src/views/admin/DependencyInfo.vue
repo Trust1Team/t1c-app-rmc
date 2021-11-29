@@ -6,7 +6,7 @@
   </div>
 
   <div class="status-container">
-    <div class="status-item">
+    <div class="status-item intro-x box">
       <div class="status-item-service">
         {{ $t("admin.dependencyInfo.t1cApi") }}
       </div>
@@ -25,7 +25,7 @@
       </div>
     </div>
 
-    <div class="status-item">
+    <div class="status-item intro-x box">
       <div class="status-item-service">
         {{ $t("admin.dependencyInfo.validationService") }}
       </div>
@@ -50,7 +50,7 @@
       </div>
     </div>
 
-    <div class="status-item">
+    <div class="status-item intro-x box">
       <div class="status-item-service">
         {{ $t("admin.dependencyInfo.distributionServer") }}
       </div>
@@ -227,6 +227,10 @@ export default {
 .status-item:last-of-type {
   border-top: none;
   border-radius: 0 0 10px 10px;
+}
+
+.intro-x:nth-child(2) {
+  border-radius: 0px;
 }
 
 .green {

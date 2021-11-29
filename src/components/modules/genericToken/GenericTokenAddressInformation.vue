@@ -1,11 +1,11 @@
 <template>
   <div class="token-details-item">
     <h3>{{ $t("addressInformation.header") }}</h3>
-    <div class="text-container">
+    <div class="text-container mt-3">
       <div class="text-label">
         {{ $t("addressInformation.address") }}
       </div>
-      <div class="text-content">
+      <div class="text-content intro-x box">
         {{ address.streetAndNumber }}
       </div>
     </div>
@@ -14,7 +14,7 @@
       <div class="text-label">
         {{ $t("addressInformation.city") }}
       </div>
-      <div class="text-content">
+      <div class="text-content intro-x box">
         {{ address.municipality }}
       </div>
     </div>
@@ -23,7 +23,7 @@
       <div class="text-label">
         {{ $t("addressInformation.postalCode") }}
       </div>
-      <div class="text-content">
+      <div class="text-content intro-x box">
         {{ address.zipcode }}
       </div>
     </div>
@@ -55,7 +55,6 @@ export default {
 
 .text-content {
   padding: 15px;
-  background-color: #f5f7f9;
   border-radius: 5px;
   word-break: break-word;
 }

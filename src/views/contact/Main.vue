@@ -3,7 +3,7 @@
     <h1 class="title text-4xl my-5 font-medium">{{ $t("contact.Contact us") }}</h1>
     <p class="subtitle">{{ $t("contact.contactUsSubtitle") }}</p>
     <br />
-    <div class="form">
+    <div class="form pt-10">
       <form @submit.prevent>
         <div class="grid grid-cols-12">
           <div class="col-span-6 mr-3">
@@ -62,22 +62,22 @@
               id="informationCheck"
               name="informationCheck"
               v-model="informationCheck"
-              class="form-check-input"
+              class="form-check-input contact-checkbox"
             />&nbsp;
-            <label class="form-check-label text-gray-500" for="informationCheck">{{
+            <label class="form-check-label text-gray-600" for="informationCheck">{{
               $t("contact.I want more information")
             }}</label>
           </div>
-          <div class="col-span-12 float-left check-text">
+          <div class="col-span-12 float-left check-text mt-1">
             <input
               type="checkbox"
               :disabled="informationCheck"
               id="technicalCheck"
               name="technicalCheck"
               v-model="technicalCheck"
-              class="form-check-input"
+              class="form-check-input contact-checkbox"
             />&nbsp;
-            <label class="form-check-label text-gray-500" for="technicalCheck">{{
+            <label class="form-check-label text-gray-600" for="technicalCheck">{{
               $t("contact.I have technical issue")
             }}</label>
           </div>
@@ -260,6 +260,10 @@ export default {
 </script>
 
 <style scoped>
+.contact-checkbox {
+  background-color: white;
+}
+
 .title {
   color: #e05512;
   text-align: center;

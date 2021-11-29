@@ -1,6 +1,6 @@
 <template>
   <div class="readers-header" v-if="!readers && !loading">
-    <h1>{{ $t("readersList.Connect your Reader") }}</h1>
+    <h1 class="text-4xl font medium py-2">{{ $t("readersList.Connect your Reader") }}</h1>
     <p>
       {{ $t("readersList.Please connect your") }}
       <b>{{ $t("readersList.smartcard reader") }}</b>
@@ -18,7 +18,7 @@
     class="readers-header"
     v-if="readers && readers.length === 0 && !loading"
   >
-    <h1>{{ $t("readersList.readersNotFound") }}</h1>
+    <h1 class="text-4xl font-medium py-2">{{ $t("readersList.readersNotFound") }}</h1>
     <p>{{ $t("readersList.askToConnect") }}</p>
   </div>
 
@@ -33,11 +33,11 @@
   </div>
 
   <div class="readers-container" v-if="readers && readers.length > 0">
-    <div v-for="reader in readers" v-bind:key="reader.id" class="reader-item">
-      <div @click="copyReaderId(reader)" class="reader-name">
+    <div v-for="reader in readers" v-bind:key="reader.id" class="intro-x flex box py-4 px-2">
+      <div @click="copyReaderId(reader)" class="reader-name pt-1">
         {{ reader.name }}
       </div>
-      <div class="reader-module">
+      <div class="reader-module pt-1">
         <span v-if="reader.card.modules" @click="copyAtr(reader)">{{
           reader.card.modules[0]
         }}</span>
@@ -67,7 +67,7 @@
           </div>
         </span>
       </div>
-      <div class="reader-pinpad">
+      <div class="reader-pinpad pt-1">
         <span
           v-bind:class="{
             isPinpad: reader.pinpad,
@@ -94,7 +94,7 @@
           xml:space="preserve"
           class="next-svg"
         >
-          <g>
+           <g>
             <path
               d="M19.982,14.438l-6.24-4.536c-0.229-0.166-0.533-0.191-0.784-0.062c-0.253,0.128-0.411,0.388-0.411,0.669v9.069
 		c0,0.284,0.158,0.543,0.411,0.671c0.107,0.054,0.224,0.081,0.342,0.081c0.154,0,0.31-0.049,0.442-0.146l6.24-4.532
@@ -270,7 +270,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.reader-item {
+/* .reader-item {
   background-color: #f0f0f0;
   border-radius: 10px;
   padding: 0 15px;
@@ -284,7 +284,7 @@ export default {
 
 .reader-item:hover {
   border-bottom: 5px solid #dddddd;
-}
+} */
 
 .reader-name {
   font-weight: bold;
