@@ -2,6 +2,8 @@
   <div class="token-details-item">
     <h3>{{ $t("certificateInformation.header") }}</h3>
 
+    <verify-certificates-component></verify-certificates-component>
+
     <div class="text-container mt-3">
       <div class="text-label">
         {{ $t("certificateInformation.nonRepudiationCertificate") }}
@@ -217,6 +219,7 @@
 <script>
 import Loading from '../../core/Loading'
 import copyMixin from '@/mixins/copyMixin'
+import VerifyCertificatesComponent from '@/components/modules/VerifyCertificatesComponent'
 
 export default {
   name: 'GenericTokenCertificateInformation',
@@ -239,7 +242,7 @@ export default {
       return this.$store.getters['card/getCertificateLoading']
     }
   },
-  components: { Loading },
+  components: { VerifyCertificatesComponent, Loading },
   mixins: [copyMixin]
 }
 </script>

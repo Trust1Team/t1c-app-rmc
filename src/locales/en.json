@@ -151,5 +151,13 @@
   },
   "pinpad": {
     "Enter PIN code": "Enter PIN code"
+  },
+  "verify": {
+    "certificates": {
+      "validating": "Validating certificate chain",
+      "success": "Successfully validated certificate chain",
+      "warning": "Certificate chain validation warning",
+      "error": "Certificate chain is not valid"
+    }
   }
 }
