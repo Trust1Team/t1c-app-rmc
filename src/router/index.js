@@ -3,6 +3,8 @@ import SideMenu from '../layouts/side-menu/Main.vue'
 import Home from '../views/home/Main.vue'
 import Download from '../views/download/Main.vue'
 import Generic from '../views/generic/Main.vue'
+import BeidModule from '../views/beid-module/Main.vue'
+import BeidView from '../views/beid-module/BeidView.vue'
 import Admin from '../views/admin/Main.vue'
 import Contact from '../views/contact/Main.vue'
 import ErrorPage from '../views/_framework/error-page/Main'
@@ -33,16 +35,14 @@ const routes = [
         component: Admin
       },
       {
-        path: 'modules',
-        name: 'side-menu-modules',
-        component: Home,
-        children: [
-          {
-            path: '/beid',
-            name: 'side-menu-modules-beid',
-            component: Home
-          }
-        ]
+        path: 'beid',
+        name: 'side-menu-modules-beid',
+        component: BeidModule
+      },
+      {
+        path: 'beid/view',
+        name: 'side-menu-modules-beid-view',
+        component: BeidView
       },
       {
         path: 'contact',
