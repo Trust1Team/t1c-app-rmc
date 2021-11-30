@@ -10,8 +10,6 @@
       </div>
     </div>
 
-    <div class="w-full border-t border-gray-200 dark:border-dark-5 mt-5"></div>
-
     <div class="binary-os intro-x box">
       <h3>
         <i class="fab fa-windows"></i> {{ $t("installation.windowsheader") }}
@@ -198,13 +196,13 @@ export default {
 <style scoped>
 
 .binary-os {
+  margin-top: 20px;
   flex-grow: 1;
   margin-left: 10px;
   margin-right: 10px;
   font-size: 1.4rem;
   width: 400px;
   margin-bottom: 20px;
-  border: 1px solid #f6f8fa;
   background-color: #f6f8fa;
   border-radius: 5px;
   justify-content: center;
