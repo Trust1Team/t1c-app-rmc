@@ -130,8 +130,8 @@
   },
   "cardActions": {
     "header": "Actions",
-    "legalCopy": "Print legal copy",
-    "checkPin": "Check pin code"
+    "legalCopy": "Sign uploaded document",
+    "checkPin": "Verify pin code"
   },
   "installation": {
     "welcome": "Welcome to the web application {0} of Trust1Team!",
@@ -147,9 +147,18 @@
     "macosintel": "MacOS Intel",
     "windowsheader": "Windows",
     "macosheader": "MacOS",
-    "linuxheader": "Linux"
+    "linuxheader": "Linux",
+    "help": "When the Trust1Connector is installed you can refresh this page to continue."
   },
   "pinpad": {
     "Enter PIN code": "Enter PIN code"
+  },
+  "verify": {
+    "certificates": {
+      "validating": "Validating certificate chain",
+      "success": "Successfully validated certificate chain",
+      "warning": "Certificate chain validation warning",
+      "error": "Certificate chain is not valid"
+    }
   }
 }

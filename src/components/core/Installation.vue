@@ -1,5 +1,15 @@
 <template>
   <div class="binaries-container">
+
+    <div class="installation-help flex justify-evenly">
+      <div class="alert alert-primary-soft show mb-2 flex items-center justify-center installation-alert" role="alert">{{ $t("installation.help") }}</div>
+      <div class="refresh">
+        <button @click="refreshPage()" class="btn btn-primary">
+          <i class="fas fa-sync-alt refresh-icon"></i>
+        </button>
+      </div>
+    </div>
+
     <div class="binary-os intro-x box">
       <h3>
         <i class="fab fa-windows"></i> {{ $t("installation.windowsheader") }}
@@ -151,6 +161,9 @@ export default {
     }
   },
   methods: {
+    refreshPage() {
+      location.reload()
+    },
     setSelectedOS(os) {
       this.selectedOS = os
     },
@@ -183,13 +196,13 @@ export default {
 <style scoped>
 
 .binary-os {
+  margin-top: 20px;
   flex-grow: 1;
   margin-left: 10px;
   margin-right: 10px;
   font-size: 1.4rem;
   width: 400px;
   margin-bottom: 20px;
-  border: 1px solid #f6f8fa;
   background-color: #f6f8fa;
   border-radius: 5px;
   justify-content: center;
@@ -281,6 +294,23 @@ export default {
     position: relative;
     width: 100%;
   }
+}
+
+.installation-help {
+  width: 100%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.installation-alert {
+  width: 100%;
+}
+
+.refresh {
+  margin-left: 10px;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: flex-end;
 }
 
 </style>

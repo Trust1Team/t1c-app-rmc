@@ -53,7 +53,7 @@ import Trust1ConnectorService from '@/services/Trust1ConnectorService.js'
 
 import { useToast } from 'vue-toastification'
 import SigningService from '@/services/SigningService'
-import SignModal from '@/components/modules/beid/SignDialog'
+import SignModal from '@/components/modules/genericToken/SignDialog'
 
 export default {
   name: 'GenericTokenCardActions',
@@ -116,7 +116,7 @@ export default {
         pin: pin
       }
 
-      client.verifyPin('beid', data).then(res => {
+      client.verifyPin(this.getReader.card.modules[0], data).then(res => {
         if (res && res.success && res.data.verified) {
           this.$refs.pinDialog.hideDialog()
           this.pinErrorDescription = undefined
