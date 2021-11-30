@@ -162,7 +162,7 @@ export default {
   },
   methods: {
     refreshPage() {
-      location.reload()
+      this.$router.push({ name: 'side-menu-home' })
     },
     setSelectedOS(os) {
       this.selectedOS = os

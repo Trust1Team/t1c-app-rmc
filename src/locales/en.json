@@ -148,7 +148,7 @@
     "windowsheader": "Windows",
     "macosheader": "MacOS",
     "linuxheader": "Linux",
-    "help": "When the Trust1Connector is installed you can refresh this page to continue."
+    "help": "When the Trust1Connector is installed you can click the refresh button to begin."
   },
   "pinpad": {
     "Enter PIN code": "Enter PIN code"
