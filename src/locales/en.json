@@ -147,7 +147,8 @@
     "macosintel": "MacOS Intel",
     "windowsheader": "Windows",
     "macosheader": "MacOS",
-    "linuxheader": "Linux"
+    "linuxheader": "Linux",
+    "help": "When the Trust1Connector is installed you can refresh this page to continue."
   },
   "pinpad": {
     "Enter PIN code": "Enter PIN code"
