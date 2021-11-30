@@ -3,7 +3,7 @@
   <div class="top-bar mb-3">
     <!-- BEGIN: Breadcrumb -->
     <div class="-intro-x breadcrumb mr-auto hidden sm:flex">
-      <a href="">Read my cards</a>
+      <router-link :to="{ name: 'side-menu-home' }">Read my cards</router-link>
       <ChevronRightIcon class="breadcrumb__icon" />
       <a href="" class="breadcrumb--active">{{ currentRouteName }}</a>
     </div>
@@ -42,6 +42,8 @@ export default defineComponent({
         return 'Admin'
       } else if (route === 'side-menu-contact') {
         return 'Contact'
+      } else if (route == 'side-menu-download') {
+        return 'Download'
       } else {
         return 'Home'
       }

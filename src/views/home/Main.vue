@@ -35,28 +35,8 @@
           </div>
         </div>
       </div>
-      <div v-if="pageView === 2">
-        <div class="go-back">
-          <button @click="goBack()" class="btn btn-primary">
-            <i class="fas fa-arrow-left go-back-icon"></i>
-          </button>
-        </div>
-
-        <div class="loading">
-          <loading v-if="getDataLoading" icon="bars" size="40"></loading>
-        </div>
-        <ModuleSwitch />
-      </div>
     </div>
     <Consent v-if="getInstalled && !getConsent" @consented="consented" />
-
-    <div class="installer" v-if="!getInstalled">
-      <i18n-t keypath="installation.welcome" tag="h1" class="text-4xl font-medium my-16">
-        <span class="highlight">Read My Cards</span>
-      </i18n-t>
-      <!-- <h2>{{ $t("installation.install") }}</h2> -->
-      <Installation />
-    </div>
   </div>
 </template>
 
@@ -65,9 +45,6 @@
 import Trust1ConnectorService from '@/services/Trust1ConnectorService.js'
 import ReadersList from '@/components/core/ReadersList'
 import Consent from '@/components/core/Consent'
-import Installation from '@/components/core/Installation'
-import Loading from '@/global-components/loading-icon/Main'
-import ModuleSwitch from '@/components/modules/ModuleSwitch'
 import Pinpad from '@/components/UIComponents/Pinpad'
 import Error from '@/components/UIComponents/Error'
 
@@ -96,7 +73,7 @@ export default {
           .dispatch('reader/setSelectedPinType', this.pinType ? 'Can' : 'Pin')
           .then(() => {
             this.getAllData()
-            this.pageView = 2
+            this.$router.push({ name: 'side-menu-generic ' })
           })
       })
     },
@@ -116,7 +93,7 @@ export default {
                     this.pageView = 1
                   } else {
                     this.getAllData()
-                    this.pageView = 2
+                    this.$router.push({ name: 'side-menu-generic' })
                   }
                 })
             } else {
@@ -127,10 +104,6 @@ export default {
             console.error('cannot select reader')
           }
         )
-    },
-    goBack() {
-      this.resetError()
-      this.pageView = 0
     },
     resetError() {
       this.error = null
@@ -264,13 +237,15 @@ export default {
         Trust1ConnectorService.setClient(res)
         if (this.getReader) {
           this.getAllData()
-          this.pageView = 2
+          this.router.push({ name: 'side-menu-generic' })
         }
       },
       (err) => {
         if (err.code === '814501' || err.code === '814501') {
           this.installed()
           Trust1ConnectorService.setErrorClient(err.client)
+        } else {
+          this.$router.push({ name: 'side-menu-download' })
         }
       }
     )
@@ -302,9 +277,6 @@ export default {
     Pinpad,
     ReadersList,
     Consent,
-    ModuleSwitch,
-    Loading,
-    Installation,
     Error
   }
 }

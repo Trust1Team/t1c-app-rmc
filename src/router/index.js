@@ -1,7 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import SideMenu from '../layouts/side-menu/Main.vue'
-// import TopMenu from '../layouts/top-menu/Main.vue'
 import Home from '../views/home/Main.vue'
+import Download from '../views/download/Main.vue'
+import Generic from '../views/generic/Main.vue'
 import Admin from '../views/admin/Main.vue'
 import Contact from '../views/contact/Main.vue'
 import ErrorPage from '../views/_framework/error-page/Main'
@@ -15,6 +16,16 @@ const routes = [
         path: '/',
         name: 'side-menu-home',
         component: Home
+      },
+      {
+        path: '/download',
+        name: 'side-menu-download',
+        component: Download
+      },
+      {
+        path: '/generic',
+        name: 'side-menu-generic',
+        component: Generic
       },
       {
         path: 'admin',
