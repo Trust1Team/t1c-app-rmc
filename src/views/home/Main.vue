@@ -5,7 +5,13 @@
         <Error :text="error" />
       </div>
       <div v-if="pageView === 0">
+        <div class="readers-header mt-6">
+          <h1 class="font-medium text-4xl">{{ $t("readersList.Choose your Reader") }}</h1>
+          <p class="mt-3">{{ $t("readersList.askToSelect") }}</p>
+        </div>
+
         <ReadersList
+          :selectable="true"
           :unknown-modules-disabled="true"
           @readerSelected="readerSelected($event)"
         />
@@ -21,15 +27,11 @@
                 id="pinTypeSwitch"
                 v-model="pinType"
               />
-              <label class="form-check-label" for="pinTypeSwitch" v-if="pinType"
-                >Can</label
-              >
+              <label class="form-check-label" for="pinTypeSwitch" v-if="pinType">Can</label>
               <label
                 class="form-check-label"
                 for="pinTypeSwitch"
-                v-if="!pinType"
-                >Pin</label
-              >
+                v-if="!pinType">Pin</label>
             </div>
             <pinpad @confirmPin="pinSelected"></pinpad>
           </div>
@@ -296,17 +298,12 @@ h2 {
   margin-bottom: 60px;
 }
 
-.highlight {
-  color: #e05512;
+.readers-header {
+  text-align: center;
 }
 
-.go-back {
-  width: 100%;
-  display: flex;
-}
-
-.go-back-icon {
-  transition: all 0.2s ease-in;
+.readers-header h1 {
+  color: #d74112;
 }
 
 .go-back button:hover .go-back-icon {

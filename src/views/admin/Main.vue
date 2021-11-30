@@ -8,7 +8,7 @@
       <UserInfo :info="info" />
 
       <h1 class="text-4xl font-medium my-4">{{ $t("admin.reader") }}</h1>
-      <AdminReadersList />
+      <ReadersList />
 
       <h1 class="text-4xl font-medium my-4">{{ $t("admin.dependency") }}</h1>
       <DependencyInfo />
@@ -23,7 +23,7 @@
 import Trust1ConnectorService from '../../services/Trust1ConnectorService'
 import DeviceInfo from './DeviceInfo'
 import UserInfo from './UserInfo'
-import AdminReadersList from './AdminReadersList'
+import ReadersList from '@/components/core/ReadersList'
 import DependencyInfo from './DependencyInfo'
 import Installation from '../../components/core/Installation'
 import router from '@/router'
@@ -73,7 +73,7 @@ export default {
   },
   computed: {},
   components: {
-    AdminReadersList,
+    ReadersList,
     DeviceInfo,
     UserInfo,
     DependencyInfo,
