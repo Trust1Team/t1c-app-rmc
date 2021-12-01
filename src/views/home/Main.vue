@@ -298,14 +298,6 @@ h2 {
   margin-bottom: 60px;
 }
 
-.readers-header {
-  text-align: center;
-}
-
-.readers-header h1 {
-  color: #d74112;
-}
-
 .go-back button:hover .go-back-icon {
   transform: translateX(-3px);
 }

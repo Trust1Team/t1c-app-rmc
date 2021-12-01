@@ -1,9 +1,10 @@
 <template>
-  <div>
-    <div class="go-back">
+  <div class="container">
+    <div class="go-back flex flex-row">
       <button @click="this.$router.go(-1)" class="btn btn-primary">
         <i class="fas fa-arrow-left go-back-icon"></i>
       </button>
+      <h1 class="font-medium text-4xl">{{ $t("module.token.header") }}</h1>
     </div>
 
     <div class="loading">
@@ -21,7 +22,7 @@ import store from '@/store'
 export default {
   name: 'Generic',
   beforeRouteEnter (to, from, next) {
-    if (!store.getters['reader/getSelectedReader'] == true) {
+    if (!store.getters['reader/getSelectedReader'] === true) {
       next('/')
     } else {
       next()
@@ -53,5 +54,9 @@ export default {
   display: flex;
   justify-content: center;
   margin: 10px;
+}
+
+.go-back button {
+  margin-right: 10px;
 }
 </style>

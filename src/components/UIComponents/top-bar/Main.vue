@@ -4,8 +4,13 @@
     <!-- BEGIN: Breadcrumb -->
     <div class="-intro-x breadcrumb mr-auto hidden sm:flex">
       <router-link :to="{ name: 'side-menu-home' }">Read my cards</router-link>
-      <ChevronRightIcon class="breadcrumb__icon" />
-      <a href="" class="breadcrumb--active">{{ currentRouteName }}</a>
+      <div v-for="route in currentRouteName.matched" v-bind:key="route">
+        <div v-if="route.path !== '/'">
+          <ChevronRightIcon class="breadcrumb__icon"/>
+          <a href="" class="breadcrumb--active">{{ route.name.path.fil }}</a>
+        </div>
+      </div>
+
     </div>
     <!-- END: Breadcrumb -->
   </div>
@@ -35,18 +40,9 @@ export default defineComponent({
   },
   computed: {
     currentRouteName() {
-      const route = this.$route.name
-      if (route === 'side-menu-home') {
-        return 'Home'
-      } else if (route === 'side-menu-admin') {
-        return 'Admin'
-      } else if (route === 'side-menu-contact') {
-        return 'Contact'
-      } else if (route == 'side-menu-download') {
-        return 'Download'
-      } else {
-        return 'Home'
-      }
+      // const route = this.$route.name
+      console.log(this.$route)
+      return this.$route
     }
   }
 })

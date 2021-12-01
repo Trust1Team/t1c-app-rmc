@@ -160,5 +160,10 @@
       "warning": "Certificate chain validation warning",
       "error": "Certificate chain is not valid"
     }
+  },
+  "module": {
+    "token": {
+      "header": "Token contents"
+    }
   }
 }

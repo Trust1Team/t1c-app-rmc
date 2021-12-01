@@ -38,7 +38,7 @@ const routes = [
         component: Home,
         children: [
           {
-            path: '/beid',
+            path: 'beid',
             name: 'side-menu-modules-beid',
             component: Home
           }
