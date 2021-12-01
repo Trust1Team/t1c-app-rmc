@@ -17,7 +17,7 @@
             {{ $t("certificateInformation.noCertFound") }}
           </span>
           <div v-if="getCertificateLoading" class="loading">
-            <Loading :show="getCertificateLoading" :size="20" />
+            <Loading icon="puff" :size="20" />
           </div>
         </div>
 
@@ -52,7 +52,7 @@
             {{ $t("certificateInformation.noCertFound") }}
           </span>
           <div v-if="getCertificateLoading" class="loading">
-            <Loading :show="getCertificateLoading" :size="20" />
+            <Loading icon="puff" :size="20" />
           </div>
         </div>
 
@@ -87,7 +87,7 @@
             {{ $t("certificateInformation.noCertFound") }}
           </span>
           <div v-if="getCertificateLoading" class="loading">
-            <Loading :show="getCertificateLoading" :size="20" />
+            <Loading icon="puff" :size="20" />
           </div>
         </div>
 
@@ -122,7 +122,7 @@
             {{ $t("certificateInformation.noCertFound") }}
           </span>
           <div v-if="getCertificateLoading" class="loading">
-            <Loading :show="getCertificateLoading" :size="20" />
+            <Loading icon="puff" :size="20" />
           </div>
         </div>
 
@@ -157,7 +157,7 @@
             {{ $t("certificateInformation.noCertFound") }}
           </span>
           <div v-if="getCertificateLoading" class="loading">
-            <Loading :show="getCertificateLoading" :size="20" />
+            <Loading icon="puff" :size="20" />
           </div>
         </div>
 
@@ -192,7 +192,7 @@
             {{ $t("certificateInformation.noCertFound") }}
           </span>
           <div v-if="getCertificateLoading" class="loading">
-            <Loading :show="getCertificateLoading" :size="20" />
+            <Loading icon="puff" :size="20" />
           </div>
         </div>
 
@@ -217,7 +217,7 @@
 </template>
 
 <script>
-import Loading from '../../core/Loading'
+import Loading from '@/global-components/loading-icon/Main'
 import copyMixin from '@/mixins/copyMixin'
 import VerifyTokenCertificatesComponent from '@/components/modules/VerifyTokenCertificatesComponent'
 

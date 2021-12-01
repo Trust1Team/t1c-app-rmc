@@ -232,25 +232,30 @@ export default {
   },
   created() {
     this.resetError()
-    Trust1ConnectorService.init().then(
-      (res) => {
-        this.installed()
-        this.consented()
-        Trust1ConnectorService.setClient(res)
-        if (this.getReader) {
-          this.getAllData()
-          this.router.push({ name: 'side-menu-generic' })
-        }
-      },
-      (err) => {
-        if (err.code === '814501' || err.code === '814501') {
+    if (Trust1ConnectorService.getErrorClient() || Trust1ConnectorService.getClient()) {
+      this.installed()
+      if (Trust1ConnectorService.getClient()) this.consented()
+    } else {
+      Trust1ConnectorService.init().then(
+        (res) => {
           this.installed()
-          Trust1ConnectorService.setErrorClient(err.client)
-        } else {
-          this.$router.push({ name: 'side-menu-download' })
+          this.consented()
+          Trust1ConnectorService.setClient(res)
+          if (this.getReader) {
+            this.getAllData()
+            this.router.push({ name: 'side-menu-generic' })
+          }
+        },
+        (err) => {
+          if (err.code === '814501' || err.code === '814501') {
+            this.installed()
+            Trust1ConnectorService.setErrorClient(err.client)
+          } else {
+            this.$router.push({ name: 'side-menu-download' })
+          }
         }
-      }
-    )
+      )
+    }
   },
   computed: {
     getReader() {

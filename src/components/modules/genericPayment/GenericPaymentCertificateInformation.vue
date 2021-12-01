@@ -28,7 +28,7 @@
               {{ $t("paymentCertificateInformation.noCertFound") }}
             </span>
             <div v-if="getCertificateLoading" class="loading">
-              <Loading :show="getCertificateLoading" :size="20" />
+              <Loading icon="puff" :size="20" />
             </div>
           </div>
 
@@ -59,7 +59,7 @@
               {{ $t("paymentCertificateInformation.noCertFound") }}
             </span>
             <div v-if="getCertificateLoading" class="loading">
-              <Loading :show="getCertificateLoading" :size="20" />
+              <Loading icon="puff" :size="20" />
             </div>
           </div>
 
@@ -77,7 +77,7 @@
 </template>
 
 <script>
-import Loading from '../../core/Loading'
+import Loading from '@/global-components/loading-icon/Main'
 
 export default {
   name: 'GenericPaymentCertificateInformation',

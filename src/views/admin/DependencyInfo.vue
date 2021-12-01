@@ -12,7 +12,7 @@
       </div>
       <div class="status-item-icon">
         <div class="loading" v-if="!t1c">
-          <Loading :size="30" :show="t1c"></Loading>
+          <Loading :size="30" icon="puff"></Loading>
         </div>
         <div v-if="t1c">
           <i v-if="t1c.error" class="fas fa-exclamation-circle fa-2x red"></i>
@@ -31,7 +31,7 @@
       </div>
       <div class="status-item-icon">
         <div class="loading" v-if="!validation">
-          <Loading :size="30" :show="validation"></Loading>
+          <Loading :size="30" icon="puff"></Loading>
         </div>
         <div v-if="validation">
           <i
@@ -73,7 +73,7 @@
 
 <script>
 import DistributionService from '../../services/DistributionService'
-import Loading from '../../components/core/Loading'
+import Loading from '@/global-components/loading-icon/Main'
 import ValidationService from '../../services/ValidationService'
 import Trust1ConnectorService from '../../services/Trust1ConnectorService'
 
@@ -92,46 +92,40 @@ export default {
       this.t1c = null
       this.validation = null
 
-      Trust1ConnectorService.init().then(
-        (client) => {
-          client
-            .core()
-            .info()
-            .then(
-              (res) => {
-                if (res.t1CInfoAPI.status === 'ACTIVATED') {
-                  this.t1c = {
-                    error: false,
-                    success: true,
-                    warning: false
-                  }
-                } else {
-                  this.t1c = {
-                    error: false,
-                    success: false,
-                    warning: true
-                  }
-                }
-              },
-              (err) => {
-                this.t1c = {
-                  error: false,
-                  success: false,
-                  warning: true
-                }
-                console.log(err)
+      const client = Trust1ConnectorService.getClient()
+      if (client != null) {
+        client.core().info().then(
+          (res) => {
+            if (res.t1CInfoAPI.status === 'ACTIVATED') {
+              this.t1c = {
+                error: false,
+                success: true,
+                warning: false
               }
-            )
-        },
-        (err) => {
-          this.t1c = {
-            error: true,
-            success: false,
-            warning: false
+            } else {
+              this.t1c = {
+                error: false,
+                success: false,
+                warning: true
+              }
+            }
+          },
+          (err) => {
+            this.t1c = {
+              error: false,
+              success: false,
+              warning: true
+            }
+            console.log(err)
           }
-          console.error(err)
+        )
+      } else {
+        this.t1c = {
+          error: true,
+          success: false,
+          warning: false
         }
-      )
+      }
 
       ValidationService.getStatus().then(
         () => {

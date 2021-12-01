@@ -16,27 +16,25 @@ function makeid(length) {
 }
 
 export default {
-  init() {
+  // url and port variables are used when we want to force reinitalise otherwise we just return the already existing client
+  init(url, port) {
     // Return a initialised T1C client
-    if (client != null) {
+    if (!url && !port && client) {
       return new Promise((resolve) => {
         resolve(client)
       })
     } else {
-      return T1CClient.initialize(
-        new T1CConfig(
-          new T1CConfigOptions(
-            window.VUE_APP_ENV_T1C_URL
-              ? window.VUE_APP_ENV_T1C_URL
-              : 'https://t1c.t1t.io',
-            window.VUE_APP_ENV_T1C_PORT ? window.VUE_APP_ENV_T1C_PORT : 51783,
-            null,
-            null,
-            null,
-            location.hostname
-          )
+      const config = new T1CConfig(
+        new T1CConfigOptions(
+          url || (window.VUE_APP_ENV_T1C_URL ? window.VUE_APP_ENV_T1C_URL : 'https://t1c.t1t.io'),
+          port || (window.VUE_APP_ENV_T1C_PORT ? window.VUE_APP_ENV_T1C_PORT : 51783),
+          url || (window.VUE_APP_ENV_T1C_URL ? window.VUE_APP_ENV_T1C_URL : 'https://t1c.t1t.io'),
+          port || (window.VUE_APP_ENV_T1C_PORT ? window.VUE_APP_ENV_T1C_PORT : 51783),
+          null,
+          location.hostname
         )
       )
+      return T1CClient.initialize(config)
     }
   },
   getClient() {

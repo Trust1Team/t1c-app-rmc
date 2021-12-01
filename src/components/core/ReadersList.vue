@@ -151,27 +151,23 @@ export default {
     getReaders() {
       this.readers = null
       this.loading = true
-      Trust1ConnectorService.init().then(
-        (client) => {
-          client
-            .core()
-            .readers()
-            .then(
-              (res) => {
-                this.loading = false
-                this.readers = res.data
-              },
-              (err) => {
-                this.loading = false
-                console.log(err)
-              }
-            )
-        },
-        (err) => {
-          this.loading = false
-          console.error(err)
-        }
-      )
+      const client = Trust1ConnectorService.getClient()
+      if (client != null) {
+        client.core().readers().then(
+          (res) => {
+            this.loading = false
+            this.readers = res.data
+          },
+          (err) => {
+            this.loading = false
+            this.readers = []
+            console.log(err)
+          }
+        )
+      } else {
+        this.readers = []
+        this.loading = false
+      }
     },
     selectReader(reader) {
       if (reader.card) {

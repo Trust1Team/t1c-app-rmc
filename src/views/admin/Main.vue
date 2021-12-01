@@ -26,7 +26,6 @@ import UserInfo from './UserInfo'
 import ReadersList from '@/components/core/ReadersList'
 import DependencyInfo from './DependencyInfo'
 import Installation from '../../components/core/Installation'
-import router from '@/router'
 
 export default {
   name: 'Admin',
@@ -38,38 +37,21 @@ export default {
   },
   methods: {},
   created() {
-    Trust1ConnectorService.init().then(
-      (res) => {
-        Trust1ConnectorService.setClient(res)
-        res
-          .core()
-          .version()
-          .then(
-            (version) => {
-              this.jsVersion = version
-            },
-            (err) => {
-              console.error(err)
-            }
-          )
-        res
-          .core()
-          .info()
-          .then(
-            (infoRes) => {
-              this.info = infoRes
-            },
-            (err) => {
-              console.error(err)
-            }
-          )
+    const client = Trust1ConnectorService.getClient()
+    if (client != null) {
+      client.core().version().then((version) => {
+        this.jsVersion = version
       },
       (err) => {
-        console.log(err)
-        Trust1ConnectorService.setErrorClient(err.client)
-        router.push({ name: 'Home' })
-      }
-    )
+        console.error(err)
+      })
+      client.core().info().then((infoRes) => {
+        this.info = infoRes
+      },
+      (err) => {
+        console.error(err)
+      })
+    }
   },
   computed: {},
   components: {

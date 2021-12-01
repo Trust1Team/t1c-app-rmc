@@ -148,7 +148,8 @@
     "windowsheader": "Windows",
     "macosheader": "MacOS",
     "linuxheader": "Linux",
-    "help": "When the Trust1Connector is installed you can click the refresh button to begin."
+    "help": "When the Trust1Connector is installed you can click the refresh button to begin.",
+    "config": "The download links will not work with the currently set configuration. {0}:{1}"
   },
   "pinpad": {
     "Enter PIN code": "Enter PIN code"
@@ -168,12 +169,27 @@
   },
   "settings": {
     "header": "Settings",
-    "subtitle": "Here you can adjust application settings",
+    "subtitle": "Here you can adjust the web application settings",
     "application": {
-      "header": "Applications",
+      "header": "Application",
       "darkmode": {
         "title": "Dark mode",
         "subtitle" : "Setting that enables or disables the dark mode theme"
+      }
+    },
+    "trust1connector": {
+      "header": "Trust1Connector",
+      "url" : {
+        "title": "URL",
+        "subtitle" : "URL that is going to be used to contact the Trust1Connector"
+      },
+      "port" : {
+        "title": "Port",
+        "subtitle" : "Port that is going to be used to contact the Trust1Connector"
+      },
+      "init" : {
+        "title": "Re-initialise",
+        "subtitle" : "Re-initialise the Trust1Connector with the configuration values defined here"
       }
     }
   }

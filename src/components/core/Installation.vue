@@ -1,13 +1,17 @@
 <template>
   <div class="binaries-container">
 
-    <div class="installation-help flex justify-evenly">
+    <div class="flex justify-evenly w-full my-5">
       <div class="alert alert-primary-soft show mb-2 flex items-center justify-center installation-alert" role="alert">{{ $t("installation.help") }}</div>
       <div class="refresh">
         <button @click="refreshPage()" class="btn btn-primary">
           <i class="fas fa-sync-alt refresh-icon"></i>
         </button>
       </div>
+    </div>
+
+    <div v-if="!compareBaseConfig" class="flex justify-evenly w-full my-5">
+      <div class="alert alert-warning-soft show mb-2 flex items-center justify-center installation-alert" role="alert">{{ $t("installation.config", [this.getUrl, this.getPort]) }}</div>
     </div>
 
     <div class="binary-os intro-x box">
@@ -147,6 +151,7 @@
 <script>
 import DistributionService from '../../services/DistributionService'
 import { useToast } from 'vue-toastification'
+import Trust1ConnectorService from '@/services/Trust1ConnectorService'
 
 export default {
   name: 'Installation',
@@ -188,7 +193,25 @@ export default {
       }
     )
   },
-  computed: {}
+  computed: {
+    compareBaseConfig() {
+      const client = Trust1ConnectorService.getClient() || Trust1ConnectorService.getErrorClient()
+      if (client != null) {
+        console.log(client.config()._t1cApiUrl, this.getUrl)
+        console.log(client.config()._t1cProxyPort, this.getPort)
+        console.log(client.config()._t1cApiUrl === this.getUrl && client.config()._t1cProxyPort === this.getPort)
+        return client.config()._t1cApiUrl === this.getUrl && client.config()._t1cProxyPort === this.getPort
+      } else {
+        return true
+      }
+    },
+    getUrl() {
+      return window.VUE_APP_ENV_T1C_URL ? window.VUE_APP_ENV_T1C_URL : 'https://t1c.t1t.io'
+    },
+    getPort() {
+      return window.VUE_APP_ENV_T1C_PORT ? window.VUE_APP_ENV_T1C_PORT : 51783
+    }
+  }
 }
 </script>
 
@@ -294,12 +317,6 @@ export default {
     position: relative;
     width: 100%;
   }
-}
-
-.installation-help {
-  width: 100%;
-  margin-top: 20px;
-  margin-bottom: 20px;
 }
 .installation-alert {
   width: 100%;
