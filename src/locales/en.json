@@ -165,5 +165,16 @@
     "token": {
       "header": "Token contents"
     }
+  },
+  "settings": {
+    "header": "Settings",
+    "subtitle": "Here you can adjust application settings",
+    "application": {
+      "header": "Applications",
+      "darkmode": {
+        "title": "Dark mode",
+        "subtitle" : "Setting that enables or disables the dark mode theme"
+      }
+    }
   }
 }

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <DarkModeSwitcher />
+<!--    <DarkModeSwitcher />-->
     <MobileMenu />
     <div class="flex">
       <!-- BEGIN: Side Menu -->
@@ -9,10 +9,10 @@
         <router-link
           :to="{ name: 'side-menu-home' }"
           tag="a"
-          class="intro-x flex items-center pl-5 pt-4"
+          class="flex items-center pl-5 pt-4"
         >
           <img
-            alt="Icewall Tailwind HTML Admin Template"
+            alt="Read my cards"
             class="w-6"
             src="@/assets/images/t1c-logo.png"
           />

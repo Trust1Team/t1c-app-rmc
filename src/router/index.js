@@ -5,6 +5,7 @@ import Download from '../views/download/Main.vue'
 import Generic from '../views/generic/Main.vue'
 import Admin from '../views/admin/Main.vue'
 import Contact from '../views/contact/Main.vue'
+import Settings from '../views/settings/Main.vue'
 import ErrorPage from '../views/_framework/error-page/Main'
 
 const routes = [
@@ -48,6 +49,11 @@ const routes = [
         path: 'contact',
         name: 'side-menu-contact',
         component: Contact
+      },
+      {
+        path: 'settings',
+        name: 'side-menu-settings',
+        component: Settings
       }
     ]
   },

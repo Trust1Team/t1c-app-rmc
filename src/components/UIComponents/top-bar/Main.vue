@@ -7,7 +7,7 @@
       <div v-for="route in currentRouteName.matched" v-bind:key="route">
         <div v-if="route.path !== '/'">
           <ChevronRightIcon class="breadcrumb__icon"/>
-          <a href="" class="breadcrumb--active">{{ route.name.path.fil }}</a>
+          <router-link :to="{ name: route.name }" class="breadcrumb--active bc">{{ getFinalOfPath(route.path) }}</router-link>
         </div>
       </div>
 
@@ -38,12 +38,21 @@ export default defineComponent({
       hideSearchDropdown
     }
   },
+  methods: {
+    getFinalOfPath(p) {
+      return p.split('/').pop()
+    }
+  },
   computed: {
     currentRouteName() {
-      // const route = this.$route.name
-      console.log(this.$route)
       return this.$route
     }
   }
 })
 </script>
+
+<style scoped>
+.bc {
+  text-transform: capitalize;
+}
+</style>

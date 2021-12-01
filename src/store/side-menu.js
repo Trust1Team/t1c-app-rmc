@@ -28,6 +28,11 @@ const state = () => {
         icon: 'InboxIcon',
         pageName: 'side-menu-contact',
         title: 'Contact'
+      },
+      {
+        icon: 'SettingsIcon',
+        pageName: 'side-menu-settings',
+        title: 'Settings'
       }
     ]
   }
