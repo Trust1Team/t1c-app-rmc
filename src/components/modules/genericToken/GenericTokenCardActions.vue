@@ -10,8 +10,8 @@
                    class="w-px h-px opacity-0 overflow-hidden absolute" @change="handleUpload" ref="file" accept=".pdf" />
 
             <label for="assetsFieldHandle" class="block cursor-pointer">
-              You can drop the desired PDF file to sign
-              or <span class="underline">click here</span> to upload the PDF file
+              {{ $t("cardActions.You can drop the desired PDF file to sign or") }}
+              <span class="underline">{{ $t("cardActions.click here") }}</span> {{ $t("cardActions.to upload the PDF file") }}
             </label>
             <ul class="mt-4" v-if="files && files.length" v-cloak>
               <li class="file-item flex" v-for="file in files" :key="file">
@@ -75,10 +75,10 @@ export default {
     handleUpload() {
       const files = this.$refs.file.files
       if (files.length > 1) {
-        this.toast.error('Cannot upload more then 1 file')
+        this.toast.error(this.$t('cardActions.singleFile'))
         this.resetForm()
       } else if (files[0] && !files[0].name.toLowerCase().endsWith('.pdf')) {
-        this.toast.error('File must be a PDF')
+        this.toast.error(this.$t('cardActions.fileType'))
         this.resetForm()
       } else {
         this.files = this.$refs.file.files
@@ -120,11 +120,11 @@ export default {
         if (res && res.success && res.data.verified) {
           this.$refs.pinDialog.hideDialog()
           this.pinErrorDescription = undefined
-          this.toast.success('Successfully verified the pin code')
+          this.toast.success(this.$t('cardActions.verifiedPin'))
         } else {
           this.$refs.pinDialog.hideDialog()
           this.pinErrorDescription = 'Pin code is not correct'
-          this.toast.error('Pin code is not correct')
+          this.toast.error(this.$t('cardActions.incorrectPin'))
         }
       }, err => {
         this.pinErrorDescription = err.description

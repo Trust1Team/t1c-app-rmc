@@ -6,7 +6,7 @@
   <div class="grid grid-cols-12 gap-6 mt-5">
     <div class="intro-y col-span-12 flex flex-wrap sm:flex-nowrap items-center mt-2">
       <div class="hidden md:block mx-auto text-gray-600" v-if="readers">
-        Showing {{ readers.length }} reader(s)
+        {{ $t("readersList.Showing") }} {{ readers.length }} {{ $t("readersList.reader(s)") }}
       </div>
       <div class="w-full sm:w-auto mt-3 sm:mt-0 sm:ml-auto md:ml-0">
         <div class="refresh">
@@ -21,10 +21,10 @@
       <table class="table table-report -mt-2">
         <thead>
         <tr>
-          <th class="whitespace-nowrap">READER NAME</th>
-          <th class="text-center whitespace-nowrap">MODULE</th>
-          <th class="text-center whitespace-nowrap">STATUS</th>
-          <th v-if="selectable" class="text-center whitespace-nowrap">ACTIONS</th>
+          <th class="whitespace-nowrap">{{ $t("readersList.Reader name") }}</th>
+          <th class="text-center whitespace-nowrap">{{ $t("readersList.Module") }}</th>
+          <th class="text-center whitespace-nowrap">{{ $t("readersList.Status") }}</th>
+          <th v-if="selectable" class="text-center whitespace-nowrap">{{ $t("readersList.Actions") }}</th>
         </tr>
         </thead>
         <tbody>
@@ -116,12 +116,19 @@
 import Trust1ConnectorService from '../../services/Trust1ConnectorService'
 import Loading from '@/global-components/loading-icon/Main'
 import copyMixin from '@/mixins/copyMixin'
+import { useToast } from 'vue-toastification'
 
 export default {
   name: 'ReadersList',
   props: {
     unknownModulesDisabled: Boolean,
     selectable: Boolean
+  },
+  setup() {
+    const toast = useToast()
+    return {
+      toast
+    }
   },
   data() {
     return {
@@ -161,7 +168,7 @@ export default {
           (err) => {
             this.loading = false
             this.readers = []
-            console.log(err)
+            this.toast.error(err)
           }
         )
       } else {

@@ -18,7 +18,7 @@
       </div>
       <div v-if="pageView === 1">
         <div class="pin-pad-container">
-          <h1>Enter your pin/can to unlock the card</h1>
+          <h1>{{ $t("pinpad.Unlock card") }}</h1>
           <div class="pin-pad">
             <div class="form-check form-switch form-pace">
               <input
@@ -49,9 +49,16 @@ import ReadersList from '@/components/core/ReadersList'
 import Consent from '@/components/core/Consent'
 import Pinpad from '@/components/UIComponents/Pinpad'
 import Error from '@/components/UIComponents/Error'
+import { useToast } from 'vue-toastification'
 
 export default {
   name: 'Home',
+  setup() {
+    const toast = useToast()
+    return {
+      toast
+    }
+  },
   data() {
     return {
       pageView: 0,
@@ -99,11 +106,11 @@ export default {
                   }
                 })
             } else {
-              console.error('Choosen reader could not be found anymore')
+              this.toast.error(this.$t('readersList.Reader not found'))
             }
           },
           () => {
-            console.error('cannot select reader')
+            this.toast.error(this.$t('readersList.Cannot select reader'))
           }
         )
     },
@@ -156,9 +163,8 @@ export default {
                             })
                         },
                         (err) => {
-                          this.error =
-                            'Could not fetch allCerts: ' + err.description
-                          console.error('Could not fetch allCerts', err)
+                          this.toast.error(this.$t('readersList.Could not fetch allCerts') + err.description)
+                          console.error('Could not fetch allCerts: ' + err)
                         }
                       )
                     })
@@ -166,8 +172,8 @@ export default {
                     this.$store.dispatch('card/setApplications', allDataRes)
                   },
                   (err) => {
-                    this.error = 'Could not fetch alldata: ' + err.description
-                    console.error('Could not fetch alldata', err)
+                    this.toast.error(this.$t('readersList.Could not fetch allData') + err.description)
+                    console.error('Could not fetch allData: ' + err)
                   }
                 )
                 c.readApplicationData(module).then(
@@ -179,8 +185,7 @@ export default {
                       })
                   },
                   (err) => {
-                    this.error =
-                      'Could not fetch readApplicationData: ' + err.description
+                    this.toast.error(this.$t('readersList.Could not fetch readApplicationData') + err.description)
                     console.error('Could not fetch readApplicationData', err)
                   }
                 )
@@ -195,7 +200,7 @@ export default {
                   },
                   (err) => {
                     this.$store.dispatch('card/setDataLoading', false)
-                    this.error = 'Could not fetch alldata: ' + err.description
+                    this.toast.error(this.$t('readersList.Could not fetch allData') + err.description)
                     console.error('Could not fetch alldata', err)
                   }
                 )
@@ -212,19 +217,19 @@ export default {
                   },
                   (err) => {
                     this.$store.dispatch('card/setCertificateLoading', false)
-                    this.error = 'Could not fetch allCerts: ' + err.description
+                    this.toast.error(this.$t('readersList.Could not fetch allCerts') + err.description)
                     console.error('Could not fetch allCerts', err)
                   }
                 )
               }
             },
             (err) => {
-              this.error = err.description
+              this.toast.error(err.description)
               console.error(err)
             }
           )
         } else {
-          this.error = 'No module was found for selected reader'
+          this.toast.error(this.$t('readersList.No module was found for selected reader'))
           console.error('No module was found for selected reader')
         }
       }

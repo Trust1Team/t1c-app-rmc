@@ -12,7 +12,9 @@
     "Other" : "Other",
     "Certificate manager" : "Certificate manager",
     "Admin panel" : "Admin panel",
-    "Contact us" : "Contact us"
+    "Contact us" : "Contact us",
+    "service": "This service is provided free of charge, and is intended for private use only. No personal info is saved when using this service.",
+    "Copyright": "Copyright 2021 Trust1Team - All rights reserved"
   },
   "deviceInfo": {
     "api-version": "API version",
@@ -51,7 +53,19 @@
     "readersNotFound": "Could not find any readers connected",
     "askToConnect": "Please connect your smart card reader and refresh the list",
     "No module detected": "No module detected",
-    "Select Module": "Select Module"
+    "Select Module": "Select Module",
+    "Reader not found": "Chosen reader cannot be found anymore",
+    "Cannot select reader": "Cannot select reader",
+    "Could not fetch allCerts": "Could not fetch allCerts: ",
+    "Could not fetch allData": "Could not fetch allData: ",
+    "Could not fetch readApplicationData": "Could not fetch readApplicationData: ",
+    "No module was found for selected reader": "No module was found for selected reader",
+    "Reader name": "READER NAME",
+    "Module": "MODULE",
+    "Status": "STATUS",
+    "Actions": "ACTIONS",
+    "Showing": "Showing",
+    "reader(s)": "reader(s)"
   },
   "admin": {
     "binaries": "Trust1Connector installers",
@@ -96,7 +110,11 @@
     "All certificates are valid": "All certificates are valid",
     "Click to check the pin": "Click to check the pin",
     "Print legal copy of card": "Print legal copy of card",
-    "Show generated information": "Show generated information"
+    "Show generated information": "Show generated information",
+    "Card number": "Card number",
+    "Expires": "Expires",
+    "Identification number of the National Register": "Identification number of the National Register",
+    "Place of issue": "Place of issue"
   },
   "addressInformation": {
     "header": "Address details",
@@ -131,7 +149,15 @@
   "cardActions": {
     "header": "Actions",
     "legalCopy": "Sign uploaded document",
-    "checkPin": "Verify pin code"
+    "checkPin": "Verify pin code",
+    "singleFile": "Cannot upload more than one file",
+    "fileType": "File must be a PDF",
+    "verifiedPin": "Successfully verified pin",
+    "incorrectPin": "Pin code is note correct",
+    "Successfully signed": "Successfully signed",
+    "Drop file": "You can drop the desired PDF file to sign or",
+    "click here": "click here",
+    "to upload PDF file": "to upload PDF file"
   },
   "installation": {
     "welcome": "Welcome to the web application {0} of Trust1Team!",
@@ -149,10 +175,12 @@
     "macosheader": "MacOS",
     "linuxheader": "Linux",
     "help": "When the Trust1Connector is installed you can click the refresh button to begin.",
-    "config": "The download links will not work with the currently set configuration. {0}:{1}"
+    "config": "The download links will not work with the currently set configuration. {0}:{1}",
+    "unobtainableURI": "Could not find URI"
   },
   "pinpad": {
-    "Enter PIN code": "Enter PIN code"
+    "Enter PIN code": "Enter PIN code",
+    "Unlock card": "Enter your pin/can to unlock the card"
   },
   "verify": {
     "certificates": {
@@ -189,8 +217,17 @@
       },
       "init" : {
         "title": "Re-initialise",
-        "subtitle" : "Re-initialise the Trust1Connector with the configuration values defined here"
+        "subtitle" : "Re-initialise the Trust1Connector with the configuration values defined here",
+        "Trust1Connector initialized": "Trust1Connector initialized",
+        "initialization failed": "Could not initialize Trust1Connector"
       }
     }
+  },
+  "signDialog": {
+    "Sign": "Sign",
+    "Download": "Download",
+    "Cancel": "Cancel",
+    "Enter PIN": "Please enter your pin code to sign the document",
+    "Document successfully signed": "You have successfully signed your document. It is ready to download"
   }
 }

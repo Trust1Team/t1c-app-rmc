@@ -3,7 +3,7 @@
     <div class="card-content">
       <div class="card-row">
         <div>
-          <p><i>Identification number of the National Register</i></p>
+          <p><i>{{ $t("genericCardView.Identification number of the National Register") }}</i></p>
           <p class="bold">{{ biometric.chipNumber }}</p>
         </div>
         <div class="barcode">
@@ -13,7 +13,7 @@
 
       <div class="card-row">
         <div>
-          <p><i>Place of issue</i></p>
+          <p><i>{{ $t("genericCardView.Place of issue") }}</i></p>
           <p class="bold">{{ biometric.cardDeliveryMunicipality }}</p>
         </div>
       </div>

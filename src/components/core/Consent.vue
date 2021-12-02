@@ -16,8 +16,16 @@
 <script>
 import Trust1ConnectorService from '../../services/Trust1ConnectorService'
 import copyMixin from '@/mixins/copyMixin'
+import { useToast } from 'vue-toastification'
+
 export default {
   name: 'Consent',
+  setup() {
+    const toast = useToast()
+    return {
+      toast
+    }
+  },
   data() {
     return {
       consentData: null
@@ -45,7 +53,7 @@ export default {
             this.copyConsentToClipboard(this.consentData)
           },
           (err) => {
-            console.error(err)
+            this.toast.error(err)
           }
         )
     },
