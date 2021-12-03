@@ -15,6 +15,16 @@ const state = () => {
             icon: 'CreditCardIcon',
             pageName: 'side-menu-modules-beid',
             title: 'Belgian eID'
+          },
+          {
+            icon: 'CreditCardIcon',
+            pageName: 'side-menu-modules-certigna',
+            title: 'Certigna'
+          },
+          {
+            icon: 'CreditCardIcon',
+            pageName: 'side-menu-modules-certinomis',
+            title: 'Certinomis'
           }
         ]
       },
