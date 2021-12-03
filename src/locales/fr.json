@@ -12,7 +12,9 @@
     "Other" : "Autres",
     "Certificate manager" : "Gestionnaire de Certificats",
     "Admin panel" : "Panneau de Configuration",
-    "Contact us" : "Contactez-nous"
+    "Contact us" : "Contactez-nous",
+    "service": "Ce service est fourni gratuitement et est uniquement destiné à un usage privé. Aucune information personnelle n'est conservé pendant l'utilisation de ce service.",
+    "Copyright": "Copyright 2021 Trust1Team - Tous droits réservés"
   },
   "deviceInfo": {
     "api-version": "Version API",
@@ -21,7 +23,7 @@
     "Trust1Connector javascript": "Trust1Connector javascript",
     "Device": "Dispositif",
     "Device ID": "ID du Dispositif",
-    "Status": "Statuts",
+    "Status": "Statut",
     "Log level": "Log level",
     "Operating system": "Système d'Exploitation",
     "Platform": "Plateforme",
@@ -50,14 +52,53 @@
     "askToSelect": "Veuillez sélectionner le lecteur que vous souhaitez utiliser",
     "readersNotFound": "Nous n'avons pas trouvé de lecteurs connectés",
     "askToConnect": "Veuillez connecter votre lecteur de carte et rafraîchir la liste.",
-    "No module detected": "Aucun module détecté"
+    "No module detected": "Aucun module détecté",
+    "Select Module": "Sélectionnez un module",
+    "Reader not found": "Le lecteur choisi ne peut plus être trouvé",
+    "Cannot select reader": "Sélection de lecteur impossible",
+    "Could not fetch allCerts": "allCerts n'a pas pu être récupéré: ",
+    "Could not fetch allData": "allData n'a pas pu être récupéré: ",
+    "Could not fetch readApplicationData": "readApplicationData n'a pas pu être récupéré: ",
+    "No module was found for selected reader": "Aucun module n'a été détecté pour ce lecteur",
+    "Reader name": "READER NAME",
+    "Module": "MODULE",
+    "Status": "STATUS",
+    "Actions": "ACTIONS",
+    "Showing": "Montre",
+    "reader(s)": "lecteur(s)"
   },
   "admin": {
+    "binaries": "Trust1Connector installeurs",
     "Device information": "Informations sur le dispositif",
-    "User information": "Informations sur l'utilisateur"
+    "User information": "Informations sur l'utilisateur",
+    "reader": "Lecteurs de cartes",
+    "dependency": "Etat des dépendances",
+    "dependencyInfo": {
+      "t1cApi": "Trust1Connector API",
+      "validationService": "Service de validation",
+      "distributionServer": "Distribution Serveur"
+    }
   },
   "contact": {
-    "Contact us": "Contactez-nous"
+    "Contact us": "Contactez-nous",
+    "contactUsSubtitle": "Vous avez besoin de plus d'informations sur le Trust1Connector? Vous avez un problème avec l'application? Dites-nous tout!",
+    "Name": "Nom",
+    "Company": "Société",
+    "Email Address": "Email Adresse",
+    "Phone Number": "Numéro de téléphone",
+    "Your message": "Votre message",
+    "I want more information": "Je veux plus d'informations.",
+    "I have technical issue": "J'ai un problème technique.",
+    "Validation": "Validation",
+    "Get in Touch": "Prendre contact",
+    "I have read the": "J'ai lu la politique de ",
+    "Privacy Policy": "Politique de Confidentialité ",
+    "privacyPolicy": "Politique de Confidentialité",
+    "I agree to the": "J'accepte les ",
+    "termsCondition": "Conditions générales d'utilisation",
+    "t1tAgreement": "J'accepte que Trust1team collecte et utilise mes données personnelles fournies dans ce formulaire pour m'envoyer les nouveautés Trust1Team et des données marketing, que j'ai acceptées de recevoir en accord avec les régulations Européennes et Belges, dont la conformité GDPR. Vous pouvez vous désinscrire de cette liste à tout moment.",
+    "exportMessage": "Je veux exporter les données et les envoyer à Trust1Team pour les aider à mieux comprendre le problème que je rencontre",
+    "Submit": "Envoyer"
   },
   "fileExplorer": {
     "File explorer": "Échangeur de fichiers"
@@ -69,14 +110,124 @@
     "All certificates are valid": "Tous les certificats sont valides",
     "Click to check the pin": "Cliquez ici pour vérifier le code pin",
     "Print legal copy of card": "Imprimer une copie légale de la carte",
-    "Show generated information": "Afficher les informations générées"
+    "Show generated information": "Afficher les informations générées",
+    "Card number": "Numéro de carte",
+    "Expires": "Expire",
+    "Identification number of the National Register": "Numéro d'identification du Registre National",
+    "Place of issue": "Lieu de délivrance"
   },
-  "otherInformation": {
-    "Additional information": "Informations complémentaires",
-    "Address": "Adresse",
+  "addressInformation": {
+    "header": "Details adresse",
+    "address": "Adresse",
     "city": "Ville",
-    "Postal code": "Code Postal",
-    "General information": "Information Général",
-    "Chip number": "Numéro de la puce"
+    "postalCode": "Code Postal",
+    "generalInformation": "Informations générales"
+  },
+  "certificateInformation": {
+    "header": "Détails certificat",
+    "nonRepudiationCertificate": "Certificat de non rejet",
+    "authenticationCertificate": "Certificat d'authentification",
+    "encryptionCertificate": "Certificat de cryptage",
+    "issuerCertificate": "Certificat d'émetteur",
+    "intermediateCertificates": "Certificats intermediaires",
+    "rootCertificate": "Certificat d'origine",
+    "noCertFound": "Aucun certificat trouvé"
+  },
+  "paymentCertificateInformation": {
+    "header": "Détails certificat",
+    "issuerPublicCertificate": "Emetteur certificat publique",
+    "iccPublicCertificate": "ICC certificat publique",
+    "noCertFound": "Aucun certificat trouvé",
+    "aid": "Aide",
+    "priority": "Priorité"
+  },
+  "genericPaymentApplications": {
+    "header": "Détails application",
+    "aid": "Aide",
+    "priority": "Priorité"
+  },
+  "cardActions": {
+    "header": "Actions",
+    "legalCopy": "Signer document téléchargé",
+    "checkPin": "Verifier code pin",
+    "singleFile": "Impossible d'uploader plus d'un fichier",
+    "fileType": "Le fichier doit être au format PDF",
+    "verifiedPin": "Code Pin vérifié avec succès",
+    "incorrectPin": "Code Pin est incorrect",
+    "Successfully signed": "Signature réussie",
+    "Drop file": "Vous pouvez déposer le fichier PDF de votre choix ici ou",
+    "click here": "cliquer ici",
+    "to upload PDF file": "pour uploader le fichier"
+  },
+  "installation": {
+    "welcome": "Bienvenue dans l'application web {0} de Trust1Team!",
+    "install": "Pour utiliser cette application, veuillez s'il-vous-plaît installer le logiciel du Trust1Connector",
+    "windows": "Ici, vous pouvez télécharger la version Windows du Trust1Connector, les versions 64- and 32-bit sont toutes les deux disponibles",
+    "macos": "Ici, vous pouvez télécharger la version MacOS du Trust1Connector, les versions Intel and Apple silicon sont toutes les deux disponibles",
+    "linux": "Ici, vous pouvez télécharger la version Linux du Trust1Connector, les versions 64- and 32-bit sont toutes les deux disponibles",
+    "windows64bit": "Windows 64 bit",
+    "windows32bit": "Windows 32 bit",
+    "linux64bit": "Linux 64 bit",
+    "linux32bit": "Linux 32 bit",
+    "macosapple": "MacOS Apple silicon",
+    "macosintel": "MacOS Intel",
+    "windowsheader": "Windows",
+    "macosheader": "MacOS",
+    "linuxheader": "Linux",
+    "help": "Quand le Trust1Connector est installé, vous pouvez cliquer sur le bouton rafraîchir pour commencer.",
+    "config": "Les liens de téléchargement ne fonctionneront pas avec la configuration actuelle. {0}:{1}",
+    "unobtainableURI": "URI introuvable"
+  },
+  "pinpad": {
+    "Enter PIN code": "Entrez code PIN",
+    "Unlock card": "Entrez votre pin/can pour débloquer la carte"
+  },
+  "verify": {
+    "certificates": {
+      "validating": "Validation chaîne de certificatss",
+      "success": "Chaîne de certificats validée",
+      "warning": "Avertissement validation chaîne de certificats",
+      "error": "Chaîne de certificats invalide"
+    }
+  },
+  "module": {
+    "token": {
+      "header": "Contenus jetons"
+    }
+  },
+  "settings": {
+    "header": "Paramètres",
+    "subtitle": "Ici, vous pouvez ajuster les paramètres de l'application web",
+    "application": {
+      "header": "Application",
+      "darkmode": {
+        "title": "Mode Dark",
+        "subtitle" : "Paramètre pour activer ou désactiver le thème du mode Dark"
+      }
+    },
+    "trust1connector": {
+      "header": "Trust1Connector",
+      "url" : {
+        "title": "URL",
+        "subtitle" : "URL qui va être utilisé pour contacter le Trust1Connector"
+      },
+      "port" : {
+        "title": "Port",
+        "subtitle" : "Port qui va être utilisé pour contacter le Trust1Connector"
+      },
+      "init" : {
+        "title": "Ré-initialiser",
+        "subtitle" : "Ré-initialiser le Trust1Connector avec les valeurs de configuration définies ici",
+        "Trust1Connector initialized": "Trust1Connector initialisé",
+        "initialization failed": "Trust1Connector n'a pas pu être initialisé"
+      }
+    }
+  },
+  "signDialog": {
+    "Sign": "Signer",
+    "Download": "Télécharger",
+    "Cancel": "Annuler",
+    "Enter PIN": "Veuillez entrer votre code PIN pour signer le document",
+    "Document successfully signed": "Vous avez signé le document avec succès. Il est prêt à être téléchargé"
   }
 }

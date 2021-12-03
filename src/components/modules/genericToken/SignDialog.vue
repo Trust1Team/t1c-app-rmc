@@ -23,7 +23,7 @@
                     <button v-if="step === 2" @click="setStep(2)" class="w-10 h-10 rounded-full btn btn-primary">2</button>
                     <button v-else @click="setStep(2)" class="w-10 h-10 rounded-full btn text-gray-600 bg-gray-200 dark:bg-dark-1">2</button>
                     <div class="lg:w-32 text-base lg:mt-3 ml-3 lg:mx-auto text-gray-700 dark:text-gray-600">
-                      {{ $t("signDialog.Dialog") }}
+                      {{ $t("signDialog.Download") }}
                     </div>
                   </div>
                 </div>
