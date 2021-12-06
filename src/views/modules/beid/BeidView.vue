@@ -9,12 +9,23 @@
     <div class="loading">
       <loading v-if="getDataLoading" icon="bars" size="40"></loading>
     </div>
-    <ModuleSwitch />
+    <BeidCardView
+      :biometric="getBiometric"
+      :picture="getPicture"
+      :address="getAddress"
+      :rootCertificate="getRootCertificate"
+      :intermediateCertificates="getIntermediateCertificates"
+      :authenticationCertificate="getAuthenticationCertificate"
+      :nonRepudiationCertificate="getNonRepudiationCertificate"
+      :encryptionCertificate="getEncryptionCertificate"
+      :issuerCertificate="getIssuerCertificate"
+      :readerName="getReader.name"
+    />
   </div>
 </template>
 
 <script>
-import ModuleSwitch from '@/components/modules/ModuleSwitch'
+import BeidCardView from '@/components/modules/beid/BeidCardView'
 import Loading from '@/global-components/loading-icon/Main'
 import store from '@/store'
 
@@ -28,7 +39,7 @@ export default {
     }
   },
   components: {
-    ModuleSwitch,
+    BeidCardView,
     Loading
   },
   methods: {
@@ -40,6 +51,36 @@ export default {
   computed: {
     getDataLoading() {
       return this.$store.getters['card/getDataLoading']
+    },
+    getReader() {
+      return this.$store.getters['reader/getSelectedReader']
+    },
+    getBiometric() {
+      return this.$store.getters['card/getBiometric']
+    },
+    getAddress() {
+      return this.$store.getters['card/getAddress']
+    },
+    getPicture() {
+      return this.$store.getters['card/getPicture']
+    },
+    getRootCertificate() {
+      return this.$store.getters['card/getRootCertificate']
+    },
+    getIntermediateCertificates() {
+      return this.$store.getters['card/getIntermediateCertificates']
+    },
+    getAuthenticationCertificate() {
+      return this.$store.getters['card/getAuthenticationCertificate']
+    },
+    getNonRepudiationCertificate() {
+      return this.$store.getters['card/getNonRepudiationCertificate']
+    },
+    getEncryptionCertificate() {
+      return this.$store.getters['card/getEncryptionCertificate']
+    },
+    getIssuerCertificate() {
+      return this.$store.getters['card/getIssuerCertificate']
     }
   },
   unmounted() {
