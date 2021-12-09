@@ -36,7 +36,7 @@ export default {
       type: 'test',
       relPath: relPath
     }
-    return apiClient().post('/list-type-content?start=0&size=10&sort=ASC', data)
+    return apiClient().post('/list-type-content?start=0&size=20&sort=ASC', data)
   },
 
   getFileInfo(file) {
@@ -53,8 +53,8 @@ export default {
     const data = {
       entity: 'RMC',
       type: 'test',
-      relPath: [folderName],
-      recursive: true
+      relPath: folderName,
+      recursive: false
     }
     return apiClient().post('/create-dir', data)
   },

@@ -54,24 +54,3 @@ export default {
   name: 'IdModules'
 }
 </script>
-
-<style scoped>
-.logo {
-  width: 300px;
-}
-
-.card-container {
- height: 300px;
-}
-
-.card-title {
-  width: 90%;
-  line-height: 1;
-}
-
-.card-picture {
-  width: 90%;
-  height: 200px;
-  border-radius: 5px
-}
-</style>

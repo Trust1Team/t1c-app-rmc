@@ -12,9 +12,3 @@ export default {
   name: 'RemoteLoadingModules'
 }
 </script>
-
-<style scoped>
-.logo {
-  width: 300px;
-}
-</style>

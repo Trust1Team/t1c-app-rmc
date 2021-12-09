@@ -2,42 +2,6 @@
   <div class="container grid grid-cols-12">
     <div class="col-span-12 flex justify-end m-4"><img src="@/assets/images/t1c-logo-full.png" alt="" class="logo" /></div>
     <div class="col-span-12 text-center font-medium text-3xl text-gray-500 my-2 px-2">{{ $t("modules.File-exchange Module") }}</div>
-    <!-- <div class="col-span-12 grid grid-cols-12" v-if="fileExchangeActive">
-      <div class="col-span-12 text-center my-2 text-lg">{{ $t("modules.File-exchange use") }} <b class="text-gray-600">{{ $t("modules.Entity") }}*</b>{{ $t("modules.And a") }} <b class="text-gray-600">{{ $t("modules.Type") }}*</b></div>
-      <div class="col-span-12 flex justify-center mt-8">
-        <div class="intro-y box flex flex-col justify-center align-items-center py-4 configuration-card border-4 border-gray-400">
-          <div class=" text-center text-gray-700 font-bold mb-4 font-medium text-lg border-b border-gray-300 pb-4">{{ $t("modules.File-exchange Data") }}</div>
-          <div class="rounded flex justify-center px-10">
-            <input
-              class="form-control bg-gray-200 border-0 my-4"
-              type="text"
-              v-model="entityName"
-              :placeholder="$t('modules.Entity name')"
-            />
-          </div>
-          <div class="rounded flex justify-center px-10">
-            <input
-              class="form-control bg-gray-200 border-0 my-4"
-              type="text"
-              v-model="typeName"
-              :placeholder="$t('modules.Type name')"
-            />
-          </div>
-          <div class="text-center my-4">
-            <button class="btn bg-gray-400 text-white px-20" @click="fileExchangeActive = true">{{ $t("modules.Create") }}</button>
-          </div>
-        </div>
-      </div>
-      <div class="col-span-12 mt-20 border-t border-gray-300 flex flex-col">
-        <div class="flex pt-10 pl-4">
-          <span class="question-icon"><i class="far fa-question-circle fa-5x"></i></span>
-          <div class="pl-8">
-            <p class="text-gray-500"><b class="text-gray-600">{{ $t("modules.Entity") }}</b>: {{ $t("modules.Entity description") }}</p>
-            <p class="mt-4 text-gray-500"><b class="text-gray-600">{{ $t("modules.Type") }}</b>: {{ $t("modules.Type description") }}</p>
-          </div>
-        </div>
-      </div>
-    </div> -->
     <div v-if="!typeExists" class="col-span-12">
       <div class="text-center my-4">
         <p>To use the file-exchange module, please first choose a directory to map</p>
@@ -46,66 +10,101 @@
         <button class="btn bg-gray-400 text-white px-20" @click="createType()">{{ $t("modules.Create") }}</button>
       </div>
     </div>
+
     <div class="col-span-12 grid grid-cols-12" v-if="typeExists">
       <div class="col-span-12 my-4 text-center">
         <p class="text-gray-600">{{ $t("modules.Entity") }}: &ensp; {{ entityName }}</p>
         <p class="text-gray-600">{{ $t("modules.Type") }}: &ensp; {{ typeName }}</p>
       </div>
-      <div class="col-span-12 flex mt-5" v-if="copyActive">
-        <span>Enter the desired name of the copied file: &ensp;</span>
-        <input
-          class="form-control border-0 mx-3 create-folder-input w-1/5"
-          type="text"
-          v-model="copyName"
-          placeholder="New file name"
-        />
-        <span>Choose the folder to copy into: &ensp;</span>
-        <select class="form-control" @change="(e) => toRelPath.push(e.target.value)">
-          <option value="">Root</option>
-          <option v-for="(folder, index) in rootFolders" v-bind:key="index" :value="folder.name">{{ folder.name }}</option>
-        </select>
-        <button class="btn btn-primary" @click="copyFile(copyName)">Copy</button>
+      <div class="col-span-12 flex mt-5 grid grid-cols-12" v-if="copyActive">
+        <div class="col-span-12 grid grid-cols-12 pl-20">
+          <span class="col-span-4 pt-2"><b>Enter the desired name of the copied file:</b>&ensp;</span>
+          <input
+            class="form-control border-0 mx-3 col-span-3"
+            type="text"
+            v-model="copyName"
+            placeholder="New file name"
+          />
+        </div>
+        <div class="col-span-12 grid grid-cols-12 mt-3 pl-20">
+          <span class="col-span-4 pt-2"><b>Choose the folder to copy file into:</b> &ensp;</span>
+          <select class="form-control col-span-3 mx-3" @change="(e) => {toRelPath = [e.target.value], fetchTypeInfo(toRelPath)}">
+            <option value="">Root</option>
+            <option v-for="(folder, index) in rootFolders" v-bind:key="index" :value="folder.name">{{ folder.name }}</option>
+          </select>
+          <div class="col-span-4 flex grid grid-cols-12 ml-10" v-if="toRelPath.length > 0">
+            <span class="col-span-4 pt-2"><b>Subfolder: &ensp;</b></span>
+            <select class="form-control col-span-7" @change="(e) => toRelPath[1] = e.target.value">
+              <option value="" selected>None</option>
+              <option v-for="(folder, index) in subFolders" v-bind:key="index" :value="folder.name">{{ folder.name }}</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-span-12 flex justify-center mt-5">
+          <button class="btn bg-gray-500 text-white mx-1" @click="reset(2)">Cancel</button>
+          <button class="btn btn-primary" @click="copyFile(copyName), reset(2)">Copy</button>
+        </div>
       </div>
-        <div class="col-span-12 flex mt-5" v-if="moveActive">
-        <span>Choose the folder to move into: &ensp;</span>
-        <select class="form-control" @change="(e) => toRelPath.push(e.target.value)">
-          <option value="">Root</option>
-          <option v-for="(folder, index) in rootFolders" v-bind:key="index" :value="folder.name">{{ folder.name }}</option>
-        </select>
-        <button class="btn btn-primary" @click="moveFile()">Move</button>
+      <div class="col-span-12 mt-5 grid grid-cols-12" v-if="moveActive">
+        <div class="flex col-span-7 grid grid-cols-12 pl-20">
+          <span class="col-span-4 pt-2"><b>Folder to move file into: &ensp;</b></span>
+          <select class="form-control col-span-4" @change="(e) => {toRelPath = [e.target.value], fetchTypeInfo(toRelPath)}">
+            <option value="">Root</option>
+            <option v-for="(folder, index) in rootFolders" v-bind:key="index" :value="folder.name">{{ folder.name }}</option>
+          </select>
+        </div>
+        <div class="col-span-5 flex grid grid-cols-12" v-if="toRelPath.length > 0">
+          <span class="col-span-4 pt-2"><b>Subfolder: &ensp;</b></span>
+          <select class="form-control col-span-7" @change="(e) => toRelPath[1] = e.target.value">
+            <option value="" selected>None</option>
+            <option v-for="(folder, index) in subFolders" v-bind:key="index" :value="folder.name">{{ folder.name }}</option>
+          </select>
+        </div>
+        <div class="col-span-12 flex justify-center mt-5">
+          <button class="btn bg-gray-500 text-white mx-1" @click="reset(2)">Cancel</button>
+          <button class="btn btn-primary" @click="moveFile(), reset(2)">Move</button>
+        </div>
       </div>
+
       <div class="col-span-12 flex justify-center mt-10">
         <div class="intro-y box file-exchange-container bg-gray-300 p-2">
           <div class="flex bg-white rounded pl-2 pt-2">
             <button class="btn border-0 mx-1 file-exchange-tab" :class="activeTab === 'Open Folder' ? 'bg-gray-300' : ''"><i class="fas fa-folder-open"></i>&ensp; Open folder</button>
             <button class="btn border-0 mx-1 file-exchange-tab" disabled><i class="fas fa-upload"></i>&ensp;Upload</button>
             <button class="btn border-0 mx-1 file-exchange-tab" disabled><i class="fas fa-download"></i>&ensp;Download</button>
-            <button class="btn border-0 mx-1 file-exchange-tab" @click="copyActive = true"><i class="far fa-copy"></i>&ensp;Copy</button>
-            <button class="btn border-0 mx-1 file-exchange-tab" @click="moveActive = true"><i class="fas fa-arrows-alt"></i>&ensp;Move</button>
-            <button class="btn border-0 mx-1 file-exchange-tab" @click="deleteType()"><i class="far fa-trash-alt"></i>&ensp;Delete</button>
-            <div class="ml-auto self-center text-gray-500 pr-4"><span @click="fetchTypeInfo([])" style="cursor: pointer"><i class="fas fa-sync-alt"></i></span></div>
+            <button class="btn border-0 mx-1 file-exchange-tab" @click="reset(2), copyActive = true" :disabled="Object.keys(this.selectedFile).length == 0"><i class="far fa-copy"></i>&ensp;Copy</button>
+            <button class="btn border-0 mx-1 file-exchange-tab" @click="reset(2), moveActive = true" :disabled="Object.keys(this.selectedFile).length == 0"><i class="fas fa-arrows-alt"></i>&ensp;Move</button>
+            <button class="btn border-0 mx-1 file-exchange-tab" @click="deleteType()"><i class="far fa-trash-alt"></i>&ensp;Delete Type</button>
+            <div class="ml-auto self-center text-gray-500 pr-4"><span @click="refreshData()" style="cursor: pointer"><i class="fas fa-sync-alt"></i></span></div>
           </div>
+
           <div class="flex">
             <div class="intro-y box mt-2 first-block">
               <div class="text-center my-3 px-2">
-                <button class="btn btn-primary w-full" @click="createFolderActive = true" v-if="!createFolderActive">
+                <button class="btn btn-primary w-full" @click="reset(2), createFolderActive = true" v-if="!createFolderActive">
                   <i class="far fa-plus-square"></i>&ensp;Create Folder
                 </button>
               </div>
-              <input
-                class="form-control bg-gray-200 border-0 mx-3 create-folder-input"
-                type="text"
-                v-model="createFolderName"
-                :placeholder="$t('modules.Type name')"
-                v-if="createFolderActive"
-              />
-              <div class="text-center my-3 px-2 flex" v-if="createFolderActive">
-                <button class="btn bg-gray-500 text-white w-1/2 mx-1" @click="cancelFolderCreation()">Cancel</button>
-                <button class="btn btn-primary mx-1 w-1/2" @click="createFolder">Create</button>
+              <div v-if="createFolderActive">
+                <input
+                  class="form-control bg-gray-200 border-0 mx-3 create-folder-input mb-3"
+                  type="text"
+                  v-model="createFolderName"
+                  :placeholder="$t('modules.Type name')"
+                />
+                <span class="col-span-4 px-5"><b>Folder to create into: &ensp;</b></span>
+                <select class="form-control bg-gray-200 border-0 mx-3 create-folder-input" @change="(e) => {toRelPath = [e.target.value], fetchTypeInfo(toRelPath)}">
+                  <option value="" selected>Root</option>
+                  <option v-for="(folder, index) in rootFolders" v-bind:key="index" :value="folder.name">{{ folder.name }}</option>
+                </select>
+                <div class="text-center my-3 px-2 flex">
+                  <button class="btn bg-gray-500 text-white w-1/2 mx-1" @click="reset(2)">Cancel</button>
+                  <button class="btn btn-primary mx-1 w-1/2" @click="createFolder(), reset(2)">Create</button>
+                </div>
               </div>
               <div class="my-3 px-4 flex" v-for="(file, index) in rootFiles" v-bind:key="index"
                 :class="selectedFile === file ? 'bg-gray-200' : ''"
-                @click="!file.isDir ? selectedFile = file : selectedFile = {}, reset(0)"
+                @click="!file.isDir ? (selectedFile = file, reset(0)) : selectedFile = {}"
                 :style="!file.isDir ? 'cursor: pointer' : ''"
               >
                 <i class="fas fa-folder pt-1 folder-icon" v-if="file.isDir"></i>
@@ -114,28 +113,34 @@
                 <div class="ml-auto"><span v-if="file.isDir" @click="fetchTypeInfo([file.name]), folderName = file.name, subFolderName = ''" style="cursor: pointer"><i class="fas fa-chevron-right"></i></span></div>
               </div>
             </div>
-            <div class="intro-y box mt-2 second-block ml-4 grid grid-cols-12">
-              <div class="col-span-6">
-                <div class="my-3 px-4 flex pr-5" v-for="(file, index) in folderFiles" v-bind:key="index"
-                  :class="selectedFile === file ? 'bg-gray-200' : ''"
-                  @click="!file.isDir ? selectedFile = file : '', reset(1)"
-                >
-                  <div  :style="!file.isDir ? 'cursor: pointer' : ''">
-                    <i class="fas fa-folder pt-1 folder-icon" v-if="file.isDir"></i>
-                    <i class="fas fa-file pt-1 file-icon" v-if="!file.isDir"></i>
-                    &ensp;{{ file.name }}
+
+            <div class="intro-y box mt-2 second-block ml-4">
+              <div class="border-b border-gray-300 flex current-path items-center px-5 h-14">{{ folderName }} &ensp;&ensp;<span v-if="subFolderName !== ''"><i class="fas fa-chevron-right"></i></span>&ensp;&ensp;{{ subFolderName }} </div>
+              <div class="grid grid-cols-12">
+                <div class="col-span-6 border-r border-gray-300">
+                  <div class="p-3 text-center" v-if="folderName !== '' && folderFiles.length === 0">No files in this directory</div>
+                  <div class="my-3 px-4 flex pr-5" v-for="(file, index) in folderFiles" v-bind:key="index"
+                    :class="selectedFile === file ? 'bg-gray-200' : ''"
+                    @click="!file.isDir ? (selectedFile = file, reset(1)) : selectedFile = {}"
+                  >
+                    <div  :style="!file.isDir ? 'cursor: pointer' : ''">
+                      <i class="fas fa-folder pt-1 folder-icon" v-if="file.isDir"></i>
+                      <i class="fas fa-file pt-1 file-icon" v-if="!file.isDir"></i>
+                      &ensp;{{ file.name }}
+                    </div>
+                    <div class="ml-auto"><span v-if="file.isDir" @click="fetchTypeInfo([folderName, file.name]), selectedFile = {}" style="cursor: pointer"><i class="fas fa-chevron-right"></i></span></div>
                   </div>
-                  <div class="ml-auto"><span v-if="file.isDir" @click="fetchTypeInfo([folderName, file.name])" style="cursor: pointer"><i class="fas fa-chevron-right"></i></span></div>
                 </div>
-              </div>
-              <div class="col-span-6">
-                <div class="my-3 px-4 flex" v-for="(file, index) in subFolderFiles" v-bind:key="index" :class="selectedFile === file ? 'bg-gray-200' : ''" @click="!file.isDir ? selectedFile = file : ''">
-                  <div  :style="!file.isDir ? 'cursor: pointer' : ''">
-                    <i class="fas fa-folder pt-1 folder-icon" v-if="file.isDir"></i>
-                    <i class="fas fa-file pt-1 file-icon" v-if="!file.isDir"></i>
-                    &ensp;{{ file.name }}
+                <div class="col-span-6">
+                  <div class="p-3 text-center" v-if="subFolderName !== '' && subFolderFiles.length === 0">No files in this directory</div>
+                  <div class="my-3 px-4 flex" v-for="(file, index) in subFolderFiles" v-bind:key="index" :class="selectedFile === file ? 'bg-gray-200' : ''" @click="!file.isDir ? selectedFile = file : ''">
+                    <div  :style="!file.isDir ? 'cursor: pointer' : ''">
+                      <i class="fas fa-folder pt-1 folder-icon" v-if="file.isDir"></i>
+                      <i class="fas fa-file pt-1 file-icon" v-if="!file.isDir"></i>
+                      &ensp;{{ file.name }}
+                    </div>
+                    <div class="ml-auto"><span v-if="file.isDir" @click="fetchTypeInfo([folderName,file.name]), subFolderName = file.name, selectedFile = {}" style="cursor: pointer"><i class="fas fa-chevron-right"></i></span></div>
                   </div>
-                  <div class="ml-auto"><span v-if="file.isDir" @click="fetchTypeInfo([folderName,file.name])" style="cursor: pointer"><i class="fas fa-chevron-right"></i></span></div>
                 </div>
               </div>
             </div>
@@ -174,15 +179,13 @@ export default {
       folderName: '',
       subFolderName: '',
       selectedFile: {},
-      currentRelPath: [],
       toRelPath: [],
+      subFolders: [],
       copyName: ''
     }
   },
   created() {
-    console.log('test')
     FileExchangeService.existType().then(res => {
-      console.log(res)
       if (res.data.data === true) {
         this.typeExists = true
         this.fetchTypeInfo([])
@@ -192,12 +195,13 @@ export default {
   methods: {
     createFolder() {
       if (this.createFolderName !== '') {
-        FileExchangeService.createFolder(this.createFolderName).then(
+        this.toRelPath.push(this.createFolderName)
+        FileExchangeService.createFolder(this.toRelPath).then(
           (res) => {
-            console.log(res)
+            this.toast.success('Folder successfully created')
           },
           (err) => {
-            this.toast.error(err)
+            this.toast.error("Folder couldn't be created", err)
           }
         )
         this.fetchTypeInfo([])
@@ -207,18 +211,17 @@ export default {
         this.toast.error('Folder name cannot be empty')
       }
     },
-    cancelFolderCreation() {
-      this.createFolderName = ''
-      this.createFolderActive = false
-    },
     fetchTypeInfo(relPath) {
+      console.log(this.selectedFile)
       FileExchangeService.fetchTypeInfo(relPath).then(
         (res) => {
           const filesData = []
           res.data.data.files.forEach(file => {
             filesData.push({ name: file.name, isDir: file.isDir })
           })
-          if (relPath.length === 0) {
+          if (this.toRelPath.length === 1) {
+            this.subFolders = filesData.filter(file => file.isDir === true)
+          } else if (relPath.length === 0) {
             this.rootFiles = filesData
           } else if (relPath.length === 1) {
             this.folderFiles = filesData
@@ -229,7 +232,7 @@ export default {
           }
         },
         (err) => {
-          this.toast.error(err)
+          this.toast.error("Data couldn't be fetched", err)
         }
       )
     },
@@ -261,15 +264,21 @@ export default {
     selectFile(file) {
       this.selectedFile = file
     },
-    reset(number) {
-      if (number === 0) {
+    reset(value) {
+      if (value === 0) {
         this.folderName = ''
         this.subFolderName = ''
         this.folderFiles = []
         this.subFolderFiles = []
-      } else if (number === 1) {
+      } else if (value === 1) {
         this.subFolderName = ''
         this.subFolderFiles = []
+      } else if (value === 2) {
+        this.copyActive = false
+        this.moveActive = false
+        this.createFolderActive = false
+        this.createFolderName = ''
+        this.toRelPath = []
       }
     },
     copyFile(newName) {
@@ -284,10 +293,12 @@ export default {
       FileExchangeService.copyFile(this.selectedFile.name, newName, fromRelPath, this.toRelPath)
         .then(
           (res) => {
-            console.log(res)
+            this.toast.success('File successfully copied')
+            this.copyName = ''
+            this.refreshData()
           },
           (err) => {
-            console.log(err)
+            this.toast.error("File couldn't be copied", err)
           }
         )
     },
@@ -301,6 +312,23 @@ export default {
         fromRelPath = []
       }
       FileExchangeService.moveFile(this.selectedFile.name, fromRelPath, this.toRelPath)
+        .then(() => {
+          this.toast.success('File successfully moved')
+          this.refreshData()
+        },
+        (err) => {
+          this.toast.error("File couldn't be moved", err)
+        }
+        )
+    },
+    refreshData() {
+      this.fetchTypeInfo([])
+      if (this.folderName !== '') {
+        this.fetchTypeInfo([this.folderName])
+      }
+      if (this.subFolderName !== '') {
+        this.fetchTypeInfo([this.folderName, this.subFolderName])
+      }
     }
   },
   computed: {
@@ -310,49 +338,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-.logo {
-  width: 300px;
-}
-
-.configuration-card {
-  width: 40%;
-}
-
-.question-icon {
-  color: lightgray
-}
-
-.file-exchange-container {
-  width: 90%
-}
-
-.file-exchange-tab {
-  color: gray;
-  height: 50px;
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
-  box-shadow: 0 0 0;
-  width:14%
-}
-
-.first-block {
-  width: 35%;
-}
-.second-block {
-  width: 65%;
-}
-
-.file-icon {
-  color: lightgray
-}
-
-.folder-icon {
-  color: lightblue
-}
-
-.create-folder-input {
-  width: 90%
-}
-</style>

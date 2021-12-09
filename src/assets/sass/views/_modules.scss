@@ -1,0 +1,56 @@
+.logo {
+  width: 300px;
+}
+
+.card-container {
+ height: 300px !important;
+}
+
+.card-title {
+  width: 90%;
+  line-height: 1;
+}
+
+.card-picture {
+  width: 90%;
+  height: 200px;
+  border-radius: 5px
+}
+
+.crelan-picture {
+  width: 90%;
+  height: 170px;
+  border-radius: 5px
+}
+
+.file-exchange-container {
+  width: 90%
+}
+
+.file-exchange-tab {
+  color: gray;
+  height: 50px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  box-shadow: 0 0 0;
+  width:14%
+}
+
+.first-block {
+  width: 35%;
+}
+.second-block {
+  width: 65%;
+}
+
+.file-icon {
+  color: lightgray
+}
+
+.folder-icon {
+  color: lightblue
+}
+
+.create-folder-input {
+  width: 90%
+}

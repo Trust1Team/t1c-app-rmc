@@ -24,30 +24,3 @@ export default {
   name: 'PaymentModules'
 }
 </script>
-
-<style scoped>
-.logo {
-  width: 300px;
-}
-
-.card-container {
- height: 300px !important;
-}
-
-.card-title {
-  width: 90%;
-  line-height: 1;
-}
-
-.card-picture {
-  width: 90%;
-  height: 200px;
-  border-radius: 5px
-}
-
-.crelan-picture {
-  width: 90%;
-  height: 170px;
-  border-radius: 5px
-}
-</style>
