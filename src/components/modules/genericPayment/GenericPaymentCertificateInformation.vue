@@ -13,71 +13,19 @@
         <div class="text-label">
           {{ $t("paymentCertificateInformation.iccPublicCertificate") }}
         </div>
-        <div class="text-content cert">
-          <div>
-            <span
-              v-if="
-                getICCPublicCertificate &&
-                getICCPublicCertificate[application.aid] &&
-                !getCertificateLoading
-              "
-            >
-              {{ getICCPublicCertificate[application.aid].data }}
-            </span>
-            <span v-if="!getCertificateLoading && !getICCPublicCertificate">
-              {{ $t("paymentCertificateInformation.noCertFound") }}
-            </span>
-            <div v-if="getCertificateLoading" class="loading">
-              <Loading icon="puff" :size="20" />
-            </div>
-          </div>
-
-          <div
-            class="cert-expand"
-            v-if="getICCPublicCertificate && !getCertificateLoading"
-            @click="toggleCert"
-          >
-            <i class="fas fa-sort-down fa-lg cert-expand-icon"></i>
-          </div>
-        </div>
+        <PaymentCertificateItem v-if="!getCertificateLoading && getICCPublicCertificate && getICCPublicCertificate[application.aid]" :certificate="getICCPublicCertificate[application.aid]"></PaymentCertificateItem>
 
         <div class="text-label">
           {{ $t("paymentCertificateInformation.issuerPublicCertificate") }}
         </div>
-        <div class="text-content cert">
-          <div>
-            <span
-              v-if="
-                getIssuerPublicCertificate &&
-                getIssuerPublicCertificate[application.aid] &&
-                !getCertificateLoading
-              "
-            >
-              {{ getIssuerPublicCertificate[application.aid].data }}
-            </span>
-            <span v-if="!getCertificateLoading">
-              {{ $t("paymentCertificateInformation.noCertFound") }}
-            </span>
-            <div v-if="getCertificateLoading" class="loading">
-              <Loading icon="puff" :size="20" />
-            </div>
-          </div>
-
-          <div
-            class="cert-expand"
-            v-if="getIssuerPublicCertificate && !getCertificateLoading"
-            @click="toggleCert"
-          >
-            <i class="fas fa-sort-down fa-lg cert-expand-icon"></i>
-          </div>
-        </div>
+        <PaymentCertificateItem v-if="!getCertificateLoading && getIssuerPublicCertificate && getIssuerPublicCertificate[application.aid]" :certificate="getIssuerPublicCertificate[application.aid]"></PaymentCertificateItem>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import Loading from '@/global-components/loading-icon/Main'
+import PaymentCertificateItem from '@/components/modules/genericPayment/PaymentCertificateItem'
 
 export default {
   name: 'GenericPaymentCertificateInformation',
@@ -102,7 +50,7 @@ export default {
       return this.$store.getters['card/getIssuerPublicCertificate']
     }
   },
-  components: { Loading }
+  components: { PaymentCertificateItem }
 }
 </script>
 
@@ -127,7 +75,6 @@ h4 {
 
 .text-content {
   padding: 15px;
-  background-color: #f5f7f9;
   border-radius: 5px;
   word-break: break-word;
 }

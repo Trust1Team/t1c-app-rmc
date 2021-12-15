@@ -80,7 +80,7 @@ export default {
         if (this.getReader.card.modules.includes('emv') ||
             this.getReader.card.modules.includes('crelan')) {
           // EMV token
-          Promise.all([this.getPaymentCertificates(), this.getPaymentAllData()]).then(_ => {
+          Promise.all([this.getPaymentAllData()]).then(_ => {
             this.loading = false
             this.$router.push({ name: 'side-menu-generic' })
           }).catch(err => {
@@ -208,10 +208,10 @@ export default {
               this.$store
                 .dispatch('card/setApplicationData', applicationDataRes).then(() => {
                   this.$store.dispatch('card/setDataLoading', false)
-                  c.readData(module).then((allDataRes) => {
+                  c.readData(this.getReader.card.modules[0]).then((allDataRes) => {
                     let certsFetched = 0
                     allDataRes.data.applications.forEach((app) => {
-                      c.allCerts(module, app.aid).then(
+                      c.allCerts(this.getReader.card.modules[0], app.aid).then(
                         (allCertsRes) => {
                           certsFetched += 1
                           this.$store.dispatch('card/setPaymentCertificates', {

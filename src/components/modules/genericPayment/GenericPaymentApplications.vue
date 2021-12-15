@@ -9,7 +9,7 @@
         <div class="text-label">
           {{ $t("genericPaymentApplications.aid") }}
         </div>
-        <div class="text-content">
+        <div class="text-content intro-x box">
           <div>
             <span>
               {{ application.aid }}
@@ -22,7 +22,7 @@
         <div class="text-label">
           {{ $t("genericPaymentApplications.priority") }}
         </div>
-        <div class="text-content">
+        <div class="text-content intro-x box">
           <div>
             <span>
               {{ application.priority }}
@@ -64,8 +64,8 @@ h4 {
 }
 
 .text-content {
+  margin: 10px 0;
   padding: 15px;
-  background-color: #f5f7f9;
   border-radius: 5px;
   word-break: break-word;
 }
