@@ -2,11 +2,11 @@
   <div class="card-container" v-if="biometric">
     <div class="card-content">
       <div class="card-row">
-        <div>
+        <div v-if="biometric.chipNumber">
           <p><i>Identification number of the National Register</i></p>
           <p class="bold">{{ biometric.chipNumber }}</p>
         </div>
-        <div class="barcode">
+        <div class="barcode" v-if="biometric.nationalNumber && biometric.cardNumber">
           {{ biometric.nationalNumber }}{{ biometric.cardNumber.substr(3) }}
         </div>
       </div>
@@ -114,46 +114,48 @@ export default {
   methods: {
     constructMachineReadableStrings(rnData) {
       const mrs = []
-      // First line
-      const prefix = 'ID'
-      let first =
-        'BEL' +
-        rnData.cardNumber.substr(0, 9) +
-        '<' +
-        rnData.cardNumber.substr(9)
-      first += calculate(first)
-      first = pad(prefix + first)
-      mrs.push(first.toUpperCase())
+      if (rnData.cardNumber && rnData.sex && rnData.nationality && rnData.cardValidityDateEnd && rnData.cardValidityDateBegin && rnData.nationalNumber) {
+        // First line
+        const prefix = 'ID'
+        let first =
+            'BEL' +
+            rnData.cardNumber.substr(0, 9) +
+            '<' +
+            rnData.cardNumber.substr(9)
+        first += calculate(first)
+        first = pad(prefix + first)
+        mrs.push(first.toUpperCase())
 
-      // Second line
-      let second = rnData.nationalNumber.substr(0, 6)
-      second += calculate(second)
-      second += rnData.sex
-      const validity =
-        rnData.cardValidityDateEnd.substr(8, 2) +
-        rnData.cardValidityDateEnd.substr(3, 2) +
-        rnData.cardValidityDateEnd.substr(0, 2)
-      second += validity + calculate(validity)
-      second += rnData.nationality.substr(0, 3)
-      second += rnData.nationalNumber
-      const finalCheck =
-        rnData.cardNumber.substr(0, 10) +
-        rnData.nationalNumber.substr(0, 6) +
-        validity +
-        rnData.nationalNumber
-      second += calculate(finalCheck)
-      second = pad(second)
-      mrs.push(second.toUpperCase())
+        // Second line
+        let second = rnData.nationalNumber.substr(0, 6)
+        second += calculate(second)
+        second += rnData.sex
+        const validity =
+            rnData.cardValidityDateEnd.substr(8, 2) +
+            rnData.cardValidityDateEnd.substr(3, 2) +
+            rnData.cardValidityDateEnd.substr(0, 2)
+        second += validity + calculate(validity)
+        second += rnData.nationality.substr(0, 3)
+        second += rnData.nationalNumber
+        const finalCheck =
+            rnData.cardNumber.substr(0, 10) +
+            rnData.nationalNumber.substr(0, 6) +
+            validity +
+            rnData.nationalNumber
+        second += calculate(finalCheck)
+        second = pad(second)
+        mrs.push(second.toUpperCase())
 
-      // Third line
-      let third =
-        _.join(_.split(rnData.name, ' '), '<') +
-        '<<' +
-        _.join(_.split(rnData.firstNames, ' '), '<') +
-        '<' +
-        _.join(_.split(rnData.thirdName, ' '), '<')
-      third = pad(third)
-      mrs.push(third.toUpperCase())
+        // Third line
+        let third =
+            _.join(_.split(rnData.name, ' '), '<') +
+            '<<' +
+            _.join(_.split(rnData.firstNames, ' '), '<') +
+            '<' +
+            _.join(_.split(rnData.thirdName, ' '), '<')
+        third = pad(third)
+        mrs.push(third.toUpperCase())
+      }
       return mrs
     }
   },

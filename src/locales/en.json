@@ -1,4 +1,26 @@
 {
+  "home": {
+    "error": {
+      "nomodule": "No module available on selected reader",
+      "noreader": "No valid reader is selected"
+    },
+    "data": {
+      "error": {
+        "fetch": "Could not fetch the data: {0}"
+      }
+    },
+    "certificates": {
+      "error": {
+        "fetch" : "Could not fetch the certificates: {0}"
+      }
+    },
+    "readerlist": {
+      "error": {
+        "unavailable": "The selected reader is unavailable",
+        "cannotselect": "Cannot select this reader"
+      }
+    }
+  },
   "navigation" : {
     "Read my cards" : "Read my cards",
     "Home" : "Home",

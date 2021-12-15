@@ -221,8 +221,6 @@ export default {
     selectModule(reader, module) {
       reader.card.description = [module]
       reader.card.modules = [module]
-      console.log(reader.card)
-      console.log(module)
     }
   },
   created() {

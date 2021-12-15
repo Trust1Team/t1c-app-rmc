@@ -10,21 +10,19 @@ function apiClient() {
 }
 
 export default {
-  validateChain(authCert, rootCert, intermediateCert) {
+  validateChain(certs) {
+    const updatedChainData = []
+    for (let i = 0; i < certs.length; i++) {
+      updatedChainData.push(
+        {
+          order: i,
+          certificate: certs[i]
+        }
+      )
+    }
     const data = {
       certificateChain: [
-        {
-          order: 0,
-          certificate: authCert
-        },
-        {
-          order: 1,
-          certificate: intermediateCert
-        },
-        {
-          order: 2,
-          certificate: rootCert
-        }
+        updatedChainData
       ]
     }
     return apiClient().post('/v1/validate', data)

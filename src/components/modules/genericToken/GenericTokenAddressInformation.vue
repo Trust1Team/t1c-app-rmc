@@ -1,12 +1,12 @@
 <template>
-  <div class="token-details-item">
+  <div class="token-details-item" v-if="address">
     <h3>{{ $t("addressInformation.header") }}</h3>
     <div class="text-container mt-3">
       <div class="text-label">
         {{ $t("addressInformation.address") }}
       </div>
       <div class="text-content intro-x box">
-        {{ address.streetAndNumber }}
+        <span v-if="address.streetAndNumber">{{ address.streetAndNumber }}</span>
       </div>
     </div>
 
@@ -15,7 +15,7 @@
         {{ $t("addressInformation.city") }}
       </div>
       <div class="text-content intro-x box">
-        {{ address.municipality }}
+        <span v-if="address.municipality">{{ address.municipality }}</span>
       </div>
     </div>
 
@@ -24,7 +24,7 @@
         {{ $t("addressInformation.postalCode") }}
       </div>
       <div class="text-content intro-x box">
-        {{ address.zipcode }}
+        <span v-if="address.zipcode">{{ address.zipcode }}</span>
       </div>
     </div>
   </div>
