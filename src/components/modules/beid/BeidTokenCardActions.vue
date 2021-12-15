@@ -52,7 +52,7 @@ import PinDialog from '@/components/UIComponents/PinDialog'
 import Trust1ConnectorService from '@/services/Trust1ConnectorService.js'
 import SigningService from '@/services/SigningService'
 import { useToast } from 'vue-toastification'
-import SignModal from '@/components/modules/genericToken/SignDialog'
+import SignModal from '@/components/modules/beid/SignDialog'
 
 export default {
   name: 'BeidTokenCardActions',

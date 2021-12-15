@@ -1,5 +1,5 @@
 <template>
-  <div class="card-container">
+  <div class="card-container bg-gray-300 dark:bg-gray-500 dark:text-black">
     <div class="card-header">
       <div>
         <div class="title"><b>IDENTITEITSKAART</b></div>
@@ -56,7 +56,8 @@
       <div class="card-row chip-spacing">
         <div>
           <p><i>Card no</i></p>
-          <p class="bold">{{ biometric.cardNumber }}</p>
+          <p v-if="biometric.cardNumber" class="bold">{{ biometric.cardNumber }}</p>
+          <p v-else class="bold">-</p>
         </div>
       </div>
 
@@ -111,13 +112,11 @@ p {
   border: 1px solid lightgray;
   border-radius: 15px;
   position: relative;
-  background-color: #d9d9d9;
-  background-image: linear-gradient(135deg, #d9d9d9 0%, #f6f2f2 74%);
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
 .card-content {
-  padding: 5px;
+  padding: 5px 15px;
   font-size: 10px;
   margin-top: 10px;
 }
@@ -166,6 +165,7 @@ p {
   border-radius: 10px;
 }
 .card-header {
+  padding: 5px 10px;
   display: flex;
   flex-wrap: nowrap;
   flex-direction: row;

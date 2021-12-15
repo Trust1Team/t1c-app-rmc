@@ -153,6 +153,7 @@
   "cardActions": {
     "header": "Actions",
     "legalCopy": "Sign uploaded document",
+    "authenticate": "Authenticate",
     "checkPin": "Verify pin code"
   },
   "installation": {

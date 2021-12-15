@@ -4,7 +4,7 @@
     <div class="pin-pad">
       <div class="form-check form-switch form-pace">
         <input
-            class="form-check-input"
+            class="form-check-switch"
             type="checkbox"
             id="pinTypeSwitch"
             v-model="pinType"

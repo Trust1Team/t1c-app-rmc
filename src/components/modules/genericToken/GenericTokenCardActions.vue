@@ -3,31 +3,31 @@
     <h3>{{ $t("cardActions.header") }}</h3>
     <div class="action-buttons">
 
-      <div id="single-file-upload" class="p-5">
-        <form ref="form">
-          <div class="p-12 bg-gray-100 border border-gray-300" @dragover="dragover" @dragleave="dragleave" @drop="drop">
-            <input type="file" name="fields[assetsFieldHandle][]" id="assetsFieldHandle"
-                   class="w-px h-px opacity-0 overflow-hidden absolute" @change="handleUpload" ref="file" accept=".pdf" />
+<!--      <div id="single-file-upload" class="p-5">-->
+<!--        <form ref="form">-->
+<!--          <div class="p-12 bg-gray-100 border border-gray-300" @dragover="dragover" @dragleave="dragleave" @drop="drop">-->
+<!--            <input type="file" name="fields[assetsFieldHandle][]" id="assetsFieldHandle"-->
+<!--                   class="w-px h-px opacity-0 overflow-hidden absolute" @change="handleUpload" ref="file" accept=".pdf" />-->
 
-            <label for="assetsFieldHandle" class="block cursor-pointer">
-              You can drop the desired PDF file to sign
-              or <span class="underline">click here</span> to upload the PDF file
-            </label>
-            <ul class="mt-4" v-if="files && files.length" v-cloak>
-              <li class="file-item flex" v-for="file in files" :key="file">
-                <div class="file-item-name font-bold italic">
-                  {{ file.name }}
-                </div>
-                <div><button class="btn btn-danger ml-2" type="button" @click="remove" title="Remove file"><XIcon></XIcon></button></div>
-              </li>
-            </ul>
-          </div>
-        </form>
+<!--            <label for="assetsFieldHandle" class="block cursor-pointer">-->
+<!--              You can drop the desired PDF file to sign-->
+<!--              or <span class="underline">click here</span> to upload the PDF file-->
+<!--            </label>-->
+<!--            <ul class="mt-4" v-if="files && files.length" v-cloak>-->
+<!--              <li class="file-item flex" v-for="file in files" :key="file">-->
+<!--                <div class="file-item-name font-bold italic">-->
+<!--                  {{ file.name }}-->
+<!--                </div>-->
+<!--                <div><button class="btn btn-danger ml-2" type="button" @click="remove" title="Remove file"><XIcon></XIcon></button></div>-->
+<!--              </li>-->
+<!--            </ul>-->
+<!--          </div>-->
+<!--        </form>-->
 
-      </div>
+<!--      </div>-->
 
-      <button class="btn btn-primary" :disabled="getCertificateLoading || !files" @click="uploadFileToSign">
-        {{ $t("cardActions.legalCopy") }}
+      <button class="btn btn-primary" :disabled="getCertificateLoading" @click="uploadFileToSign">
+        {{ $t("cardActions.authenticate") }}
       </button>
 
       <button
@@ -43,7 +43,7 @@
   <!--  User ref to be able to call the functions inside this component -->
   <PinDialog ref="pinDialog" @confirmPin="pinSelected" :pin-error-description="pinErrorDescription"/>
 
-  <SignModal ref="signModal" :bytes-to-sign="bytesToSign" :document-id="documentId" :module="getReader.card.modules[0]" @closed="resetForm" />
+  <GenericAuthDialog ref="signModal" :bytes-to-sign="bytesToSign" :module="getReader.card.modules[0]" @closed="resetForm" />
 
 </template>
 
@@ -52,8 +52,7 @@ import PinDialog from '@/components/UIComponents/PinDialog'
 import Trust1ConnectorService from '@/services/Trust1ConnectorService.js'
 
 import { useToast } from 'vue-toastification'
-import SigningService from '@/services/SigningService'
-import SignModal from '@/components/modules/genericToken/SignDialog'
+import GenericAuthDialog from '@/components/modules/genericToken/GenericAuthDialog'
 
 export default {
   name: 'GenericTokenCardActions',
@@ -89,17 +88,8 @@ export default {
       this.files = undefined
     },
     uploadFileToSign() {
-      if (this.files) {
-        SigningService.uploadFile(this.files[0], this.getNonRepudiationCertificate.certificate, this.getRootCertificate.certificate, this.getIntermediateCertificates.certificate).then(res => {
-          this.bytesToSign = res.data.data.bytes
-          this.documentId = res.data.data.documentId
-          this.$refs.signModal.showDialog()
-        }, err => {
-          console.error(err)
-          this.resetForm()
-          this.toast.error(err)
-        })
-      }
+      this.bytesToSign = 'oL4mNb8tt5eRzM5yOjnO12qgw5LOC++nFi0LnJzu1gY='
+      this.$refs.signModal.showDialog()
     },
     pinPadDialog() {
       this.pinErrorDescription = undefined
@@ -179,7 +169,7 @@ export default {
       return this.$store.getters['reader/getSelectedPinType']
     }
   },
-  components: { SignModal, PinDialog }
+  components: { GenericAuthDialog, PinDialog }
 }
 </script>
 

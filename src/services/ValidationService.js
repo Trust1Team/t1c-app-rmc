@@ -21,9 +21,7 @@ export default {
       )
     }
     const data = {
-      certificateChain: [
-        updatedChainData
-      ]
+      certificateChain: updatedChainData
     }
     return apiClient().post('/v1/validate', data)
   },

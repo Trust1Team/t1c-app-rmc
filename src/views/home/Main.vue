@@ -267,10 +267,6 @@ export default {
           this.installed()
           this.consented()
           Trust1ConnectorService.setClient(res)
-          if (this.getReader) {
-            this.getAllData()
-            this.router.push({ name: 'side-menu-generic' })
-          }
         },
         (err) => {
           if (err.code === '814501' || err.code === '814501') {

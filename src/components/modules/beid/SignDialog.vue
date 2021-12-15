@@ -135,7 +135,7 @@ export default {
         data: this.bytesToSign
       }
       this.loading = true
-      client.sign('beid', data).then(res => {
+      client.sign(this.getReader.card.modules[0], data).then(res => {
         if (res && res.success) {
           this.pinErrorDescription = undefined
           SigningService.sign(this.documentId, this.getNonRepudiationCertificate.certificate, this.getRootCertificate.certificate, this.getIntermediateCertificates.certificate, res.data.data).then(res => {

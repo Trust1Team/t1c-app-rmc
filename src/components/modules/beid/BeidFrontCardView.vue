@@ -1,5 +1,5 @@
 <template>
-  <div class="card-container p-4">
+  <div class="card-container bg-gray-300 dark:bg-gray-500 dark:text-black p-4">
     <div class="card-header">
       <div>
         <div class="title"><b>BELGIE</b></div>
@@ -118,8 +118,6 @@ p {
   border: 1px solid lightgray;
   border-radius: 15px;
   position: relative;
-  background-color: #d9d9d9;
-  background-image: linear-gradient(135deg, #d9d9d9 0%, #f6f2f2 74%);
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 

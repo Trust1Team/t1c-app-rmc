@@ -39,36 +39,40 @@ export default {
       toast
     }
   },
+  created() {
+    this.validateChain()
+  },
   methods: {
     validateChain() {
       this.expired = undefined
       this.qualified = undefined
       this.toolTip = undefined
       const certificates = []
+
       if (this.getAuthenticationCertificate && this.getAuthenticationCertificate.certificates) {
-        this.getAuthenticationCertificate.certificates.forEach(cert => {
+        this.getAuthenticationCertificate.certificates.reverse().forEach(cert => {
           certificates.push(cert)
         })
       } else {
         certificates.push(this.getAuthenticationCertificate.certificate)
       }
 
-      if (this.getRootCertificate && this.getRootCertificate.certificates) {
-        this.getRootCertificate.certificates.forEach(cert => {
-          certificates.push(cert)
-        })
-      } else {
-        certificates.push(this.getRootCertificate.certificate)
-      }
-
       if (this.getIntermediateCertificates) {
         if (this.getIntermediateCertificates.certificates) {
-          this.getIntermediateCertificates.certificates.forEach(cert => {
+          this.getIntermediateCertificates.certificates.reverse().forEach(cert => {
             certificates.push(cert)
           })
         } else {
           certificates.push(this.getIntermediateCertificates.certificate)
         }
+      }
+
+      if (this.getRootCertificate && this.getRootCertificate.certificates) {
+        this.getRootCertificate.certificates.reverse().forEach(cert => {
+          certificates.push(cert)
+        })
+      } else {
+        certificates.push(this.getRootCertificate.certificate)
       }
 
       ValidationService.validateChain(certificates).then(res => {
@@ -107,6 +111,7 @@ export default {
   },
   watch: {
     getCertificateLoading (newValue, oldValue) {
+      console.log(newValue, oldValue)
       if (!newValue) {
         this.validateChain()
       } else {

@@ -4,222 +4,54 @@
 
     <verify-token-certificates-component></verify-token-certificates-component>
 
-    <div class="text-container mt-3">
+    <div class="text-container">
       <div class="text-label">
         {{ $t("certificateInformation.nonRepudiationCertificate") }}
       </div>
-      <div class="text-content cert intro-x box">
-        <div>
-          <span v-if="nonRepudiationCertificate && !getCertificateLoading">
-            {{ nonRepudiationCertificate.certificate }}
-          </span>
-          <span v-if="!getCertificateLoading && !nonRepudiationCertificate">
-            {{ $t("certificateInformation.noCertFound") }}
-          </span>
-          <div v-if="getCertificateLoading" class="loading">
-            <Loading icon="puff" :size="20" />
-          </div>
-        </div>
-
-        <div
-          class="cert-expand"
-          v-if="nonRepudiationCertificate && !getCertificateLoading"
-          @click="toggleCert"
-        >
-          <i class="fas fa-sort-down fa-lg cert-expand-icon"></i>
-        </div>
-
-        <div
-          class="cert-copy"
-          v-if="nonRepudiationCertificate && !getCertificateLoading"
-          @click="copyTextToClipboard(nonRepudiationCertificate.certificate)"
-        >
-          <i class="far fa-copy"></i>
-        </div>
-      </div>
+      <CertificateItem :certificate="nonRepudiationCertificate"></CertificateItem>
     </div>
 
     <div class="text-container">
       <div class="text-label">
         {{ $t("certificateInformation.authenticationCertificate") }}
       </div>
-      <div class="text-content cert intro-x box">
-        <div>
-          <span v-if="authenticationCertificate && !getCertificateLoading">
-            {{ authenticationCertificate.certificate }}
-          </span>
-          <span v-if="!getCertificateLoading && !authenticationCertificate">
-            {{ $t("certificateInformation.noCertFound") }}
-          </span>
-          <div v-if="getCertificateLoading" class="loading">
-            <Loading icon="puff" :size="20" />
-          </div>
-        </div>
-
-        <div
-          class="cert-expand"
-          v-if="authenticationCertificate && !getCertificateLoading"
-          @click="toggleCert"
-        >
-          <i class="fas fa-sort-down fa-lg cert-expand-icon"></i>
-        </div>
-
-        <div
-          class="cert-copy"
-          v-if="authenticationCertificate && !getCertificateLoading"
-          @click="copyTextToClipboard(authenticationCertificate.certificate)"
-        >
-          <i class="far fa-copy"></i>
-        </div>
-      </div>
+      <CertificateItem :certificate="authenticationCertificate"></CertificateItem>
     </div>
 
     <div class="text-container">
       <div class="text-label">
         {{ $t("certificateInformation.encryptionCertificate") }}
       </div>
-      <div class="text-content cert intro-x box">
-        <div>
-          <span v-if="encryptionCertificate && !getCertificateLoading">
-            {{ encryptionCertificate.certificate }}
-          </span>
-          <span v-if="!getCertificateLoading && !encryptionCertificate">
-            {{ $t("certificateInformation.noCertFound") }}
-          </span>
-          <div v-if="getCertificateLoading" class="loading">
-            <Loading icon="puff" :size="20" />
-          </div>
-        </div>
-
-        <div
-          class="cert-expand"
-          v-if="encryptionCertificate && !getCertificateLoading"
-          @click="toggleCert"
-        >
-          <i class="fas fa-sort-down fa-lg cert-expand-icon"></i>
-        </div>
-
-        <div
-          class="cert-copy"
-          v-if="encryptionCertificate && !getCertificateLoading"
-          @click="copyTextToClipboard(encryptionCertificate.certificate)"
-        >
-          <i class="far fa-copy"></i>
-        </div>
-      </div>
+      <CertificateItem :certificate="encryptionCertificate"></CertificateItem>
     </div>
 
     <div class="text-container">
       <div class="text-label">
         {{ $t("certificateInformation.issuerCertificate") }}
       </div>
-      <div class="text-content cert intro-x box">
-        <div>
-          <span v-if="issuerCertificate && !getCertificateLoading">
-            {{ issuerCertificate.certificate }}
-          </span>
-          <span v-if="!getCertificateLoading && !issuerCertificate">
-            {{ $t("certificateInformation.noCertFound") }}
-          </span>
-          <div v-if="getCertificateLoading" class="loading">
-            <Loading icon="puff" :size="20" />
-          </div>
-        </div>
-
-        <div
-          class="cert-expand"
-          v-if="issuerCertificate && !getCertificateLoading"
-          @click="toggleCert"
-        >
-          <i class="fas fa-sort-down fa-lg cert-expand-icon"></i>
-        </div>
-
-        <div
-          class="cert-copy"
-          v-if="issuerCertificate && !getCertificateLoading"
-          @click="copyTextToClipboard(issuerCertificate.certificate)"
-        >
-          <i class="far fa-copy"></i>
-        </div>
-      </div>
+      <CertificateItem :certificate="issuerCertificate"></CertificateItem>
     </div>
 
     <div class="text-container">
       <div class="text-label">
         {{ $t("certificateInformation.intermediateCertificates") }}
       </div>
-      <div class="text-content cert intro-x box">
-        <div>
-          <span v-if="intermediateCertificates && !getCertificateLoading">
-            {{ intermediateCertificates.certificate }}
-          </span>
-          <span v-if="!getCertificateLoading && !intermediateCertificates">
-            {{ $t("certificateInformation.noCertFound") }}
-          </span>
-          <div v-if="getCertificateLoading" class="loading">
-            <Loading icon="puff" :size="20" />
-          </div>
-        </div>
-
-        <div
-          class="cert-expand"
-          v-if="intermediateCertificates && !getCertificateLoading"
-          @click="toggleCert"
-        >
-          <i class="fas fa-sort-down fa-lg cert-expand-icon"></i>
-        </div>
-
-        <div
-          class="cert-copy"
-          v-if="intermediateCertificates && !getCertificateLoading"
-          @click="copyTextToClipboard(intermediateCertificates.certificate)"
-        >
-          <i class="far fa-copy"></i>
-        </div>
-      </div>
+      <CertificateItem :certificate="intermediateCertificates"></CertificateItem>
     </div>
 
     <div class="text-container">
       <div class="text-label">
         {{ $t("certificateInformation.rootCertificate") }}
       </div>
-      <div class="text-content cert intro-x box">
-        <div>
-          <span v-if="rootCertificate && !getCertificateLoading">
-            {{ rootCertificate.certificate }}
-          </span>
-          <span v-if="!getCertificateLoading && !rootCertificate">
-            {{ $t("certificateInformation.noCertFound") }}
-          </span>
-          <div v-if="getCertificateLoading" class="loading">
-            <Loading icon="puff" :size="20" />
-          </div>
-        </div>
-
-        <div
-          class="cert-expand"
-          v-if="rootCertificate && !getCertificateLoading"
-          @click="toggleCert"
-        >
-          <i class="fas fa-sort-down fa-lg cert-expand-icon"></i>
-        </div>
-
-        <div
-          class="cert-copy"
-          v-if="rootCertificate && !getCertificateLoading"
-          @click="copyTextToClipboard(rootCertificate.certificate)"
-        >
-          <i class="far fa-copy"></i>
-        </div>
-      </div>
+      <CertificateItem :certificate="rootCertificate"></CertificateItem>
     </div>
   </div>
 </template>
 
 <script>
-import Loading from '@/global-components/loading-icon/Main'
 import copyMixin from '@/mixins/copyMixin'
 import VerifyTokenCertificatesComponent from '@/components/modules/VerifyTokenCertificatesComponent'
+import CertificateItem from '@/components/modules/CertificateItem'
 
 export default {
   name: 'GenericTokenCertificateInformation',
@@ -231,18 +63,13 @@ export default {
     encryptionCertificate: Object,
     issuerCertificate: Object
   },
-  methods: {
-    toggleCert: function (event) {
-      event.target.parentNode.parentNode.classList.toggle('cert-open')
-      event.target.classList.toggle('cert-expand-rotated')
-    }
-  },
+  methods: {},
   computed: {
     getCertificateLoading() {
       return this.$store.getters['card/getCertificateLoading']
     }
   },
-  components: { VerifyTokenCertificatesComponent, Loading },
+  components: { CertificateItem, VerifyTokenCertificatesComponent },
   mixins: [copyMixin]
 }
 </script>
