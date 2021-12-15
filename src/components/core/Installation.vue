@@ -84,7 +84,7 @@
             v-if="latestVersion"
             @click="downloadVersion('MACOS')"
           >
-            {{ $t("installation.macosapple") }}
+            {{ $t("installation.macosintel") }}
             <span>{{ latestVersion.id }}</span>
           </div>
           <div
@@ -97,7 +97,7 @@
             v-if="latestVersion"
             @click="downloadVersion('MACOSARM')"
           >
-            {{ $t("installation.macosintel") }}
+            {{ $t("installation.macosapple") }}
             <span>{{ latestVersion.id }}</span>
           </div>
         </div>
