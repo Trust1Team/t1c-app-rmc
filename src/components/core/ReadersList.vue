@@ -6,7 +6,7 @@
   <div class="grid grid-cols-12 gap-6 mt-5">
     <div class="intro-y col-span-12 flex flex-wrap sm:flex-nowrap items-center mt-2">
       <div class="hidden md:block mx-auto text-gray-600" v-if="readers">
-        Showing {{ readers.length }} reader(s)
+        {{ $t("readersList.showing") }} {{ readers.length }} {{ $t("readersList.readers") }}
       </div>
       <div class="w-full sm:w-auto mt-3 sm:mt-0 sm:ml-auto md:ml-0">
         <div class="refresh">
@@ -21,10 +21,10 @@
       <table class="table table-report -mt-2">
         <thead>
         <tr>
-          <th class="whitespace-nowrap">READER NAME</th>
-          <th class="text-center whitespace-nowrap">MODULE</th>
-          <th class="text-center whitespace-nowrap">STATUS</th>
-          <th v-if="selectable" class="text-center whitespace-nowrap">ACTIONS</th>
+          <th class="whitespace-nowrap">{{ $t("readersList.readername") }}</th>
+          <th class="text-center whitespace-nowrap">{{ $t("readersList.readermodule") }}</th>
+          <th class="text-center whitespace-nowrap">{{ $t("readersList.status") }}</th>
+          <th v-if="selectable" class="text-center whitespace-nowrap">{{ $t("readersList.actions") }}</th>
         </tr>
         </thead>
         <tbody>

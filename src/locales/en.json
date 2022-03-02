@@ -73,7 +73,13 @@
     "readersNotFound": "Could not find any readers connected",
     "askToConnect": "Please connect your smart card reader and refresh the list",
     "No module detected": "No module detected",
-    "Select Module": "Select Module"
+    "Select Module": "Select Module",
+    "readername": "Reader Name",
+    "readermodule": "Proposed Module",
+    "status": "Reader Status",
+    "showing": "Showing",
+    "readers": "reader/readers",
+    "actions": "Actions"
   },
   "admin": {
     "binaries": "Trust1Connector installers",
