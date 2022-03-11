@@ -1,6 +1,6 @@
 {
   "name": "t1c-app-rmc",
-  "version": "0.5.0-SNAPSHOT.2",
+  "version": "0.5.0-SNAPSHOT.3",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -40,7 +40,7 @@
     "highlight.js": "^10.6.0",
     "js-beautify": "^1.13.5",
     "litepicker": "^2.0.11",
-    "t1c-sdk-js": "^3.5.3",
+    "t1c-sdk-js": "^3.5.5",
     "tabulator-tables": "^4.9.3",
     "tiny-slider": "^2.9.3",
     "tippy.js": "^6.2.7",

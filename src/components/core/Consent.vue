@@ -16,6 +16,7 @@
 <script>
 import Trust1ConnectorService from '../../services/Trust1ConnectorService'
 import copyMixin from '@/mixins/copyMixin'
+import {T1CClient} from "t1c-sdk-js";
 export default {
   name: 'Consent',
   data() {
@@ -26,7 +27,6 @@ export default {
   emits: ['consented'],
   methods: {
     consent() {
-      console.log(this.consentData)
       this.copyTextToClipboard(this.consentData)
       Trust1ConnectorService.getErrorClient()
         .core()
@@ -90,7 +90,7 @@ export default {
   props: {},
   mixins: [copyMixin],
   created() {
-    this.consentData = Trust1ConnectorService.getRand(15)
+    this.consentData = T1CClient.generateConsentToken()
   }
 }
 </script>

@@ -7455,10 +7455,10 @@ svgo@^2.7.0:
     picocolors "^1.0.0"
     stable "^0.1.8"
 
-t1c-sdk-js@^3.5.3:
-  version "3.5.3"
-  resolved "https://registry.yarnpkg.com/t1c-sdk-js/-/t1c-sdk-js-3.5.3.tgz#b9e7ed44529c60b4413063e437c37c00bd67b0f5"
-  integrity sha512-H+y/4OKtKwN5fTeAKhCiasR1XmovFeWc9T3HDoVWH0UAbvBb9PB1Yyx85ZWkup4/I87wBNEhZIa1ML5rNIyIRQ==
+t1c-sdk-js@^3.5.5:
+  version "3.5.5"
+  resolved "https://registry.yarnpkg.com/t1c-sdk-js/-/t1c-sdk-js-3.5.5.tgz#db4b580a77fb94065ac09c022cdc3054afb8f0ad"
+  integrity sha512-WvC3prCBgTv5K88MBjuRH0ZeaHrGPXMMKHNmg4+WxXVpJqMRdRMKJUznu3w4IYqJqvH2zh/qKTMekjOGcoqv3w==
   dependencies:
     "@types/lodash" "^4.14.150"
     "@types/pkijs" "^0.0.3"
