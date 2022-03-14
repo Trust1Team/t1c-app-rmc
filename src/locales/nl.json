@@ -1,0 +1,225 @@
+{
+    "home": {
+        "error": {
+            "nomodule": "Geen module",
+            "noreader": "Geen kaartlezer"
+        },
+        "data": {
+            "error": {
+                "fetch": "ophalen"
+            }
+        },
+        "certificates": {
+            "error": {
+                "fetch": "ophalen"
+            }
+        },
+        "readerlist": {
+            "error": {
+                "unavailable": "niet beschikbaar",
+                "cannotselect": "kan niet selecteren"
+            }
+        }
+    },
+    "navigation": {
+        "Read my cards": "Lees mijn kaarten",
+        "Home": "Thuis",
+        "Modules": "Modules",
+        "ID/Tokens": "ID/tokens",
+        "Payment": "Betaling",
+        "PKI": "PKI",
+        "Remote loading": "Laden op afstand",
+        "Transport": "Vervoer",
+        "File exchange": "Bestandsuitwisseling",
+        "Other": "Ander",
+        "Certificate manager": "Certificaatbeheerder",
+        "Admin panel": "Administratie Paneel",
+        "Contact us": "Neem contact op"
+    },
+    "deviceInfo": {
+        "api-version": "api-versie",
+        "js-version": "js-versie",
+        "Trust1Connector version": "Trust1Connector-versie",
+        "Trust1Connector javascript": "Trust1Connector javascript",
+        "Device": "Apparaat",
+        "Device ID": "Apparaat ID",
+        "Status": "Toestand",
+        "Log level": "Log niveau",
+        "Operating system": "Besturingssysteem",
+        "Platform": "Platform",
+        "Version": "Versie"
+    },
+    "userInfo": {
+        "Name": "Naam",
+        "User": "Gebruiker",
+        "Username": "gebruikersnaam",
+        "Home directory": "Thuismap"
+    },
+    "consent": {
+        "consentMessage": "toestemmingBericht",
+        "askToConfirm": "askToConfirm",
+        "to continue": "doorgaan",
+        "consent": "toestemming",
+        "Consent": "Toestemming"
+    },
+    "readersList": {
+        "Connect your Reader": "Verbind uw Reader",
+        "Please connect your": "Sluit uw . aan",
+        "smartcard reader": "smartcardlezer",
+        "to your computer": "naar jouw computer",
+        "detectMessage": "detectMessage",
+        "Choose your Reader": "Kies je Reader",
+        "askToSelect": "askToSelect",
+        "readersNotFound": "lezersNiet gevonden",
+        "askToConnect": "askToConnect",
+        "No module detected": "Geen module gedetecteerd",
+        "Select Module": "Selecteer module",
+        "readername": "lezernaam",
+        "readermodule": "leesmodule",
+        "status": "toestand",
+        "showing": "laten zien",
+        "readers": "lezers",
+        "actions": "acties"
+    },
+    "admin": {
+        "binaries": "binaire bestanden",
+        "Device information": "Apparaat informatie",
+        "User information": "Gebruikers informatie",
+        "reader": "lezer",
+        "dependency": "afhankelijkheid",
+        "dependencyInfo": {
+            "t1cApi": "t1cApi",
+            "validationService": "validatieService",
+            "distributionServer": "distributieserver"
+        }
+    },
+    "contact": {
+        "Contact us": "Neem contact op",
+        "contactUsSubtitle": "contactUsOndertitel",
+        "Name": "Naam",
+        "Company": "Bedrijf",
+        "Email Address": "E-mailadres",
+        "Phone Number": "Telefoonnummer",
+        "Your message": "Jouw bericht",
+        "I want more information": "Ik wil meer informatie",
+        "I have technical issue": "Ik heb een technisch probleem",
+        "Validation": "Geldigmaking",
+        "Get in Touch": "Neem contact op",
+        "I have read the": "ik heb de gelezen",
+        "Privacy Policy": "Privacybeleid",
+        "privacyPolicy": "privacybeleid",
+        "I agree to the": "ik ga akkoord met de",
+        "termsCondition": "regels en voorwaarden",
+        "t1tAgreement": "t1tOvereenkomst",
+        "exportMessage": "exportBericht",
+        "Submit": "Indienen"
+    },
+    "fileExplorer": {
+        "File explorer": "Bestandsverkenner"
+    },
+    "genericCardView": {
+        "We have detected the": "We hebben de . gedetecteerd",
+        "card in the": "kaart in de",
+        "Card reading": "Kaart lezen",
+        "All certificates are valid": "Alle certificaten zijn geldig",
+        "Click to check the pin": "Klik om de pin te controleren",
+        "Print legal copy of card": "Legaal exemplaar van kaart afdrukken",
+        "Show generated information": "Toon gegenereerde informatie"
+    },
+    "addressInformation": {
+        "header": "koptekst",
+        "address": "adres",
+        "city": "stad",
+        "postalCode": "Postcode",
+        "generalInformation": "algemene informatie"
+    },
+    "certificateInformation": {
+        "header": "koptekst",
+        "nonRepudiationCertificate": "nonRepudiationCertificaat",
+        "authenticationCertificate": "authenticatieCertificaat",
+        "encryptionCertificate": "encryptieCertificaat",
+        "issuerCertificate": "uitgeverCertificaat",
+        "intermediateCertificates": "tussenliggendeCertificaten",
+        "rootCertificate": "rootCertificaat",
+        "noCertFound": "noCertGevonden"
+    },
+    "paymentCertificateInformation": {
+        "header": "koptekst",
+        "issuerPublicCertificate": "uitgeverPublicCertificaat",
+        "iccPublicCertificate": "iccPublicCertificaat",
+        "noCertFound": "noCertGevonden",
+        "aid": "hulp",
+        "priority": "prioriteit"
+    },
+    "genericPaymentApplications": {
+        "header": "koptekst",
+        "aid": "hulp",
+        "priority": "prioriteit"
+    },
+    "cardActions": {
+        "header": "koptekst",
+        "legalCopy": "legaal kopiëren",
+        "authenticate": "authenticeren",
+        "checkPin": "checkPin"
+    },
+    "installation": {
+        "welcome": "welkom",
+        "install": "installeren",
+        "windows": "ramen",
+        "macos": "macos",
+        "linux": "linux",
+        "windows64bit": "windows64bit",
+        "windows32bit": "windows32bit",
+        "linux64bit": "linux64bit",
+        "linux32bit": "linux32bit",
+        "macosapple": "macosappel",
+        "macosintel": "macosintel",
+        "windowsheader": "windowsheader",
+        "macosheader": "macosheader",
+        "linuxheader": "linuxheader",
+        "help": "helpen",
+        "config": "configuratie"
+    },
+    "pinpad": {
+        "Enter PIN code": "Voer pincode in"
+    },
+    "verify": {
+        "certificates": {
+            "validating": "valideren",
+            "success": "succes",
+            "warning": "waarschuwing",
+            "error": "fout"
+        }
+    },
+    "module": {
+        "token": {
+            "header": "koptekst"
+        }
+    },
+    "settings": {
+        "header": "koptekst",
+        "subtitle": "ondertitel",
+        "application": {
+            "header": "koptekst",
+            "darkmode": {
+                "title": "titel",
+                "subtitle": "ondertitel"
+            }
+        },
+        "trust1connector": {
+            "header": "koptekst",
+            "url": {
+                "title": "titel",
+                "subtitle": "ondertitel"
+            },
+            "port": {
+                "title": "titel",
+                "subtitle": "ondertitel"
+            },
+            "init": {
+                "title": "titel",
+                "subtitle": "ondertitel"
+            }
+        }
+    }
+}

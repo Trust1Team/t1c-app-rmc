@@ -1,0 +1,225 @@
+{
+    "home": {
+        "error": {
+            "nomodule": "aucun module",
+            "noreader": "pas de lecteur"
+        },
+        "data": {
+            "error": {
+                "fetch": "aller chercher"
+            }
+        },
+        "certificates": {
+            "error": {
+                "fetch": "aller chercher"
+            }
+        },
+        "readerlist": {
+            "error": {
+                "unavailable": "indisponible",
+                "cannotselect": "impossible de sélectionner"
+            }
+        }
+    },
+    "navigation": {
+        "Read my cards": "Lis mes cartes",
+        "Home": "Maison",
+        "Modules": "Modules",
+        "ID/Tokens": "Identifiant/Jetons",
+        "Payment": "Paiement",
+        "PKI": "ICP",
+        "Remote loading": "Téléchargement à distance",
+        "Transport": "Transport",
+        "File exchange": "Échange de fichiers",
+        "Other": "Autre",
+        "Certificate manager": "Gestionnaire de certificat",
+        "Admin panel": "Panneau d'administration",
+        "Contact us": "Contactez-nous"
+    },
+    "deviceInfo": {
+        "api-version": "version API",
+        "js-version": "version js",
+        "Trust1Connector version": "Version de Trust1Connector",
+        "Trust1Connector javascript": "Trust1Connector javascript",
+        "Device": "Appareil",
+        "Device ID": "Reference de l'appareil",
+        "Status": "Statut",
+        "Log level": "Niveau de journalisation",
+        "Operating system": "Système opérateur",
+        "Platform": "Plate-forme",
+        "Version": "Version"
+    },
+    "userInfo": {
+        "Name": "Nom",
+        "User": "Utilisateur",
+        "Username": "Nom d'utilisateur",
+        "Home directory": "Répertoire d'accueil"
+    },
+    "consent": {
+        "consentMessage": "ConsentementMessage",
+        "askToConfirm": "askToConfirm",
+        "to continue": "continuer",
+        "consent": "consentement",
+        "Consent": "Consentement"
+    },
+    "readersList": {
+        "Connect your Reader": "Connectez votre lecteur",
+        "Please connect your": "Veuillez connecter votre",
+        "smartcard reader": "lecteur de carte à puce",
+        "to your computer": "à ton ordinateur",
+        "detectMessage": "détecterMessage",
+        "Choose your Reader": "Choisissez votre lecteur",
+        "askToSelect": "Sélectionne votre lecteur",
+        "readersNotFound": "lecteursNotFound",
+        "askToConnect": "askToConnect",
+        "No module detected": "Aucun module détecté",
+        "Select Module": "Sélectionnez le module",
+        "readername": "nom du lecteur",
+        "readermodule": "module de lecture",
+        "status": "statut",
+        "showing": "montrant",
+        "readers": "lecteurs",
+        "actions": "Actions"
+    },
+    "admin": {
+        "binaries": "binaires",
+        "Device information": "Informations sur l'appareil",
+        "User information": "Informations de l'utilisateur",
+        "reader": "lecteur",
+        "dependency": "dépendance",
+        "dependencyInfo": {
+            "t1cApi": "t1cApi",
+            "validationService": "validationService",
+            "distributionServer": "serveur de distribution"
+        }
+    },
+    "contact": {
+        "Contact us": "Contactez-nous",
+        "contactUsSubtitle": "contactez-nousSous-titre",
+        "Name": "Nom",
+        "Company": "Compagnie",
+        "Email Address": "Adresse e-mail",
+        "Phone Number": "Numéro de téléphone",
+        "Your message": "Votre message",
+        "I want more information": "Je veux plus d'informations",
+        "I have technical issue": "J'ai un problème technique",
+        "Validation": "Validation",
+        "Get in Touch": "Entrer en contact",
+        "I have read the": "j'ai lu le",
+        "Privacy Policy": "Politique de confidentialité",
+        "privacyPolicy": "politique de confidentialité",
+        "I agree to the": "je suis d'accord avec le",
+        "termsCondition": "termes et conditions",
+        "t1tAgreement": "t1tAccord",
+        "exportMessage": "exportMessage",
+        "Submit": "Nous faire parvenir"
+    },
+    "fileExplorer": {
+        "File explorer": "Explorateur de fichiers"
+    },
+    "genericCardView": {
+        "We have detected the": "Nous avons détecté le",
+        "card in the": "carte dans le",
+        "Card reading": "Lecture de carte",
+        "All certificates are valid": "Tous les certificats sont valides",
+        "Click to check the pin": "Cliquez pour vérifier la broche",
+        "Print legal copy of card": "Imprimer une copie légale de la carte",
+        "Show generated information": "Afficher les informations générées"
+    },
+    "addressInformation": {
+        "header": "entête",
+        "address": "adresse",
+        "city": "ville",
+        "postalCode": "code postal",
+        "generalInformation": "informations générales"
+    },
+    "certificateInformation": {
+        "header": "entête",
+        "nonRepudiationCertificate": "nonRepudiationCertificate",
+        "authenticationCertificate": "certificat d'authentification",
+        "encryptionCertificate": "chiffrementcertificat",
+        "issuerCertificate": "émetteurcertificat",
+        "intermediateCertificates": "certificats intermédiaires",
+        "rootCertificate": "certificat racine",
+        "noCertFound": "noCertFound"
+    },
+    "paymentCertificateInformation": {
+        "header": "entête",
+        "issuerPublicCertificate": "issuerPublicCertificate",
+        "iccPublicCertificate": "ICCPublicCertificate",
+        "noCertFound": "noCertFound",
+        "aid": "aide",
+        "priority": "priorité"
+    },
+    "genericPaymentApplications": {
+        "header": "entête",
+        "aid": "aide",
+        "priority": "priorité"
+    },
+    "cardActions": {
+        "header": "entête",
+        "legalCopy": "copie légale",
+        "authenticate": "authentifier",
+        "checkPin": "checkPin"
+    },
+    "installation": {
+        "welcome": "Bienvenue",
+        "install": "installer",
+        "windows": "les fenêtres",
+        "macos": "macos",
+        "linux": "linux",
+        "windows64bit": "windows64bit",
+        "windows32bit": "windows32bit",
+        "linux64bit": "linux64bit",
+        "linux32bit": "linux32bit",
+        "macosapple": "pomme macos",
+        "macosintel": "macosintel",
+        "windowsheader": "en-tête de fenêtre",
+        "macosheader": "macosheader",
+        "linuxheader": "en-tête linux",
+        "help": "aider",
+        "config": "configuration"
+    },
+    "pinpad": {
+        "Enter PIN code": "Entrez le code PIN"
+    },
+    "verify": {
+        "certificates": {
+            "validating": "valider",
+            "success": "Succès",
+            "warning": "Attention",
+            "error": "Erreur"
+        }
+    },
+    "module": {
+        "token": {
+            "header": "entête"
+        }
+    },
+    "settings": {
+        "header": "entête",
+        "subtitle": "Sous-titre",
+        "application": {
+            "header": "entête",
+            "darkmode": {
+                "title": "Titre",
+                "subtitle": "Sous-titre"
+            }
+        },
+        "trust1connector": {
+            "header": "entête",
+            "url": {
+                "title": "Titre",
+                "subtitle": "Sous-titre"
+            },
+            "port": {
+                "title": "Titre",
+                "subtitle": "Sous-titre"
+            },
+            "init": {
+                "title": "Titre",
+                "subtitle": "Sous-titre"
+            }
+        }
+    }
+}

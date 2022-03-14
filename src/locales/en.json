@@ -1,0 +1,225 @@
+{
+  "home": {
+    "error": {
+      "nomodule": "No module available on selected reader",
+      "noreader": "No valid reader is selected"
+    },
+    "data": {
+      "error": {
+        "fetch": "Could not fetch the data: {0}"
+      }
+    },
+    "certificates": {
+      "error": {
+        "fetch" : "Could not fetch the certificates: {0}"
+      }
+    },
+    "readerlist": {
+      "error": {
+        "unavailable": "The selected reader is unavailable",
+        "cannotselect": "Cannot select this reader"
+      }
+    }
+  },
+  "navigation" : {
+    "Read my cards" : "Read my cards",
+    "Home" : "Home",
+    "Modules" : "Modules",
+    "ID/Tokens" : "ID/Tokens",
+    "Payment" : "Payment",
+    "PKI" : "PKI",
+    "Remote loading" : "Remote loading",
+    "Transport" : "Transport",
+    "File exchange" : "File exchange",
+    "Other" : "Other",
+    "Certificate manager" : "Certificate manager",
+    "Admin panel" : "Admin panel",
+    "Contact us" : "Contact us"
+  },
+  "deviceInfo": {
+    "api-version": "API version",
+    "js-version": "Javascript version",
+    "Trust1Connector version": "Trust1Connector version",
+    "Trust1Connector javascript": "Trust1Connector javascript",
+    "Device": "Device",
+    "Device ID": "Device ID",
+    "Status": "Status",
+    "Log level": "Log level",
+    "Operating system": "Operating system",
+    "Platform": "Platform",
+    "Version": "Version"
+  },
+  "userInfo": {
+    "Name": "Name",
+    "User": "User",
+    "Username": "Username",
+    "Home directory": "Home directory"
+  },
+  "consent": {
+    "consentMessage": "To use the Read My Cards application we need your consent.",
+    "askToConfirm": "Please click on the button below to provide your",
+    "to continue": "to continue",
+    "consent": "consent",
+    "Consent": "Consent"
+  },
+  "readersList": {
+    "Connect your Reader": "Connect your Reader",
+    "Please connect your": "Please connect your",
+    "smartcard reader": "smartcard reader",
+    "to your computer": "to your computer",
+    "detectMessage": "Once it is connected, this page will automatically detect it",
+    "Choose your Reader": "Choose your Reader",
+    "askToSelect": "Please select the reader you want to use",
+    "readersNotFound": "Could not find any readers connected",
+    "askToConnect": "Please connect your smart card reader and refresh the list",
+    "No module detected": "No module detected",
+    "Select Module": "Select Module",
+    "readername": "Reader Name",
+    "readermodule": "Proposed Module",
+    "status": "Reader Status",
+    "showing": "Showing",
+    "readers": "reader/readers",
+    "actions": "Actions"
+  },
+  "admin": {
+    "binaries": "Trust1Connector installers",
+    "Device information": "Device information",
+    "User information": "User information",
+    "reader": "Card readers",
+    "dependency": "Dependencies status",
+    "dependencyInfo": {
+      "t1cApi": "Trust1Connector API",
+      "validationService": "Validation Service",
+      "distributionServer": "Distribution Server"
+    }
+  },
+  "contact": {
+    "Contact us": "Contact us",
+    "contactUsSubtitle": "Do you need more information about the Trust1Connector? Do you have a problem with the application? Tell us about it!",
+    "Name": "Name",
+    "Company": "Company",
+    "Email Address": "Email Address",
+    "Phone Number": "Phone Number",
+    "Your message": "Your message",
+    "I want more information": "I want more information.",
+    "I have technical issue": "I have technical issue.",
+    "Validation": "Validation",
+    "Get in Touch": "Get in Touch",
+    "I have read the": "I have read the ",
+    "Privacy Policy": "Privacy Policy ",
+    "privacyPolicy": "Privacy Policy",
+    "I agree to the": "I agree to the ",
+    "termsCondition": "Terms & Condition",
+    "t1tAgreement": "I agree that Trust1Team may collect and use my personal data provided in this form for sending me Trust1Team news and marketing materials, that I have agreed to receive in accordance with EU & Belgian regulations, including GPDR compliance. You may unsubscribe from this list at any time.",
+    "exportMessage": "I want to export the data and send it to Trust1Team to help them better understand the problem I am facing",
+    "Submit": "Submit"
+  },
+  "fileExplorer": {
+    "File explorer": "File explorer"
+  },
+  "genericCardView": {
+    "We have detected the": "We have detected the",
+    "card in the": "card in the",
+    "Card reading": "Card reading",
+    "All certificates are valid": "All certificates are valid",
+    "Click to check the pin": "Click to check the pin",
+    "Print legal copy of card": "Print legal copy of card",
+    "Show generated information": "Show generated information"
+  },
+  "addressInformation": {
+    "header": "Address details",
+    "address": "Address",
+    "city": "City",
+    "postalCode": "Postal code",
+    "generalInformation": "General information"
+  },
+  "certificateInformation": {
+    "header": "Certificate details",
+    "nonRepudiationCertificate": "Non repudiation certificate",
+    "authenticationCertificate": "Authentication certificate",
+    "encryptionCertificate": "Encryption certificate",
+    "issuerCertificate": "Issuer certificate",
+    "intermediateCertificates": "Intermediate certificate",
+    "rootCertificate": "Root certificate",
+    "noCertFound": "No certificate was found"
+  },
+  "paymentCertificateInformation": {
+    "header": "Certificate details",
+    "issuerPublicCertificate": "Issuer public certificate",
+    "iccPublicCertificate": "ICC public certificate",
+    "noCertFound": "No certificate was found",
+    "aid": "Aid",
+    "priority": "Priority"
+  },
+  "genericPaymentApplications": {
+    "header": "Application details",
+    "aid": "Aid",
+    "priority": "Priority"
+  },
+  "cardActions": {
+    "header": "Actions",
+    "legalCopy": "Sign uploaded document",
+    "authenticate": "Authenticate",
+    "checkPin": "Verify pin code"
+  },
+  "installation": {
+    "welcome": "Welcome to the web application {0} of Trust1Team!",
+    "install": "To use this application, please install the Trust1Connector software",
+    "windows": "Here you can download the Windows version of the Trust1Connector, both 64- and 32-bit versions are available",
+    "macos": "Here you can download the MacOS version of the Trust1Connector, both Intel and Apple silicon versions are available",
+    "linux": "Here you can download the Linux version of the Trust1Connector, both 64- and 32-bit versions are available",
+    "windows64bit": "Windows 64 bit",
+    "windows32bit": "Windows 32 bit",
+    "linux64bit": "Linux 64 bit",
+    "linux32bit": "Linux 32 bit",
+    "macosapple": "MacOS Apple silicon",
+    "macosintel": "MacOS Intel",
+    "windowsheader": "Windows",
+    "macosheader": "MacOS",
+    "linuxheader": "Linux",
+    "help": "When the Trust1Connector is installed you can click the refresh button to begin.",
+    "config": "The download links will not work with the currently set configuration. {0}:{1}"
+  },
+  "pinpad": {
+    "Enter PIN code": "Enter PIN code"
+  },
+  "verify": {
+    "certificates": {
+      "validating": "Validating certificate chain",
+      "success": "Successfully validated certificate chain",
+      "warning": "Certificate chain validation warning",
+      "error": "Certificate chain is not valid"
+    }
+  },
+  "module": {
+    "token": {
+      "header": "Token contents"
+    }
+  },
+  "settings": {
+    "header": "Settings",
+    "subtitle": "Here you can adjust the web application settings",
+    "application": {
+      "header": "Application",
+      "darkmode": {
+        "title": "Dark mode",
+        "subtitle" : "Setting that enables or disables the dark mode theme"
+      }
+    },
+    "trust1connector": {
+      "header": "Trust1Connector",
+      "url" : {
+        "title": "URL",
+        "subtitle" : "URL that is going to be used to contact the Trust1Connector"
+      },
+      "port" : {
+        "title": "Port",
+        "subtitle" : "Port that is going to be used to contact the Trust1Connector"
+      },
+      "init" : {
+        "title": "Re-initialise",
+        "subtitle" : "Re-initialise the Trust1Connector with the configuration values defined here"
+      }
+    }
+  }
+}
