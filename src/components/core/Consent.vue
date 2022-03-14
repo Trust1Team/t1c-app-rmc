@@ -16,7 +16,7 @@
 <script>
 import Trust1ConnectorService from '../../services/Trust1ConnectorService'
 import copyMixin from '@/mixins/copyMixin'
-import {T1CClient} from "t1c-sdk-js";
+import T1CClient from 't1c-sdk-js'
 export default {
   name: 'Consent',
   data() {
