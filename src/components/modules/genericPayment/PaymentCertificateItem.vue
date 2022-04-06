@@ -51,7 +51,7 @@ export default {
     },
     getCertificate() {
       if (this.certificate) {
-        return this.certificate.data
+        return this.certificate.certificate
       } else {
         return null
       }

@@ -269,7 +269,7 @@ export default {
           Trust1ConnectorService.setClient(res)
         },
         (err) => {
-          if (err.code === '814501' || err.code === '814501') {
+          if (err.code === '814500' || err.code === '814501') {
             this.installed()
             Trust1ConnectorService.setErrorClient(err.client)
           } else {
