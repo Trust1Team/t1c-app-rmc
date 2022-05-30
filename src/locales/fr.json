@@ -1,4 +1,8 @@
 {
+    "version": {
+        "new": "Une nouvelle version est disponible",
+        "ok": "Passez à la version"
+    },
     "home": {
         "error": {
             "nomodule": "aucun module",

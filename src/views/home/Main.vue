@@ -3,6 +3,9 @@
     <Loading icon="puff" :size="50" />
   </div>
   <div class="container" v-if="!loading">
+
+    <VersionCheck></VersionCheck>
+
     <div v-if="getConsent && getInstalled">
       <div v-if="error">
         <Error :text="error" />
@@ -32,6 +35,7 @@ import HomeReaderList from '@/views/home/HomeReaderList'
 import HomePinPad from '@/views/home/HomePinPad'
 import { useToast } from 'vue-toastification'
 import Loading from '@/global-components/loading-icon/Main'
+import VersionCheck from '@/views/admin/VersionCheck'
 
 export default {
   name: 'Home',
@@ -303,6 +307,7 @@ export default {
     }
   },
   components: {
+    VersionCheck,
     HomePinPad,
     HomeReaderList,
     Consent,
