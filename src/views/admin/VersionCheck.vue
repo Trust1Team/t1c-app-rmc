@@ -14,7 +14,7 @@
           <div v-if="newVersionType === 'allowed'" class="alert alert-primary-soft show mb-2 flex items-center justify-center" role="alert">New version available {{newVersion}}, you have {{oldVersion}}</div>
         </div>
 
-        <Installation />
+        <VersionDownload />
       </div>
 
       <div class="px-5 pt-5 text-center col-span-12" v-if="newVersionType !== 'mandatory'">
@@ -29,13 +29,13 @@
 import Trust1ConnectorService from '@/services/Trust1ConnectorService'
 import DistributionService from '@/services/DistributionService'
 import SimpleDialog from '@/components/UIComponents/SimpleDialog'
-import Installation from '@/components/core/Installation'
+import VersionDownload from '@/components/core/VersionDownload'
 
 export default {
   name: 'VersionCheck',
   components: {
-    SimpleDialog,
-    Installation
+    VersionDownload,
+    SimpleDialog
   },
   data() {
     return {
