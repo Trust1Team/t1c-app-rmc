@@ -1,4 +1,4 @@
-# rubick
+# Read my cards
 
 ## Project setup
 
