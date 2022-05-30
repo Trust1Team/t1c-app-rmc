@@ -1,6 +1,8 @@
 <template>
   <div class="container">
     <div>
+      <VersionCheck></VersionCheck>
+
       <h1 class="text-4xl font-medium my-4">{{ $t("admin.Device information") }}</h1>
       <DeviceInfo :info="info" :js-version="jsVersion" />
 
@@ -26,6 +28,7 @@ import UserInfo from './UserInfo'
 import ReadersList from '@/components/core/ReadersList'
 import DependencyInfo from './DependencyInfo'
 import Installation from '../../components/core/Installation'
+import VersionCheck from '@/views/admin/VersionCheck'
 
 export default {
   name: 'Admin',
@@ -55,6 +58,7 @@ export default {
   },
   computed: {},
   components: {
+    VersionCheck,
     ReadersList,
     DeviceInfo,
     UserInfo,

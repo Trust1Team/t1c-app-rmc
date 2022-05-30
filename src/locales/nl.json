@@ -1,4 +1,8 @@
 {
+    "version": {
+        "new": "Een nieuwe versie is beschikbaar",
+        "ok": "Sla versie over"
+    },
     "home": {
         "error": {
             "nomodule": "Geen module",

@@ -1,4 +1,8 @@
 {
+  "version": {
+    "new": "A new version is available",
+    "ok": "Skip version"
+  },
   "home": {
     "error": {
       "nomodule": "No module available on selected reader",
