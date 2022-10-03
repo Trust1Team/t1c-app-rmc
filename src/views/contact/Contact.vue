@@ -99,10 +99,11 @@
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
+
             <div class="modal-body">
               <div v-if="technicalCheck" class="row float-left check-text">
                 <div class="col-1">
-                  <i class="fa fa-download fa-2x text-primary"></i>
+                  <i class="fa fa-download fa-2x text-primary" />
                 </div>
                 <div class="col-11">{{ $t('contact.exportMessage') }}</div>
               </div>
@@ -120,9 +121,9 @@
                   <div class="col-10">
                     <label class="form-check-label" for="privacyPolicy">
                       {{ $t('contact.I have read the') }}
-                      <a href="https://www.trust1team.com/privacy-policy" target="_blank">{{
-                        $t('contact.Privacy Policy')
-                      }}</a>
+                      <a href="https://www.trust1team.com/privacy-policy" target="_blank">
+                        {{ $t('contact.Privacy Policy') }}
+                      </a>
                     </label>
                   </div>
                 </div>
@@ -139,9 +140,9 @@
                   <div class="col-10">
                     <label class="form-check-label" for="termsCondition">
                       {{ $t('contact.I agree to the') }}
-                      <a href="https://www.trust1team.com/terms-conditions" target="_blank">{{
-                        $t('contact.termsCondition')
-                      }}</a>
+                      <a href="https://www.trust1team.com/terms-conditions" target="_blank">
+                        {{ $t('contact.termsCondition') }}
+                      </a>
                     </label>
                   </div>
                 </div>
@@ -161,6 +162,7 @@
                 </div>
               </div>
             </div>
+
             <div class="modal-footer">
               <button
                 type="submit"
