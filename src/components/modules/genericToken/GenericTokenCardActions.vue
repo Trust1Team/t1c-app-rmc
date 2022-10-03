@@ -35,7 +35,6 @@
     </div>
   </div>
 
-  <!--  User ref to be able to call the functions inside this component -->
   <PinDialog ref="pinDialog" :pin-error-description="pinErrorDescription" @confirmPin="pinSelected" />
 
   <GenericAuthDialog

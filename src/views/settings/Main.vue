@@ -1,6 +1,5 @@
 <template>
   <div class="container">
-    <!--    Header-->
     <div class="header mt-6">
       <h1 class="text-4xl font-medium leading-none">{{ $t('settings.header') }}</h1>
       <p class="mt-3">{{ $t('settings.subtitle') }}</p>

@@ -1,19 +1,14 @@
 <template>
   <div>
-    <!--    <DarkModeSwitcher />-->
     <MobileMenu />
     <div class="flex">
-      <!-- BEGIN: Side Menu -->
       <nav class="side-nav">
-        <!-- BEGIN: Logo -->
         <router-link :to="{ name: 'side-menu-home' }" class="flex items-center pl-5 pt-4">
           <img alt="Read my cards" class="w-6" src="/assets/images/t1c-logo.png" />
           <span class="hidden xl:block text-white text-lg ml-3"> Read my cards </span>
         </router-link>
-        <!-- END: Logo -->
         <div class="side-nav__devider my-6"></div>
         <ul>
-          <!-- BEGIN: First Child -->
           <template v-for="(menu, menuKey) in formattedMenu">
             <li v-if="menu == 'devider'" :key="menu + menuKey" class="side-nav__devider my-6"></li>
             <li v-else :key="menu + menuKey">
@@ -42,7 +37,6 @@
                   </div>
                 </div>
               </SideMenuTooltip>
-              <!-- BEGIN: Second Child -->
               <transition @enter="enter" @leave="leave">
                 <ul v-if="menu.subMenu && menu.activeDropdown">
                   <li v-for="(subMenu, subMenuKey) in menu.subMenu" :key="subMenuKey">
@@ -70,7 +64,6 @@
                         </div>
                       </div>
                     </SideMenuTooltip>
-                    <!-- BEGIN: Third Child -->
                     <transition @enter="enter" @leave="leave">
                       <ul v-if="subMenu.subMenu && subMenu.activeDropdown">
                         <li v-for="(lastSubMenu, lastSubMenuKey) in subMenu.subMenu" :key="lastSubMenuKey">
@@ -94,23 +87,17 @@
                         </li>
                       </ul>
                     </transition>
-                    <!-- END: Third Child -->
                   </li>
                 </ul>
               </transition>
-              <!-- END: Second Child -->
             </li>
           </template>
-          <!-- END: First Child -->
         </ul>
       </nav>
-      <!-- END: Side Menu -->
-      <!-- BEGIN: Content -->
       <div class="content">
         <TopBar />
         <router-view />
       </div>
-      <!-- END: Content -->
     </div>
     <Footer />
   </div>

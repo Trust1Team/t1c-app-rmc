@@ -1,11 +1,9 @@
 <template>
-  <!--  PINPAD MODAL BEGIN-->
   <div id="sign-modal" class="modal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-body flex justify-center">
           <div class="flex-column justify-center">
-            <!-- BEGIN: Wizard Layout -->
             <div class="wizard flex flex-col lg:flex-row justify-center px-5 sm:px-20">
               <div class="intro-x lg:text-center flex items-center lg:block flex-1 z-10">
                 <button v-if="step === 1" class="w-10 h-10 rounded-full btn btn-primary" @click="setStep(1)">1</button>
@@ -65,12 +63,10 @@
               </div>
             </div>
           </div>
-          <!-- END: Wizard Layout -->
         </div>
       </div>
     </div>
   </div>
-  <!--  PINPAD MODAL END-->
 </template>
 
 <script>

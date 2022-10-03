@@ -1,5 +1,4 @@
 <template>
-  <!--  PINPAD MODAL BEGIN-->
   <div id="pin-pad-modal" ref="pinModal" class="modal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -15,7 +14,6 @@
       </div>
     </div>
   </div>
-  <!--  PINPAD MODAL END-->
 </template>
 
 <script>

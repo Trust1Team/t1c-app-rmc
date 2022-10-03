@@ -1,5 +1,4 @@
 <template>
-  <!-- BEGIN: Mobile Menu -->
   <div class="mobile-menu md:hidden">
     <div class="mobile-menu-bar">
       <a href class="flex mr-auto">
@@ -9,7 +8,6 @@
     </div>
     <transition @enter="enter" @leave="leave">
       <ul v-if="activeMobileMenu" class="border-t border-theme-29 py-5">
-        <!-- BEGIN: First Child -->
         <template v-for="(menu, menuKey) in formattedMenu">
           <li v-if="menu == 'devider'" :key="menu + menuKey" class="menu__devider my-6"></li>
           <li v-else :key="menu + menuKey">
@@ -36,7 +34,6 @@
                 </div>
               </div>
             </a>
-            <!-- BEGIN: Second Child -->
             <transition @enter="enter" @leave="leave">
               <ul v-if="menu.subMenu && menu.activeDropdown">
                 <li v-for="(subMenu, subMenuKey) in menu.subMenu" :key="subMenuKey">
@@ -62,7 +59,6 @@
                       </div>
                     </div>
                   </a>
-                  <!-- BEGIN: Third Child -->
                   <transition @enter="enter" @leave="leave">
                     <ul v-if="subMenu.subMenu && subMenu.activeDropdown">
                       <li v-for="(lastSubMenu, lastSubMenuKey) in subMenu.subMenu" :key="lastSubMenuKey">
@@ -82,18 +78,14 @@
                       </li>
                     </ul>
                   </transition>
-                  <!-- END: Third Child -->
                 </li>
               </ul>
             </transition>
-            <!-- END: Second Child -->
           </li>
         </template>
-        <!-- END: First Child -->
       </ul>
     </transition>
   </div>
-  <!-- END: Mobile Menu -->
 </template>
 
 <script>

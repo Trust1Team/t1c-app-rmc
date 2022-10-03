@@ -78,7 +78,6 @@
     </div>
 
     <div>
-      <!--Validate Modal -->
       <div
         id="validateModal"
         ref="validateModal"

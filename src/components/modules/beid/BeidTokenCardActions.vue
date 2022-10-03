@@ -45,7 +45,6 @@
     </div>
   </div>
 
-  <!--  User ref to be able to call the functions inside this component -->
   <PinDialog ref="pinDialog" :pin-error-description="pinErrorDescription" @confirmPin="pinSelected" />
 
   <SignModal ref="signModal" :bytes-to-sign="bytesToSign" :document-id="documentId" module="beid" @closed="resetForm" />

@@ -16,7 +16,6 @@
         </div>
       </div>
     </div>
-    <!-- BEGIN: Data List -->
     <div class="intro-y col-span-12 overflow-auto lg:overflow-visible">
       <table class="table table-report -mt-2">
         <thead>
@@ -105,7 +104,6 @@
         </tbody>
       </table>
     </div>
-    <!-- END: Data List -->
   </div>
 </template>
 
@@ -231,7 +229,6 @@ export default {
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .reader-select:hover {
   cursor: pointer;

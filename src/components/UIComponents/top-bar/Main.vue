@@ -1,7 +1,5 @@
 <template>
-  <!-- BEGIN: Top Bar -->
   <div class="top-bar mb-3">
-    <!-- BEGIN: Breadcrumb -->
     <div class="-intro-x breadcrumb mr-auto hidden sm:flex">
       <router-link :to="{ name: 'side-menu-home' }">Read my cards</router-link>
       <div v-for="route in currentRouteName.matched" :key="route">
@@ -13,9 +11,7 @@
         </div>
       </div>
     </div>
-    <!-- END: Breadcrumb -->
   </div>
-  <!-- END: Top Bar -->
 </template>
 
 <script>
