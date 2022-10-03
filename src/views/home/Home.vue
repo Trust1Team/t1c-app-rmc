@@ -10,7 +10,7 @@
         <Error :text="error" />
       </div>
       <div v-if="pageView === 0">
-        <HomeReaderList @readerSelected="readerSelected"></HomeReaderList>
+        <ReaderList @readerSelected="readerSelected"></ReaderList>
       </div>
       <div v-if="pageView === 1">
         <div class="return">
@@ -18,7 +18,7 @@
             <i class="fas fa-arrow-left"></i>
           </button>
         </div>
-        <HomePinPad @pinSelected="pinSelected"></HomePinPad>
+        <PinPad @pinSelected="pinSelected"></PinPad>
       </div>
     </div>
     <Consent v-if="getInstalled && !getConsent" @consented="consented" />
@@ -29,18 +29,18 @@
 import Trust1ConnectorService from '@/infrastructure/services/Trust1Connector';
 import Consent from '@/components/core/Consent';
 import Error from '@/components/UIComponents/Error';
-import HomeReaderList from '@/views/home/HomeReaderList';
-import HomePinPad from '@/views/home/HomePinPad';
 import { useToast } from 'vue-toastification';
 import Loading from '@/global-components/loading-icon/Main';
 import VersionCheck from '@/views/admin/components/VersionCheck';
+import ReaderList from './components/ReaderList';
+import PinPad from './components/PinPad';
 
 export default {
   name: 'Home',
   components: {
     VersionCheck,
-    HomePinPad,
-    HomeReaderList,
+    PinPad,
+    ReaderList,
     Consent,
     Error,
     Loading,
