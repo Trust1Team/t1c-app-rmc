@@ -6,7 +6,7 @@ import Download from './views/download';
 import ErrorPage from './views/error-page';
 import Generic from './views/generic';
 import Home from './views/home';
-import Settings from './views/settings/Main';
+import Settings from './views/settings';
 
 const routes = [
   {
