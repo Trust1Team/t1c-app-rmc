@@ -1,17 +1,18 @@
-import axios from 'axios'
+import axios from 'axios';
 
-function apiClient() {
-  return axios.create({
-    baseURL: window.VUE_APP_ENV_BFF_URL
-      ? window.VUE_APP_ENV_BFF_URL
-      : 'http://localhost:9000',
-    withCredentials: false
-  })
+const apiClient = () => {
+  const baseInstance = {
+    baseURL: window?.VUE_APP_ENV_BFF_URL || 'http://localhost:9000',
+    withCredentials: false,
+  }
+
+  return axios.create(baseInstance);
 }
 
 export default {
   validateChain(certs) {
-    const updatedChainData = []
+    const updatedChainData = [];
+
     for (let i = 0; i < certs.length; i++) {
       updatedChainData.push(
         {
@@ -20,9 +21,11 @@ export default {
         }
       )
     }
+
     const data = {
       certificateChain: updatedChainData
     }
+
     return apiClient().post('/v1/validate', data)
   },
   getStatus() {

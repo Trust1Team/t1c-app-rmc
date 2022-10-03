@@ -1,18 +1,17 @@
-import { T1CClient, T1CConfig, T1CConfigOptions } from 't1c-sdk-js'
+import { T1CClient, T1CConfig, T1CConfigOptions } from 't1c-sdk-js';
 
-let client = null
+let client = null;
+let errorClient = null;
 
-let errorClient = null
+const makeId = length => {
+  let result = '';
+  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 
-function makeid(length) {
-  let result = ''
-  const characters =
-    'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
-  const charactersLength = characters.length
   for (let i = 0; i < length; i++) {
-    result += characters.charAt(Math.floor(Math.random() * charactersLength))
+    result += characters.charAt(Math.floor(Math.random() * characters.length));
   }
-  return result
+
+  return result;
 }
 
 export default {
@@ -21,7 +20,7 @@ export default {
     // Return a initialised T1C client
     if (!url && !port && client) {
       return new Promise((resolve) => {
-        resolve(client)
+        resolve(client);
       })
     } else {
       const config = new T1CConfig(
@@ -33,23 +32,24 @@ export default {
           null,
           location.hostname
         )
-      )
-      return T1CClient.initialize(config)
+      );
+
+      return T1CClient.initialize(config);
     }
   },
   getClient() {
-    return client
+    return client;
   },
   setClient(c) {
-    client = c
+    client = c;
   },
   getErrorClient() {
-    return errorClient
+    return errorClient;
   },
   setErrorClient(c) {
-    errorClient = c
+    errorClient = c;
   },
   getRand(length) {
-    return makeid(length)
+    return makeId(length);
   }
 }
