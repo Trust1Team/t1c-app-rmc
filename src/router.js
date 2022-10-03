@@ -1,11 +1,11 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import SideMenu from '../layouts/side-menu/Main.vue'
-import Home from '../views/home/Main.vue'
-import Download from '../views/download/Main.vue'
-import Generic from '../views/generic/Main.vue'
-import Admin from '../views/admin/Main.vue'
-import Contact from '../views/contact/Main.vue'
-import Settings from '../views/settings/Main.vue'
+import SideMenu from './layouts/side-menu/Main.vue'
+import Home from './views/home/Main.vue'
+import Download from './views/download/Main.vue'
+import Generic from './views/generic/Main.vue'
+import Admin from './views/admin/Main.vue'
+import Contact from './views/contact/Main.vue'
+import Settings from './views/settings/Main.vue'
 import ErrorPage from '../views/error-page/Main'
 
 const routes = [
