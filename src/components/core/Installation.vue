@@ -129,9 +129,9 @@
   </div>
 </template>
 <script>
-import DistributionService from '../../services/DistributionService';
 import { useToast } from 'vue-toastification';
-import Trust1ConnectorService from '@/services/Trust1ConnectorService';
+import Trust1ConnectorService from '@/infrastructure/services/Trust1Connector';
+import DistributionService from '@/infrastructure/services/Distribution';
 
 export default {
   name: 'Installation',

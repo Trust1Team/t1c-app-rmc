@@ -37,8 +37,8 @@
 </template>
 
 <script>
-import Trust1ConnectorService from '@/services/Trust1ConnectorService';
-import DistributionService from '@/services/DistributionService';
+import Trust1ConnectorService from '@/infrastructure/services/Trust1Connector';
+import DistributionService from '@/infrastructure/services/Distribution';
 import SimpleDialog from '@/components/UIComponents/SimpleDialog';
 import VersionDownload from '@/components/core/VersionDownload';
 

@@ -110,9 +110,9 @@
 </template>
 
 <script>
-import Trust1ConnectorService from '../../services/Trust1ConnectorService';
+import Trust1ConnectorService from '@/infrastructure/services/Trust1Connector';
 import Loading from '@/global-components/loading-icon/Main';
-import copyMixin from '@/mixins/copyMixin';
+import copyMixin from '@/infrastructure/mixins/copyMixin';
 
 export default {
   name: 'ReadersList',

@@ -17,7 +17,7 @@
 <script>
 import ModuleSwitch from '@/components/modules/ModuleSwitch';
 import Loading from '@/global-components/loading-icon/Main';
-import store from '@/store';
+import store from '@/infrastructure/store';
 
 export default {
   name: 'Generic',

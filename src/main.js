@@ -1,14 +1,21 @@
 import { createApp } from 'vue';
 import Toast, { TYPE } from 'vue-toastification';
 import globalComponents from './global-components';
+import store from '@/infrastructure/store';
 import router from './router';
-import store from './store';
 import App from './App.vue';
-import './libs';
+
+// Import theme javascript plugins.
+import '@left4code/tw-starter/dist/js/svg-loader'
+import '@left4code/tw-starter/dist/js/accordion'
+import '@left4code/tw-starter/dist/js/alert'
+import '@left4code/tw-starter/dist/js/dropdown'
+import '@left4code/tw-starter/dist/js/modal'
+import '@left4code/tw-starter/dist/js/tab'
 
 // toast CSS
 import 'vue-toastification/dist/index.css';
-import i18n from './i18n';
+import i18n from './i18n/i18n';
 
 // SASS Theme
 import './assets/sass/app.scss';

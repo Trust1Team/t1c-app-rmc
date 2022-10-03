@@ -52,10 +52,10 @@
 </template>
 
 <script>
-import PinDialog from '@/components/UIComponents/PinDialog';
-import Trust1ConnectorService from '@/services/Trust1ConnectorService.js';
-import SigningService from '@/services/SigningService';
 import { useToast } from 'vue-toastification';
+import PinDialog from '@/components/UIComponents/PinDialog';
+import Trust1ConnectorService from '@/infrastructure/services/Trust1Connector';
+import SigningService from '@/infrastructure/services/Signing';
 import SignModal from '@/components/modules/beid/SignDialog';
 
 export default {

@@ -74,10 +74,10 @@
 </template>
 
 <script>
-import Pinpad from '@/components/UIComponents/Pinpad';
 import $ from 'cash-dom';
 import { useToast } from 'vue-toastification';
-import Trust1ConnectorService from '@/services/Trust1ConnectorService.js';
+import Pinpad from '@/components/UIComponents/Pinpad';
+import Trust1ConnectorService from '@/infrastructure/services/Trust1Connector';
 import Loading from '@/global-components/loading-icon/Main';
 
 export default {

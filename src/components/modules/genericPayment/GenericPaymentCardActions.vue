@@ -13,7 +13,7 @@
 
 <script>
 import { useToast } from 'vue-toastification';
-import Trust1ConnectorService from '@/services/Trust1ConnectorService';
+import Trust1ConnectorService from '@/infrastructure/services/Trust1Connector';
 import PinDialog from '@/components/UIComponents/PinDialog';
 
 export default {

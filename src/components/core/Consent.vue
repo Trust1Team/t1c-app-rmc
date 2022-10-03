@@ -14,8 +14,8 @@
 </template>
 
 <script>
-import Trust1ConnectorService from '../../services/Trust1ConnectorService';
-import copyMixin from '@/mixins/copyMixin';
+import Trust1ConnectorService from '@/infrastructure/services/Trust1Connector';
+import copyMixin from '@/infrastructure/mixins/copyMixin';
 import { T1CClient } from 't1c-sdk-js';
 export default {
   name: 'Consent',

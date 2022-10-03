@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import Trust1ConnectorService from '../../services/Trust1ConnectorService';
+import Trust1ConnectorService from '@/infrastructure/services/Trust1Connector';
 import DeviceInfo from './DeviceInfo';
 import UserInfo from './UserInfo';
 import ReadersList from '@/components/core/ReadersList';

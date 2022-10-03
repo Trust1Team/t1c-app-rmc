@@ -117,9 +117,9 @@
 </template>
 
 <script>
+import { useStore } from 'vuex';
 import { defineComponent, computed, onMounted, ref, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
-import { useStore } from '@/store';
 import TopBar from '@/components/UIComponents/top-bar/Main.vue';
 import MobileMenu from '@/components/_framework/mobile-menu/Main.vue';
 import DarkModeSwitcher from '@/components/_framework/dark-mode-switcher/Main.vue';

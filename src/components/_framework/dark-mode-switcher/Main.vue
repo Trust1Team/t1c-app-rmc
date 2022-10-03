@@ -11,9 +11,9 @@
 </template>
 
 <script>
-import { defineComponent, onMounted, computed } from 'vue';
-import { useStore } from '@/store';
 import $ from 'cash-dom';
+import { useStore } from 'vuex';
+import { defineComponent, onMounted, computed } from 'vue';
 export default defineComponent({
   setup() {
     const store = useStore();

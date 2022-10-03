@@ -1,4 +1,4 @@
-import store from '@/store/index.js'
+import store from '@/infrastructure/store'
 
 export default {
   methods: {

@@ -29,7 +29,7 @@
 <script>
 import { useToast } from 'vue-toastification';
 import Loading from '@/global-components/loading-icon/Main';
-import ValidationService from '@/services/ValidationService';
+import ValidationService from '@/infrastructure/services/Validation';
 
 export default {
   name: 'VerifyTokenCertificatesComponent',

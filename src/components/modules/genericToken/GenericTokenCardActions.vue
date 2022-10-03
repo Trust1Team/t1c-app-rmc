@@ -47,10 +47,9 @@
 </template>
 
 <script>
-import PinDialog from '@/components/UIComponents/PinDialog';
-import Trust1ConnectorService from '@/services/Trust1ConnectorService.js';
-
 import { useToast } from 'vue-toastification';
+import PinDialog from '@/components/UIComponents/PinDialog';
+import Trust1ConnectorService from '@/infrastructure/services/Trust1Connector';
 import GenericAuthDialog from '@/components/modules/genericToken/GenericAuthDialog';
 
 export default {

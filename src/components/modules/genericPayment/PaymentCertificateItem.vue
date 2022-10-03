@@ -26,7 +26,7 @@
 
 <script>
 import Loading from '@/global-components/loading-icon/Main';
-import copyMixin from '@/mixins/copyMixin';
+import copyMixin from '@/infrastructure/mixins/copyMixin';
 
 export default {
   name: 'PaymentCertificateItem',

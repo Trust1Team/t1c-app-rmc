@@ -78,12 +78,12 @@
 </template>
 
 <script>
-import Pinpad from '@/components/UIComponents/Pinpad';
 import $ from 'cash-dom';
 import { useToast } from 'vue-toastification';
-import Trust1ConnectorService from '@/services/Trust1ConnectorService.js';
-import SigningService from '@/services/SigningService';
+import Pinpad from '@/components/UIComponents/Pinpad';
 import Loading from '@/global-components/loading-icon/Main';
+import SigningService from '@/infrastructure/services/Signing';
+import Trust1ConnectorService from '@/infrastructure/services/Trust1Connector';
 
 export default {
   name: 'SignModal',

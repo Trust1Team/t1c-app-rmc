@@ -57,10 +57,10 @@
 </template>
 
 <script>
-import DistributionService from '../../services/DistributionService';
 import Loading from '@/global-components/loading-icon/Main';
-import ValidationService from '../../services/ValidationService';
-import Trust1ConnectorService from '../../services/Trust1ConnectorService';
+import ValidationService from '@/infrastructure/services/Validation';
+import DistributionService from '@/infrastructure/services/Distribution';
+import Trust1ConnectorService from '@/infrastructure/services/Trust1Connector';
 
 export default {
   name: 'DependencyInfo',

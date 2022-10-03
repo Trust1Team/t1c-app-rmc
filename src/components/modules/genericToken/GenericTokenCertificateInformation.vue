@@ -49,7 +49,7 @@
 </template>
 
 <script>
-import copyMixin from '@/mixins/copyMixin';
+import copyMixin from '@/infrastructure/mixins/copyMixin';
 import VerifyTokenCertificatesComponent from '@/components/modules/VerifyTokenCertificatesComponent';
 import CertificateItem from '@/components/modules/CertificateItem';
 

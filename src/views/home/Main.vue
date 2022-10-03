@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import Trust1ConnectorService from '@/services/Trust1ConnectorService.js';
+import Trust1ConnectorService from '@/infrastructure/services/Trust1Connector';
 import Consent from '@/components/core/Consent';
 import Error from '@/components/UIComponents/Error';
 import HomeReaderList from '@/views/home/HomeReaderList';

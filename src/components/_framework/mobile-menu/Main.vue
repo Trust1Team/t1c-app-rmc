@@ -97,11 +97,11 @@
 </template>
 
 <script>
+import { useStore } from 'vuex';
 import { defineComponent, computed, onMounted, ref, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
-import { useStore } from '@/store';
 import { activeMobileMenu, toggleMobileMenu, linkTo, enter, leave } from './index';
-import { nestedMenu } from '@/layouts/side-menu';
+import { nestedMenu } from '@/components/layouts/side-menu';
 
 export default defineComponent({
   setup() {
