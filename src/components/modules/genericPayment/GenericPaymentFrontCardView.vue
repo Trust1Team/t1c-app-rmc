@@ -36,7 +36,7 @@
 
 <script>
 import moment from 'moment';
-import * as _ from 'lodash';
+import { forEach } from 'lodash';
 
 export default {
   name: 'GenericPaymentFrontCardView',
@@ -44,7 +44,7 @@ export default {
   computed: {
     constructCardNumber() {
       let cardNumber = '';
-      _.forEach(this.applicationData.pan, (comp, idx) => {
+      forEach(this.applicationData.pan, (comp, idx) => {
         idx % 4 === 0 ? (cardNumber += ' ' + comp) : (cardNumber += comp);
       });
       return cardNumber;

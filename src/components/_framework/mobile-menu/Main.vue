@@ -100,7 +100,6 @@
 import { defineComponent, computed, onMounted, ref, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { useStore } from '@/store';
-import { helper as $h } from '@/utils/helper';
 import { activeMobileMenu, toggleMobileMenu, linkTo, enter, leave } from './index';
 import { nestedMenu } from '@/layouts/side-menu';
 
@@ -115,12 +114,12 @@ export default defineComponent({
     watch(
       computed(() => route.path),
       () => {
-        formattedMenu.value = $h.toRaw(mobileMenu.value);
+        formattedMenu.value = JSON.parse(JSON.stringify(mobileMenu.value));
       },
     );
 
     onMounted(() => {
-      formattedMenu.value = $h.toRaw(mobileMenu.value);
+      formattedMenu.value = JSON.parse(JSON.stringify(mobileMenu.value));
     });
 
     return {

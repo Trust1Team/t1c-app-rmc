@@ -30,10 +30,10 @@
 </template>
 
 <script>
-import * as _ from 'lodash';
+import { padEnd, truncate, sum, map, join, split } from 'lodash';
 
 function pad(string) {
-  return _.padEnd(_.truncate(string, { length: 30, omission: '' }), 30, '<');
+  return padEnd(truncate(string, { length: 30, omission: '' }), 30, '<');
 }
 function calculate(string) {
   const dict = {
@@ -76,9 +76,9 @@ function calculate(string) {
     Z: 35,
   };
   return (
-    _.sum(
-      _.map(
-        _.map(string, (letter) => {
+    sum(
+      map(
+        map(string, (letter) => {
           return dict[letter.toUpperCase()];
         }),
         (val, index) => {
@@ -149,11 +149,11 @@ export default {
 
         // Third line
         let third =
-          _.join(_.split(rnData.name, ' '), '<') +
+          join(split(rnData.name, ' '), '<') +
           '<<' +
-          _.join(_.split(rnData.firstNames, ' '), '<') +
+          join(split(rnData.firstNames, ' '), '<') +
           '<' +
-          _.join(_.split(rnData.thirdName, ' '), '<');
+          join(split(rnData.thirdName, ' '), '<');
         third = pad(third);
         mrs.push(third.toUpperCase());
       }

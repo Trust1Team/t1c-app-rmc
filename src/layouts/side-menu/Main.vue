@@ -120,7 +120,6 @@
 import { defineComponent, computed, onMounted, ref, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { useStore } from '@/store';
-import { helper as $h } from '@/utils/helper';
 import TopBar from '@/components/UIComponents/top-bar/Main.vue';
 import MobileMenu from '@/components/_framework/mobile-menu/Main.vue';
 import DarkModeSwitcher from '@/components/_framework/dark-mode-switcher/Main.vue';
@@ -147,13 +146,13 @@ export default defineComponent({
     watch(
       computed(() => route.path),
       () => {
-        formattedMenu.value = $h.toRaw(sideMenu.value);
+        formattedMenu.value = JSON.parse(JSON.stringify(sideMenu.value));
       },
     );
 
     onMounted(() => {
       $('body').removeClass('error-page').removeClass('login').addClass('main');
-      formattedMenu.value = $h.toRaw(sideMenu.value);
+      formattedMenu.value = JSON.parse(JSON.stringify(sideMenu.value));
     });
 
     return {
