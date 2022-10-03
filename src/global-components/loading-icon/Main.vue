@@ -479,21 +479,9 @@
       :stroke="iconColor"
       class="w-full h-full"
     >
-      <g
-        fill="none"
-        fill-rule="evenodd"
-        transform="translate(1 1)"
-        stroke-width="3"
-      >
+      <g fill="none" fill-rule="evenodd" transform="translate(1 1)" stroke-width="3">
         <circle cx="22" cy="22" r="6" stroke-opacity="0">
-          <animate
-            attributeName="r"
-            begin="1.5s"
-            dur="3s"
-            values="6;22"
-            calcMode="linear"
-            repeatCount="indefinite"
-          />
+          <animate attributeName="r" begin="1.5s" dur="3s" values="6;22" calcMode="linear" repeatCount="indefinite" />
           <animate
             attributeName="stroke-opacity"
             begin="1.5s"
@@ -512,14 +500,7 @@
           />
         </circle>
         <circle cx="22" cy="22" r="6" stroke-opacity="0">
-          <animate
-            attributeName="r"
-            begin="3s"
-            dur="3s"
-            values="6;22"
-            calcMode="linear"
-            repeatCount="indefinite"
-          />
+          <animate attributeName="r" begin="3s" dur="3s" values="6;22" calcMode="linear" repeatCount="indefinite" />
           <animate
             attributeName="stroke-opacity"
             begin="3s"
@@ -657,12 +638,7 @@
       </defs>
       <g fill="none" fill-rule="evenodd">
         <g transform="translate(1 1)">
-          <path
-            id="Oval-2"
-            d="M36 18c0-9.94-8.06-18-18-18"
-            stroke="url(#a)"
-            stroke-width="3"
-          >
+          <path id="Oval-2" d="M36 18c0-9.94-8.06-18-18-18" stroke="url(#a)" stroke-width="3">
             <animateTransform
               attributeName="transform"
               type="rotate"
@@ -764,33 +740,31 @@
 </template>
 
 <script>
-import { defineComponent, computed } from 'vue'
-import { useStore } from '@/store'
+import { defineComponent, computed } from 'vue';
+import { useStore } from '@/store';
 
 export default defineComponent({
   props: {
     icon: {
       type: String,
-      default: ''
+      default: '',
     },
     size: {
       type: String,
-      default: '20'
+      default: '20',
     },
     color: {
       type: String,
-      default: '#2d3748'
-    }
+      default: '#2d3748',
+    },
   },
   setup(props) {
-    const store = useStore()
-    const iconColor = computed(() =>
-      !store.state.main.darkMode ? props.color : '#ffffff'
-    )
+    const store = useStore();
+    const iconColor = computed(() => (!store.state.main.darkMode ? props.color : '#ffffff'));
 
     return {
-      iconColor
-    }
-  }
-})
+      iconColor,
+    };
+  },
+});
 </script>

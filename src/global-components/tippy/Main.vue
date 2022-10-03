@@ -5,30 +5,30 @@
 </template>
 
 <script>
-import { defineComponent, ref, inject, onMounted } from 'vue'
-import tippy, { roundArrow, animateFill } from 'tippy.js'
+import { defineComponent, ref, inject, onMounted } from 'vue';
+import tippy, { roundArrow, animateFill } from 'tippy.js';
 
 export default defineComponent({
   props: {
     content: {
       type: String,
-      required: true
+      required: true,
     },
     tag: {
       type: String,
-      default: 'span'
+      default: 'span',
     },
     options: {
       type: Object,
-      default: () => ({})
+      default: () => ({}),
     },
     refKey: {
       type: String,
-      default: null
-    }
+      default: null,
+    },
   },
   setup(props) {
-    const tippyRef = ref()
+    const tippyRef = ref();
     const init = () => {
       tippy(tippyRef.value, {
         plugins: [animateFill],
@@ -39,34 +39,34 @@ export default defineComponent({
             {
               name: 'preventOverflow',
               options: {
-                rootBoundary: 'viewport'
-              }
-            }
-          ]
+                rootBoundary: 'viewport',
+              },
+            },
+          ],
         },
         animateFill: false,
         animation: 'shift-away',
-        ...props.options
-      })
-    }
+        ...props.options,
+      });
+    };
 
     const bindInstance = () => {
       if (props.refKey) {
-        const bind = inject(`bind[${props.refKey}]`)
+        const bind = inject(`bind[${props.refKey}]`);
         if (bind) {
-          bind(tippyRef.value)
+          bind(tippyRef.value);
         }
       }
-    }
+    };
 
     onMounted(() => {
-      init()
-      bindInstance()
-    })
+      init();
+      bindInstance();
+    });
 
     return {
-      tippyRef
-    }
-  }
-})
+      tippyRef,
+    };
+  },
+});
 </script>
