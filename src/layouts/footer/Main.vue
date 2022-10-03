@@ -9,7 +9,7 @@
     </div>
     <div class="col-span-8 text-center text-base pl-10">
       This service is provided free of charge, and is intended for private use only. No personal info is saved when using this service. <br>
-      Copyright 2021 Trust1Team - All rights reserved
+      Copyright 2022 Trust1Team - All rights reserved
     </div>
     <div class="col-span-2 text-right">
       <a
