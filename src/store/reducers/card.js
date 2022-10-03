@@ -1,26 +1,28 @@
+const INITIAL_STATE = {
+  // Token
+  biometric: null,
+  address: null,
+  picture: null,
+  rootCertificate: null,
+  intermediateCertificates: null,
+  authenticationCertificate: null,
+  nonRepudiationCertificate: null,
+  encryptionCertificate: null,
+  issuerCertificate: null,
+
+  // Payment
+  applicationData: null,
+  applications: null,
+  issuerPublicCertificate: null,
+  ICCPublicCertificate: null,
+
+  loadingData: true,
+  loadingCertificates: true
+}
+
 export const Card = {
   namespaced: true,
-  state: {
-    // Token
-    biometric: null,
-    address: null,
-    picture: null,
-    rootCertificate: null,
-    intermediateCertificates: null,
-    authenticationCertificate: null,
-    nonRepudiationCertificate: null,
-    encryptionCertificate: null,
-    issuerCertificate: null,
-
-    // Payment
-    applicationData: null,
-    applications: null,
-    issuerPublicCertificate: null,
-    ICCPublicCertificate: null,
-
-    loadingData: true,
-    loadingCertificates: true
-  },
+  state: INITIAL_STATE,
   mutations: {
     SET_ALL_DATA(state, res) {
       state.biometric = res.data.biometric
@@ -103,51 +105,20 @@ export const Card = {
     }
   },
   getters: {
-    getBiometric: (state) => {
-      return state.biometric
-    },
-    getAddress: (state) => {
-      return state.address
-    },
-    getPicture: (state) => {
-      return state.picture
-    },
-    getRootCertificate: (state) => {
-      return state.rootCertificate
-    },
-    getIntermediateCertificates: (state) => {
-      return state.intermediateCertificates
-    },
-    getAuthenticationCertificate: (state) => {
-      return state.authenticationCertificate
-    },
-    getNonRepudiationCertificate: (state) => {
-      return state.nonRepudiationCertificate
-    },
-    getEncryptionCertificate: (state) => {
-      return state.encryptionCertificate
-    },
-    getIssuerCertificate: (state) => {
-      return state.issuerCertificate
-    },
-    getDataLoading: (state) => {
-      return state.loadingData
-    },
-    getCertificateLoading: (state) => {
-      return state.loadingCertificates
-    },
-
-    getApplications: (state) => {
-      return state.applications
-    },
-    getApplicationData: (state) => {
-      return state.applicationData
-    },
-    getICCPublicCertificate: (state) => {
-      return state.ICCPublicCertificate
-    },
-    getIssuerPublicCertificate: (state) => {
-      return state.issuerPublicCertificate
-    }
+    getBiometric: (state) => state.biometric,
+    getAddress: (state) => state.address,
+    getPicture: (state) => state.picture,
+    getRootCertificate: (state) => state.rootCertificate,
+    getIntermediateCertificates: (state) => state.intermediateCertificates,
+    getAuthenticationCertificate: (state) => state.authenticationCertificate,
+    getNonRepudiationCertificate: (state) => state.nonRepudiationCertificate,
+    getEncryptionCertificate: (state) => state.encryptionCertificate,
+    getIssuerCertificate: (state) => state.issuerCertificate,
+    getDataLoading: (state) => state.loadingData,
+    getCertificateLoading: (state) => state.loadingCertificates,
+    getApplications: (state) => state.applications,
+    getApplicationData: (state) => state.applicationData,
+    getICCPublicCertificate: (state) => state.ICCPublicCertificate,
+    getIssuerPublicCertificate: (state) => state.issuerPublicCertificate
   }
 }

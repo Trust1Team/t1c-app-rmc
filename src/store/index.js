@@ -1,9 +1,9 @@
 import { createStore } from 'vuex'
-import main from './main'
-import sideMenu from './side-menu'
-import { Reader } from './modules/Reader'
-import { Card } from './modules/Card'
-import { Notification } from './modules/Notification'
+import main from './reducers/main'
+import sideMenu from './reducers/side-menu'
+import reader from './reducers/reader'
+import card from './reducers/Card'
+import notification from './reducers/notification'
 
 const store = createStore({
   state: {
@@ -20,31 +20,27 @@ const store = createStore({
   },
   actions: {
     setInstalled(context, installed) {
-      context.commit('SET_INSTALLED', installed)
+      context.commit('SET_INSTALLED', installed);
     },
     setConsent(context, consent) {
-      context.commit('SET_CONSENT', consent)
+      context.commit('SET_CONSENT', consent);
     }
   },
   getters: {
-    getInstalled: (state) => {
-      return state.installed
-    },
-    getConsent: (state) => {
-      return state.consent
-    }
+    getInstalled: state => state.installed,
+    getConsent: state => state.consent
   },
   modules: {
     main,
     sideMenu,
-    reader: Reader,
-    card: Card,
-    notification: Notification
+    reader,
+    card,
+    notification
   }
 })
 
 export function useStore() {
-  return store
+  return store;
 }
 
-export default store
+export default store;

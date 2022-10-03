@@ -1,10 +1,11 @@
-let nextId = 1
+const INITIAL_STATE = {
+  notifications: []
+}
+let nextId = 1;
 
-export const Notification = {
+export default {
   namespaced: true,
-  state: {
-    notifications: []
-  },
+  state: INITIAL_STATE,
   mutations: {
     PUSH(state, notification) {
       state.notifications.push({
