@@ -33,7 +33,7 @@ import HomeReaderList from '@/views/home/HomeReaderList';
 import HomePinPad from '@/views/home/HomePinPad';
 import { useToast } from 'vue-toastification';
 import Loading from '@/global-components/loading-icon/Main';
-import VersionCheck from '@/views/admin/VersionCheck';
+import VersionCheck from '@/views/admin/components/VersionCheck';
 
 export default {
   name: 'Home',

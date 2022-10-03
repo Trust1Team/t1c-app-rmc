@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div>
-      <VersionCheck></VersionCheck>
+      <VersionCheck />
 
       <h1 class="text-4xl font-medium my-4">{{ $t('admin.Device information') }}</h1>
       <DeviceInfo :info="info" :js-version="jsVersion" />
@@ -23,12 +23,12 @@
 
 <script>
 import Trust1ConnectorService from '@/infrastructure/services/Trust1Connector';
-import DeviceInfo from './DeviceInfo';
-import UserInfo from './UserInfo';
 import ReadersList from '@/components/core/ReadersList';
-import DependencyInfo from './DependencyInfo';
-import Installation from '../../components/core/Installation';
-import VersionCheck from '@/views/admin/VersionCheck';
+import Installation from '@/components/core/Installation';
+import DependencyInfo from './components/DependencyInfo';
+import VersionCheck from './components/VersionCheck';
+import DeviceInfo from './components/DeviceInfo';
+import UserInfo from './components/UserInfo';
 
 export default {
   name: 'Admin',

@@ -3,7 +3,7 @@ import SideMenu from '@/components/layouts/side-menu/Main'
 import Home from './views/home/Main'
 import Download from './views/download/Main'
 import Generic from './views/generic/Main'
-import Admin from './views/admin/Main'
+import Admin from './views/admin';
 import Contact from './views/contact/Main'
 import Settings from './views/settings/Main'
 import ErrorPage from './views/error-page/Main'
