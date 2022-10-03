@@ -1,13 +1,13 @@
 <template>
   <div class="token-details-item">
-    <h3>{{ $t("genericPaymentApplications.header") }}</h3>
+    <h3>{{ $t('genericPaymentApplications.header') }}</h3>
 
     <div v-for="application in applications" :key="application.aid">
       <h4>{{ application.name }}</h4>
 
       <div class="text-container">
         <div class="text-label">
-          {{ $t("genericPaymentApplications.aid") }}
+          {{ $t('genericPaymentApplications.aid') }}
         </div>
         <div class="text-content intro-x box">
           <div>
@@ -20,7 +20,7 @@
 
       <div class="text-container">
         <div class="text-label">
-          {{ $t("genericPaymentApplications.priority") }}
+          {{ $t('genericPaymentApplications.priority') }}
         </div>
         <div class="text-content intro-x box">
           <div>
@@ -38,10 +38,10 @@
 export default {
   name: 'GenericPaymentApplications',
   props: {
-    applications: Object
+    applications: Object,
   },
-  computed: {}
-}
+  computed: {},
+};
 </script>
 
 <style scoped>

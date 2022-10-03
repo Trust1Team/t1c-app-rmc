@@ -5,42 +5,37 @@
     @click="switchMode"
   >
     <div class="mr-4 text-gray-700 dark:text-gray-300">Dark Mode</div>
-    <div
-      :class="{ 'dark-mode-switcher__toggle--active': darkMode }"
-      class="dark-mode-switcher__toggle border"
-    ></div>
+    <div :class="{ 'dark-mode-switcher__toggle--active': darkMode }" class="dark-mode-switcher__toggle border"></div>
   </div>
   <!-- END: Dark Mode Switcher-->
 </template>
 
 <script>
-import { defineComponent, onMounted, computed } from 'vue'
-import { useStore } from '@/store'
-import $ from 'cash-dom'
+import { defineComponent, onMounted, computed } from 'vue';
+import { useStore } from '@/store';
+import $ from 'cash-dom';
 export default defineComponent({
   setup() {
-    const store = useStore()
-    const darkMode = computed(() => store.state.main.darkMode)
+    const store = useStore();
+    const darkMode = computed(() => store.state.main.darkMode);
 
     const setDarkModeClass = () => {
-      darkMode.value
-        ? $('html').addClass('dark')
-        : $('html').removeClass('dark')
-    }
+      darkMode.value ? $('html').addClass('dark') : $('html').removeClass('dark');
+    };
 
     const switchMode = () => {
-      store.dispatch('main/setDarkMode', !darkMode.value)
-      setDarkModeClass()
-    }
+      store.dispatch('main/setDarkMode', !darkMode.value);
+      setDarkModeClass();
+    };
 
     onMounted(() => {
-      setDarkModeClass()
-    })
+      setDarkModeClass();
+    });
 
     return {
       switchMode,
-      darkMode
-    }
-  }
-})
+      darkMode,
+    };
+  },
+});
 </script>

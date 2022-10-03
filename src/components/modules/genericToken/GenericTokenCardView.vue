@@ -1,5 +1,5 @@
 <template>
-  <div class="token-container" v-if="biometric">
+  <div v-if="biometric" class="token-container">
     <div class="token-card">
       <div class="card-side">
         <GenericTokenFrontCardView :biometric="biometric" :picture="picture" />
@@ -28,14 +28,21 @@
 </template>
 
 <script>
-import GenericTokenFrontCardView from './GenericTokenFrontCardView'
-import GenericTokenBackCardView from './GenericTokenBackCardView'
-import GenericTokenCertificateInformation from './GenericTokenCertificateInformation'
-import GenericTokenAddressInformation from './GenericTokenAddressInformation'
-import GenericTokenCardActions from './GenericTokenCardActions'
+import GenericTokenFrontCardView from './GenericTokenFrontCardView';
+import GenericTokenBackCardView from './GenericTokenBackCardView';
+import GenericTokenCertificateInformation from './GenericTokenCertificateInformation';
+import GenericTokenAddressInformation from './GenericTokenAddressInformation';
+import GenericTokenCardActions from './GenericTokenCardActions';
 
 export default {
   name: 'GenericTokenCardView',
+  components: {
+    GenericTokenFrontCardView,
+    GenericTokenBackCardView,
+    GenericTokenCertificateInformation,
+    GenericTokenAddressInformation,
+    GenericTokenCardActions,
+  },
   props: {
     biometric: Object,
     address: Object,
@@ -46,23 +53,16 @@ export default {
     nonRepudiationCertificate: Object,
     encryptionCertificate: Object,
     issuerCertificate: Object,
-    readerName: String
-  },
-  components: {
-    GenericTokenFrontCardView,
-    GenericTokenBackCardView,
-    GenericTokenCertificateInformation,
-    GenericTokenAddressInformation,
-    GenericTokenCardActions
+    readerName: String,
   },
   emits: ['goBack'],
-  created() {},
   computed: {
     getCertificateLoading() {
-      return this.$store.getters['card/getCertificateLoading']
-    }
-  }
-}
+      return this.$store.getters['card/getCertificateLoading'];
+    },
+  },
+  created() {},
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

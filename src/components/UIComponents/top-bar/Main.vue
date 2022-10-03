@@ -4,13 +4,14 @@
     <!-- BEGIN: Breadcrumb -->
     <div class="-intro-x breadcrumb mr-auto hidden sm:flex">
       <router-link :to="{ name: 'side-menu-home' }">Read my cards</router-link>
-      <div v-for="route in currentRouteName.matched" v-bind:key="route">
+      <div v-for="route in currentRouteName.matched" :key="route">
         <div v-if="route.path !== '/'">
-          <ChevronRightIcon class="breadcrumb__icon"/>
-          <router-link :to="{ name: route.name }" class="breadcrumb--active bc">{{ getFinalOfPath(route.path) }}</router-link>
+          <ChevronRightIcon class="breadcrumb__icon" />
+          <router-link :to="{ name: route.name }" class="breadcrumb--active bc">{{
+            getFinalOfPath(route.path)
+          }}</router-link>
         </div>
       </div>
-
     </div>
     <!-- END: Breadcrumb -->
   </div>
@@ -18,37 +19,37 @@
 </template>
 
 <script>
-import { defineComponent, ref } from 'vue'
+import { defineComponent, ref } from 'vue';
 
 export default defineComponent({
   setup() {
-    const searchDropdown = ref(false)
+    const searchDropdown = ref(false);
 
     const showSearchDropdown = () => {
-      searchDropdown.value = true
-    }
+      searchDropdown.value = true;
+    };
 
     const hideSearchDropdown = () => {
-      searchDropdown.value = false
-    }
+      searchDropdown.value = false;
+    };
 
     return {
       searchDropdown,
       showSearchDropdown,
-      hideSearchDropdown
-    }
-  },
-  methods: {
-    getFinalOfPath(p) {
-      return p.split('/').pop()
-    }
+      hideSearchDropdown,
+    };
   },
   computed: {
     currentRouteName() {
-      return this.$route
-    }
-  }
-})
+      return this.$route;
+    },
+  },
+  methods: {
+    getFinalOfPath(p) {
+      return p.split('/').pop();
+    },
+  },
+});
 </script>
 
 <style scoped>

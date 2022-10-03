@@ -12,7 +12,7 @@
           <p class="bold">{{ constructCardNumber }}</p>
         </div>
       </div>
-      <div class="card-row" v-if="applicationData.name">
+      <div v-if="applicationData.name" class="card-row">
         <div class="text-title">
           <p><i>Card number</i></p>
         </div>
@@ -35,29 +35,27 @@
 </template>
 
 <script>
-import moment from 'moment'
-import * as _ from 'lodash'
+import moment from 'moment';
+import * as _ from 'lodash';
 
 export default {
   name: 'GenericPaymentFrontCardView',
   props: ['applicationData'],
-  methods: {},
   computed: {
     constructCardNumber() {
-      let cardNumber = ''
+      let cardNumber = '';
       _.forEach(this.applicationData.pan, (comp, idx) => {
-        idx % 4 === 0 ? (cardNumber += ' ' + comp) : (cardNumber += comp)
-      })
-      return cardNumber
+        idx % 4 === 0 ? (cardNumber += ' ' + comp) : (cardNumber += comp);
+      });
+      return cardNumber;
     },
 
     constructExpirationDate() {
-      return moment(this.applicationData.expirationDate, 'YYMMDD').format(
-        'DD/MM/YY'
-      )
-    }
-  }
-}
+      return moment(this.applicationData.expirationDate, 'YYMMDD').format('DD/MM/YY');
+    },
+  },
+  methods: {},
+};
 </script>
 
 <style scoped>

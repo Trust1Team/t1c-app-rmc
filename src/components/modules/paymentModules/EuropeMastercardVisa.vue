@@ -18,7 +18,7 @@
           </div>
           <div class="row mt--4">
             <div class="float-left px-4">
-              <img src="/img/credit-card.e9422b4b.svg" alt="" width="50" height="50">
+              <img src="/img/credit-card.e9422b4b.svg" alt="" width="50" height="50" />
             </div>
           </div>
 
@@ -35,17 +35,13 @@
                 {{ cardInfo.cvv }}
               </div>
             </div>
-            <div class="col-5 text-center small-font">
-              MONTH/YEAR
-            </div>
+            <div class="col-5 text-center small-font">MONTH/YEAR</div>
           </div>
 
           <div class="row mt--4">
             <div class="col-4 float-right small-font mx-5">
               <div class="row">
-                <div class="col-9 valid-thru">
-                  VALID<br/>THRU
-                </div>
+                <div class="col-9 valid-thru">VALID<br />THRU</div>
                 <div class="col-3 small-font m-auto">
                   <i class="fa fa-2x fa-caret-right"></i>
                 </div>
@@ -70,9 +66,9 @@
 
 <script>
 export default {
-  name: "EuropeMastercardVisa",
-  props: ['cardInfo']
-}
+  name: 'EuropeMastercardVisa',
+  props: ['cardInfo'],
+};
 </script>
 
 <style scoped>
@@ -84,7 +80,7 @@ export default {
 }
 
 .bg-visa {
-  background-color: 	#1A1F71;
+  background-color: #1a1f71;
 }
 
 .bank-name {
@@ -135,7 +131,6 @@ export default {
 .valid-date {
   margin-left: -75px;
   margin-top: auto;
-
 }
 
 .mt--4 {

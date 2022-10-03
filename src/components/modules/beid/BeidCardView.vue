@@ -1,5 +1,5 @@
 <template>
-  <div class="token-container" v-if="biometric">
+  <div v-if="biometric" class="token-container">
     <div class="token-card">
       <div class="card-side">
         <BeidFrontCardView :biometric="biometric" :picture="picture" />
@@ -28,14 +28,21 @@
 </template>
 
 <script>
-import BeidFrontCardView from './BeidFrontCardView'
-import BeidBackCardView from './BeidBackCardView'
-import GenericTokenCertificateInformation from '../genericToken/GenericTokenCertificateInformation'
-import GenericTokenAddressInformation from '../genericToken/GenericTokenAddressInformation'
-import BeidTokenCardActions from './BeidTokenCardActions'
+import BeidFrontCardView from './BeidFrontCardView';
+import BeidBackCardView from './BeidBackCardView';
+import GenericTokenCertificateInformation from '../genericToken/GenericTokenCertificateInformation';
+import GenericTokenAddressInformation from '../genericToken/GenericTokenAddressInformation';
+import BeidTokenCardActions from './BeidTokenCardActions';
 
 export default {
   name: 'BeidCardView',
+  components: {
+    BeidFrontCardView,
+    BeidBackCardView,
+    GenericTokenCertificateInformation,
+    GenericTokenAddressInformation,
+    BeidTokenCardActions,
+  },
   props: {
     biometric: Object,
     address: Object,
@@ -46,22 +53,15 @@ export default {
     nonRepudiationCertificate: Object,
     encryptionCertificate: Object,
     issuerCertificate: Object,
-    readerName: String
+    readerName: String,
   },
-  components: {
-    BeidFrontCardView,
-    BeidBackCardView,
-    GenericTokenCertificateInformation,
-    GenericTokenAddressInformation,
-    BeidTokenCardActions
-  },
-  created() {},
   computed: {
     getCertificateLoading() {
-      return this.$store.getters['card/getCertificateLoading']
-    }
-  }
-}
+      return this.$store.getters['card/getCertificateLoading'];
+    },
+  },
+  created() {},
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

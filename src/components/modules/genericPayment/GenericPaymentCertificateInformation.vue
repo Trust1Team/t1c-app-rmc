@@ -1,57 +1,59 @@
 <template>
   <div class="token-details-item">
-    <h3>{{ $t("paymentCertificateInformation.header") }}</h3>
+    <h3>{{ $t('paymentCertificateInformation.header') }}</h3>
 
     <div v-if="getApplications">
-      <div
-        class="text-container"
-        v-for="application in getApplications.applications"
-        :key="application.aid"
-      >
+      <div v-for="application in getApplications.applications" :key="application.aid" class="text-container">
         <h4>{{ application.name }}</h4>
 
         <div class="text-label">
-          {{ $t("paymentCertificateInformation.iccPublicCertificate") }}
+          {{ $t('paymentCertificateInformation.iccPublicCertificate') }}
         </div>
-        <PaymentCertificateItem v-if="!getCertificateLoading && getICCPublicCertificate && getICCPublicCertificate[application.aid]" :certificate="getICCPublicCertificate[application.aid]"></PaymentCertificateItem>
+        <PaymentCertificateItem
+          v-if="!getCertificateLoading && getICCPublicCertificate && getICCPublicCertificate[application.aid]"
+          :certificate="getICCPublicCertificate[application.aid]"
+        ></PaymentCertificateItem>
 
         <div class="text-label">
-          {{ $t("paymentCertificateInformation.issuerPublicCertificate") }}
+          {{ $t('paymentCertificateInformation.issuerPublicCertificate') }}
         </div>
-        <PaymentCertificateItem v-if="!getCertificateLoading && getIssuerPublicCertificate && getIssuerPublicCertificate[application.aid]" :certificate="getIssuerPublicCertificate[application.aid]"></PaymentCertificateItem>
+        <PaymentCertificateItem
+          v-if="!getCertificateLoading && getIssuerPublicCertificate && getIssuerPublicCertificate[application.aid]"
+          :certificate="getIssuerPublicCertificate[application.aid]"
+        ></PaymentCertificateItem>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import PaymentCertificateItem from '@/components/modules/genericPayment/PaymentCertificateItem'
+import PaymentCertificateItem from '@/components/modules/genericPayment/PaymentCertificateItem';
 
 export default {
   name: 'GenericPaymentCertificateInformation',
+  components: { PaymentCertificateItem },
   props: {},
-  methods: {
-    toggleCert: function (event) {
-      event.target.parentNode.parentNode.classList.toggle('cert-open')
-      event.target.classList.toggle('cert-expand-rotated')
-    }
-  },
   computed: {
     getCertificateLoading() {
-      return this.$store.getters['card/getCertificateLoading']
+      return this.$store.getters['card/getCertificateLoading'];
     },
     getApplications() {
-      return this.$store.getters['card/getApplications']
+      return this.$store.getters['card/getApplications'];
     },
     getICCPublicCertificate() {
-      return this.$store.getters['card/getICCPublicCertificate']
+      return this.$store.getters['card/getICCPublicCertificate'];
     },
     getIssuerPublicCertificate() {
-      return this.$store.getters['card/getIssuerPublicCertificate']
-    }
+      return this.$store.getters['card/getIssuerPublicCertificate'];
+    },
   },
-  components: { PaymentCertificateItem }
-}
+  methods: {
+    toggleCert: function (event) {
+      event.target.parentNode.parentNode.classList.toggle('cert-open');
+      event.target.classList.toggle('cert-expand-rotated');
+    },
+  },
+};
 </script>
 
 <style scoped>

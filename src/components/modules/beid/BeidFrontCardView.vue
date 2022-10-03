@@ -33,17 +33,13 @@
         </div>
         <div class="text-spacing">
           <p class="bold">{{ biometric.name }}</p>
-          <p class="bold">
-            {{ biometric.firstNames }} {{ biometric.thirdName }}
-          </p>
+          <p class="bold">{{ biometric.firstNames }} {{ biometric.thirdName }}</p>
         </div>
       </div>
       <div class="card-row-2 chip-spacing">
         <div>
           <p><i>Geboorteplaats en -datum/Place and date of birth</i></p>
-          <p class="bold">
-            {{ biometric.birthLocation }} {{ biometric.birthDate }}
-          </p>
+          <p class="bold">{{ biometric.birthLocation }} {{ biometric.birthDate }}</p>
         </div>
         <div>
           <p><i>Geslacht/Sex</i></p>
@@ -60,9 +56,9 @@
         <div>
           <p><i>Kaartnr/Card no</i></p>
           <p class="bold">
-            {{ biometric.cardNumber.substr(0, 3) }}-{{
-              biometric.cardNumber.substr(3, 7)
-            }}-{{ biometric.cardNumber.substr(10, 2) }}
+            {{ biometric.cardNumber.substr(0, 3) }}-{{ biometric.cardNumber.substr(3, 7) }}-{{
+              biometric.cardNumber.substr(10, 2)
+            }}
           </p>
         </div>
       </div>
@@ -78,11 +74,7 @@
       </div>
 
       <div>
-        <img
-          class="image"
-          :src="'data:image/png;base64,' + picture.picture"
-          alt=""
-        />
+        <img class="image" :src="'data:image/png;base64,' + picture.picture" alt="" />
       </div>
     </div>
   </div>
@@ -91,8 +83,8 @@
 <script>
 export default {
   name: 'BeidFrontCardView',
-  props: ['biometric', 'picture']
-}
+  props: ['biometric', 'picture'],
+};
 </script>
 
 <style scoped>

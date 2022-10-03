@@ -2,7 +2,7 @@
   <Tippy
     :tag="tag"
     :options="{
-      placement: 'left'
+      placement: 'left',
     }"
     ref-key="sideMenuTooltipRef"
   >
@@ -11,41 +11,41 @@
 </template>
 
 <script>
-import { defineComponent, provide, ref, onMounted } from 'vue'
-import $ from 'cash-dom'
+import { defineComponent, provide, ref, onMounted } from 'vue';
+import $ from 'cash-dom';
 export default defineComponent({
   props: {
     tag: {
       type: String,
-      default: 'span'
-    }
+      default: 'span',
+    },
   },
   setup() {
-    const tippyRef = ref()
+    const tippyRef = ref();
 
-    provide('bind[sideMenuTooltipRef]', el => {
-      tippyRef.value = el
-    })
+    provide('bind[sideMenuTooltipRef]', (el) => {
+      tippyRef.value = el;
+    });
 
     const toggleTooltip = () => {
-      const el = tippyRef.value
+      const el = tippyRef.value;
       if ($(window).width() <= 1260) {
-        el._tippy.enable()
+        el._tippy.enable();
       } else {
-        el._tippy.disable()
+        el._tippy.disable();
       }
-    }
+    };
 
     const initTooltipEvent = () => {
       window.addEventListener('resize', () => {
-        toggleTooltip()
-      })
-    }
+        toggleTooltip();
+      });
+    };
 
     onMounted(() => {
-      toggleTooltip()
-      initTooltipEvent()
-    })
-  }
-})
+      toggleTooltip();
+      initTooltipEvent();
+    });
+  },
+});
 </script>

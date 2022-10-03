@@ -1,29 +1,23 @@
 <template>
   <div v-if="getCertificateLoading" class="loading">
-    <Loading icon="puff" :size="20"/>
+    <Loading icon="puff" :size="20" />
   </div>
   <span v-if="!getCertificateLoading && !getCertificate">
-            {{ $t("certificateInformation.noCertFound") }}
-    </span>
+    {{ $t('certificateInformation.noCertFound') }}
+  </span>
   <div v-if="getCertificate">
     <div class="text-content cert intro-x box">
       <div>
-          <span>
-            {{ getCertificate }}
-          </span>
+        <span>
+          {{ getCertificate }}
+        </span>
       </div>
 
-      <div
-          class="cert-expand"
-          @click="toggleCert"
-      >
+      <div class="cert-expand" @click="toggleCert">
         <i class="fas fa-sort-down fa-lg cert-expand-icon"></i>
       </div>
 
-      <div
-          class="cert-copy"
-          @click="copyTextToClipboard(getCertificate)"
-      >
+      <div class="cert-copy" @click="copyTextToClipboard(getCertificate)">
         <i class="far fa-copy"></i>
       </div>
     </div>
@@ -31,35 +25,35 @@
 </template>
 
 <script>
-import Loading from '@/global-components/loading-icon/Main'
-import copyMixin from '@/mixins/copyMixin'
+import Loading from '@/global-components/loading-icon/Main';
+import copyMixin from '@/mixins/copyMixin';
 
 export default {
   name: 'PaymentCertificateItem',
+  components: { Loading },
+  mixins: [copyMixin],
   props: {
-    certificate: Object
-  },
-  methods: {
-    toggleCert: function (event) {
-      event.target.parentNode.parentNode.classList.toggle('cert-open')
-      event.target.classList.toggle('cert-expand-rotated')
-    }
+    certificate: Object,
   },
   computed: {
     getCertificateLoading() {
-      return this.$store.getters['card/getCertificateLoading']
+      return this.$store.getters['card/getCertificateLoading'];
     },
     getCertificate() {
       if (this.certificate) {
-        return this.certificate.certificate
+        return this.certificate.certificate;
       } else {
-        return null
+        return null;
       }
-    }
+    },
   },
-  components: { Loading },
-  mixins: [copyMixin]
-}
+  methods: {
+    toggleCert: function (event) {
+      event.target.parentNode.parentNode.classList.toggle('cert-open');
+      event.target.classList.toggle('cert-expand-rotated');
+    },
+  },
+};
 </script>
 
 <style scoped>

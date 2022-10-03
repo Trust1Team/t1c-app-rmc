@@ -1,5 +1,5 @@
 <template>
-  <div class="token-container" v-if="applicationData">
+  <div v-if="applicationData" class="token-container">
     <div class="token-card">
       <div class="card-side">
         <GenericPaymentFrontCardView :application-data="applicationData" />
@@ -15,26 +15,26 @@
 </template>
 
 <script>
-import GenericPaymentFrontCardView from './GenericPaymentFrontCardView'
-import GenericPaymentCertificateInformation from './GenericPaymentCertificateInformation'
-import GenericPaymentCardActions from './GenericPaymentCardActions'
-import GenericPaymentApplications from './GenericPaymentApplications'
+import GenericPaymentFrontCardView from './GenericPaymentFrontCardView';
+import GenericPaymentCertificateInformation from './GenericPaymentCertificateInformation';
+import GenericPaymentCardActions from './GenericPaymentCardActions';
+import GenericPaymentApplications from './GenericPaymentApplications';
 
 export default {
   name: 'GenericPaymentCardView',
-  props: {
-    applications: Object,
-    applicationData: Object
-  },
   components: {
     GenericPaymentFrontCardView,
     GenericPaymentCertificateInformation,
     GenericPaymentCardActions,
-    GenericPaymentApplications
+    GenericPaymentApplications,
   },
+  props: {
+    applications: Object,
+    applicationData: Object,
+  },
+  computed: {},
   created() {},
-  computed: {}
-}
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

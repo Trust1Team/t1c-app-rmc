@@ -28,17 +28,13 @@
         </div>
         <div class="text-spacing">
           <p class="bold">{{ biometric.name }}</p>
-          <p class="bold">
-            {{ biometric.firstNames }} {{ biometric.thirdName }}
-          </p>
+          <p class="bold">{{ biometric.firstNames }} {{ biometric.thirdName }}</p>
         </div>
       </div>
       <div class="card-row chip-spacing">
         <div>
           <p><i>Place and date of birth</i></p>
-          <p class="bold">
-            {{ biometric.birthLocation }} {{ biometric.birthDate }}
-          </p>
+          <p class="bold">{{ biometric.birthLocation }} {{ biometric.birthDate }}</p>
         </div>
       </div>
       <div class="card-row chip-spacing">
@@ -72,11 +68,7 @@
       </div>
 
       <div>
-        <img
-          class="image"
-          :src="'data:image/png;base64,' + picture.picture"
-          alt=""
-        />
+        <img class="image" :src="'data:image/png;base64,' + picture.picture" alt="" />
       </div>
     </div>
   </div>
@@ -85,8 +77,8 @@
 <script>
 export default {
   name: 'GenericTokenFrontCardView',
-  props: ['biometric', 'picture']
-}
+  props: ['biometric', 'picture'],
+};
 </script>
 
 <style scoped>

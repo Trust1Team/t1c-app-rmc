@@ -1,31 +1,23 @@
 <template>
   <div v-if="getCertificateLoading" class="loading">
-    <Loading icon="puff" :size="20"/>
+    <Loading icon="puff" :size="20" />
   </div>
   <span v-if="!getCertificateLoading && !getCertificates">
-            {{ $t("certificateInformation.noCertFound") }}
-    </span>
+    {{ $t('certificateInformation.noCertFound') }}
+  </span>
   <div v-if="getCertificates">
-    <div class="text-content cert intro-x box" v-for="cert in getCertificates" v-bind:key="cert">
+    <div v-for="cert in getCertificates" :key="cert" class="text-content cert intro-x box">
       <div>
-          <span v-if="cert">
-            {{ cert }}
-          </span>
+        <span v-if="cert">
+          {{ cert }}
+        </span>
       </div>
 
-      <div
-          class="cert-expand"
-          v-if="cert"
-          @click="toggleCert"
-      >
+      <div v-if="cert" class="cert-expand" @click="toggleCert">
         <i class="fas fa-sort-down fa-lg cert-expand-icon"></i>
       </div>
 
-      <div
-          class="cert-copy"
-          v-if="cert"
-          @click="copyTextToClipboard(cert)"
-      >
+      <div v-if="cert" class="cert-copy" @click="copyTextToClipboard(cert)">
         <i class="far fa-copy"></i>
       </div>
     </div>
@@ -33,37 +25,37 @@
 </template>
 
 <script>
-import Loading from '@/global-components/loading-icon/Main'
-import copyMixin from '@/mixins/copyMixin'
+import Loading from '@/global-components/loading-icon/Main';
+import copyMixin from '@/mixins/copyMixin';
 
 export default {
   name: 'CertificateItem',
+  components: { Loading },
+  mixins: [copyMixin],
   props: {
-    certificate: Object
-  },
-  methods: {
-    toggleCert: function (event) {
-      event.target.parentNode.parentNode.classList.toggle('cert-open')
-      event.target.classList.toggle('cert-expand-rotated')
-    }
+    certificate: Object,
   },
   computed: {
     getCertificateLoading() {
-      return this.$store.getters['card/getCertificateLoading']
+      return this.$store.getters['card/getCertificateLoading'];
     },
     getCertificates() {
       if (this.certificate && this.certificate.certificate) {
-        return [this.certificate.certificate]
+        return [this.certificate.certificate];
       } else if (this.certificate && this.certificate.certificates) {
-        return this.certificate.certificates
+        return this.certificate.certificates;
       } else {
-        return null
+        return null;
       }
-    }
+    },
   },
-  components: { Loading },
-  mixins: [copyMixin]
-}
+  methods: {
+    toggleCert: function (event) {
+      event.target.parentNode.parentNode.classList.toggle('cert-open');
+      event.target.classList.toggle('cert-expand-rotated');
+    },
+  },
+};
 </script>
 
 <style scoped>

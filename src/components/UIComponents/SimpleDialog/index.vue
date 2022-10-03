@@ -58,29 +58,29 @@ export default {
   props: {
     show: {
       type: Boolean,
-      default: false
+      default: false,
     },
     title: {
       type: String,
-      default: null
+      default: null,
     },
     maxWidth: {
       type: Number,
-      default: 780
-    }
+      default: 780,
+    },
   },
   emits: ['closeModal'],
   setup(props, { emit }) {
     const closeModal = () => {
-      emit('closeModal')
-    }
+      emit('closeModal');
+    };
 
     return {
       // Functions
-      closeModal
-    }
-  }
-}
+      closeModal,
+    };
+  },
+};
 </script>
 <style scoped>
 .dialog-wrapper {

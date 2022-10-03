@@ -1,21 +1,17 @@
 <template>
-  <div class="card-container bg-gray-300 dark:bg-gray-500 dark:text-black" v-if="biometric">
+  <div v-if="biometric" class="card-container bg-gray-300 dark:bg-gray-500 dark:text-black">
     <div class="card-content">
       <div class="card-row">
         <div>
           <p><i>Identificatienummer van het Rijksregister</i></p>
           <p><i>Identification number of the National Register</i></p>
           <p class="bold">
-            {{ biometric.nationalNumber.substr(0, 2) }}.{{
-              biometric.nationalNumber.substr(2, 2)
-            }}.{{ biometric.nationalNumber.substr(4, 2) }}-{{
-              biometric.nationalNumber.substr(6, 3)
-            }}.{{ biometric.nationalNumber.substr(9, 2) }}
+            {{ biometric.nationalNumber.substr(0, 2) }}.{{ biometric.nationalNumber.substr(2, 2) }}.{{
+              biometric.nationalNumber.substr(4, 2)
+            }}-{{ biometric.nationalNumber.substr(6, 3) }}.{{ biometric.nationalNumber.substr(9, 2) }}
           </p>
         </div>
-        <div class="barcode">
-          {{ biometric.nationalNumber }}{{ biometric.cardNumber.substr(3) }}
-        </div>
+        <div class="barcode">{{ biometric.nationalNumber }}{{ biometric.cardNumber.substr(3) }}</div>
       </div>
 
       <div class="card-row">
@@ -25,7 +21,7 @@
         </div>
       </div>
 
-      <div class="card-row" v-if="getMrz">
+      <div v-if="getMrz" class="card-row">
         <div class="machine-readable">
           <p>{{ getMrz[0] }}</p>
           <p>{{ getMrz[1] }}</p>
@@ -37,10 +33,10 @@
 </template>
 
 <script>
-import * as _ from 'lodash'
+import * as _ from 'lodash';
 
 function pad(string) {
-  return _.padEnd(_.truncate(string, { length: 30, omission: '' }), 30, '<')
+  return _.padEnd(_.truncate(string, { length: 30, omission: '' }), 30, '<');
 }
 function calculate(string) {
   const dict = {
@@ -80,69 +76,67 @@ function calculate(string) {
     W: 32,
     X: 33,
     Y: 34,
-    Z: 35
-  }
+    Z: 35,
+  };
   return (
     _.sum(
       _.map(
         _.map(string, (letter) => {
-          return dict[letter.toUpperCase()]
+          return dict[letter.toUpperCase()];
         }),
         (val, index) => {
-          let weighted = val
+          let weighted = val;
           switch (index % 3) {
             case 0:
-              weighted = val * 7
-              break
+              weighted = val * 7;
+              break;
             case 1:
-              weighted = val * 3
-              break
+              weighted = val * 3;
+              break;
             case 2:
-              break
+              break;
           }
-          return weighted
-        }
-      )
+          return weighted;
+        },
+      ),
     ) % 10
-  )
+  );
 }
 
 export default {
   name: 'BeidBackCardView',
   props: ['biometric', 'picture'],
+  computed: {
+    getMrz() {
+      return this.constructMachineReadableStrings(this.biometric);
+    },
+  },
   methods: {
     constructMachineReadableStrings(rnData) {
-      const mrs = []
+      const mrs = [];
       // First line
-      const prefix = 'ID'
-      let first =
-        'BEL' +
-        rnData.cardNumber.substr(0, 9) +
-        '<' +
-        rnData.cardNumber.substr(9)
-      first += calculate(first)
-      first = pad(prefix + first)
-      mrs.push(first.toUpperCase())
+      const prefix = 'ID';
+      let first = 'BEL' + rnData.cardNumber.substr(0, 9) + '<' + rnData.cardNumber.substr(9);
+      first += calculate(first);
+      first = pad(prefix + first);
+      mrs.push(first.toUpperCase());
 
       // Second line
-      let second = rnData.nationalNumber.substr(0, 6)
-      second += calculate(second)
-      second += rnData.sex
+      let second = rnData.nationalNumber.substr(0, 6);
+      second += calculate(second);
+      second += rnData.sex;
       const validity =
         rnData.cardValidityDateEnd.substr(8, 2) +
         rnData.cardValidityDateEnd.substr(3, 2) +
-        rnData.cardValidityDateEnd.substr(0, 2)
-      second += validity + calculate(validity)
-      second += rnData.nationality.substr(0, 3)
-      second += rnData.nationalNumber
+        rnData.cardValidityDateEnd.substr(0, 2);
+      second += validity + calculate(validity);
+      second += rnData.nationality.substr(0, 3);
+      second += rnData.nationalNumber;
       const finalCheck =
-        rnData.cardNumber.substr(0, 10) +
-        rnData.nationalNumber.substr(0, 6) +
-        validity +
-        rnData.nationalNumber
-      second += calculate(finalCheck)
-      second = pad(second)
-      mrs.push(second.toUpperCase())
+        rnData.cardNumber.substr(0, 10) + rnData.nationalNumber.substr(0, 6) + validity + rnData.nationalNumber;
+      second += calculate(finalCheck);
+      second = pad(second);
+      mrs.push(second.toUpperCase());
 
       // Third line
       let third =
@@ -150,30 +144,23 @@ export default {
         '<<' +
         _.join(_.split(rnData.firstNames, ' '), '<') +
         '<' +
-        _.join(_.split(rnData.thirdName, ' '), '<')
-      third = pad(third)
-      mrs.push(third.toUpperCase())
-      return mrs
-    }
+        _.join(_.split(rnData.thirdName, ' '), '<');
+      third = pad(third);
+      mrs.push(third.toUpperCase());
+      return mrs;
+    },
   },
-  computed: {
-    getMrz() {
-      return this.constructMachineReadableStrings(this.biometric)
-    }
-  }
-}
+};
 </script>
 
 <style scoped>
 @font-face {
-  font-family: "Libre Barcode 39";
+  font-family: 'Libre Barcode 39';
   font-style: normal;
   font-weight: 400;
-  src: url(https://fonts.gstatic.com/s/librebarcode39/v14/-nFnOHM08vwC6h8Li1eQnP_AHzI2G_Bx0vrx52g.woff2)
-    format("woff2");
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
-    U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,
-    U+FEFF, U+FFFD;
+  src: url(https://fonts.gstatic.com/s/librebarcode39/v14/-nFnOHM08vwC6h8Li1eQnP_AHzI2G_Bx0vrx52g.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC,
+    U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
 p {
@@ -196,7 +183,7 @@ p {
 }
 
 .barcode {
-  font-family: "Libre Barcode 39", cursive;
+  font-family: 'Libre Barcode 39', cursive;
   transform: scale(1.55, 5.3);
   margin-top: 30px;
   margin-right: 25px;
@@ -217,6 +204,6 @@ p {
   margin-top: 90px;
   font-size: 1.5rem;
   line-height: 1;
-  font-family: "OCR-B", monospace;
+  font-family: 'OCR-B', monospace;
 }
 </style>

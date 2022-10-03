@@ -1,47 +1,47 @@
 <template>
   <div class="token-details-item">
-    <h3>{{ $t("certificateInformation.header") }}</h3>
+    <h3>{{ $t('certificateInformation.header') }}</h3>
 
     <verify-token-certificates-component></verify-token-certificates-component>
 
     <div class="text-container">
       <div class="text-label">
-        {{ $t("certificateInformation.nonRepudiationCertificate") }}
+        {{ $t('certificateInformation.nonRepudiationCertificate') }}
       </div>
       <CertificateItem :certificate="nonRepudiationCertificate"></CertificateItem>
     </div>
 
     <div class="text-container">
       <div class="text-label">
-        {{ $t("certificateInformation.authenticationCertificate") }}
+        {{ $t('certificateInformation.authenticationCertificate') }}
       </div>
       <CertificateItem :certificate="authenticationCertificate"></CertificateItem>
     </div>
 
     <div class="text-container">
       <div class="text-label">
-        {{ $t("certificateInformation.encryptionCertificate") }}
+        {{ $t('certificateInformation.encryptionCertificate') }}
       </div>
       <CertificateItem :certificate="encryptionCertificate"></CertificateItem>
     </div>
 
     <div class="text-container">
       <div class="text-label">
-        {{ $t("certificateInformation.issuerCertificate") }}
+        {{ $t('certificateInformation.issuerCertificate') }}
       </div>
       <CertificateItem :certificate="issuerCertificate"></CertificateItem>
     </div>
 
     <div class="text-container">
       <div class="text-label">
-        {{ $t("certificateInformation.intermediateCertificates") }}
+        {{ $t('certificateInformation.intermediateCertificates') }}
       </div>
       <CertificateItem :certificate="intermediateCertificates"></CertificateItem>
     </div>
 
     <div class="text-container">
       <div class="text-label">
-        {{ $t("certificateInformation.rootCertificate") }}
+        {{ $t('certificateInformation.rootCertificate') }}
       </div>
       <CertificateItem :certificate="rootCertificate"></CertificateItem>
     </div>
@@ -49,29 +49,29 @@
 </template>
 
 <script>
-import copyMixin from '@/mixins/copyMixin'
-import VerifyTokenCertificatesComponent from '@/components/modules/VerifyTokenCertificatesComponent'
-import CertificateItem from '@/components/modules/CertificateItem'
+import copyMixin from '@/mixins/copyMixin';
+import VerifyTokenCertificatesComponent from '@/components/modules/VerifyTokenCertificatesComponent';
+import CertificateItem from '@/components/modules/CertificateItem';
 
 export default {
   name: 'GenericTokenCertificateInformation',
+  components: { CertificateItem, VerifyTokenCertificatesComponent },
+  mixins: [copyMixin],
   props: {
     rootCertificate: Object,
     intermediateCertificates: Object,
     authenticationCertificate: Object,
     nonRepudiationCertificate: Object,
     encryptionCertificate: Object,
-    issuerCertificate: Object
+    issuerCertificate: Object,
   },
-  methods: {},
   computed: {
     getCertificateLoading() {
-      return this.$store.getters['card/getCertificateLoading']
-    }
+      return this.$store.getters['card/getCertificateLoading'];
+    },
   },
-  components: { CertificateItem, VerifyTokenCertificatesComponent },
-  mixins: [copyMixin]
-}
+  methods: {},
+};
 </script>
 
 <style scoped>
@@ -92,5 +92,4 @@ export default {
   width: 100%;
   margin-bottom: 20px;
 }
-
 </style>
