@@ -13,8 +13,6 @@ import ClassicEditor from './ckeditor/ClassicEditor.vue'
 // import DocumentEditor from './ckeditor/DocumentEditor.vue'
 // import InlineEditor from './ckeditor/InlineEditor.vue'
 import Dropzone from './dropzone/Main.vue'
-import FullCalendar from './calendar/Main.vue'
-import FullCalendarDraggable from './calendar/Draggable.vue'
 import * as featherIcons from '@zhuowenli/vue-feather-icons'
 
 export default app => {
@@ -33,8 +31,6 @@ export default app => {
   // app.component('BalloonEditor', BalloonEditor)
   // app.component('DocumentEditor', DocumentEditor)
   // app.component('InlineEditor', InlineEditor)
-  app.component('FullCalendar', FullCalendar)
-  app.component('FullCalendarDraggable', FullCalendarDraggable)
 
   for (const [key, icon] of Object.entries(featherIcons)) {
     icon.props.size.default = '24'

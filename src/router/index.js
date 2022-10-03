@@ -6,7 +6,7 @@ import Generic from '../views/generic/Main.vue'
 import Admin from '../views/admin/Main.vue'
 import Contact from '../views/contact/Main.vue'
 import Settings from '../views/settings/Main.vue'
-import ErrorPage from '../views/_framework/error-page/Main'
+import ErrorPage from '../views/error-page/Main'
 
 const routes = [
   {
