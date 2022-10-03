@@ -26,7 +26,6 @@
 </template>
 
 <script>
-// @ is an alias to /src
 import Trust1ConnectorService from '@/services/Trust1ConnectorService.js';
 import Consent from '@/components/core/Consent';
 import Error from '@/components/UIComponents/Error';
@@ -123,7 +122,7 @@ export default {
       this.resetError();
       this.loading = true;
       Promise.all([this.getTokenAllData(), this.getTokenCertificates()])
-        .then((_) => {
+        .then(() => {
           this.loading = false;
           this.$router.push({ name: 'side-menu-generic' });
         })
@@ -139,7 +138,7 @@ export default {
         if (this.getReader.card.modules.includes('emv') || this.getReader.card.modules.includes('crelan')) {
           // EMV token
           Promise.all([this.getPaymentAllData()])
-            .then((_) => {
+            .then(() => {
               this.loading = false;
               this.$router.push({ name: 'side-menu-generic' });
             })
@@ -154,7 +153,7 @@ export default {
         } else {
           // Regular tokens without PACE
           Promise.all([this.getTokenAllData(), this.getTokenCertificates()])
-            .then((_) => {
+            .then(() => {
               this.loading = false;
               this.$router.push({ name: 'side-menu-generic' });
             })

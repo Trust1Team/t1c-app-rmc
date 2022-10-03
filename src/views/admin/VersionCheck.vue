@@ -74,6 +74,7 @@ export default {
     }
   },
   methods: {
+    // eslint-disable-next-line no-unused-vars
     closeModal(confirmed) {
       if (this.newVersionType !== 'mandatory') {
         this.show = false;
