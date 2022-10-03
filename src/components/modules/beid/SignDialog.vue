@@ -57,7 +57,7 @@
                   <p>You have successfully signed your document. It is ready to download</p>
                 </div>
                 <div class="flex items-center justify-center intro-x">
-                  <img src="../../../assets/images/pdf-document.svg" alt="PDF document" />
+                  <img src="/assets/images/pdf-document.svg" alt="PDF document" />
                 </div>
 
                 <div class="w-full border-t border-gray-200 dark:border-dark-5 mt-5"></div>

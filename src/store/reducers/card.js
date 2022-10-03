@@ -20,7 +20,7 @@ const INITIAL_STATE = {
   loadingCertificates: true
 }
 
-export const Card = {
+export default {
   namespaced: true,
   state: INITIAL_STATE,
   mutations: {

@@ -1,7 +1,7 @@
 import { createApp } from 'vue';
 import Toast, { TYPE } from 'vue-toastification';
 import globalComponents from './global-components';
-import router from '.';
+import router from './router';
 import store from './store';
 import App from './App.vue';
 import './libs';

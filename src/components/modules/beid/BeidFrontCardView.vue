@@ -24,7 +24,7 @@
 
     <div class="card-content">
       <div class="chip">
-        <img src="../../../assets/images/credit-card.svg" alt="Credit card chip" />
+        <img src="/assets/images/credit-card.svg" alt="Credit card chip" />
       </div>
       <div class="card-row">
         <div>

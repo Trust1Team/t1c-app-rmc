@@ -2,7 +2,7 @@
   <div class="card-container bg-gray-300 dark:bg-gray-500 dark:text-black">
     <div class="card-content">
       <div class="chip">
-        <img src="../../../assets/images/credit-card.svg" alt="Credit card chip" />
+        <img src="/assets/images/credit-card.svg" alt="Credit card chip" />
       </div>
       <div class="card-row">
         <div class="text-title">

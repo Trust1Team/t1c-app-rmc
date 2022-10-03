@@ -4,7 +4,7 @@
       <div class="row text-center">
         <div class="col-1 m-auto">
           <div class="sub-title">
-            <img src="../../../assets/images/Luxembourg-flag.png" style="width: 50px; height: 40px" alt="" />
+            <img src="/assets/images/Luxembourg-flag.png" style="width: 50px; height: 40px" alt="" />
           </div>
         </div>
 
@@ -39,7 +39,7 @@
 
       <div class="row">
         <div class="col-4 text-center">
-          <img src="../../../assets/images/Luxembourg-flag.png" alt="" class="image" />
+          <img src="/assets/images/Luxembourg-flag.png" alt="" class="image" />
         </div>
         <div class="col-8 mt--1">
           <div class="row">
@@ -87,7 +87,7 @@
             </div>
 
             <div class="col-6 mt--1">
-              <img class="image-small mt--1" src="../../../assets/images/Luxembourg-flag.png" alt="" />
+              <img class="image-small mt--1" src="/assets/images/Luxembourg-flag.png" alt="" />
             </div>
           </div>
           <div class="row mt--1">
@@ -121,7 +121,7 @@
       </div>
       <div class="row" style="margin-top: -55px">
         <div class="col-4">
-          <img src="../../../assets/images/signature.png" alt="" style="width: 100%; height: 40px" />
+          <img src="/assets/images/signature.png" alt="" style="width: 100%; height: 40px" />
         </div>
       </div>
 
@@ -133,7 +133,7 @@
 
       <div class="row">
         <div class="col-4">
-          <img class="image-logo" src="../../../assets/images/Luxembourg-flag.png" alt="" />
+          <img class="image-logo" src="/assets/images/Luxembourg-flag.png" alt="" />
         </div>
       </div>
     </div>

@@ -8,7 +8,7 @@
           <img
             alt="Icewall Tailwind HTML Admin Template"
             class="h-48 lg:h-auto"
-            :src="require(`@/assets/images/error-illustration.svg`).default"
+            src="/assets/images/error-illustration.svg"
           />
         </div>
         <div class="text-white mt-10 lg:mt-0">

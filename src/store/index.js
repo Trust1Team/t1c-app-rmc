@@ -2,7 +2,7 @@ import { createStore } from 'vuex'
 import main from './reducers/main'
 import sideMenu from './reducers/side-menu'
 import reader from './reducers/reader'
-import card from './reducers/Card'
+import card from './reducers/card'
 import notification from './reducers/notification'
 
 const store = createStore({

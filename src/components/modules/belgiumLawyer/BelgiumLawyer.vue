@@ -3,7 +3,7 @@
     <div class="card-body">
       <div class="row">
         <div class="col-2">
-          <div class="title"><img src="../../../assets/images/Belgium-flag.jpg" alt="" width="70" height="50" /></div>
+          <div class="title"><img src="/assets/images/Belgium-flag.jpg" alt="" width="70" height="50" /></div>
         </div>
 
         <div class="col-10 text-center">
@@ -27,7 +27,7 @@
 
       <div class="row">
         <div class="col-1"><i class="fa fa-caret-left fa-5x text-primary"></i></div>
-        <div class="col-5"><img src="/img/credit-card.e9422b4b.svg" alt="" width="75" height="75" /></div>
+        <div class="col-5"><img src="/assets/images/credit-card.svg" alt="" width="75" height="75" /></div>
       </div>
 
       <div class="row">
@@ -42,7 +42,7 @@
 
       <div class="row">
         <div class="col-3">
-          <img src="../../../assets/images/Belgium-layer-logo.png" width="70" height="70" />
+          <img src="/assets/images/Belgium-layer-logo.png" width="70" height="70" />
         </div>
         <div class="col-5">
           <div class="row" style="margin-left: -60px; margin-top: 30px">
@@ -54,7 +54,7 @@
       </div>
 
       <div>
-        <img class="image" src="../../../assets/images/Belgium-flag.jpg" alt="" />
+        <img class="image" src="/assets/images/Belgium-flag.jpg" alt="" />
       </div>
     </div>
   </div>

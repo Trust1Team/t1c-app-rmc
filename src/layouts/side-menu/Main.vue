@@ -7,7 +7,7 @@
       <nav class="side-nav">
         <!-- BEGIN: Logo -->
         <router-link :to="{ name: 'side-menu-home' }" class="flex items-center pl-5 pt-4">
-          <img alt="Read my cards" class="w-6" src="@/assets/images/t1c-logo.png" />
+          <img alt="Read my cards" class="w-6" src="/assets/images/t1c-logo.png" />
           <span class="hidden xl:block text-white text-lg ml-3"> Read my cards </span>
         </router-link>
         <!-- END: Logo -->
