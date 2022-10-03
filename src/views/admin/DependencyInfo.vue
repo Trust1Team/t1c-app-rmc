@@ -1,6 +1,6 @@
 <template>
   <div class="refresh">
-    <button @click="fetchDependencies()" class="btn btn-primary">
+    <button class="btn btn-primary" @click="fetchDependencies()">
       <i class="fas fa-sync-alt refresh-icon"></i>
     </button>
   </div>
@@ -8,18 +8,15 @@
   <div class="status-container">
     <div class="status-item intro-x box">
       <div class="status-item-service">
-        {{ $t("admin.dependencyInfo.t1cApi") }}
+        {{ $t('admin.dependencyInfo.t1cApi') }}
       </div>
       <div class="status-item-icon">
-        <div class="loading" v-if="!t1c">
+        <div v-if="!t1c" class="loading">
           <Loading :size="30" icon="puff"></Loading>
         </div>
         <div v-if="t1c">
           <i v-if="t1c.error" class="fas fa-exclamation-circle fa-2x red"></i>
-          <i
-            v-if="t1c.warning"
-            class="fas fa-exclamation-triangle fa-2x yellow"
-          ></i>
+          <i v-if="t1c.warning" class="fas fa-exclamation-triangle fa-2x yellow"></i>
           <i v-if="t1c.success" class="fas fa-check-circle fa-2x green"></i>
         </div>
       </div>
@@ -27,43 +24,31 @@
 
     <div class="status-item intro-x box">
       <div class="status-item-service">
-        {{ $t("admin.dependencyInfo.validationService") }}
+        {{ $t('admin.dependencyInfo.validationService') }}
       </div>
       <div class="status-item-icon">
-        <div class="loading" v-if="!validation">
+        <div v-if="!validation" class="loading">
           <Loading :size="30" icon="puff"></Loading>
         </div>
         <div v-if="validation">
-          <i
-            v-if="validation.error"
-            class="fas fa-exclamation-circle fa-2x red"
-          ></i>
-          <i
-            v-if="validation.warning"
-            class="fas fa-exclamation-triangle fa-2x yellow"
-          ></i>
-          <i
-            v-if="validation.success"
-            class="fas fa-check-circle fa-2x green"
-          ></i>
+          <i v-if="validation.error" class="fas fa-exclamation-circle fa-2x red"></i>
+          <i v-if="validation.warning" class="fas fa-exclamation-triangle fa-2x yellow"></i>
+          <i v-if="validation.success" class="fas fa-check-circle fa-2x green"></i>
         </div>
       </div>
     </div>
 
     <div class="status-item intro-x box">
       <div class="status-item-service">
-        {{ $t("admin.dependencyInfo.distributionServer") }}
+        {{ $t('admin.dependencyInfo.distributionServer') }}
       </div>
       <div class="status-item-icon">
-        <div class="loading" v-if="!ds">
+        <div v-if="!ds" class="loading">
           <Loading :size="30" :show="ds"></Loading>
         </div>
         <div v-if="ds">
           <i v-if="ds.error" class="fas fa-exclamation-circle fa-2x red"></i>
-          <i
-            v-if="ds.warning"
-            class="fas fa-exclamation-triangle fa-2x yellow"
-          ></i>
+          <i v-if="ds.warning" class="fas fa-exclamation-triangle fa-2x yellow"></i>
           <i v-if="ds.success" class="fas fa-check-circle fa-2x green"></i>
         </div>
       </div>
@@ -72,59 +57,66 @@
 </template>
 
 <script>
-import DistributionService from '../../services/DistributionService'
-import Loading from '@/global-components/loading-icon/Main'
-import ValidationService from '../../services/ValidationService'
-import Trust1ConnectorService from '../../services/Trust1ConnectorService'
+import DistributionService from '../../services/DistributionService';
+import Loading from '@/global-components/loading-icon/Main';
+import ValidationService from '../../services/ValidationService';
+import Trust1ConnectorService from '../../services/Trust1ConnectorService';
 
 export default {
   name: 'DependencyInfo',
+  components: { Loading },
   data() {
     return {
       ds: null,
       validation: null,
-      t1c: null
-    }
+      t1c: null,
+    };
+  },
+  created() {
+    this.fetchDependencies();
   },
   methods: {
     fetchDependencies() {
-      this.ds = null
-      this.t1c = null
-      this.validation = null
+      this.ds = null;
+      this.t1c = null;
+      this.validation = null;
 
-      const client = Trust1ConnectorService.getClient()
+      const client = Trust1ConnectorService.getClient();
       if (client != null) {
-        client.core().info().then(
-          (res) => {
-            if (res.t1CInfoAPI.status === 'ACTIVATED') {
-              this.t1c = {
-                error: false,
-                success: true,
-                warning: false
+        client
+          .core()
+          .info()
+          .then(
+            (res) => {
+              if (res.t1CInfoAPI.status === 'ACTIVATED') {
+                this.t1c = {
+                  error: false,
+                  success: true,
+                  warning: false,
+                };
+              } else {
+                this.t1c = {
+                  error: false,
+                  success: false,
+                  warning: true,
+                };
               }
-            } else {
+            },
+            (err) => {
               this.t1c = {
                 error: false,
                 success: false,
-                warning: true
-              }
-            }
-          },
-          (err) => {
-            this.t1c = {
-              error: false,
-              success: false,
-              warning: true
-            }
-            console.log(err)
-          }
-        )
+                warning: true,
+              };
+              console.log(err);
+            },
+          );
       } else {
         this.t1c = {
           error: true,
           success: false,
-          warning: false
-        }
+          warning: false,
+        };
       }
 
       ValidationService.getStatus().then(
@@ -132,18 +124,18 @@ export default {
           this.validation = {
             error: false,
             success: true,
-            warning: false
-          }
+            warning: false,
+          };
         },
         (err) => {
           this.validation = {
             error: true,
             success: false,
-            warning: false
-          }
-          console.error(err)
-        }
-      )
+            warning: false,
+          };
+          console.error(err);
+        },
+      );
 
       DistributionService.getSystemInfo().then(
         (res) => {
@@ -151,32 +143,28 @@ export default {
             this.ds = {
               error: false,
               success: true,
-              warning: false
-            }
+              warning: false,
+            };
           } else {
             this.ds = {
               error: false,
               success: false,
-              warning: true
-            }
+              warning: true,
+            };
           }
         },
         (err) => {
           this.ds = {
             error: true,
             success: false,
-            warning: false
-          }
-          console.error(err)
-        }
-      )
-    }
+            warning: false,
+          };
+          console.error(err);
+        },
+      );
+    },
   },
-  created() {
-    this.fetchDependencies()
-  },
-  components: { Loading }
-}
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

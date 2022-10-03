@@ -1,10 +1,10 @@
 <template>
   <div class="container">
     <div class="go-back flex flex-row">
-      <button @click="this.$router.go(-1)" class="btn btn-primary">
+      <button class="btn btn-primary" @click="$router.go(-1)">
         <i class="fas fa-arrow-left go-back-icon"></i>
       </button>
-      <h1 class="font-medium text-4xl">{{ $t("module.token.header") }}</h1>
+      <h1 class="font-medium text-4xl">{{ $t('module.token.header') }}</h1>
     </div>
 
     <div class="loading">
@@ -15,38 +15,38 @@
 </template>
 
 <script>
-import ModuleSwitch from '@/components/modules/ModuleSwitch'
-import Loading from '@/global-components/loading-icon/Main'
-import store from '@/store'
+import ModuleSwitch from '@/components/modules/ModuleSwitch';
+import Loading from '@/global-components/loading-icon/Main';
+import store from '@/store';
 
 export default {
   name: 'Generic',
-  beforeRouteEnter (to, from, next) {
-    if (!store.getters['reader/getSelectedReader'] === true) {
-      next('/')
-    } else {
-      next()
-    }
-  },
   components: {
     ModuleSwitch,
-    Loading
+    Loading,
   },
-  methods: {
-    goBack() {
-      this.$store.dispatch('reader/setSelectedReader', null)
-      this.$router.go(-1)
+  beforeRouteEnter(to, from, next) {
+    if (!store.getters['reader/getSelectedReader'] === true) {
+      next('/');
+    } else {
+      next();
     }
   },
   computed: {
     getDataLoading() {
-      return this.$store.getters['card/getDataLoading']
-    }
+      return this.$store.getters['card/getDataLoading'];
+    },
   },
   unmounted() {
-    this.$store.dispatch('reader/setSelectedReader', null)
-  }
-}
+    this.$store.dispatch('reader/setSelectedReader', null);
+  },
+  methods: {
+    goBack() {
+      this.$store.dispatch('reader/setSelectedReader', null);
+      this.$router.go(-1);
+    },
+  },
+};
 </script>
 
 <style scoped>

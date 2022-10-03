@@ -11,14 +11,14 @@
 </template>
 
 <script>
-import Installation from '@/components/core/Installation'
+import Installation from '@/components/core/Installation';
 
 export default {
   name: 'Download',
   components: {
-    Installation
-  }
-}
+    Installation,
+  },
+};
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
