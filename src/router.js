@@ -4,8 +4,8 @@ import Admin from './views/admin';
 import Contact from './views/contact';
 import Download from './views/download';
 import ErrorPage from './views/error-page';
+import Generic from './views/generic';
 import Home from './views/home/Main';
-import Generic from './views/generic/Main';
 import Settings from './views/settings/Main';
 
 const routes = [
