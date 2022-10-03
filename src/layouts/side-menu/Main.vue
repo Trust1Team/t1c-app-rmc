@@ -1,48 +1,30 @@
 <template>
   <div>
-<!--    <DarkModeSwitcher />-->
+    <!--    <DarkModeSwitcher />-->
     <MobileMenu />
     <div class="flex">
       <!-- BEGIN: Side Menu -->
       <nav class="side-nav">
         <!-- BEGIN: Logo -->
-        <router-link
-          :to="{ name: 'side-menu-home' }"
-          tag="a"
-          class="flex items-center pl-5 pt-4"
-        >
-          <img
-            alt="Read my cards"
-            class="w-6"
-            src="@/assets/images/t1c-logo.png"
-          />
-          <span class="hidden xl:block text-white text-lg ml-3">
-            Read my cards
-          </span>
+        <router-link :to="{ name: 'side-menu-home' }" tag="a" class="flex items-center pl-5 pt-4">
+          <img alt="Read my cards" class="w-6" src="@/assets/images/t1c-logo.png" />
+          <span class="hidden xl:block text-white text-lg ml-3"> Read my cards </span>
         </router-link>
         <!-- END: Logo -->
         <div class="side-nav__devider my-6"></div>
         <ul>
           <!-- BEGIN: First Child -->
           <template v-for="(menu, menuKey) in formattedMenu">
-            <li
-              v-if="menu == 'devider'"
-              :key="menu + menuKey"
-              class="side-nav__devider my-6"
-            ></li>
+            <li v-if="menu == 'devider'" :key="menu + menuKey" class="side-nav__devider my-6"></li>
             <li v-else :key="menu + menuKey">
               <SideMenuTooltip
                 tag="a"
                 :content="menu.title"
-                :href="
-                  menu.subMenu
-                    ? 'javascript:;'
-                    : router.resolve({ name: menu.pageName }).path
-                "
+                :href="menu.subMenu ? 'javascript:;' : router.resolve({ name: menu.pageName }).path"
                 class="side-menu"
                 :class="{
                   'side-menu--active': menu.active,
-                  'side-menu--open': menu.activeDropdown
+                  'side-menu--open': menu.activeDropdown,
                 }"
                 @click="linkTo(menu, router, $event)"
               >
@@ -63,18 +45,11 @@
               <!-- BEGIN: Second Child -->
               <transition @enter="enter" @leave="leave">
                 <ul v-if="menu.subMenu && menu.activeDropdown">
-                  <li
-                    v-for="(subMenu, subMenuKey) in menu.subMenu"
-                    :key="subMenuKey"
-                  >
+                  <li v-for="(subMenu, subMenuKey) in menu.subMenu" :key="subMenuKey">
                     <SideMenuTooltip
                       tag="a"
                       :content="subMenu.title"
-                      :href="
-                        subMenu.subMenu
-                          ? 'javascript:;'
-                          : router.resolve({ name: subMenu.pageName }).path
-                      "
+                      :href="subMenu.subMenu ? 'javascript:;' : router.resolve({ name: subMenu.pageName }).path"
                       class="side-menu"
                       :class="{ 'side-menu--active': subMenu.active }"
                       @click="linkTo(subMenu, router, $event)"
@@ -88,7 +63,7 @@
                           v-if="subMenu.subMenu"
                           class="side-menu__sub-icon"
                           :class="{
-                            'transform rotate-180': subMenu.activeDropdown
+                            'transform rotate-180': subMenu.activeDropdown,
                           }"
                         >
                           <ChevronDownIcon />
@@ -98,19 +73,12 @@
                     <!-- BEGIN: Third Child -->
                     <transition @enter="enter" @leave="leave">
                       <ul v-if="subMenu.subMenu && subMenu.activeDropdown">
-                        <li
-                          v-for="(lastSubMenu,
-                          lastSubMenuKey) in subMenu.subMenu"
-                          :key="lastSubMenuKey"
-                        >
+                        <li v-for="(lastSubMenu, lastSubMenuKey) in subMenu.subMenu" :key="lastSubMenuKey">
                           <SideMenuTooltip
                             tag="a"
                             :content="lastSubMenu.title"
                             :href="
-                              lastSubMenu.subMenu
-                                ? 'javascript:;'
-                                : router.resolve({ name: lastSubMenu.pageName })
-                                    .path
+                              lastSubMenu.subMenu ? 'javascript:;' : router.resolve({ name: lastSubMenu.pageName }).path
                             "
                             class="side-menu"
                             :class="{ 'side-menu--active': lastSubMenu.active }"
@@ -149,17 +117,17 @@
 </template>
 
 <script>
-import { defineComponent, computed, onMounted, ref, watch } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
-import { useStore } from '@/store'
-import { helper as $h } from '@/utils/helper'
-import TopBar from '@/components/UIComponents/top-bar/Main.vue'
-import MobileMenu from '@/components/_framework/mobile-menu/Main.vue'
-import DarkModeSwitcher from '@/components/_framework/dark-mode-switcher/Main.vue'
-import SideMenuTooltip from '@/components/_framework/side-menu-tooltip/Main.vue'
-import Footer from '../footer/Main'
-import $ from 'cash-dom'
-import { linkTo, nestedMenu, enter, leave } from './index'
+import { defineComponent, computed, onMounted, ref, watch } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
+import { useStore } from '@/store';
+import { helper as $h } from '@/utils/helper';
+import TopBar from '@/components/UIComponents/top-bar/Main.vue';
+import MobileMenu from '@/components/_framework/mobile-menu/Main.vue';
+import DarkModeSwitcher from '@/components/_framework/dark-mode-switcher/Main.vue';
+import SideMenuTooltip from '@/components/_framework/side-menu-tooltip/Main.vue';
+import Footer from '../footer/Main';
+import $ from 'cash-dom';
+import { linkTo, nestedMenu, enter, leave } from './index';
 
 export default defineComponent({
   components: {
@@ -167,39 +135,34 @@ export default defineComponent({
     MobileMenu,
     DarkModeSwitcher,
     SideMenuTooltip,
-    Footer
+    Footer,
   },
   setup() {
-    const route = useRoute()
-    const router = useRouter()
-    const store = useStore()
-    const formattedMenu = ref([])
-    const sideMenu = computed(() =>
-      nestedMenu(store.state.sideMenu.menu, route)
-    )
+    const route = useRoute();
+    const router = useRouter();
+    const store = useStore();
+    const formattedMenu = ref([]);
+    const sideMenu = computed(() => nestedMenu(store.state.sideMenu.menu, route));
 
     watch(
       computed(() => route.path),
       () => {
-        formattedMenu.value = $h.toRaw(sideMenu.value)
-      }
-    )
+        formattedMenu.value = $h.toRaw(sideMenu.value);
+      },
+    );
 
     onMounted(() => {
-      $('body')
-        .removeClass('error-page')
-        .removeClass('login')
-        .addClass('main')
-      formattedMenu.value = $h.toRaw(sideMenu.value)
-    })
+      $('body').removeClass('error-page').removeClass('login').addClass('main');
+      formattedMenu.value = $h.toRaw(sideMenu.value);
+    });
 
     return {
       formattedMenu,
       router,
       linkTo,
       enter,
-      leave
-    }
-  }
-})
+      leave,
+    };
+  },
+});
 </script>
