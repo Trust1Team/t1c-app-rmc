@@ -4,8 +4,12 @@
       <div class="row">
         <div class="col-3">
           <div class="row">
-            <div class="col-9 m-auto"><div class="title"><b>ESPAÑA</b></div></div>
-            <div class="col-3 m-auto"><img src="../../../assets/flag-spain.jpg" width="60" height="40" alt=""></div>
+            <div class="col-9 m-auto">
+              <div class="title"><b>ESPAÑA</b></div>
+            </div>
+            <div class="col-3 m-auto">
+              <img src="../../../assets/images/flag-spain.jpg" width="60" height="40" alt="" />
+            </div>
           </div>
         </div>
         <div class="col-9 m-auto">
@@ -15,7 +19,7 @@
 
       <div class="row">
         <div class="col-4">
-          <img class="image" src="../../../assets/flag-spain.jpg" alt="">
+          <img class="image" src="../../../assets/images/flag-spain.jpg" alt="" />
         </div>
         <div class="col-8">
           <div class="row">
@@ -109,7 +113,7 @@
           </div>
         </div>
         <div class="col-4 text-center">
-          <img src="../../../assets/signature.png" alt="" style="width: 100%; height: 80px;">
+          <img src="../../../assets/images/signature.png" alt="" style="width: 100%; height: 80px" />
         </div>
         <div class="col-4 m-auto text-center">
           <b>{{ cardInfo.secret }}</b>
@@ -121,9 +125,9 @@
 
 <script>
 export default {
-  name: "SpanishDNIe",
+  name: 'SpanishDNIe',
   props: ['cardInfo'],
-}
+};
 </script>
 
 <style scoped>
@@ -204,7 +208,7 @@ p {
 }
 
 .font-small {
-  font-size: 10px
+  font-size: 10px;
 }
 
 .mt--5 {

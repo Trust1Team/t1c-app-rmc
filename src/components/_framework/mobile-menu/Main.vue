@@ -3,33 +3,22 @@
   <div class="mobile-menu md:hidden">
     <div class="mobile-menu-bar">
       <a href class="flex mr-auto">
-        <img
-          alt="Icewall Tailwind HTML Admin Template"
-          class="w-6"
-          src="@/assets/images/logo.svg"
-        />
+        <img alt="Icewall Tailwind HTML Admin Template" class="w-6" src="@/assets/images/t1c-logo.png" />
       </a>
-      <BarChart2Icon
-        class="w-8 h-8 text-white transform -rotate-90"
-        @click="toggleMobileMenu"
-      />
+      <BarChart2Icon class="w-8 h-8 text-white transform -rotate-90" @click="toggleMobileMenu" />
     </div>
     <transition @enter="enter" @leave="leave">
       <ul v-if="activeMobileMenu" class="border-t border-theme-29 py-5">
         <!-- BEGIN: First Child -->
         <template v-for="(menu, menuKey) in formattedMenu">
-          <li
-            v-if="menu == 'devider'"
-            :key="menu + menuKey"
-            class="menu__devider my-6"
-          ></li>
+          <li v-if="menu == 'devider'" :key="menu + menuKey" class="menu__devider my-6"></li>
           <li v-else :key="menu + menuKey">
             <a
               href="javascript:;"
               class="menu"
               :class="{
                 'menu--active': menu.active,
-                'menu--open': menu.activeDropdown
+                'menu--open': menu.activeDropdown,
               }"
               @click="linkTo(menu, router)"
             >
@@ -50,10 +39,7 @@
             <!-- BEGIN: Second Child -->
             <transition @enter="enter" @leave="leave">
               <ul v-if="menu.subMenu && menu.activeDropdown">
-                <li
-                  v-for="(subMenu, subMenuKey) in menu.subMenu"
-                  :key="subMenuKey"
-                >
+                <li v-for="(subMenu, subMenuKey) in menu.subMenu" :key="subMenuKey">
                   <a
                     href="javascript:;"
                     class="menu"
@@ -69,7 +55,7 @@
                         v-if="subMenu.subMenu"
                         class="menu__sub-icon"
                         :class="{
-                          'transform rotate-180': subMenu.activeDropdown
+                          'transform rotate-180': subMenu.activeDropdown,
                         }"
                       >
                         <ChevronDownIcon />
@@ -79,10 +65,7 @@
                   <!-- BEGIN: Third Child -->
                   <transition @enter="enter" @leave="leave">
                     <ul v-if="subMenu.subMenu && subMenu.activeDropdown">
-                      <li
-                        v-for="(lastSubMenu, lastSubMenuKey) in subMenu.subMenu"
-                        :key="lastSubMenuKey"
-                      >
+                      <li v-for="(lastSubMenu, lastSubMenuKey) in subMenu.subMenu" :key="lastSubMenuKey">
                         <a
                           href="javascript:;"
                           class="menu"
@@ -114,39 +97,31 @@
 </template>
 
 <script>
-import { defineComponent, computed, onMounted, ref, watch } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
-import { useStore } from '@/store'
-import { helper as $h } from '@/utils/helper'
-import {
-  activeMobileMenu,
-  toggleMobileMenu,
-  linkTo,
-  enter,
-  leave
-} from './index'
-import { nestedMenu } from '@/layouts/side-menu'
+import { defineComponent, computed, onMounted, ref, watch } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
+import { useStore } from '@/store';
+import { helper as $h } from '@/utils/helper';
+import { activeMobileMenu, toggleMobileMenu, linkTo, enter, leave } from './index';
+import { nestedMenu } from '@/layouts/side-menu';
 
 export default defineComponent({
   setup() {
-    const route = useRoute()
-    const router = useRouter()
-    const store = useStore()
-    const formattedMenu = ref([])
-    const mobileMenu = computed(() =>
-      nestedMenu(store.state.sideMenu.menu, route)
-    )
+    const route = useRoute();
+    const router = useRouter();
+    const store = useStore();
+    const formattedMenu = ref([]);
+    const mobileMenu = computed(() => nestedMenu(store.state.sideMenu.menu, route));
 
     watch(
       computed(() => route.path),
       () => {
-        formattedMenu.value = $h.toRaw(mobileMenu.value)
-      }
-    )
+        formattedMenu.value = $h.toRaw(mobileMenu.value);
+      },
+    );
 
     onMounted(() => {
-      formattedMenu.value = $h.toRaw(mobileMenu.value)
-    })
+      formattedMenu.value = $h.toRaw(mobileMenu.value);
+    });
 
     return {
       activeMobileMenu,
@@ -155,8 +130,8 @@ export default defineComponent({
       router,
       linkTo,
       enter,
-      leave
-    }
-  }
-})
+      leave,
+    };
+  },
+});
 </script>
