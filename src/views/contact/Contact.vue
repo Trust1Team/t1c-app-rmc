@@ -3,6 +3,7 @@
     <h1 class="title text-4xl my-5 font-medium">{{ $t('contact.Contact us') }}</h1>
     <p class="subtitle">{{ $t('contact.contactUsSubtitle') }}</p>
     <br />
+
     <div class="form pt-10">
       <form @submit.prevent>
         <div class="grid grid-cols-12">
@@ -14,6 +15,7 @@
           </div>
         </div>
         <br />
+
         <div class="grid grid-cols-12">
           <div class="col-span-6 mr-3">
             <input v-model="email" class="form-control" type="text" :placeholder="$t('contact.Email Address')" />
@@ -23,17 +25,14 @@
           </div>
         </div>
         <br />
+
         <div class="row">
           <div class="col-12">
-            <textarea
-              v-model="message"
-              rows="5"
-              class="form-control"
-              :placeholder="$t('contact.Your message')"
-            ></textarea>
+            <textarea v-model="message" rows="5" class="form-control" :placeholder="$t('contact.Your message')" />
           </div>
         </div>
         <br />
+
         <div class="grid grid-cols-12">
           <div class="col-span-12 float-left check-text">
             <input
@@ -43,10 +42,11 @@
               :disabled="technicalCheck"
               name="informationCheck"
               class="form-check-input contact-checkbox"
-            />&nbsp;
-            <label class="form-check-label text-gray-600" for="informationCheck">{{
-              $t('contact.I want more information')
-            }}</label>
+            />
+            &nbsp;
+            <label class="form-check-label text-gray-600" for="informationCheck">
+              {{ $t('contact.I want more information') }}
+            </label>
           </div>
           <div class="col-span-12 float-left check-text mt-1">
             <input
@@ -56,12 +56,14 @@
               :disabled="informationCheck"
               name="technicalCheck"
               class="form-check-input contact-checkbox"
-            />&nbsp;
-            <label class="form-check-label text-gray-600" for="technicalCheck">{{
-              $t('contact.I have technical issue')
-            }}</label>
+            />
+            &nbsp;
+            <label class="form-check-label text-gray-600" for="technicalCheck">
+              {{ $t('contact.I have technical issue') }}
+            </label>
           </div>
         </div>
+
         <div class="row">
           <div class="col-12 float-right check-text">
             <button

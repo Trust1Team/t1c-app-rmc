@@ -3,22 +3,22 @@
     <Loading icon="puff" :size="50" />
   </div>
   <div v-if="!loading" class="container">
-    <VersionCheck></VersionCheck>
+    <VersionCheck />
 
     <div v-if="getConsent && getInstalled">
       <div v-if="error">
         <Error :text="error" />
       </div>
       <div v-if="pageView === 0">
-        <ReaderList @readerSelected="readerSelected"></ReaderList>
+        <ReaderList @readerSelected="readerSelected" />
       </div>
       <div v-if="pageView === 1">
         <div class="return">
           <button class="btn btn-primary" @click="returnToStart()">
-            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-left" />
           </button>
         </div>
-        <PinPad @pinSelected="pinSelected"></PinPad>
+        <PinPad @pinSelected="pinSelected" />
       </div>
     </div>
     <Consent v-if="getInstalled && !getConsent" @consented="consented" />

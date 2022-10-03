@@ -1,7 +1,7 @@
 <template>
   <div class="refresh">
     <button class="btn btn-primary" @click="fetchDependencies()">
-      <i class="fas fa-sync-alt refresh-icon"></i>
+      <i class="fas fa-sync-alt refresh-icon" />
     </button>
   </div>
 
@@ -12,12 +12,12 @@
       </div>
       <div class="status-item-icon">
         <div v-if="!t1c" class="loading">
-          <Loading :size="30" icon="puff"></Loading>
+          <Loading :size="30" icon="puff" />
         </div>
         <div v-if="t1c">
-          <i v-if="t1c.error" class="fas fa-exclamation-circle fa-2x red"></i>
-          <i v-if="t1c.warning" class="fas fa-exclamation-triangle fa-2x yellow"></i>
-          <i v-if="t1c.success" class="fas fa-check-circle fa-2x green"></i>
+          <i v-if="t1c.error" class="fas fa-exclamation-circle fa-2x red" />
+          <i v-if="t1c.warning" class="fas fa-exclamation-triangle fa-2x yellow" />
+          <i v-if="t1c.success" class="fas fa-check-circle fa-2x green" />
         </div>
       </div>
     </div>
@@ -28,12 +28,12 @@
       </div>
       <div class="status-item-icon">
         <div v-if="!validation" class="loading">
-          <Loading :size="30" icon="puff"></Loading>
+          <Loading :size="30" icon="puff" />
         </div>
         <div v-if="validation">
-          <i v-if="validation.error" class="fas fa-exclamation-circle fa-2x red"></i>
-          <i v-if="validation.warning" class="fas fa-exclamation-triangle fa-2x yellow"></i>
-          <i v-if="validation.success" class="fas fa-check-circle fa-2x green"></i>
+          <i v-if="validation.error" class="fas fa-exclamation-circle fa-2x red" />
+          <i v-if="validation.warning" class="fas fa-exclamation-triangle fa-2x yellow" />
+          <i v-if="validation.success" class="fas fa-check-circle fa-2x green" />
         </div>
       </div>
     </div>
@@ -44,12 +44,12 @@
       </div>
       <div class="status-item-icon">
         <div v-if="!ds" class="loading">
-          <Loading :size="30" :show="ds"></Loading>
+          <Loading :size="30" :show="ds" />
         </div>
         <div v-if="ds">
-          <i v-if="ds.error" class="fas fa-exclamation-circle fa-2x red"></i>
-          <i v-if="ds.warning" class="fas fa-exclamation-triangle fa-2x yellow"></i>
-          <i v-if="ds.success" class="fas fa-check-circle fa-2x green"></i>
+          <i v-if="ds.error" class="fas fa-exclamation-circle fa-2x red" />
+          <i v-if="ds.warning" class="fas fa-exclamation-triangle fa-2x yellow" />
+          <i v-if="ds.success" class="fas fa-check-circle fa-2x green" />
         </div>
       </div>
     </div>

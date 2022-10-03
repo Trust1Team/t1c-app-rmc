@@ -9,6 +9,7 @@
       <div class="flex items-center px-5 py-5 sm:py-5 border-b border-gray-200 dark:border-dark-5">
         <h2 class="font-medium text-base mr-auto">{{ $t('settings.application.header') }}</h2>
       </div>
+
       <div class="p-5">
         <div class="tab-content">
           <div class="tab-pane active" role="tabpanel" aria-labelledby="latest-tasks-new-tab">
@@ -28,6 +29,7 @@
       <div class="flex items-center px-5 py-5 sm:py-5 border-b border-gray-200 dark:border-dark-5">
         <h2 class="font-medium text-base mr-auto">{{ $t('settings.trust1connector.header') }}</h2>
       </div>
+
       <div class="p-5">
         <div class="tab-content">
           <div class="tab-pane active" role="tabpanel" aria-labelledby="latest-tasks-new-tab">
@@ -63,8 +65,8 @@
                 <div class="text-gray-600">{{ $t('settings.trust1connector.init.subtitle') }}</div>
               </div>
               <button :disabled="initialiseLoading" class="btn btn-primary w-44 mr-2 mb-2" @click="initialise">
-                <Loading v-if="initialiseLoading" class="w-4 h-4 mr-2" icon="puff" size="20"> </Loading>
-                <RefreshCwIcon v-if="!initialiseLoading" class="w-4 h-4 mr-2"></RefreshCwIcon>
+                <Loading v-if="initialiseLoading" class="w-4 h-4 mr-2" icon="puff" size="20" />
+                <RefreshCwIcon v-if="!initialiseLoading" class="w-4 h-4 mr-2" />
                 {{ $t('settings.trust1connector.init.title') }}
               </button>
             </div>

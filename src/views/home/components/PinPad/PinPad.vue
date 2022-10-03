@@ -7,7 +7,7 @@
         <label v-if="pinType" class="form-check-label" for="pinTypeSwitch">Can</label>
         <label v-if="!pinType" class="form-check-label" for="pinTypeSwitch">Pin</label>
       </div>
-      <pinpad ref="pinpad" @submitPin="pinSelected"></pinpad>
+      <Pinpad ref="pinpad" @submitPin="pinSelected" />
     </div>
   </div>
 </template>
