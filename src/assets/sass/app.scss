@@ -80,16 +80,13 @@
 @import '~@left4code/tw-starter/dist/scss/typing-dots';
 @import '~@left4code/tw-starter/dist/scss/zoom-in';
 @import '~@left4code/tw-starter/dist/scss/box';
-@import '~highlight.js/scss/github';
 @import '~tippy.js/dist/tippy';
 @import '~tippy.js/themes/light';
 @import '~tippy.js/dist/svg-arrow';
 @import '~tippy.js/animations/shift-away';
 @import '~toastify-js/src/toastify';
-@import '~dropzone/dist/dropzone';
 @import '~zoom-vanilla.js/dist/zoom';
 @import '~tabulator-tables/dist/css/tabulator';
-@import '~tom-select/src/scss/tom-select';
 
 /*
  |--------------------------------------------------------------------------
@@ -137,12 +134,8 @@
 @import 'components/pos';
 @import 'components/post';
 @import 'components/litepicker';
-@import 'components/tiny-slider';
 @import 'components/tippy';
 @import 'components/tabulator';
-@import 'components/tom-select';
-@import 'components/dropzone';
-@import 'components/ckeditor';
 @import 'components/zoom-vanilla';
 @import 'components/dark-mode-switcher';
 @import 'components/hljs';
