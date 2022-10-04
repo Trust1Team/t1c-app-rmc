@@ -1,0 +1,19 @@
+.installer h1,
+h2 {
+  text-align: center;
+}
+
+.installer h2 {
+  margin-bottom: 60px;
+}
+
+.pin-pad-container h1 {
+  width: 100%;
+  text-align: center;
+  font-size: 1.7rem;
+  color: #dc623b;
+}
+
+.form-pace input {
+  margin-right: 10px;
+}

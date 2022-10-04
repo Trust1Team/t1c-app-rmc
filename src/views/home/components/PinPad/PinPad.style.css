@@ -1,0 +1,50 @@
+.head {
+  margin-bottom: 40px;
+}
+
+.installer h1,
+h2 {
+  text-align: center;
+}
+
+.installer h2 {
+  margin-bottom: 60px;
+}
+
+.go-back button:hover .go-back-icon {
+  transform: translateX(-3px);
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  margin: 10px;
+}
+
+.pin-pad-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.pin-pad-container h1 {
+  width: 100%;
+  text-align: center;
+  font-size: 1.7rem;
+  color: #dc623b;
+}
+
+.pin-pad {
+  width: 300px;
+}
+
+.form-pace {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 15px;
+}
+
+.form-pace input {
+  margin-right: 10px;
+}

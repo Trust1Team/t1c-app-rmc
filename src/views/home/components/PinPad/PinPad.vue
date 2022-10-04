@@ -7,112 +7,46 @@
         <label v-if="pinType" class="form-check-label" for="pinTypeSwitch">Can</label>
         <label v-if="!pinType" class="form-check-label" for="pinTypeSwitch">Pin</label>
       </div>
-      <Pinpad ref="pinpad" @submitPin="pinSelected" />
+      <PinPad ref="pinpad" @submitPin="pinSelected" />
     </div>
   </div>
 </template>
 
 <script>
-import { Pinpad } from '@/components/UIComponents';
+import { ref } from 'vue';
+import { useStore } from 'vuex';
+import { PinPad } from '@/components/UIComponents';
 
 export default {
   name: 'HomePinPad',
   components: {
-    Pinpad,
+    PinPad,
   },
   emits: ['pinSelected'],
-  data() {
-    return {
-      pageView: 0,
-      pinType: false,
-      error: null,
-    };
-  },
-  computed: {
-    getReader() {
-      return this.$store.getters['reader/getSelectedReader'];
-    },
-    getPin() {
-      return this.$store.getters['reader/getSelectedPin'];
-    },
-    getPinType() {
-      return this.$store.getters['reader/getSelectedPinType'];
-    },
-    getConsent() {
-      return this.$store.getters.getConsent;
-    },
-    getInstalled() {
-      return this.$store.getters.getInstalled;
-    },
-    getDataLoading() {
-      return this.$store.getters['card/getDataLoading'];
-    },
-    getCertificateLoading() {
-      return this.$store.getters['card/getCertificateLoading'];
-    },
-  },
-  methods: {
-    pinSelected(pin) {
-      this.$store.dispatch('reader/setSelectedPin', pin).then(() => {
-        this.$store.dispatch('reader/setSelectedPinType', this.pinType ? 'Can' : 'Pin').then(() => {
+  setup(props, context) {
+    const store = useStore();
+
+    const pageView = ref(0);
+    const pinType = ref(false);
+    const error = ref();
+
+    const pinSelected = (pin) => {
+      store.dispatch('reader/setSelectedPin', pin).then(() => {
+        store.dispatch('reader/setSelectedPinType', pinType.value ? 'Can' : 'Pin').then(() => {
           // Emit event!
-          this.$emit('pinSelected');
+          context.emit('pinSelected');
         });
       });
-    },
+    };
+
+    return {
+      pageView,
+      pinType,
+      error,
+      pinSelected,
+    };
   },
 };
 </script>
 
-<style scoped>
-.head {
-  margin-bottom: 40px;
-}
-
-.installer h1,
-h2 {
-  text-align: center;
-}
-
-.installer h2 {
-  margin-bottom: 60px;
-}
-
-.go-back button:hover .go-back-icon {
-  transform: translateX(-3px);
-}
-
-.loading {
-  display: flex;
-  justify-content: center;
-  margin: 10px;
-}
-
-.pin-pad-container {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-.pin-pad-container h1 {
-  width: 100%;
-  text-align: center;
-  font-size: 1.7rem;
-  color: #dc623b;
-}
-
-.pin-pad {
-  width: 300px;
-}
-
-.form-pace {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-  margin-bottom: 15px;
-}
-
-.form-pace input {
-  margin-right: 10px;
-}
-</style>
+<style src="./PinPad.style.css" scoped />

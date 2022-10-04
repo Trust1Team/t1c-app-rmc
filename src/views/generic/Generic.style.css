@@ -1,0 +1,9 @@
+.loading {
+  display: flex;
+  justify-content: center;
+  margin: 10px;
+}
+
+.go-back button {
+  margin-right: 10px;
+}

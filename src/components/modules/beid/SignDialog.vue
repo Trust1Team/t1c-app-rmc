@@ -47,7 +47,7 @@
                   {{ pinErrorDescription }}
                 </div>
 
-                <pinpad ref="pinpad" class="intro-x" @submitPin="pinSelected"></pinpad>
+                <PinPad ref="pinpad" class="intro-x" @submitPin="pinSelected" />
               </div>
 
               <div v-if="step === 2 && !loading">
@@ -76,13 +76,13 @@
 <script>
 import $ from 'cash-dom';
 import { useToast } from 'vue-toastification';
-import { Pinpad, LoadingIcon } from '@/components/UIComponents';
+import { PinPad, LoadingIcon } from '@/components/UIComponents';
 import SigningService from '@/infrastructure/services/Signing';
 import Trust1ConnectorService from '@/infrastructure/services/Trust1Connector';
 
 export default {
   name: 'SignModal',
-  components: { Pinpad, LoadingIcon },
+  components: { PinPad, LoadingIcon },
   props: ['module', 'bytesToSign', 'documentId'],
   emits: ['closed'],
   setup() {

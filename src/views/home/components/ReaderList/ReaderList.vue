@@ -8,7 +8,9 @@
 </template>
 
 <script>
-// @ is an alias to /src
+import { ref } from 'vue';
+import { useStore } from 'vuex';
+import { useI18n } from 'vue-i18n';
 import { useToast } from 'vue-toastification';
 import { ReadersList } from '@/components/core';
 import Trust1ConnectorService from '@/infrastructure/services/Trust1Connector';
@@ -19,72 +21,42 @@ export default {
     ReadersList,
   },
   emits: ['readerSelected'],
-  setup() {
+  setup(props, context) {
     const toast = useToast();
-    return {
-      toast,
-    };
-  },
-  data() {
-    return {
-      error: null,
-    };
-  },
-  computed: {
-    getReader() {
-      return this.$store.getters['reader/getSelectedReader'];
-    },
-    getConsent() {
-      return this.$store.getters.getConsent;
-    },
-    getInstalled() {
-      return this.$store.getters.getInstalled;
-    },
-  },
-  methods: {
-    readerSelected(reader) {
+    const store = useStore();
+    const { t } = useI18n();
+
+    const error = ref();
+
+    const readerSelected = (reader) => {
       Trust1ConnectorService.getClient()
         .core()
         .readersCardAvailable()
         .then(
           (readerRes) => {
             if (readerRes.data.find((r) => r.id === reader.id)) {
-              this.$store.dispatch('reader/setSelectedReader', reader).then(() => {
+              store.dispatch('reader/setSelectedReader', reader).then(() => {
                 // When a Pace enabled card then we show the pinpad view first
-                this.$emit('readerSelected');
+                context.emit('readerSelected');
               });
             } else {
-              this.toast.error(this.$t('home.readerlist.error.unavailable'));
+              toast.error(t('home.readerlist.error.unavailable'));
             }
           },
           (err) => {
-            console.error(this.$t('home.readerlist.error.cannotselect'), err);
-            this.toast.error(this.$t('home.readerlist.error.cannotselect'));
+            console.error(t('home.readerlist.error.cannotselect'), err);
+            toast.error(t('home.readerlist.error.cannotselect'));
           },
         );
-    },
+    };
+
+    return {
+      toast,
+      error,
+      readerSelected,
+    };
   },
 };
 </script>
 
-<style scoped>
-.installer h1,
-h2 {
-  text-align: center;
-}
-
-.installer h2 {
-  margin-bottom: 60px;
-}
-
-.pin-pad-container h1 {
-  width: 100%;
-  text-align: center;
-  font-size: 1.7rem;
-  color: #dc623b;
-}
-
-.form-pace input {
-  margin-right: 10px;
-}
-</style>
+<style src="./ReaderList.style.css" scoped />

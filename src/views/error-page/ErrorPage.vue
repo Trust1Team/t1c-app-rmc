@@ -36,3 +36,5 @@ export default defineComponent({
   },
 });
 </script>
+
+<style src="./ErrorPage.style.css" scoped />

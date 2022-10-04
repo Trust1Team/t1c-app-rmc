@@ -8,7 +8,7 @@
               <AlertOctagonIcon class="w-6 h-6 mr-2" /> {{ pinErrorDescription }}
             </div>
 
-            <Pinpad ref="pinpad" @submitPin="pinSelected" />
+            <PinPad ref="pinpad" @submitPin="pinSelected" />
           </div>
         </div>
       </div>
@@ -19,11 +19,11 @@
 <script>
 import { ref } from 'vue';
 import $ from 'cash-dom';
-import { Pinpad } from '@/components/UIComponents';
+import { PinPad } from '@/components/UIComponents';
 
 export default {
   name: 'PinDialog',
-  components: { Pinpad },
+  components: { PinPad },
   props: ['pinErrorDescription'],
   emits: ['confirmPin'],
   setup(props, context) {

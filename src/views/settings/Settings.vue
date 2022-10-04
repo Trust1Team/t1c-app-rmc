@@ -80,7 +80,7 @@
 <script>
 import $ from 'cash-dom';
 import { useStore } from 'vuex';
-import { computed, onMounted } from 'vue';
+import { ref, computed, onMounted } from 'vue';
 import { useToast } from 'vue-toastification';
 import { LoadingIcon } from '@/components/UIComponents';
 import Trust1ConnectorService from '@/infrastructure/services/Trust1Connector';
@@ -90,8 +90,14 @@ export default {
   components: { LoadingIcon },
   setup() {
     const store = useStore();
-    const darkMode = computed(() => store.state.main.darkMode);
     const toast = useToast();
+
+    const url = ref();
+    const port = ref();
+    const initialiseLoading = ref(false);
+
+    const darkMode = computed(() => store.state.main.darkMode);
+
     const setDarkModeClass = () => {
       darkMode.value ? $('html').addClass('dark') : $('html').removeClass('dark');
     };
@@ -101,72 +107,67 @@ export default {
       setDarkModeClass();
     };
 
+    const getUrl = () => {
+      const client = Trust1ConnectorService.getClient();
+
+      if (!client) {
+        return window?.VUE_APP_ENV_T1C_URL || 'https://t1c.t1t.io';
+      }
+
+      return client.config()._t1cApiUrl;
+    };
+
+    const getPort = () => {
+      const client = Trust1ConnectorService.getClient();
+
+      if (!client) {
+        return window?.VUE_APP_ENV_T1C_PORT || 51783;
+      }
+
+      return client.config()._t1cProxyPort;
+    };
+
+    const initialise = () => {
+      initialiseLoading.value = true;
+
+      Trust1ConnectorService.init(url, port).then(
+        (res) => {
+          initialiseLoading.value = false;
+          Trust1ConnectorService.setClient(res);
+
+          console.log(Trust1ConnectorService.getClient().config());
+          toast.success('Trust1Connector initialised');
+        },
+        (err) => {
+          initialiseLoading.value = false;
+          if (err.code === '112999') {
+            toast.error('Could not initialise Trust1Connector');
+          } else {
+            toast.warning('Trust1Connector initialised');
+            Trust1ConnectorService.setErrorClient(err.client);
+          }
+        },
+      );
+    };
+
     onMounted(() => {
       setDarkModeClass();
+
+      url.value = getUrl();
+      port.value = getPort();
     });
 
     return {
       switchMode,
       darkMode,
       toast,
+      url,
+      port,
+      initialise,
+      initialiseLoading,
     };
-  },
-  data() {
-    return {
-      url: undefined,
-      port: undefined,
-      initialiseLoading: false,
-    };
-  },
-  computed: {
-    getUrl() {
-      const client = Trust1ConnectorService.getClient();
-      if (client != null) {
-        return client.config()._t1cApiUrl;
-      } else {
-        return window.VUE_APP_ENV_T1C_URL ? window.VUE_APP_ENV_T1C_URL : 'https://t1c.t1t.io';
-      }
-    },
-    getPort() {
-      const client = Trust1ConnectorService.getClient();
-      if (client != null) {
-        return client.config()._t1cProxyPort;
-      } else {
-        return window.VUE_APP_ENV_T1C_PORT ? window.VUE_APP_ENV_T1C_PORT : 51783;
-      }
-    },
-  },
-  created() {
-    this.url = this.getUrl;
-    this.port = this.getPort;
-  },
-  methods: {
-    initialise() {
-      this.initialiseLoading = true;
-      Trust1ConnectorService.init(this.url, this.port).then(
-        (res) => {
-          this.initialiseLoading = false;
-          Trust1ConnectorService.setClient(res);
-          console.log(Trust1ConnectorService.getClient().config());
-          this.toast.success('Trust1Connector initialised');
-        },
-        (err) => {
-          this.initialiseLoading = false;
-          if (err.code === '112999') {
-            this.toast.error('Could not initialise Trust1Connector');
-          } else {
-            this.toast.warning('Trust1Connector initialised');
-            Trust1ConnectorService.setErrorClient(err.client);
-          }
-        },
-      );
-    },
   },
 };
 </script>
 
-<style scoped>
-.header {
-  margin-bottom: 20px;
-}
-</style>
+<style src="./Settings.style.css" scoped />

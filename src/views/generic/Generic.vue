@@ -49,14 +49,4 @@ export default {
 };
 </script>
 
-<style scoped>
-.loading {
-  display: flex;
-  justify-content: center;
-  margin: 10px;
-}
-
-.go-back button {
-  margin-right: 10px;
-}
-</style>
+<style src="./Generic.style.css" scoped />
