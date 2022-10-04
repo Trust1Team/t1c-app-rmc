@@ -108,6 +108,7 @@
 </template>
 
 <script>
+import { ref, onMounted } from 'vue';
 import Trust1ConnectorService from '@/infrastructure/services/Trust1Connector';
 import Loading from '@/global-components/loading-icon/Main';
 
@@ -119,69 +120,43 @@ export default {
     selectable: Boolean,
   },
   emits: ['readerSelected'],
-  data() {
-    return {
-      readers: null,
-      loading: true,
-      modules: [
-        'beid',
-        'emv',
-        'crelan',
-        'aventra',
-        'oberthur',
-        'idemia',
-        'luxeid',
-        'diplad',
-        'certigna',
-        'certinomis',
-        'dnie',
-        'safenet',
-        'eherkenning',
-        'jcop',
-        'airbus',
-      ],
-    };
-  },
-  created() {
-    this.getReaders();
-  },
-  methods: {
-    getReaders() {
-      this.readers = null;
-      this.loading = true;
+  setup(props, context) {
+    const readers = ref([]);
+    const loading = ref(true);
+
+    const getReaders = () => {
+      loading.value = true;
+
       const client = Trust1ConnectorService.getClient();
-      if (client != null) {
-        client
-          .core()
-          .readers()
-          .then(
-            (res) => {
-              this.loading = false;
-              this.readers = res.data;
-            },
-            (err) => {
-              this.loading = false;
-              this.readers = [];
-              console.log(err);
-            },
-          );
-      } else {
-        this.readers = [];
-        this.loading = false;
+
+      if (!client) {
+        readers.value = [];
+        loading.value = false;
       }
-    },
-    selectReader(reader) {
+
+      client
+        .core()
+        .readers()
+        .then(
+          (res) => {
+            loading.value = false;
+            readers.value = res.data;
+          },
+          (err) => {
+            loading.value = false;
+            readers.value = [];
+            console.log(err);
+          },
+        );
+    };
+
+    const selectReader = (reader) => {
       if (reader.card) {
-        this.$emit('readerSelected', reader);
+        context.emit('readerSelected', reader);
       }
-    },
-    copyAtr(reader) {
-      this.copyTextToClipboard(reader.card.atr);
-    },
-    copyReaderId(reader) {
-      this.copyTextToClipboard(reader.id);
-    },
-    fallbackCopyTextToClipboard(text) {
+    };
+
+    const fallbackCopyTextToClipboard = (text) => {
       const textArea = document.createElement('textarea');
       textArea.value = text;
 
@@ -203,10 +178,11 @@ export default {
       }
 
       document.body.removeChild(textArea);
-    },
-    copyTextToClipboard(text) {
+    };
+
+    const copyTextToClipboard = (text) => {
       if (!navigator.clipboard) {
-        this.fallbackCopyTextToClipboard(text);
+        fallbackCopyTextToClipboard(text);
         return;
       }
       // TODO use toast for copy clipboard notification
@@ -218,11 +194,51 @@ export default {
           console.error('Async: Could not copy text: ', err);
         },
       );
-    },
-    selectModule(reader, module) {
+    };
+
+    const selectModule = (reader, module) => {
       reader.card.description = [module];
       reader.card.modules = [module];
-    },
+    };
+
+    const copyAtr = (reader) => {
+      copyTextToClipboard(reader.card.atr);
+    };
+
+    const copyReaderId = (reader) => {
+      copyTextToClipboard(reader.id);
+    };
+
+    onMounted(() => {
+      getReaders();
+    });
+
+    return {
+      readers,
+      loading,
+      getReaders,
+      selectReader,
+      selectModule,
+      copyAtr,
+      copyReaderId,
+      modules: [
+        'beid',
+        'emv',
+        'crelan',
+        'aventra',
+        'oberthur',
+        'idemia',
+        'luxeid',
+        'diplad',
+        'certigna',
+        'certinomis',
+        'dnie',
+        'safenet',
+        'eherkenning',
+        'jcop',
+        'airbus',
+      ],
+    };
   },
 };
 </script>

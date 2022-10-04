@@ -6,7 +6,7 @@
       </div>
       <div class="refresh">
         <button class="btn btn-primary" @click="refreshPage()">
-          <i class="fas fa-sync-alt refresh-icon"></i>
+          <i class="fas fa-sync-alt refresh-icon" />
         </button>
       </div>
     </div>
@@ -18,14 +18,17 @@
     </div>
 
     <div class="binary-os intro-x box">
-      <h3><i class="fab fa-windows"></i> {{ $t('installation.windowsheader') }}</h3>
+      <h3>
+        <i class="fab fa-windows" />
+        {{ $t('installation.windowsheader') }}
+      </h3>
       <div class="mt-3">
         <p>
           {{ $t('installation.windows') }}
         </p>
         <div>
           <button class="btn-primary" @click="setSelectedOS('windows')">
-            Download <i class="fas fa-chevron-down"></i>
+            Download <i class="fas fa-chevron-down" />
           </button>
           <div :class="{ 'download-list-active': selectedOS === 'windows' }" class="download-list">
             <div
@@ -129,6 +132,8 @@
   </div>
 </template>
 <script>
+import { ref, onMounted } from 'vue';
+import { useRouter } from 'vue-router';
 import { useToast } from 'vue-toastification';
 import Trust1ConnectorService from '@/infrastructure/services/Trust1Connector';
 import DistributionService from '@/infrastructure/services/Distribution';
@@ -136,61 +141,68 @@ import DistributionService from '@/infrastructure/services/Distribution';
 export default {
   name: 'Installation',
   props: {},
-  setup() {
+  setup(props, context) {
     const toast = useToast();
-    return { toast };
-  },
-  data() {
-    return {
-      selectedOS: null,
-      latestVersion: null,
-    };
-  },
-  computed: {
-    compareBaseConfig() {
+    const router = useRouter();
+
+    const selectedOS = ref();
+    const latestVersion = ref();
+
+    const getUrl = () => (window.VUE_APP_ENV_T1C_URL ? window.VUE_APP_ENV_T1C_URL : 'https://t1c.t1t.io');
+    const getPort = () => (window.VUE_APP_ENV_T1C_PORT ? window.VUE_APP_ENV_T1C_PORT : 51783);
+
+    const compareBaseConfig = () => {
       const client = Trust1ConnectorService.getClient() || Trust1ConnectorService.getErrorClient();
+
       if (client != null) {
-        console.log(client.config()._t1cApiUrl, this.getUrl);
-        console.log(client.config()._t1cProxyPort, this.getPort);
-        console.log(client.config()._t1cApiUrl === this.getUrl && client.config()._t1cProxyPort === this.getPort);
-        return client.config()._t1cApiUrl === this.getUrl && client.config()._t1cProxyPort === this.getPort;
+        console.log(client.config()._t1cApiUrl, getUrl);
+        console.log(client.config()._t1cProxyPort, getPort);
+        console.log(client.config()._t1cApiUrl === getUrl && client.config()._t1cProxyPort === getPort);
+        return client.config()._t1cApiUrl === getUrl && client.config()._t1cProxyPort === getPort;
       } else {
         return true;
       }
-    },
-    getUrl() {
-      return window.VUE_APP_ENV_T1C_URL ? window.VUE_APP_ENV_T1C_URL : 'https://t1c.t1t.io';
-    },
-    getPort() {
-      return window.VUE_APP_ENV_T1C_PORT ? window.VUE_APP_ENV_T1C_PORT : 51783;
-    },
-  },
-  created() {
-    DistributionService.getLatestVersion().then(
-      (res) => {
-        this.latestVersion = res.data.data;
-      },
-      (err) => {
-        console.error(err);
-      },
-    );
-  },
-  methods: {
-    refreshPage() {
-      this.$router.push({ name: 'side-menu-home' });
-    },
-    setSelectedOS(os) {
-      this.selectedOS = os;
-    },
-    downloadVersion(version) {
-      const v = this.latestVersion.uris.find((u) => u.os === version);
-      if (v) {
-        window.open(v.uri, '_blank').focus();
-      } else {
-        this.toast.error('Could not find uri');
+    };
+
+    const refreshPage = () => {
+      router.push({ name: 'side-menu-home' });
+    };
+
+    const setSelectedOS = (os) => {
+      selectedOS.value = os;
+    };
+
+    const downloadVersion = (version) => {
+      if (!latestVersion.value?.uris) {
+        toast.error('Could not find uri');
         console.error('Could not find uri');
+        return false;
       }
-    },
+
+      const v = latestVersion.value.uris.find((u) => u.os === version);
+      window.open(v.uri, '_blank').focus();
+    };
+
+    onMounted(async () => {
+      try {
+        const response = await DistributionService.getLatestVersion();
+        latestVersion.value = response.data.data;
+      } catch (err) {
+        console.error(err);
+      }
+    });
+
+    return {
+      toast,
+      getUrl,
+      getPort,
+      compareBaseConfig,
+      refreshPage,
+      setSelectedOS,
+      downloadVersion,
+      selectedOS,
+      latestVersion,
+    };
   },
 };
 </script>

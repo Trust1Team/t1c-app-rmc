@@ -22,42 +22,10 @@ export default {
   name: 'Consent',
   props: {},
   emits: ['consented'],
-  setup() {
+  setup(props, context) {
     const consentData = ref();
 
-    const consent = () => {
-
-    }
-
-    onMounted(() => {
-      consentData.value = T1CClient.generateConsentToken();
-    });
-  }
-  methods: {
-    consent() {
-      copyTextToClipboard(this.consentData);
-      Trust1ConnectorService.getErrorClient()
-        .core()
-        .getImplicitConsent(this.consentData)
-        .then(
-          (consentRes) => {
-            Trust1ConnectorService.setClient(consentRes);
-            Trust1ConnectorService.setErrorClient(null);
-            Trust1ConnectorService.getClient()
-              .core()
-              .version()
-              .then((versionResult) => {
-                console.log('T1C running on core ' + versionResult);
-                this.$emit('consented');
-              });
-            this.copyConsentToClipboard(this.consentData);
-          },
-          (err) => {
-            console.error(err);
-          },
-        );
-    },
-    fallbackCopyConsentToClipboard(text) {
+    const fallbackCopyConsentToClipboard = (text) => {
       const textArea = document.createElement('textarea');
       textArea.value = text;
 
@@ -79,10 +47,11 @@ export default {
       }
 
       document.body.removeChild(textArea);
-    },
-    copyConsentToClipboard(text) {
+    };
+
+    const copyConsentToClipboard = (text) => {
       if (!navigator.clipboard) {
-        this.fallbackCopyConsentToClipboard(text);
+        fallbackCopyConsentToClipboard(text);
         return;
       }
       navigator.clipboard.writeText(text).then(
@@ -93,7 +62,39 @@ export default {
           console.error('Async: Could not copy text: ', err);
         },
       );
-    },
+    };
+
+    const consent = () => {
+      copyTextToClipboard(consentData.value);
+      Trust1ConnectorService.getErrorClient()
+        .core()
+        .getImplicitConsent(consentData.value)
+        .then(
+          (consentRes) => {
+            Trust1ConnectorService.setClient(consentRes);
+            Trust1ConnectorService.setErrorClient(null);
+            Trust1ConnectorService.getClient()
+              .core()
+              .version()
+              .then((versionResult) => {
+                console.log('T1C running on core ' + versionResult);
+                context.emit('consented');
+              });
+            copyConsentToClipboard(consentData.value);
+          },
+          (err) => {
+            console.error(err);
+          },
+        );
+    };
+
+    onMounted(() => {
+      consentData.value = T1CClient.generateConsentToken();
+    });
+
+    return {
+      consent,
+    };
   },
 };
 </script>

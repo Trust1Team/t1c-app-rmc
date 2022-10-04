@@ -118,6 +118,8 @@
   </div>
 </template>
 <script>
+import { ref, onMounted } from 'vue';
+import { useRouter } from 'vue-router';
 import { useToast } from 'vue-toastification';
 import DistributionService from '@/infrastructure/services/Distribution';
 import Trust1ConnectorService from '@/infrastructure/services/Trust1Connector';
@@ -127,59 +129,67 @@ export default {
   props: {},
   setup() {
     const toast = useToast();
-    return { toast };
-  },
-  data() {
-    return {
-      selectedOS: null,
-      latestVersion: null,
-    };
-  },
-  computed: {
-    compareBaseConfig() {
+    const router = useRouter();
+
+    const selectedOS = ref();
+    const latestVersion = ref();
+
+    const getUrl = () => (window.VUE_APP_ENV_T1C_URL ? window.VUE_APP_ENV_T1C_URL : 'https://t1c.t1t.io');
+    const getPort = () => (window.VUE_APP_ENV_T1C_PORT ? window.VUE_APP_ENV_T1C_PORT : 51783);
+
+    const compareBaseConfig = () => {
       const client = Trust1ConnectorService.getClient() || Trust1ConnectorService.getErrorClient();
-      if (client != null) {
-        console.log(client.config()._t1cApiUrl, this.getUrl);
-        console.log(client.config()._t1cProxyPort, this.getPort);
-        console.log(client.config()._t1cApiUrl === this.getUrl && client.config()._t1cProxyPort === this.getPort);
-        return client.config()._t1cApiUrl === this.getUrl && client.config()._t1cProxyPort === this.getPort;
-      } else {
+
+      if (!client) {
         return true;
       }
-    },
-    getUrl() {
-      return window.VUE_APP_ENV_T1C_URL ? window.VUE_APP_ENV_T1C_URL : 'https://t1c.t1t.io';
-    },
-    getPort() {
-      return window.VUE_APP_ENV_T1C_PORT ? window.VUE_APP_ENV_T1C_PORT : 51783;
-    },
-  },
-  created() {
-    DistributionService.getLatestVersion().then(
-      (res) => {
-        this.latestVersion = res.data.data;
-      },
-      (err) => {
-        console.error(err);
-      },
-    );
-  },
-  methods: {
-    refreshPage() {
-      this.$router.push({ name: 'side-menu-home' });
-    },
-    setSelectedOS(os) {
-      this.selectedOS = os;
-    },
-    downloadVersion(version) {
-      const v = this.latestVersion.uris.find((u) => u.os === version);
-      if (v) {
-        window.open(v.uri, '_blank').focus();
-      } else {
-        this.toast.error('Could not find uri');
+
+      console.log(client.config()._t1cApiUrl, getUrl);
+      console.log(client.config()._t1cProxyPort, getPort);
+      console.log(client.config()._t1cApiUrl === getUrl && client.config()._t1cProxyPort === getPort);
+
+      return client.config()._t1cApiUrl === getUrl && client.config()._t1cProxyPort === getPort;
+    };
+
+    const refreshPage = () => {
+      router.push({ name: 'side-menu-home' });
+    };
+
+    const setSelectedOS = (os) => {
+      selectedOS.value = os;
+    };
+
+    const downloadVersion = (version) => {
+      if (!latestVersion.value?.uris) {
+        toast.error('Could not find uri');
         console.error('Could not find uri');
+        return false;
       }
-    },
+
+      const v = latestVersion.value.uris.find((u) => u.os === version);
+      window.open(v.uri, '_blank').focus();
+    };
+
+    onMounted(async () => {
+      try {
+        const response = await DistributionService.getLatestVersion();
+        latestVersion.value = response.data.data;
+      } catch (err) {
+        console.error(err);
+      }
+    });
+
+    return {
+      toast,
+      selectedOS,
+      latestVersion,
+      getUrl,
+      getPort,
+      compareBaseConfig,
+      refreshPage,
+      setSelectedOS,
+      downloadVersion,
+    };
   },
 };
 </script>
