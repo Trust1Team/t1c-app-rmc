@@ -181,88 +181,68 @@
 </template>
 
 <script>
+import { ref } from 'vue';
 export default {
   name: 'Contact',
-  data() {
-    return {
-      name: '',
-      company: '',
-      email: '',
-      phoneNumber: '',
-      message: '',
-      informationCheck: false,
-      technicalCheck: false,
-      privacyPolicy: false,
-      termsCondition: false,
-      t1tAgreement: false,
+  setup() {
+    const name = ref('');
+    const company = ref('');
+    const email = ref('');
+    const phoneNumber = ref('');
+    const message = ref('');
+    const informationCheck = ref(false);
+    const technicalCheck = ref(false);
+    const privacyPolicy = ref(false);
+    const termsCondition = ref(false);
+    const t1tAgreement = ref(false);
+
+    const clearForm = () => {
+      name.value = '';
+      company.value = '';
+      email.value = '';
+      phoneNumber.value = '';
+      message.value = '';
+      informationCheck.value = false;
+      technicalCheck.value = false;
+      privacyPolicy.value = false;
+      termsCondition.value = false;
+      t1tAgreement.value = false;
     };
-  },
-  methods: {
-    submitForm() {
-      // TODO save submitted data
+
+    const submitForm = () => {
       const formData = {
-        name: this.name,
-        company: this.company,
-        email: this.email,
-        phoneNumber: this.phoneNumber,
-        message: this.message,
-        informationCheck: this.informationCheck,
-        technicalCheck: this.technicalCheck,
-        privacyPolicy: this.privacyPolicy,
-        termsCondition: this.termsCondition,
-        t1tAgreement: this.t1tAgreement,
+        name: name.value,
+        company: company.value,
+        email: email.value,
+        phoneNumber: phoneNumber.value,
+        message: message.value,
+        informationCheck: informationCheck.value,
+        technicalCheck: technicalCheck.value,
+        privacyPolicy: privacyPolicy.value,
+        termsCondition: termsCondition.value,
+        t1tAgreement: t1tAgreement.value,
       };
+
       console.log(formData);
-      this.clearForm();
-    },
-    clearForm() {
-      this.name = '';
-      this.company = '';
-      this.email = '';
-      this.phoneNumber = '';
-      this.message = '';
-      this.informationCheck = false;
-      this.technicalCheck = false;
-      this.privacyPolicy = false;
-      this.termsCondition = false;
-      this.t1tAgreement = false;
-    },
+      clearForm();
+    };
+
+    return {
+      name,
+      company,
+      email,
+      phoneNumber,
+      message,
+      informationCheck,
+      technicalCheck,
+      privacyPolicy,
+      termsCondition,
+      t1tAgreement,
+      submitForm,
+      clearForm,
+    };
   },
 };
 </script>
 
-<style scoped>
-.contact-checkbox {
-  background-color: white;
-}
-
-.title {
-  color: #e05512;
-  text-align: center;
-}
-.subtitle {
-  color: #97a0af;
-  text-align: center;
-  font-size: 18px;
-  width: 60%;
-  margin: auto;
-}
-.form {
-  text-align: center;
-  width: 60%;
-  margin: auto;
-}
-.float-left {
-  text-align: left;
-}
-.float-right {
-  text-align: right;
-}
-.check-text {
-  font-style: italic;
-  color: #97a0af;
-}
-.modal-title {
-  color: #97a0af;
-}
-</style>
+<style src="./Contact.style.css" scoped />

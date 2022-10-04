@@ -1,0 +1,39 @@
+.contact-checkbox {
+  background-color: white;
+}
+
+.title {
+  color: #e05512;
+  text-align: center;
+}
+
+.subtitle {
+  color: #97a0af;
+  text-align: center;
+  font-size: 18px;
+  width: 60%;
+  margin: auto;
+}
+
+.form {
+  text-align: center;
+  width: 60%;
+  margin: auto;
+}
+
+.float-left {
+  text-align: left;
+}
+
+.float-right {
+  text-align: right;
+}
+
+.check-text {
+  font-style: italic;
+  color: #97a0af;
+}
+
+.modal-title {
+  color: #97a0af;
+}
