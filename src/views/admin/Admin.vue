@@ -23,8 +23,7 @@
 
 <script>
 import Trust1ConnectorService from '@/infrastructure/services/Trust1Connector';
-import ReadersList from '@/components/core/ReadersList';
-import Installation from '@/components/core/Installation';
+import { Installation, ReadersList } from '@/components/core';
 import DependencyInfo from './components/DependencyInfo';
 import VersionCheck from './components/VersionCheck';
 import DeviceInfo from './components/DeviceInfo';

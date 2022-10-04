@@ -94,23 +94,4 @@ export default {
   },
 };
 </script>
-<style scoped>
-.consent-container {
-  margin-top: 50px;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.consent-data {
-  opacity: 0;
-}
-
-.consent-btn {
-  width: 130px;
-  height: 50px;
-  font-weight: bold;
-}
-</style>
+<style src="./Consent.style.css" scoped />

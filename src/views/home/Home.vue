@@ -27,7 +27,7 @@
 
 <script>
 import Trust1ConnectorService from '@/infrastructure/services/Trust1Connector';
-import Consent from '@/components/core/Consent';
+import { Consent } from '@/components/core';
 import Error from '@/components/UIComponents/Error';
 import { useToast } from 'vue-toastification';
 import Loading from '@/global-components/loading-icon/Main';

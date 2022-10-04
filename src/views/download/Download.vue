@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import Installation from '@/components/core/Installation';
+import { Installation } from '@/components/core';
 
 export default {
   name: 'Download',

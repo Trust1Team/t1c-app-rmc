@@ -10,7 +10,7 @@
 <script>
 // @ is an alias to /src
 import { useToast } from 'vue-toastification';
-import ReadersList from '@/components/core/ReadersList';
+import { ReadersList } from '@/components/core';
 import Trust1ConnectorService from '@/infrastructure/services/Trust1Connector';
 
 export default {

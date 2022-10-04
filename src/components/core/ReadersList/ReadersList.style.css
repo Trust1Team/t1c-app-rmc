@@ -1,0 +1,51 @@
+.reader-select:hover {
+  cursor: pointer;
+  color: #d24d0d;
+}
+
+.selectDisabled {
+  color: lightgray !important;
+  cursor: not-allowed !important;
+}
+
+.selectDisabled:hover {
+  color: lightgray !important;
+  cursor: not-allowed !important;
+}
+
+.isPresent {
+  color: #8dc63f;
+}
+
+.isNotPresent {
+  color: #ff0000;
+}
+
+.refresh {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.refresh-icon {
+  transition: all 0.2s ease-in;
+}
+
+.refresh button:hover .refresh-icon {
+  transform: rotate(180deg);
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  margin: 40px;
+}
+
+.readerDisabled svg {
+  fill: lightgray;
+}
+
+.readerDisabled:hover svg {
+  fill: lightgray;
+  cursor: not-allowed;
+}
