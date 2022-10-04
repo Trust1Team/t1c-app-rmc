@@ -8,7 +8,7 @@
     </div>
 
     <div class="loading">
-      <Loading v-if="getDataLoading" icon="puff" size="40" />
+      <LoadingIcon v-if="getDataLoading" icon="puff" size="40" />
     </div>
     <ModuleSwitch />
   </div>
@@ -16,14 +16,14 @@
 
 <script>
 import ModuleSwitch from '@/components/modules/ModuleSwitch';
-import Loading from '@/global-components/loading-icon/Main';
+import { LoadingIcon } from '@/components/UIComponents';
 import store from '@/infrastructure/store';
 
 export default {
   name: 'Generic',
   components: {
     ModuleSwitch,
-    Loading,
+    LoadingIcon,
   },
   beforeRouteEnter(to, from, next) {
     if (!store.getters['reader/getSelectedReader'] === true) {

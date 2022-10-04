@@ -30,7 +30,7 @@
             </div>
             <div class="px-5 sm:px-20 mt-10 pt-10 border-t border-gray-200 dark:border-dark-5">
               <div v-if="loading" class="flex items-center justify-center">
-                <Loading icon="puff" size="40"></Loading>
+                <LoadingIcon icon="puff" size="40" />
               </div>
 
               <div v-if="step === 1 && !loading">
@@ -76,14 +76,13 @@
 <script>
 import $ from 'cash-dom';
 import { useToast } from 'vue-toastification';
-import { Pinpad } from '@/components/UIComponents';
-import Loading from '@/global-components/loading-icon/Main';
+import { Pinpad, LoadingIcon } from '@/components/UIComponents';
 import SigningService from '@/infrastructure/services/Signing';
 import Trust1ConnectorService from '@/infrastructure/services/Trust1Connector';
 
 export default {
   name: 'SignModal',
-  components: { Pinpad, Loading },
+  components: { Pinpad, LoadingIcon },
   props: ['module', 'bytesToSign', 'documentId'],
   emits: ['closed'],
   setup() {

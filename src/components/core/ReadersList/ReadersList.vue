@@ -1,6 +1,6 @@
 <template>
   <div v-if="loading" class="loading">
-    <Loading icon="puff" size="40"></Loading>
+    <LoadingIcon icon="puff" size="40"></LoadingIcon>
   </div>
 
   <div class="grid grid-cols-12 gap-6 mt-5">
@@ -110,11 +110,11 @@
 <script>
 import { ref, onMounted } from 'vue';
 import Trust1ConnectorService from '@/infrastructure/services/Trust1Connector';
-import Loading from '@/global-components/loading-icon/Main';
+import { LoadingIcon } from '@/components/UIComponents';
 
 export default {
   name: 'ReadersList',
-  components: { Loading },
+  components: { LoadingIcon },
   props: {
     unknownModulesDisabled: Boolean,
     selectable: Boolean,

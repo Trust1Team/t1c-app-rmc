@@ -1,6 +1,6 @@
 <template>
   <div v-if="getCertificateLoading" class="loading">
-    <Loading icon="puff" :size="20" />
+    <LoadingIcon icon="puff" :size="20" />
   </div>
   <span v-if="!getCertificateLoading && !getCertificate">
     {{ $t('certificateInformation.noCertFound') }}
@@ -25,12 +25,12 @@
 </template>
 
 <script>
-import Loading from '@/global-components/loading-icon/Main';
+import { LoadingIcon } from '@/components/UIComponents';
 import { copyTextToClipboard } from '@/utils/helpers';
 
 export default {
   name: 'PaymentCertificateItem',
-  components: { Loading },
+  components: { LoadingIcon },
   props: {
     certificate: Object,
   },

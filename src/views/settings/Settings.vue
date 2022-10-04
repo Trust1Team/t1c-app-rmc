@@ -65,7 +65,7 @@
                 <div class="text-gray-600">{{ $t('settings.trust1connector.init.subtitle') }}</div>
               </div>
               <button :disabled="initialiseLoading" class="btn btn-primary w-44 mr-2 mb-2" @click="initialise">
-                <Loading v-if="initialiseLoading" class="w-4 h-4 mr-2" icon="puff" size="20" />
+                <LoadingIcon v-if="initialiseLoading" class="w-4 h-4 mr-2" icon="puff" size="20" />
                 <RefreshCwIcon v-if="!initialiseLoading" class="w-4 h-4 mr-2" />
                 {{ $t('settings.trust1connector.init.title') }}
               </button>
@@ -82,12 +82,12 @@ import $ from 'cash-dom';
 import { useStore } from 'vuex';
 import { computed, onMounted } from 'vue';
 import { useToast } from 'vue-toastification';
+import { LoadingIcon } from '@/components/UIComponents';
 import Trust1ConnectorService from '@/infrastructure/services/Trust1Connector';
-import Loading from '@/global-components/loading-icon/Main';
 
 export default {
   name: 'Settings',
-  components: { Loading },
+  components: { LoadingIcon },
   setup() {
     const store = useStore();
     const darkMode = computed(() => store.state.main.darkMode);

@@ -12,7 +12,7 @@
       </div>
       <div class="status-item-icon">
         <div v-if="!t1c" class="loading">
-          <Loading :size="30" icon="puff" />
+          <LoadingIcon :size="30" icon="puff" />
         </div>
         <div v-if="t1c">
           <i v-if="t1c.error" class="fas fa-exclamation-circle fa-2x red" />
@@ -28,7 +28,7 @@
       </div>
       <div class="status-item-icon">
         <div v-if="!validation" class="loading">
-          <Loading :size="30" icon="puff" />
+          <LoadingIcon :size="30" icon="puff" />
         </div>
         <div v-if="validation">
           <i v-if="validation.error" class="fas fa-exclamation-circle fa-2x red" />
@@ -44,7 +44,7 @@
       </div>
       <div class="status-item-icon">
         <div v-if="!ds" class="loading">
-          <Loading :size="30" :show="ds" />
+          <LoadingIcon :size="30" :show="ds" />
         </div>
         <div v-if="ds">
           <i v-if="ds.error" class="fas fa-exclamation-circle fa-2x red" />
@@ -57,14 +57,14 @@
 </template>
 
 <script>
-import Loading from '@/global-components/loading-icon/Main';
+import { LoadingIcon } from '@/components/UIComponents';
 import ValidationService from '@/infrastructure/services/Validation';
 import DistributionService from '@/infrastructure/services/Distribution';
 import Trust1ConnectorService from '@/infrastructure/services/Trust1Connector';
 
 export default {
   name: 'DependencyInfo',
-  components: { Loading },
+  components: { LoadingIcon },
   data() {
     return {
       ds: null,

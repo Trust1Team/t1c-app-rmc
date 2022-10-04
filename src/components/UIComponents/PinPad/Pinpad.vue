@@ -75,4 +75,4 @@ export default {
 };
 </script>
 
-<style src="./Pinpad.style.css" scoped />
+<style src="./PinPad.style.css" scoped />

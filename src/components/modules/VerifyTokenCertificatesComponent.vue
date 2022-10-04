@@ -2,7 +2,8 @@
   <div class="certificate-verification">
     <div v-if="loading">
       <div class="alert alert-secondary-soft show flex items-center mb-2" role="alert">
-        <Loading icon="puff" size="40" class="w-6 h-6 mr-2"></Loading> {{ $t('verify.certificates.validating') }}
+        <LoadingIcon icon="puff" size="40" class="w-6 h-6 mr-2"></LoadingIcon>
+        {{ $t('verify.certificates.validating') }}
       </div>
     </div>
 
@@ -28,12 +29,13 @@
 
 <script>
 import { useToast } from 'vue-toastification';
-import Loading from '@/global-components/loading-icon/Main';
+
+import { LoadingIcon } from '@/components/UIComponents';
 import ValidationService from '@/infrastructure/services/Validation';
 
 export default {
   name: 'VerifyTokenCertificatesComponent',
-  components: { Loading },
+  components: { LoadingIcon },
   setup() {
     const toast = useToast();
     return {

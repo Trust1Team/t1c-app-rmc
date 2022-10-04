@@ -1,6 +1,6 @@
 <template>
   <div v-if="loading" class="flex justify-center my-8">
-    <Loading icon="puff" :size="50" />
+    <LoadingIcon icon="puff" :size="50" />
   </div>
   <div v-if="!loading" class="container">
     <VersionCheck />
@@ -28,9 +28,8 @@
 <script>
 import Trust1ConnectorService from '@/infrastructure/services/Trust1Connector';
 import { Consent } from '@/components/core';
-import { Error } from '@/components/UIComponents';
+import { Error, LoadingIcon } from '@/components/UIComponents';
 import { useToast } from 'vue-toastification';
-import Loading from '@/global-components/loading-icon/Main';
 import VersionCheck from '@/views/admin/components/VersionCheck';
 import ReaderList from './components/ReaderList';
 import PinPad from './components/PinPad';
@@ -43,7 +42,7 @@ export default {
     ReaderList,
     Consent,
     Error,
-    Loading,
+    LoadingIcon,
   },
   setup() {
     const toast = useToast();

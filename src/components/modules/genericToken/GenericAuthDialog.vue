@@ -30,7 +30,7 @@
             </div>
             <div class="px-5 sm:px-20 mt-10 pt-10 border-t border-gray-200 dark:border-dark-5">
               <div v-if="loading" class="flex items-center justify-center">
-                <Loading icon="puff" size="40"></Loading>
+                <LoadingIcon icon="puff" size="40" />
               </div>
 
               <div v-if="step === 1 && !loading">
@@ -72,13 +72,12 @@
 <script>
 import $ from 'cash-dom';
 import { useToast } from 'vue-toastification';
-import { Pinpad } from '@/components/UIComponents';
+import { Pinpad, LoadingIcon } from '@/components/UIComponents';
 import Trust1ConnectorService from '@/infrastructure/services/Trust1Connector';
-import Loading from '@/global-components/loading-icon/Main';
 
 export default {
   name: 'GenericAuthModal',
-  components: { Pinpad, Loading },
+  components: { Pinpad, LoadingIcon },
   props: ['module', 'bytesToSign'],
   emits: ['closed'],
   setup() {
