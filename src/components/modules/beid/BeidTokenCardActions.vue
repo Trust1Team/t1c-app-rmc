@@ -52,7 +52,7 @@
 
 <script>
 import { useToast } from 'vue-toastification';
-import PinDialog from '@/components/UIComponents/PinDialog';
+import { PinDialog } from '@/components/UIComponents';
 import Trust1ConnectorService from '@/infrastructure/services/Trust1Connector';
 import SigningService from '@/infrastructure/services/Signing';
 import SignModal from '@/components/modules/beid/SignDialog';

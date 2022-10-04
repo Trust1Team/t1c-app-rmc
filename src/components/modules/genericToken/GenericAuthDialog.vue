@@ -72,7 +72,7 @@
 <script>
 import $ from 'cash-dom';
 import { useToast } from 'vue-toastification';
-import Pinpad from '@/components/UIComponents/Pinpad';
+import { Pinpad } from '@/components/UIComponents';
 import Trust1ConnectorService from '@/infrastructure/services/Trust1Connector';
 import Loading from '@/global-components/loading-icon/Main';
 

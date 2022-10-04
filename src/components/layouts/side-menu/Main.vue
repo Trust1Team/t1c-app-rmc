@@ -107,10 +107,10 @@
 import { useStore } from 'vuex';
 import { defineComponent, computed, onMounted, ref, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
-import TopBar from '@/components/UIComponents/top-bar/Main.vue';
-import MobileMenu from '@/components/_framework/mobile-menu/Main.vue';
-import DarkModeSwitcher from '@/components/_framework/dark-mode-switcher/Main.vue';
-import SideMenuTooltip from '@/components/_framework/side-menu-tooltip/Main.vue';
+import { TopBar } from '@/components/UIComponents';
+import MobileMenu from '@/components/_framework/mobile-menu/Main';
+import DarkModeSwitcher from '@/components/_framework/dark-mode-switcher/Main';
+import SideMenuTooltip from '@/components/_framework/side-menu-tooltip/Main';
 import Footer from '../footer/Main';
 import $ from 'cash-dom';
 import { linkTo, nestedMenu, enter, leave } from './index';

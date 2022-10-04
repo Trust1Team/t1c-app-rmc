@@ -13,8 +13,7 @@
 </template>
 
 <script>
-// @ is an alias to /src
-import Pinpad from '@/components/UIComponents/Pinpad';
+import { Pinpad } from '@/components/UIComponents';
 
 export default {
   name: 'HomePinPad',

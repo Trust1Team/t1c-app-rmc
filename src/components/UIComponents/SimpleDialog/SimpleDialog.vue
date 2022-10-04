@@ -42,7 +42,7 @@
                 </button>
               </div>
               <div class="modal__content">
-                <slot></slot>
+                <slot />
               </div>
             </div>
           </transition>
@@ -76,7 +76,6 @@ export default {
     };
 
     return {
-      // Functions
       closeModal,
     };
   },

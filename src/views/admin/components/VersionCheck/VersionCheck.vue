@@ -39,7 +39,7 @@
 <script>
 import Trust1ConnectorService from '@/infrastructure/services/Trust1Connector';
 import DistributionService from '@/infrastructure/services/Distribution';
-import SimpleDialog from '@/components/UIComponents/SimpleDialog';
+import { SimpleDialog } from '@/components/UIComponents';
 import { VersionDownload } from '@/components/core';
 
 export default {

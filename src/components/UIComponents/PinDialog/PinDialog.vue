@@ -8,7 +8,7 @@
               <AlertOctagonIcon class="w-6 h-6 mr-2" /> {{ pinErrorDescription }}
             </div>
 
-            <pinpad ref="pinpad" @submitPin="pinSelected"></pinpad>
+            <Pinpad ref="pinpad" @submitPin="pinSelected" />
           </div>
         </div>
       </div>
@@ -17,25 +17,37 @@
 </template>
 
 <script>
-import Pinpad from '@/components/UIComponents/Pinpad';
+import { ref } from 'vue';
 import $ from 'cash-dom';
+import { Pinpad } from '@/components/UIComponents';
 
 export default {
   name: 'PinDialog',
   components: { Pinpad },
   props: ['pinErrorDescription'],
   emits: ['confirmPin'],
-  methods: {
-    showDialog() {
+  setup(props, context) {
+    const pinpad = ref(null);
+
+    const showDialog = () => {
       $('#pin-pad-modal').modal('show');
-      this.$refs.pinpad.focusInput();
-    },
-    hideDialog() {
+      pinpad.value.focusInput();
+    };
+
+    const hideDialog = () => {
       $('#pin-pad-modal').modal('hide');
-    },
-    pinSelected(pin) {
-      this.$emit('confirmPin', pin);
-    },
+    };
+
+    const pinSelected = (pin) => {
+      context.emit('confirmPin', pin);
+    };
+
+    return {
+      pinpad,
+      pinSelected,
+      showDialog,
+      hideDialog,
+    };
   },
 };
 </script>

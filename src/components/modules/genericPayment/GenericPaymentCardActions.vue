@@ -13,8 +13,8 @@
 
 <script>
 import { useToast } from 'vue-toastification';
+import { PinDialog } from '@/components/UIComponents';
 import Trust1ConnectorService from '@/infrastructure/services/Trust1Connector';
-import PinDialog from '@/components/UIComponents/PinDialog';
 
 export default {
   name: 'GenericPaymentCardActions',

@@ -76,7 +76,7 @@
 <script>
 import $ from 'cash-dom';
 import { useToast } from 'vue-toastification';
-import Pinpad from '@/components/UIComponents/Pinpad';
+import { Pinpad } from '@/components/UIComponents';
 import Loading from '@/global-components/loading-icon/Main';
 import SigningService from '@/infrastructure/services/Signing';
 import Trust1ConnectorService from '@/infrastructure/services/Trust1Connector';
