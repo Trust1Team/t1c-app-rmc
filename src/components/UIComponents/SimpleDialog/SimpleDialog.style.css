@@ -1,0 +1,41 @@
+.dialog-wrapper {
+  padding-top: 115px;
+}
+
+.modal-backdrop {
+  z-index: 100;
+}
+
+.modal-content {
+  position: relative;
+  width: 85%;
+  padding: 25px 20px;
+}
+
+.modal__header {
+  text-align: center;
+}
+
+.modal__header__title {
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.btn-close {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  text-shadow: none;
+  box-shadow: none;
+  border: none;
+}
+
+.btn-close svg {
+  width: 24px;
+  height: 24px;
+  fill: #b4b4b4;
+}
+
+.modal__content {
+  margin-top: 20px;
+}

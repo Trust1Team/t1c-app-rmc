@@ -48,8 +48,4 @@ export default defineComponent({
 });
 </script>
 
-<style scoped>
-.bc {
-  text-transform: capitalize;
-}
-</style>
+<style src="./TopBar.style.css" scoped />
