@@ -21,13 +21,4 @@ export default {
 };
 </script>
 
-<style scoped>
-.installer h1,
-h2 {
-  text-align: center;
-}
-
-.installer h2 {
-  margin-bottom: 60px;
-}
-</style>
+<style src="./Download.style.css" scoped />
