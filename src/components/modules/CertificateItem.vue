@@ -26,12 +26,11 @@
 
 <script>
 import Loading from '@/global-components/loading-icon/Main';
-import copyMixin from '@/infrastructure/mixins/copyMixin';
+import { copyTextToClipboard } from '@/utils/helpers';
 
 export default {
   name: 'CertificateItem',
   components: { Loading },
-  mixins: [copyMixin],
   props: {
     certificate: Object,
   },

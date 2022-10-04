@@ -110,12 +110,10 @@
 <script>
 import Trust1ConnectorService from '@/infrastructure/services/Trust1Connector';
 import Loading from '@/global-components/loading-icon/Main';
-import copyMixin from '@/infrastructure/mixins/copyMixin';
 
 export default {
   name: 'ReadersList',
   components: { Loading },
-  mixins: [copyMixin],
   props: {
     unknownModulesDisabled: Boolean,
     selectable: Boolean,

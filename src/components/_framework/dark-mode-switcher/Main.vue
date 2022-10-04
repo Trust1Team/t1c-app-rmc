@@ -9,7 +9,6 @@
 </template>
 
 <script>
-import $ from 'cash-dom';
 import { useStore } from 'vuex';
 import { defineComponent, onMounted, computed } from 'vue';
 export default defineComponent({
@@ -18,7 +17,13 @@ export default defineComponent({
     const darkMode = computed(() => store.state.main.darkMode);
 
     const setDarkModeClass = () => {
-      darkMode.value ? $('html').addClass('dark') : $('html').removeClass('dark');
+      const html = document.getElementsByTagName('html')[0];
+
+      if (darkMode.value) {
+        html.classList.add('html');
+      } else {
+        html.classList.remove('html');
+      }
     };
 
     const switchMode = () => {

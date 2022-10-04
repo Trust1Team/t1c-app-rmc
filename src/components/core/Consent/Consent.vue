@@ -14,25 +14,28 @@
 </template>
 
 <script>
+import { ref, onMounted } from 'vue';
 import Trust1ConnectorService from '@/infrastructure/services/Trust1Connector';
-import copyMixin from '@/infrastructure/mixins/copyMixin';
+import { copyTextToClipboard } from '@/utils/helpers';
 import { T1CClient } from 't1c-sdk-js';
 export default {
   name: 'Consent',
-  mixins: [copyMixin],
   props: {},
   emits: ['consented'],
-  data() {
-    return {
-      consentData: null,
-    };
-  },
-  created() {
-    this.consentData = T1CClient.generateConsentToken();
-  },
+  setup() {
+    const consentData = ref();
+
+    const consent = () => {
+
+    }
+
+    onMounted(() => {
+      consentData.value = T1CClient.generateConsentToken();
+    });
+  }
   methods: {
     consent() {
-      this.copyTextToClipboard(this.consentData);
+      copyTextToClipboard(this.consentData);
       Trust1ConnectorService.getErrorClient()
         .core()
         .getImplicitConsent(this.consentData)

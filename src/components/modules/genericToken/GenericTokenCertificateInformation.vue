@@ -49,14 +49,12 @@
 </template>
 
 <script>
-import copyMixin from '@/infrastructure/mixins/copyMixin';
 import VerifyTokenCertificatesComponent from '@/components/modules/VerifyTokenCertificatesComponent';
 import CertificateItem from '@/components/modules/CertificateItem';
 
 export default {
   name: 'GenericTokenCertificateInformation',
   components: { CertificateItem, VerifyTokenCertificatesComponent },
-  mixins: [copyMixin],
   props: {
     rootCertificate: Object,
     intermediateCertificates: Object,
