@@ -57,6 +57,7 @@
 </template>
 
 <script>
+import { ref, onMounted } from 'vue';
 import { LoadingIcon } from '@/components/UIComponents';
 import ValidationService from '@/infrastructure/services/Validation';
 import DistributionService from '@/infrastructure/services/Distribution';
@@ -65,70 +66,57 @@ import Trust1ConnectorService from '@/infrastructure/services/Trust1Connector';
 export default {
   name: 'DependencyInfo',
   components: { LoadingIcon },
-  data() {
-    return {
-      ds: null,
-      validation: null,
-      t1c: null,
-    };
-  },
-  created() {
-    this.fetchDependencies();
-  },
-  methods: {
-    fetchDependencies() {
-      this.ds = null;
-      this.t1c = null;
-      this.validation = null;
+  setup() {
+    const ds = ref();
+    const validation = ref();
+    const t1c = ref();
+
+    const fetchDependencies = () => {
+      ds.value = null;
+      t1c.value = null;
+      validation.value = null;
 
       const client = Trust1ConnectorService.getClient();
-      if (client != null) {
-        client
-          .core()
-          .info()
-          .then(
-            (res) => {
-              if (res.t1CInfoAPI.status === 'ACTIVATED') {
-                this.t1c = {
-                  error: false,
-                  success: true,
-                  warning: false,
-                };
-              } else {
-                this.t1c = {
-                  error: false,
-                  success: false,
-                  warning: true,
-                };
-              }
-            },
-            (err) => {
-              this.t1c = {
-                error: false,
-                success: false,
-                warning: true,
-              };
-              console.log(err);
-            },
-          );
-      } else {
-        this.t1c = {
+
+      if (!client) {
+        t1c.value = {
           error: true,
           success: false,
           warning: false,
         };
       }
 
+      client
+        .core()
+        .info()
+        .then(
+          (res) => {
+            t1c.value = {
+              error: false,
+              success: res.t1CInfoAPI.status === 'ACTIVATED',
+              warning: res.t1CInfoAPI.status !== 'ACTIVATED',
+            };
+          },
+          (err) => {
+            t1c.value = {
+              error: false,
+              success: false,
+              warning: true,
+            };
+            console.log(err);
+          },
+        );
+
       ValidationService.getStatus().then(
         () => {
-          this.validation = {
+          validation.value = {
             error: false,
             success: true,
             warning: false,
           };
         },
         (err) => {
-          this.validation = {
+          validation.value = {
             error: true,
             success: false,
             warning: false,
@@ -139,22 +127,14 @@ export default {
 
       DistributionService.getSystemInfo().then(
         (res) => {
-          if (res.data.data.isAlive) {
-            this.ds = {
-              error: false,
-              success: true,
-              warning: false,
-            };
-          } else {
-            this.ds = {
-              error: false,
-              success: false,
-              warning: true,
-            };
-          }
+          ds.value = {
+            error: false,
+            success: !!res.data.data.isAlive,
+            warning: !res.data.data.isAlive,
+          };
         },
         (err) => {
-          this.ds = {
+          ds.value = {
             error: true,
             success: false,
             warning: false,
@@ -162,81 +142,19 @@ export default {
           console.error(err);
         },
       );
-    },
+    };
+
+    onMounted(() => {
+      fetchDependencies();
+    });
+
+    return {
+      ds,
+      validation,
+      t1c,
+    };
   },
 };
 </script>
 
-<style scoped>
-.status-container {
-  width: 100%;
-  margin-top: 25px;
-  margin-bottom: 50px;
-}
-
-.status-item-service {
-  font-weight: bold;
-  margin-left: 20px;
-}
-
-.status-item-icon {
-  display: flex;
-  align-items: center;
-  margin-right: 20px;
-}
-
-.loading {
-  height: 30px;
-}
-
-.status-item {
-  padding: 0 15px;
-  width: 100%;
-  height: 60px;
-  align-items: center;
-  border: 1px solid #cdcdcd;
-  border-top: none;
-  display: flex;
-  justify-content: space-between;
-}
-
-.status-item:first-of-type {
-  border-top: 1px solid #cdcdcd;
-  border-radius: 10px 10px 0 0;
-}
-
-.status-item:last-of-type {
-  border-top: none;
-  border-radius: 0 0 10px 10px;
-}
-
-.intro-x:nth-child(2) {
-  border-radius: 0px;
-}
-
-.green {
-  color: #31a24c;
-}
-
-.red {
-  color: crimson;
-}
-
-.yellow {
-  color: #fadb01;
-}
-
-.refresh {
-  width: 100%;
-  display: flex;
-  justify-content: flex-end;
-}
-
-.refresh-icon {
-  transition: all 0.2s ease-in;
-}
-
-.refresh button:hover .refresh-icon {
-  transform: rotate(180deg);
-}
-</style>
+<style src="./DependencyInfo.style.css" scoped />

@@ -37,6 +37,7 @@
 </template>
 
 <script>
+import { ref, onMounted } from 'vue';
 import Trust1ConnectorService from '@/infrastructure/services/Trust1Connector';
 import DistributionService from '@/infrastructure/services/Distribution';
 import { SimpleDialog } from '@/components/UIComponents';
@@ -48,94 +49,72 @@ export default {
     VersionDownload,
     SimpleDialog,
   },
-  data() {
-    return {
-      show: false,
-      title: '',
-      oldVersion: null,
-      newVersion: null,
-      newVersionType: null,
+  setup() {
+    const show = ref(false);
+    const title = ref('');
+    const oldVersion = ref();
+    const newVersion = ref();
+    const newVersionType = ref();
+
+    const closeModal = (confirmed) => {
+      if (newVersionType.value !== 'mandatory') {
+        show.value = false;
+      }
     };
-  },
-  created() {
-    if (Trust1ConnectorService.getErrorClient() || Trust1ConnectorService.getClient()) {
-      if (Trust1ConnectorService.getClient()) {
-        this.checkVersion(Trust1ConnectorService.getClient());
-      }
-    } else {
-      Trust1ConnectorService.init().then(
-        (res) => {
-          this.checkVersion(res);
-        },
-        (err) => {
-          this.checkVersion(err.client);
-        },
-      );
-    }
-  },
-  methods: {
-    // eslint-disable-next-line no-unused-vars
-    closeModal(confirmed) {
-      if (this.newVersionType !== 'mandatory') {
-        this.show = false;
-      }
-    },
-    checkVersion(client) {
+
+    const checkVersion = (client) => {
       client
         .core()
         .info()
         .then((info) => {
           DistributionService.getLatestVersion().then((dsRes) => {
             if (info.t1CInfoAPI.version < dsRes.data.data.id) {
-              this.oldVersion = info.t1CInfoAPI.version;
+              oldVersion.value = info.t1CInfoAPI.version;
               if (dsRes.data.data.mandatory) {
-                this.show = true;
-                this.newVersion = dsRes.data.data.id;
-                this.newVersionType = 'mandatory';
+                show.value = true;
+                newVersion.value = dsRes.data.data.id;
+                newVersionType.value = 'mandatory';
               } else if (dsRes.data.data.recommended) {
-                this.show = true;
-                this.newVersion = dsRes.data.data.id;
-                this.newVersionType = 'recommended';
+                show.value = true;
+                newVersion.value = dsRes.data.data.id;
+                newVersionType.value = 'recommended';
               } else if (dsRes.data.data.allowed) {
-                this.show = true;
-                this.newVersion = dsRes.data.data.id;
-                this.newVersionType = 'allowed';
+                show.value = true;
+                newVersion.value = dsRes.data.data.id;
+                newVersionType.value = 'allowed';
               }
             }
           });
         });
-    },
+    };
+
+    onMounted(() => {
+      if (!Trust1ConnectorService.getErrorClient() || !Trust1ConnectorService.getClient()) {
+        Trust1ConnectorService.init().then(
+          (res) => {
+            checkVersion(res);
+          },
+          (err) => {
+            checkVersion(err.client);
+          },
+        );
+      }
+
+      if (Trust1ConnectorService.getClient()) {
+        checkVersion(Trust1ConnectorService.getClient());
+      }
+    });
+
+    return {
+      show,
+      title,
+      oldVersion,
+      newVersion,
+      newVersionType,
+      closeModal,
+    };
   },
 };
 </script>
 
-<style scoped>
-.installation-info-container {
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  margin-bottom: 50px;
-}
-
-.installation-info-item {
-  margin: 10px;
-  width: 300px;
-  min-height: 200px;
-  border-radius: 15px;
-  padding: 15px;
-}
-
-.installation-info-item h3 {
-  font-size: 1.3rem;
-  color: #e05512;
-  margin-bottom: 10px;
-}
-
-.installation-info-item h6 {
-  margin-top: 15px !important;
-}
-
-.installation-info-item p {
-  font-weight: bold;
-}
-</style>
+<style src="./VersionCheck.style.css" scoped />

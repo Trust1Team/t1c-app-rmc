@@ -22,6 +22,7 @@
 </template>
 
 <script>
+import { ref, onMounted } from 'vue';
 import Trust1ConnectorService from '@/infrastructure/services/Trust1Connector';
 import { Installation, ReadersList } from '@/components/core';
 import DependencyInfo from './components/DependencyInfo';
@@ -39,42 +40,48 @@ export default {
     DependencyInfo,
     Installation,
   },
-  data() {
-    return {
-      info: null,
-      jsVersion: null,
-    };
-  },
-  computed: {},
-  created() {
-    const client = Trust1ConnectorService.getClient();
-    if (client != null) {
+  setup() {
+    const info = ref();
+    const jsVersion = ref();
+
+    onMounted(() => {
+      const client = Trust1ConnectorService.getClient();
+
+      if (!client) {
+        return false;
+      }
+
       client
         .core()
         .version()
         .then(
           (version) => {
-            this.jsVersion = version;
+            jsVersion.value = version;
           },
           (err) => {
             console.error(err);
           },
         );
+
       client
         .core()
         .info()
         .then(
           (infoRes) => {
-            this.info = infoRes;
+            info.value = infoRes;
           },
           (err) => {
             console.error(err);
           },
         );
-    }
+    });
+
+    return {
+      info,
+      jsVersion,
+    };
   },
-  methods: {},
 };
 </script>
 
-<style scoped></style>
+<style src="./Admin.style.css" scoped />

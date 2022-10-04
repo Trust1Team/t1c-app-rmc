@@ -46,38 +46,8 @@ export default {
   props: {
     info: Object,
   },
-  created() {},
-  methods: {},
+  setup() {},
 };
 </script>
 
-<style scoped>
-.installation-info-container {
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  margin-bottom: 50px;
-}
-
-.installation-info-item {
-  margin: 10px;
-  width: 300px;
-  min-height: 200px;
-  border-radius: 15px;
-  padding: 15px;
-}
-
-.installation-info-item h3 {
-  font-size: 1.3rem;
-  color: #e05512;
-  margin-bottom: 10px;
-}
-
-.installation-info-item h6 {
-  margin-top: 15px !important;
-}
-
-.installation-info-item p {
-  font-weight: bold;
-}
-</style>
+<style src="./UserInfo.style.css" scoped />
