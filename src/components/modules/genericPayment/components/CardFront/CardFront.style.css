@@ -1,0 +1,49 @@
+p {
+  margin-bottom: unset;
+}
+
+.chip {
+  width: 60px;
+  margin-left: 50px;
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+
+.chip img {
+  width: 100%;
+}
+
+.text-title {
+  width: 125px;
+  margin-left: 50px;
+}
+
+.card-container {
+  /*Ratio is 8/5*/
+  width: 480px;
+  height: 300px;
+  border: 1px solid lightgray;
+  border-radius: 15px;
+  position: relative;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.card-content {
+  padding: 5px;
+  margin-top: 35px;
+}
+
+.text-spacing {
+  margin-left: 10px;
+}
+
+.card-row {
+  margin-top: 5px;
+  display: flex;
+  line-height: 15px;
+  margin-bottom: 30px;
+}
+
+.bold {
+  font-weight: bold;
+}

@@ -49,7 +49,7 @@
 </template>
 
 <script>
-import CertificateItem from '@/components/modules/CertificateItem';
+import CertificateItem from './CertificateItem';
 import VerifyTokenCertificatesComponent from './VerifyTokenCertificatesComponent';
 
 export default {

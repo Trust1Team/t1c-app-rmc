@@ -27,7 +27,7 @@
     :reader-name="reader.name"
   />
 
-  <GenericPaymentCardView
+  <GenericPayment
     v-if="cardApplications && reader.card.modules.includes('emv')"
     :application-data="cardApplicationData"
     :applications="cardApplications.applications"
@@ -39,14 +39,14 @@
 import { computed } from 'vue';
 import { useStore } from 'vuex';
 import BeidModule from '@/components/modules/beid';
-import GenericPaymentCardView from './genericPayment/GenericPaymentCardView';
+import GenericPayment from '@/components/modules/genericPayment';
 import GenericTokenCardView from './genericToken/GenericTokenCardView';
 
 export default {
   name: 'ModuleSwitch',
   components: {
     BeidModule,
-    GenericPaymentCardView,
+    GenericPayment,
     GenericTokenCardView,
   },
   setup(props, context) {

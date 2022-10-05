@@ -6,7 +6,9 @@
       </div>
       <div class="card-row">
         <div class="text-title">
-          <p><i>{{ $t("genericCardView.Card number") }}</i></p>
+          <p>
+            <i>{{ $t('genericCardView.Card number') }}</i>
+          </p>
         </div>
         <div class="text-spacing">
           <p class="bold">{{ constructCardNumber }}</p>
@@ -14,7 +16,9 @@
       </div>
       <div v-if="applicationData.name" class="card-row">
         <div class="text-title">
-          <p><i>{{ $t("genericCardView.Card number") }}</i></p>
+          <p>
+            <i>{{ $t('genericCardView.Card number') }}</i>
+          </p>
         </div>
         <div class="text-spacing">
           <p class="bold">{{ applicationData.name }}</p>
@@ -22,7 +26,9 @@
       </div>
       <div class="card-row">
         <div class="text-title">
-          <p><i>{{ $t("genericCardView.Expires") }}</i></p>
+          <p>
+            <i>{{ $t('genericCardView.Expires') }}</i>
+          </p>
         </div>
         <div class="text-spacing">
           <p class="bold">
@@ -36,76 +42,31 @@
 
 <script>
 import moment from 'moment';
+import { computed } from 'vue';
 import { forEach } from 'lodash';
 
 export default {
-  name: 'GenericPaymentFrontCardView',
+  name: 'CardFront',
   props: ['applicationData'],
-  computed: {
-    constructCardNumber() {
+  setup(props, context) {
+    const constructCardNumber = computed(() => {
       let cardNumber = '';
       forEach(this.applicationData.pan, (comp, idx) => {
         idx % 4 === 0 ? (cardNumber += ' ' + comp) : (cardNumber += comp);
       });
       return cardNumber;
-    },
+    });
 
-    constructExpirationDate() {
-      return moment(this.applicationData.expirationDate, 'YYMMDD').format('DD/MM/YY');
-    },
+    const constructExpirationDate = computed(() =>
+      moment(props.applicationData.expirationDate, 'YYMMDD').format('DD/MM/YY'),
+    );
+
+    return {
+      constructCardNumber,
+      constructExpirationDate,
+    };
   },
-  methods: {},
 };
 </script>
 
-<style scoped>
-p {
-  margin-bottom: unset;
-}
-
-.chip {
-  width: 60px;
-  margin-left: 50px;
-  margin-top: 20px;
-  margin-bottom: 30px;
-}
-
-.chip img {
-  width: 100%;
-}
-
-.text-title {
-  width: 125px;
-  margin-left: 50px;
-}
-
-.card-container {
-  /*Ratio is 8/5*/
-  width: 480px;
-  height: 300px;
-  border: 1px solid lightgray;
-  border-radius: 15px;
-  position: relative;
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-}
-
-.card-content {
-  padding: 5px;
-  margin-top: 35px;
-}
-
-.text-spacing {
-  margin-left: 10px;
-}
-
-.card-row {
-  margin-top: 5px;
-  display: flex;
-  line-height: 15px;
-  margin-bottom: 30px;
-}
-
-.bold {
-  font-weight: bold;
-}
-</style>
+<style src="./CardFront.style.css" scoped />

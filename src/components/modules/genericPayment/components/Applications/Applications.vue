@@ -36,37 +36,11 @@
 
 <script>
 export default {
-  name: 'GenericPaymentApplications',
+  name: 'Applications',
   props: {
     applications: Object,
   },
-  computed: {},
 };
 </script>
 
-<style scoped>
-.token-details-item {
-  margin-bottom: 30px;
-}
-
-h4 {
-  color: #e05512;
-  font-size: 1.1rem;
-}
-
-.text-container {
-  margin-bottom: 20px;
-}
-
-.text-label {
-  color: #b1b1b1;
-  margin-bottom: 4px;
-}
-
-.text-content {
-  margin: 10px 0;
-  padding: 15px;
-  border-radius: 5px;
-  word-break: break-word;
-}
-</style>
+<style src="./Applications.style.css" scoped />

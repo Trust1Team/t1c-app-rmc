@@ -1,0 +1,49 @@
+
+.text-content {
+  margin: 10px 0;
+  padding: 15px;
+  border-radius: 5px;
+  word-break: break-word;
+}
+
+.loading {
+  width: 20px;
+  height: 20px;
+}
+
+.cert {
+  display: flex;
+  max-height: 65px;
+  overflow: hidden;
+  transition: all 0.2s ease-in;
+}
+
+.cert-expand,
+.cert-copy {
+  height: 15px;
+  color: #e05512;
+  margin-left: 10px;
+  margin-top: 5px;
+}
+
+.cert-expand:hover,
+.cert-copy:hover {
+  cursor: pointer;
+}
+
+.action-buttons button {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.cert-open {
+  max-height: 2000px;
+}
+
+.cert-expand-icon {
+  transition: all 0.1s ease-in;
+}
+
+.cert-expand-rotated {
+  transform: rotate(180deg);
+}
