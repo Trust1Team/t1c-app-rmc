@@ -1,17 +1,12 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import SideMenu from '@/components/layouts/side-menu/Main';
-import Admin from './views/admin';
-import Contact from './views/contact';
-import Download from './views/download';
-import ErrorPage from './views/error-page';
-import Generic from './views/generic';
-import Home from './views/home';
-import Settings from './views/settings';
-import { createRouter, createWebHistory } from 'vue-router'
-import SideMenu from '../layouts/side-menu/Main.vue'
-import Home from '../views/home/Main.vue'
-import Download from '../views/download/Main.vue'
-import Generic from '../views/generic/Main.vue'
+import Admin from '@/views/admin';
+import Contact from '@/views/contact';
+import Download from '@/views/download';
+import ErrorPage from '@/views/error-page';
+import Generic from '@/views/generic';
+import Home from '@/views/home';
+import Settings from '@/views/settings';
 // import BeidModule from '../views/modules/beid/Main.vue'
 // import BeidView from '../views/modules/beid/BeidView.vue'
 // import CertignaModule from '../views/modules/certigna/Main.vue'
