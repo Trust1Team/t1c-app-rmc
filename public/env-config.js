@@ -5,3 +5,4 @@ window.VUE_APP_ENV_DEFAULT_LANGUAGE = 'en'
 window.VUE_APP_ENV_API_KEY = '...'
 window.VUE_APP_ENV_DS_URL = 'https://acc-ds.t1t.io'
 window.VUE_APP_ENV_BFF_URL = 'http://localhost:9000'
+window.VUE_APP_ENV_FILE_EXCHANGE_URL = "https://t1c.t1t.io:55000/v3/modules/fileexchange/apps/file"

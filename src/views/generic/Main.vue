@@ -15,38 +15,38 @@
 </template>
 
 <script>
-import ModuleSwitch from '@/components/modules/ModuleSwitch'
-import Loading from '@/global-components/loading-icon/Main'
-import store from '@/store'
+import ModuleSwitch from "@/components/modules/ModuleSwitch";
+import Loading from "@/global-components/loading-icon/Main";
+import store from "@/store";
 
 export default {
-  name: 'Generic',
-  beforeRouteEnter (to, from, next) {
-    if (!store.getters['reader/getSelectedReader'] === true) {
-      next('/')
+  name: "Generic",
+  beforeRouteEnter(to, from, next) {
+    if (!store.getters["reader/getSelectedReader"] === true) {
+      next("/");
     } else {
-      next()
+      next();
     }
   },
   components: {
     ModuleSwitch,
-    Loading
+    Loading,
   },
   methods: {
     goBack() {
-      this.$store.dispatch('reader/setSelectedReader', null)
-      this.$router.go(-1)
-    }
+      this.$store.dispatch("reader/setSelectedReader", null);
+      this.$router.go(-1);
+    },
   },
   computed: {
     getDataLoading() {
-      return this.$store.getters['card/getDataLoading']
-    }
+      return this.$store.getters["card/getDataLoading"];
+    },
   },
   unmounted() {
-    this.$store.dispatch('reader/setSelectedReader', null)
-  }
-}
+    this.$store.dispatch("reader/setSelectedReader", null);
+  },
+};
 </script>
 
 <style scoped>

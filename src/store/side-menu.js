@@ -11,10 +11,55 @@ const state = () => {
         pageName: 'side-menu-modules',
         title: 'Modules',
         subMenu: [
+          // {
+          //   icon: 'CreditCardIcon',
+          //   pageName: 'side-menu-modules-beid',
+          //   title: 'Belgian eID'
+          // },
+          // {
+          //   icon: 'CreditCardIcon',
+          //   pageName: 'side-menu-modules-certigna',
+          //   title: 'Certigna'
+          // },
+          // {
+          //   icon: 'CreditCardIcon',
+          //   pageName: 'side-menu-modules-certinomis',
+          //   title: 'Certinomis'
+          // },
           {
             icon: 'CreditCardIcon',
-            pageName: 'side-menu-modules-beid',
-            title: 'Belgian eID'
+            pageName: 'side-menu-modules-ids',
+            title: 'ID/Token modules'
+          },
+          {
+            icon: 'CreditCardIcon',
+            pageName: 'side-menu-modules-payment',
+            title: 'Payment modules'
+          },
+          {
+            icon: 'CreditCardIcon',
+            pageName: 'side-menu-modules-pki',
+            title: 'PKI modules'
+          },
+          {
+            icon: 'CreditCardIcon',
+            pageName: 'side-menu-modules-remote-loading',
+            title: 'Remote loading modules'
+          },
+          {
+            icon: 'CreditCardIcon',
+            pageName: 'side-menu-modules-transport',
+            title: 'Transport modules'
+          },
+          {
+            icon: 'CreditCardIcon',
+            pageName: 'side-menu-modules-file-exchange',
+            title: 'File-exchange module'
+          },
+          {
+            icon: 'CreditCardIcon',
+            pageName: 'side-menu-modules-other-modules',
+            title: 'Other modules'
           }
         ]
       },
