@@ -14,85 +14,93 @@
 </template>
 
 <script>
-import Trust1ConnectorService from '../../services/Trust1ConnectorService'
-import copyMixin from '@/mixins/copyMixin'
-import { T1CClient } from 't1c-sdk-js'
+import Trust1ConnectorService from "../../services/Trust1ConnectorService";
+import copyMixin from "@/mixins/copyMixin";
+import { T1CClient } from "t1c-sdk-js";
+import { useToast } from "vue-toastification";
+
 export default {
-  name: 'Consent',
+  name: "Consent",
+  setup() {
+    const toast = useToast();
+    return {
+      toast,
+    };
+  },
   data() {
     return {
-      consentData: null
-    }
+      consentData: null,
+    };
   },
-  emits: ['consented'],
+  emits: ["consented"],
   methods: {
     consent() {
-      this.copyTextToClipboard(this.consentData)
+      this.copyTextToClipboard(this.consentData);
       Trust1ConnectorService.getErrorClient()
         .core()
         .getImplicitConsent(this.consentData)
         .then(
           (consentRes) => {
-            Trust1ConnectorService.setClient(consentRes)
-            Trust1ConnectorService.setErrorClient(null)
+            Trust1ConnectorService.setClient(consentRes);
+            Trust1ConnectorService.setErrorClient(null);
             Trust1ConnectorService.getClient()
               .core()
               .version()
               .then((versionResult) => {
-                console.log('T1C running on core ' + versionResult)
-                this.$emit('consented')
-              })
-            this.copyConsentToClipboard(this.consentData)
+                console.log("T1C running on core " + versionResult);
+                this.$emit("consented");
+              });
+            this.copyConsentToClipboard(this.consentData);
           },
           (err) => {
-            console.error(err)
+            this.toast.error(err);
           }
-        )
+        );
     },
     fallbackCopyConsentToClipboard(text) {
-      const textArea = document.createElement('textarea')
-      textArea.value = text
+      const textArea = document.createElement("textarea");
+      textArea.value = text;
 
       // Avoid scrolling to bottom
-      textArea.style.top = '0'
-      textArea.style.left = '0'
-      textArea.style.position = 'fixed'
+      textArea.style.top = "0";
+      textArea.style.left = "0";
+      textArea.style.position = "fixed";
 
-      document.body.appendChild(textArea)
-      textArea.focus()
-      textArea.select()
+      document.body.appendChild(textArea);
+      textArea.focus();
+      textArea.select();
 
       try {
-        const successful = document.execCommand('copy')
-        const msg = successful ? 'successful' : 'unsuccessful'
-        console.log('Fallback: Copying text command was ' + msg)
+        const successful = document.execCommand("copy");
+        const msg = successful ? "successful" : "unsuccessful";
+        console.log("Fallback: Copying text command was " + msg);
       } catch (err) {
-        console.error('Fallback: Oops, unable to copy', err)
+        console.error("Fallback: Oops, unable to copy", err);
       }
 
-      document.body.removeChild(textArea)
+      document.body.removeChild(textArea);
     },
     copyConsentToClipboard(text) {
       if (!navigator.clipboard) {
-        this.fallbackCopyConsentToClipboard(text)
-        return
+        this.fallbackCopyConsentToClipboard(text);
+        return;
       }
       navigator.clipboard.writeText(text).then(
         function () {
-          console.log('Async: Copying to clipboard was successful!')
+          console.log("Async: Copying to clipboard was successful!");
         },
         function (err) {
-          console.error('Async: Could not copy text: ', err)
+          console.error("Async: Could not copy text: ", err);
         }
-      )
-    }
+      );
+    },
   },
   props: {},
   mixins: [copyMixin],
   created() {
-    this.consentData = T1CClient.generateConsentToken()
-  }
-}
+    this.consentData = T1CClient.generateConsentToken();
+  },
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

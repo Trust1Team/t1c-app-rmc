@@ -51,11 +51,11 @@ export default {
         if (res && res.success && res.data.verified) {
           this.$refs.pinDialog.hideDialog()
           this.pinErrorDescription = undefined
-          this.toast.success('Successfully verified the pin code')
+          this.toast.success(this.$t('cardActions.verifiedPin'))
         } else {
           this.$refs.pinDialog.hideDialog()
           this.pinErrorDescription = 'Pin code is not correct'
-          this.toast.error('Pin code is not correct')
+          this.toast.error(this.$t('cardActions.incorrectPin'))
         }
       }, err => {
         this.pinErrorDescription = err.description

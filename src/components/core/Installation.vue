@@ -177,8 +177,7 @@ export default {
       if (v) {
         window.open(v.uri, '_blank').focus()
       } else {
-        this.toast.error('Could not find uri')
-        console.error('Could not find uri')
+        this.toast.error(this.$t('installation.unobtainableURI'))
       }
     }
   },
@@ -189,7 +188,7 @@ export default {
         this.latestVersion = res.data.data
       },
       (err) => {
-        console.error(err)
+        this.toast.error(err)
       }
     )
   },

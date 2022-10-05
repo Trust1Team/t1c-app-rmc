@@ -129,13 +129,13 @@ export default {
         this.initialiseLoading = false
         Trust1ConnectorService.setClient(res)
         console.log(Trust1ConnectorService.getClient().config())
-        this.toast.success('Trust1Connector initialised')
+        this.toast.success(this.$t('settings.trust1connector.init.Trust1Connector initialized'))
       }, err => {
         this.initialiseLoading = false
         if (err.code === '112999') {
-          this.toast.error('Could not initialise Trust1Connector')
+          this.toast.error(this.$t('settings.trust1connector.init.initialization failed'))
         } else {
-          this.toast.warning('Trust1Connector initialised')
+          this.toast.warning(this.$t('settings.trust1connector.init.Trust1Connector initialized'))
           Trust1ConnectorService.setErrorClient(err.client)
         }
       })
