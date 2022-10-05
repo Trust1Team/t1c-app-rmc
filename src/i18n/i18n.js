@@ -3,17 +3,29 @@ import en from './locales/en.json';
 import nl from './locales/nl.json';
 import fr from './locales/fr.json';
 
+const USED_LOCALES = ['en', 'nl', 'fr'];
 
 const getDefaultBrowserLocale = (defaultLocale = window.VUE_APP_ENV_DEFAULT_LANGUAGE || 'en') => {
-  const usedLocales = ['en', 'nl', 'fr'];
 
   const browserLanguage = navigator.language.split('-')[0].toLowerCase();
 
-  return usedLocales.includes(browserLanguage) ? browserLanguage : defaultLocale;
+  return USED_LOCALES.includes(browserLanguage) ? browserLanguage : defaultLocale;
+}
+
+const getCurrentLocale = (defaultLocale) => {
+  if (localStorage.getItem('i18n-locale')) {
+    return localStorage.getItem('i18n-locale');
+  }
+
+  const browserLocale = getDefaultBrowserLocale(defaultLocale);
+
+  localStorage.setItem('i18n-locale', browserLocale);
+
+  return browserLocale;
 }
 
 export default createI18n({
-  locale: getDefaultBrowserLocale(),
+  locale: getCurrentLocale(),
   fallbackLocale: 'en',
   messages: {
     en: en,
