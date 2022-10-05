@@ -19,7 +19,7 @@
 <script>
 import { ref } from 'vue';
 import $ from 'cash-dom';
-import { PinPad } from '@/components/UIComponents';
+import PinPad from '@/components/UIComponents/PinPad';
 
 export default {
   name: 'PinDialog',

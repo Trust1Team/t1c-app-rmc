@@ -40,7 +40,7 @@
 <script>
 import { ref } from 'vue';
 export default {
-  name: 'Pinpad',
+  name: 'PinPad',
   emits: ['submitPin'],
   setup(props, context) {
     const pin = ref('');
