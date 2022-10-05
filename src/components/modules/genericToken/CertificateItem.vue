@@ -1,12 +1,12 @@
 <template>
-  <div v-if="getCertificateLoading" class="loading">
+  <div v-if="certLoading" class="loading">
     <LoadingIcon icon="puff" :size="20" />
   </div>
-  <span v-if="!getCertificateLoading && !getCertificates">
+  <span v-if="!certLoading && !certificates">
     {{ $t('certificateInformation.noCertFound') }}
   </span>
-  <div v-if="getCertificates">
-    <div v-for="cert in getCertificates" :key="cert" class="text-content cert intro-x box">
+  <div v-if="certificates">
+    <div v-for="cert in certificates" :key="cert" class="text-content cert intro-x box">
       <div>
         <span v-if="cert">
           {{ cert }}
@@ -25,6 +25,8 @@
 </template>
 
 <script>
+import { useStore } from 'vuex';
+import { computed } from 'vue';
 import { LoadingIcon } from '@/components/UIComponents';
 import { copyTextToClipboard } from '@/utils/helpers';
 
@@ -34,76 +36,37 @@ export default {
   props: {
     certificate: Object,
   },
-  computed: {
-    getCertificateLoading() {
-      return this.$store.getters['card/getCertificateLoading'];
-    },
-    getCertificates() {
-      if (this.certificate && this.certificate.certificate) {
-        return [this.certificate.certificate];
-      } else if (this.certificate && this.certificate.certificates) {
-        return this.certificate.certificates;
+  setup(props, context) {
+    const store = useStore();
+
+    // getCertificateLoading
+    const certLoading = computed(() => store.getters['card/getCertificateLoading']);
+
+    // getCertificates
+    const certificates = computed(() => {
+      if (props.certificate && props.certificate.certificate) {
+        return [props.certificate.certificate];
+      } else if (props.certificate && props.certificate.certificates) {
+        return props.certificate.certificates;
       } else {
         return null;
       }
-    },
-  },
-  methods: {
-    toggleCert: function (event) {
+    });
+
+    const toggleCert = (event) => {
       event.target.parentNode.parentNode.classList.toggle('cert-open');
       event.target.classList.toggle('cert-expand-rotated');
-    },
+    };
+
+    return {
+      copyTextToClipboard,
+      certLoading,
+      certificates,
+      toggleCert,
+    };
   },
+  methods: {},
 };
 </script>
 
-<style scoped>
-.text-content {
-  margin: 10px 0;
-  padding: 15px;
-  border-radius: 5px;
-  word-break: break-word;
-}
-
-.loading {
-  width: 20px;
-  height: 20px;
-}
-
-.cert {
-  display: flex;
-  max-height: 65px;
-  overflow: hidden;
-  transition: all 0.2s ease-in;
-}
-
-.cert-expand,
-.cert-copy {
-  height: 15px;
-  color: #e05512;
-  margin-left: 10px;
-  margin-top: 5px;
-}
-
-.cert-expand:hover,
-.cert-copy:hover {
-  cursor: pointer;
-}
-
-.action-buttons button {
-  width: 100%;
-  margin-bottom: 20px;
-}
-
-.cert-open {
-  max-height: 2000px;
-}
-
-.cert-expand-icon {
-  transition: all 0.1s ease-in;
-}
-
-.cert-expand-rotated {
-  transform: rotate(180deg);
-}
-</style>
+<style src="./CertificateItem.style.css" scoped />

@@ -1,0 +1,13 @@
+.token-container {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.token-details {
+  margin-left: 40px;
+  width: 50%;
+}
+
+.card-side {
+  margin-bottom: 30px;
+}

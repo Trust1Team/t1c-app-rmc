@@ -71,6 +71,8 @@
 
 <script>
 import $ from 'cash-dom';
+import { useStore } from 'store';
+import { ref, computed } from 'vue';
 import { useToast } from 'vue-toastification';
 import { PinPad, LoadingIcon } from '@/components/UIComponents';
 import Trust1ConnectorService from '@/infrastructure/services/Trust1Connector';
@@ -80,99 +82,83 @@ export default {
   components: { PinPad, LoadingIcon },
   props: ['module', 'bytesToSign'],
   emits: ['closed'],
-  setup() {
+  setup(props, context) {
     const toast = useToast();
-    return {
-      toast,
-    };
-  },
-  data() {
-    return {
-      step: 1,
-      pinErrorDescription: undefined,
-      downloadLink: undefined,
-      loading: false,
-    };
-  },
-  computed: {
-    getCertificateLoading() {
-      return this.$store.getters['card/getCertificateLoading'];
-    },
-    getRootCertificate() {
-      return this.$store.getters['card/getRootCertificate'];
-    },
-    getIntermediateCertificates() {
-      return this.$store.getters['card/getIntermediateCertificates'];
-    },
-    getNonRepudiationCertificate() {
-      return this.$store.getters['card/getNonRepudiationCertificate'];
-    },
-    getReader() {
-      return this.$store.getters['reader/getSelectedReader'];
-    },
-    getPin() {
-      return this.$store.getters['reader/getSelectedPin'];
-    },
-    getPinType() {
-      return this.$store.getters['reader/getSelectedPinType'];
-    },
-  },
-  methods: {
-    reset() {
-      this.downloadLink = undefined;
-      this.step = 1;
-      this.pinErrorDescription = undefined;
-      this.loading = false;
-    },
-    showDialog() {
-      this.reset();
-      $('#sign-modal').modal('show');
-    },
-    hideDialog() {
+    const store = useStore();
+
+    const selectedReader = computed(() => store.getters['reader/getSelectedReader']);
+    const selectedPin = computed(() => store.getters['reader/getSelectedPin']);
+    const selectedPinType = computed(() => store.getters['reader/getSelectedPinType']);
+
+    const pinpad = ref();
+    const step = ref(1);
+    const pinErrorDescription = ref();
+    const downloadLink = ref();
+    const loading = ref(false);
+
+    const hideDialog = () => {
       $('#sign-modal').modal('hide');
-      this.$emit('closed');
-    },
-    sign(pin) {
-      const client = Trust1ConnectorService.getClient().generic(this.getReader.id, this.getPin, this.getPinType);
+      context.emit('closed');
+    };
+
+    const sign = (pin) => {
+      const client = Trust1ConnectorService.getClient().generic(
+        selectedReader.value.id,
+        selectedPin.value,
+        selectedPinType.value,
+      );
+
       const data = {
         pin: pin,
         algorithm: 'sha256',
-        data: this.bytesToSign,
+        data: props.bytesToSign,
       };
-      this.loading = true;
-      client.authenticate(this.getReader.card.modules[0], data).then(
+
+      loading.value = true;
+      client.authenticate(selectedReader.value.card.modules[0], data).then(
         (res) => {
           if (res && res.success) {
-            this.pinErrorDescription = undefined;
-            this.loading = false;
-            this.downloadLink = res.data.data;
-            this.setStep(2);
-            this.toast.success('Successfully authenticated');
+            pinErrorDescription.value = undefined;
+            loading.value = false;
+            downloadLink.value = res.data.data;
+            setStep(2);
+            toast.success('Successfully authenticated');
           } else {
-            this.loading = false;
-            this.pinErrorDescription = 'Pin code is not correct';
-            this.toast.error('Pin code is not correct');
+            loading.value = false;
+            pinErrorDescription.value = 'Pin code is not correct';
+            toast.error('Pin code is not correct');
           }
         },
         (err) => {
-          this.loading = false;
-          this.pinErrorDescription = err.description;
-          this.toast.error(err.description);
+          loading.value = false;
+          pinErrorDescription.value = err.description;
+          toast.error(err.description);
         },
       );
-    },
-    pinSelected(pin) {
-      this.sign(pin);
-    },
-    setStep(nr) {
-      this.step = nr;
-    },
+    };
+
+    const pinSelected = (pin) => {
+      sign(pin);
+    };
+
+    const setStep = (nr) => {
+      step.value = nr;
+    };
+
+    return {
+      toast,
+      pinpad,
+      step,
+      pinErrorDescription,
+      downloadLink,
+      loading,
+      hideDialog,
+      sign,
+      pinSelected,
+      setStep,
+    };
   },
 };
 </script>
 
-<style scoped>
-.wizard-text {
-  margin-bottom: 30px;
-}
-</style>
+<style src="./GenericAuthDialog.style.css" scoped />

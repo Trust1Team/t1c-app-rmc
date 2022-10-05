@@ -32,30 +32,11 @@
 
 <script>
 export default {
-  name: 'GenericTokenAddressInformation',
+  name: 'AddressInformation',
   props: {
     address: Object,
   },
 };
 </script>
 
-<style scoped>
-.token-details-item {
-  margin-bottom: 30px;
-}
-
-.text-container {
-  margin-bottom: 20px;
-}
-
-.text-label {
-  color: #b1b1b1;
-  margin-bottom: 4px;
-}
-
-.text-content {
-  padding: 15px;
-  border-radius: 5px;
-  word-break: break-word;
-}
-</style>
+<style src="./AddressInformation.style.css" scoped />

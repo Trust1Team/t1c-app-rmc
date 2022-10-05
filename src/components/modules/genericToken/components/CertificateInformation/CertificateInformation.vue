@@ -63,31 +63,7 @@ export default {
     encryptionCertificate: Object,
     issuerCertificate: Object,
   },
-  computed: {
-    getCertificateLoading() {
-      return this.$store.getters['card/getCertificateLoading'];
-    },
-  },
-  methods: {},
 };
 </script>
 
-<style scoped>
-.token-details-item {
-  margin-bottom: 30px;
-}
-
-.text-container {
-  margin-bottom: 20px;
-}
-
-.text-label {
-  color: #b1b1b1;
-  margin-bottom: 4px;
-}
-
-.action-buttons button {
-  width: 100%;
-  margin-bottom: 20px;
-}
-</style>
+<style src="./CertificateInformation.style.css" scoped />

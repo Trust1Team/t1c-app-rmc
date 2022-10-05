@@ -56,27 +56,7 @@ export default {
     readerName: String,
   },
   emits: ['goBack'],
-  computed: {
-    getCertificateLoading() {
-      return this.$store.getters['card/getCertificateLoading'];
-    },
-  },
-  created() {},
 };
 </script>
 
-<style scoped>
-.token-container {
-  display: flex;
-  flex-wrap: nowrap;
-}
-
-.token-details {
-  margin-left: 40px;
-  width: 50%;
-}
-
-.card-side {
-  margin-bottom: 30px;
-}
-</style>
+<style src="./GenericToken.style.css" scoped />
