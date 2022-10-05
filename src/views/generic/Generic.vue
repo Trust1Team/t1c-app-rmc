@@ -7,9 +7,10 @@
       <h1 class="font-medium text-4xl">{{ $t('module.token.header') }}</h1>
     </div>
 
-    <div class="loading">
-      <LoadingIcon v-if="getDataLoading" icon="puff" size="40" />
+    <div v-if="getDataLoading" class="loading">
+      <LoadingIcon icon="puff" size="40" />
     </div>
+
     <ModuleSwitch />
   </div>
 </template>
@@ -39,12 +40,6 @@ export default {
   },
   unmounted() {
     this.$store.dispatch('reader/setSelectedReader', null);
-  },
-  methods: {
-    goBack() {
-      this.$store.dispatch('reader/setSelectedReader', null);
-      this.$router.go(-1);
-    },
   },
 };
 </script>

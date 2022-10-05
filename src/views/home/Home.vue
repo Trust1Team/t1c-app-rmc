@@ -26,11 +26,11 @@
 </template>
 
 <script>
-import Trust1ConnectorService from '@/infrastructure/services/Trust1Connector';
+import { useToast } from 'vue-toastification';
 import { Consent } from '@/components/core';
 import { Error, LoadingIcon } from '@/components/UIComponents';
-import { useToast } from 'vue-toastification';
 import VersionCheck from '@/views/admin/components/VersionCheck';
+import Trust1ConnectorService from '@/infrastructure/services/Trust1Connector';
 import ReaderList from './components/ReaderList';
 import PinPad from './components/PinPad';
 
