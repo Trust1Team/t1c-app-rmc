@@ -40,6 +40,9 @@ export default {
   getClient() {
     return client;
   },
+  getClientBeid(readerId) {
+    return client.beid(readerId)
+  },
   setClient(c) {
     client = c;
   },

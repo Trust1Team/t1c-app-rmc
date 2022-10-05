@@ -6,7 +6,7 @@
       </div>
       <div class="card-row">
         <div class="text-title">
-          <p><i>Card number</i></p>
+          <p><i>{{ $t("genericCardView.Card number") }}</i></p>
         </div>
         <div class="text-spacing">
           <p class="bold">{{ constructCardNumber }}</p>
@@ -14,7 +14,7 @@
       </div>
       <div v-if="applicationData.name" class="card-row">
         <div class="text-title">
-          <p><i>Card number</i></p>
+          <p><i>{{ $t("genericCardView.Card number") }}</i></p>
         </div>
         <div class="text-spacing">
           <p class="bold">{{ applicationData.name }}</p>
@@ -22,7 +22,7 @@
       </div>
       <div class="card-row">
         <div class="text-title">
-          <p><i>Expires</i></p>
+          <p><i>{{ $t("genericCardView.Expires") }}</i></p>
         </div>
         <div class="text-spacing">
           <p class="bold">

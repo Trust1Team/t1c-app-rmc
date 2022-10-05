@@ -1,12 +1,11 @@
 <template>
   <div class="grid grid-cols-12 footer text-white pt-5">
     <div class="col-span-2 pl-16 pt-3">
-      <img alt="T1C logo" class="w-6 footer-logo" src="/assets/images/t1c-logo.png" />
+      <img alt="T1C logo" class="w-6 footer-logo" src="@/assets/images/t1c-logo.png" />
     </div>
     <div class="col-span-8 text-center text-base pl-10">
-      This service is provided free of charge, and is intended for private use only. No personal info is saved when
-      using this service. <br />
-      Copyright 2022 Trust1Team - All rights reserved
+      {{ $t('navigation.service') }} <br />
+      {{ $t('navigation.Copyright') }}
     </div>
     <div class="col-span-2 text-right">
       <a
