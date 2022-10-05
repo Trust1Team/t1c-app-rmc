@@ -40,7 +40,7 @@ import { computed } from 'vue';
 import { useStore } from 'vuex';
 import BeidModule from '@/components/modules/beid';
 import GenericPayment from '@/components/modules/genericPayment';
-import GenericTokenCardView from './genericToken/GenericTokenCardView';
+import GenericTokenCardView from '@/components/modules/genericTokenCardView';
 
 export default {
   name: 'ModuleSwitch',
