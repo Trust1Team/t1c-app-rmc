@@ -1,0 +1,19 @@
+[v-cloak] {
+  display: none;
+}
+
+.token-details-item {
+  margin-bottom: 30px;
+}
+
+.action-buttons button {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.file-item-name {
+  max-width: 600px;
+  word-break: break-all;
+  padding: 10px;
+  border-radius: 10px;
+}

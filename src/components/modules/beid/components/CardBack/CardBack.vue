@@ -6,9 +6,12 @@
           <p><i>Identificatienummer van het Rijksregister</i></p>
           <p><i>Identification number of the National Register</i></p>
           <p class="bold">
-            {{ biometric.nationalNumber.substr(0, 2) }}.{{ biometric.nationalNumber.substr(2, 2) }}.{{
-              biometric.nationalNumber.substr(4, 2)
-            }}-{{ biometric.nationalNumber.substr(6, 3) }}.{{ biometric.nationalNumber.substr(9, 2) }}
+            {{
+              `${biometric.nationalNumber.substr(0, 2)}.${biometric.nationalNumber.substr(
+                4,
+                2,
+              )}-${biometric.nationalNumber.substr(6, 3)}.${biometric.nationalNumber.substr(9, 2)}`
+            }}
           </p>
         </div>
         <div class="barcode">{{ biometric.nationalNumber }}{{ biometric.cardNumber.substr(3) }}</div>
@@ -21,11 +24,11 @@
         </div>
       </div>
 
-      <div v-if="getMrz" class="card-row">
+      <div v-if="mrz" class="card-row">
         <div class="machine-readable">
-          <p>{{ getMrz[0] }}</p>
-          <p>{{ getMrz[1] }}</p>
-          <p>{{ getMrz[2] }}</p>
+          <p>{{ mrz[0] }}</p>
+          <p>{{ mrz[1] }}</p>
+          <p>{{ mrz[2] }}</p>
         </div>
       </div>
     </div>
@@ -33,12 +36,13 @@
 </template>
 
 <script>
+import { computed } from 'vue';
 import { padEnd, truncate, sum, map, join, split } from 'lodash';
 
-function pad(string) {
+const pad = (string) => {
   return padEnd(truncate(string, { length: 30, omission: '' }), 30, '<');
-}
-function calculate(string) {
+};
+const calculate = (string) => {
   const dict = {
     '<': 0,
     0: 0,
@@ -101,19 +105,15 @@ function calculate(string) {
       ),
     ) % 10
   );
-}
+};
 
 export default {
-  name: 'BeidBackCardView',
+  name: 'BeidCardBack',
   props: ['biometric', 'picture'],
-  computed: {
-    getMrz() {
-      return this.constructMachineReadableStrings(this.biometric);
-    },
-  },
-  methods: {
-    constructMachineReadableStrings(rnData) {
+  setup(props, context) {
+    const constructMachineReadableStrings = (rnData) => {
       const mrs = [];
+
       // First line
       const prefix = 'ID';
       let first = 'BEL' + rnData.cardNumber.substr(0, 9) + '<' + rnData.cardNumber.substr(9);
@@ -148,62 +148,15 @@ export default {
       third = pad(third);
       mrs.push(third.toUpperCase());
       return mrs;
-    },
+    };
+
+    const mrz = computed(() => constructMachineReadableStrings(props.biometric));
+
+    return {
+      mrz,
+    };
   },
 };
 </script>
 
-<style scoped>
-@font-face {
-  font-family: 'Libre Barcode 39';
-  font-style: normal;
-  font-weight: 400;
-  src: url(https://fonts.gstatic.com/s/librebarcode39/v14/-nFnOHM08vwC6h8Li1eQnP_AHzI2G_Bx0vrx52g.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC,
-    U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-
-p {
-  margin-bottom: unset;
-}
-.card-container {
-  /*Ratio is 8/5*/
-  width: 480px;
-  height: 300px;
-  border: 1px solid lightgray;
-  border-radius: 15px;
-  position: relative;
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-}
-
-.card-content {
-  padding: 15px;
-  font-size: 10px;
-  /*margin-top: 15px;*/
-}
-
-.barcode {
-  font-family: 'Libre Barcode 39', cursive;
-  transform: scale(1.55, 5.3);
-  margin-top: 30px;
-  margin-right: 25px;
-}
-
-.card-row {
-  margin-top: 5px;
-  display: flex;
-  justify-content: space-between;
-  line-height: 15px;
-}
-
-.bold {
-  font-weight: bold;
-}
-
-.machine-readable {
-  margin-top: 90px;
-  font-size: 1.5rem;
-  line-height: 1;
-  font-family: 'OCR-B', monospace;
-}
-</style>
+<style src="./CardBack.style.css" scoped />

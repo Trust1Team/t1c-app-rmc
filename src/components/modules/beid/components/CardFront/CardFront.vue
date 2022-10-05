@@ -56,8 +56,11 @@
         <div>
           <p><i>Kaartnr/Card no</i></p>
           <p class="bold">
-            {{ biometric.cardNumber.substr(0, 3) }}-{{ biometric.cardNumber.substr(3, 7) }}-{{
-              biometric.cardNumber.substr(10, 2)
+            {{
+              `${biometric.cardNumber.substr(0, 3)}-${biometric.cardNumber.substr(3, 7)}-${biometric.cardNumber.substr(
+                10,
+                2,
+              )}`
             }}
           </p>
         </div>
@@ -67,8 +70,7 @@
         <div>
           <p><i>Geldig van- tot/Valid from- until</i></p>
           <p class="bold">
-            {{ biometric.cardValidityDateBegin }} -
-            {{ biometric.cardValidityDateEnd }}
+            {{ `${biometric.cardValidityDateBegin} - ${biometric.cardValidityDateEnd}` }}
           </p>
         </div>
       </div>
@@ -82,93 +84,9 @@
 
 <script>
 export default {
-  name: 'BeidFrontCardView',
+  name: 'BeidCardFront',
   props: ['biometric', 'picture'],
 };
 </script>
 
-<style scoped>
-p {
-  margin-bottom: unset;
-}
-
-.chip {
-  top: 120px;
-  left: 25px;
-  position: absolute;
-  width: 80px;
-}
-
-.chip img {
-  width: 100%;
-}
-
-.card-container {
-  /*Ratio is 8/5*/
-  width: 480px;
-  height: 300px;
-  border: 1px solid lightgray;
-  border-radius: 15px;
-  position: relative;
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-}
-
-.card-content {
-  padding: 5px;
-  font-size: 10px;
-  margin-top: 15px;
-}
-
-.card-header {
-  display: flex;
-  flex-wrap: nowrap;
-  flex-direction: row;
-  justify-content: space-between;
-  background-color: unset !important;
-}
-
-.chip-spacing {
-  margin-left: 130px;
-}
-.text-spacing {
-  margin-left: 10px;
-}
-
-.card-row-2 {
-  display: flex;
-  line-height: 15px;
-  margin-top: 5px;
-}
-
-.card-row-2 div:last-of-type {
-  text-align: right;
-  margin-left: 30px;
-}
-
-.card-row {
-  margin-top: 5px;
-  display: flex;
-  line-height: 15px;
-}
-
-.bold {
-  font-weight: bold;
-}
-
-.title {
-  font-size: 14px;
-}
-
-.sub-title {
-  font-size: 9px;
-}
-
-.image {
-  position: absolute;
-  right: 5px;
-  bottom: 0;
-  margin-bottom: 5px;
-  width: 100px;
-  border-radius: 10px;
-}
-</style>
+<style src="./CardFront.style.css" scoped />

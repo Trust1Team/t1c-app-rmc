@@ -1,5 +1,5 @@
 <template>
-  <BeidCardView
+  <BeidModule
     v-if="reader.card.modules.includes('beid')"
     :biometric="cardBiometric"
     :picture="cardPicture"
@@ -38,14 +38,14 @@
 <script>
 import { computed } from 'vue';
 import { useStore } from 'vuex';
-import BeidCardView from './beid/BeidCardView';
+import BeidModule from '@/components/modules/beid';
 import GenericPaymentCardView from './genericPayment/GenericPaymentCardView';
 import GenericTokenCardView from './genericToken/GenericTokenCardView';
 
 export default {
   name: 'ModuleSwitch',
   components: {
-    BeidCardView,
+    BeidModule,
     GenericPaymentCardView,
     GenericTokenCardView,
   },

@@ -197,8 +197,4 @@ export default {
 };
 </script>
 
-<style scoped>
-.wizard-text {
-  margin-bottom: 30px;
-}
-</style>
+<style src="./Sign.style.css" scoped />

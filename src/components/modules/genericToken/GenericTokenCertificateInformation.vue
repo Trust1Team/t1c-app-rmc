@@ -49,8 +49,8 @@
 </template>
 
 <script>
-import VerifyTokenCertificatesComponent from '@/components/modules/VerifyTokenCertificatesComponent';
 import CertificateItem from '@/components/modules/CertificateItem';
+import VerifyTokenCertificatesComponent from './VerifyTokenCertificatesComponent';
 
 export default {
   name: 'GenericTokenCertificateInformation',
