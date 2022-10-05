@@ -10,7 +10,7 @@ import notification from './reducers/notification';
 // Add the module names that needs to be persisted to the pats array.
 const persistedState = createPersistedState({
   key: 'store',
-  paths: ['main', 'config'],
+  paths: ['main'],
 });
 
 const store = createStore({
