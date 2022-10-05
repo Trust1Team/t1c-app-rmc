@@ -75,10 +75,10 @@ export default {
       return this.$store.getters['card/getIssuerCertificate'];
     },
     getConsent() {
-      return this.$store.getters.getConsent;
+      return this.$store.getters['config/getConsent'];
     },
     getInstalled() {
-      return this.$store.getters.getInstalled;
+      return this.$store.getters['config/getInstalled'];
     },
     getDataLoading() {
       return this.$store.getters['card/getDataLoading'];

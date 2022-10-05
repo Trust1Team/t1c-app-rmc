@@ -14,9 +14,9 @@
   "dependencies": {
     "@left4code/tw-starter": "^1.1.0",
     "@zhuowenli/vue-feather-icons": "^5.0.2",
-    "feather-icons": "^4.28.0",
     "axios": "^0.24.0",
     "cash-dom": "^8.1.0",
+    "feather-icons": "^4.28.0",
     "t1c-sdk-js": "^3.6.3",
     "tippy.js": "^6.2.7",
     "toastify-js": "^1.9.3",
@@ -25,10 +25,10 @@
     "vue-i18n": "9.1.7",
     "vue-router": "^4.0.3",
     "vue-toastification": "^2.0.0-rc.5",
-    "vuex": "^4.0.2"
+    "vuex": "^4.0.2",
+    "vuex-persistedstate": "^4.1.0"
   },
   "devDependencies": {
-    "js-beautify": "^1.13.5",
     "@babel/cli": "^7.15.7",
     "@babel/core": "^7.15.8",
     "@babel/eslint-parser": "^7.12.16",
@@ -53,8 +53,9 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^5.1.0",
     "eslint-plugin-vue": "^8.5.0",
-    "prettier": "^2.5.1",
+    "js-beautify": "^1.13.5",
     "postcss": "^8.3.6",
+    "prettier": "^2.5.1",
     "sass": "^1.37.5",
     "sass-loader": "^12.1.0",
     "tailwindcss": "^2.2.7"
