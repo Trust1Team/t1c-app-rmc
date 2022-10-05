@@ -16,9 +16,9 @@
 </template>
 
 <script>
-import ModuleSwitch from '@/components/modules/ModuleSwitch';
 import { LoadingIcon } from '@/components/UIComponents';
 import store from '@/infrastructure/store';
+import ModuleSwitch from './components/ModuleSwitch';
 
 export default {
   name: 'Generic',
