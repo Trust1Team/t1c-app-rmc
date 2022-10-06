@@ -6,7 +6,23 @@
       </div>
 
       <div class="card-side">
-        <GenericTokenBackCardView :biometric="biometric" :picture="picture" />
+        <GenericBackCard
+          :chipNumber="biometric.chipNumber"
+          :barcodeNumber="
+            biometric?.nationalNumber &&
+            biometric?.cardNumber &&
+            `${biometric.nationalNumber}${biometric.cardNumber.substr(3)}`
+          "
+          :row2Value="biometric.cardDeliveryMunicipality"
+          :mrz="mrz"
+        >
+          <template #chipNumberLabel>
+            <p><i>Identification number of the National Register</i></p>
+          </template>
+          <template #row2Label>
+            <p><i>Place of issue</i></p>
+          </template>
+        </GenericBackCard>
       </div>
     </div>
 
@@ -28,8 +44,10 @@
 </template>
 
 <script>
+import { ref, onMounted } from 'vue';
+import { constructMachineReadableStrings } from '@/utils/helpers';
+import { GenericBackCard } from '@/components/UIComponents';
 import GenericTokenFrontCardView from './GenericTokenFrontCardView';
-import GenericTokenBackCardView from './GenericTokenBackCardView';
 import GenericTokenCertificateInformation from './GenericTokenCertificateInformation';
 import GenericTokenAddressInformation from './GenericTokenAddressInformation';
 import GenericTokenCardActions from './GenericTokenCardActions';
@@ -37,8 +55,8 @@ import GenericTokenCardActions from './GenericTokenCardActions';
 export default {
   name: 'GenericTokenCardView',
   components: {
+    GenericBackCard,
     GenericTokenFrontCardView,
-    GenericTokenBackCardView,
     GenericTokenCertificateInformation,
     GenericTokenAddressInformation,
     GenericTokenCardActions,
@@ -56,6 +74,17 @@ export default {
     readerName: String,
   },
   emits: ['goBack'],
+  setup(props) {
+    const mrz = ref();
+
+    onMounted(() => {
+      mrz.value = constructMachineReadableStrings(props.biometric);
+    });
+
+    return {
+      mrz,
+    };
+  },
 };
 </script>
 

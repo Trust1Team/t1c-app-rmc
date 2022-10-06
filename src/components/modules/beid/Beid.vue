@@ -6,7 +6,23 @@
       </div>
 
       <div class="card-side">
-        <CardBack :biometric="biometric" :picture="picture" />
+        <GenericBackCard
+          :chipNumber="`${biometric.nationalNumber.substr(0, 2)}.${biometric.nationalNumber.substr(
+            4,
+            2,
+          )}-${biometric.nationalNumber.substr(6, 3)}.${biometric.nationalNumber.substr(9, 2)}`"
+          :barcodeNumber="`${biometric.nationalNumber}${biometric.cardNumber.substr(3)}`"
+          :row2Value="biometric.cardDeliveryMunicipality"
+          :mrz="mrz"
+        >
+          <template #chipNumberLabel>
+            <p><i>Identificatienummer van het Rijksregister</i></p>
+            <p><i>Identification number of the National Register</i></p>
+          </template>
+          <template #row2Label>
+            <p><i>Plaats van afgifte/Place of issue</i></p>
+          </template>
+        </GenericBackCard>
       </div>
     </div>
 
@@ -28,9 +44,11 @@
 </template>
 
 <script>
+import { ref, onMounted } from 'vue';
+import { constructMachineReadableStrings } from '@/utils/helpers';
 import CardFront from './components/CardFront';
-import CardBack from './components/CardBack';
 import CardActions from './components/CardActions';
+import { GenericBackCard } from '@/components/UIComponents';
 // import GenericTokenCertificateInformation from '../genericToken/GenericTokenCertificateInformation';
 // import GenericTokenAddressInformation from '../genericToken/GenericTokenAddressInformation';
 
@@ -38,10 +56,10 @@ export default {
   name: 'BeidCardView',
   components: {
     CardFront,
-    CardBack,
     // GenericTokenCertificateInformation,
     // GenericTokenAddressInformation,
     CardActions,
+    GenericBackCard,
   },
   props: {
     biometric: Object,
@@ -55,7 +73,17 @@ export default {
     issuerCertificate: Object,
     readerName: String,
   },
-  setup() {},
+  setup(props) {
+    const mrz = ref();
+
+    onMounted(() => {
+      mrz.value = constructMachineReadableStrings(props.biometric);
+    });
+
+    return {
+      mrz,
+    };
+  },
 };
 </script>
 
