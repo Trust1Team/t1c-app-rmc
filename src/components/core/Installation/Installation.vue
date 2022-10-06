@@ -141,15 +141,15 @@ import DistributionService from '@/infrastructure/services/Distribution';
 export default {
   name: 'Installation',
   props: {},
-  setup(props, context) {
+  setup() {
     const toast = useToast();
     const router = useRouter();
 
     const selectedOS = ref();
     const latestVersion = ref();
 
-    const getUrl = () => (window.VUE_APP_ENV_T1C_URL ? window.VUE_APP_ENV_T1C_URL : 'https://t1c.t1t.io');
-    const getPort = () => (window.VUE_APP_ENV_T1C_PORT ? window.VUE_APP_ENV_T1C_PORT : 51783);
+    const getUrl = () => (window._env_.VUE_APP_ENV_T1C_URL ? window._env_.VUE_APP_ENV_T1C_URL : 'https://t1c.t1t.io');
+    const getPort = () => (window._env_.VUE_APP_ENV_T1C_PORT ? window._env_.VUE_APP_ENV_T1C_PORT : 51783);
 
     const compareBaseConfig = () => {
       const client = Trust1ConnectorService.getClient() || Trust1ConnectorService.getErrorClient();

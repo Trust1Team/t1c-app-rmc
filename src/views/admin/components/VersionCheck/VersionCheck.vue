@@ -56,7 +56,7 @@ export default {
     const newVersion = ref();
     const newVersionType = ref();
 
-    const closeModal = (confirmed) => {
+    const closeModal = () => {
       if (newVersionType.value !== 'mandatory') {
         show.value = false;
       }

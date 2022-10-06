@@ -1,6 +1,6 @@
 import store from '@/infrastructure/store';
 
-const fallbackCopyTextToClipboard = (text) => {
+export const fallbackCopyTextToClipboard = (text) => {
   const textArea = document.createElement('textarea')
   textArea.value = text
 
@@ -34,7 +34,7 @@ const fallbackCopyTextToClipboard = (text) => {
   document.body.removeChild(textArea);
 }
 
-const copyTextToClipboard = (text) => {
+export const copyTextToClipboard = (text) => {
   if (!navigator.clipboard) {
     fallbackCopyTextToClipboard(text)
     return
@@ -56,9 +56,4 @@ const copyTextToClipboard = (text) => {
       store.dispatch('notification/add', notification)
     }
   )
-}
-
-export default {
-  fallbackCopyTextToClipboard,
-  copyTextToClipboard
 }

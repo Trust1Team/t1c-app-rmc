@@ -25,10 +25,10 @@ export default {
     } else {
       const config = new T1CConfig(
         new T1CConfigOptions(
-          url || (window.VUE_APP_ENV_T1C_URL ? window.VUE_APP_ENV_T1C_URL : 'https://t1c.t1t.io'),
-          port || (window.VUE_APP_ENV_T1C_PORT ? window.VUE_APP_ENV_T1C_PORT : 51783),
-          url || (window.VUE_APP_ENV_T1C_URL ? window.VUE_APP_ENV_T1C_URL : 'https://t1c.t1t.io'),
-          port || (window.VUE_APP_ENV_T1C_PORT ? window.VUE_APP_ENV_T1C_PORT : 51783),
+          url || (window._env_.VUE_APP_ENV_T1C_URL ? window._env_.VUE_APP_ENV_T1C_URL : 'https://t1c.t1t.io'),
+          port || (window._env_.VUE_APP_ENV_T1C_PORT ? window._env_.VUE_APP_ENV_T1C_PORT : 51783),
+          url || (window._env_.VUE_APP_ENV_T1C_URL ? window._env_.VUE_APP_ENV_T1C_URL : 'https://t1c.t1t.io'),
+          port || (window._env_.VUE_APP_ENV_T1C_PORT ? window._env_.VUE_APP_ENV_T1C_PORT : 51783),
           null,
           location.hostname
         )

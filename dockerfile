@@ -1,54 +1,64 @@
-##############################
-#           BUILD
-##############################
-FROM node:lts-alpine as BUILD
+# 1. FROM sets the base image to use for subsequent instructions
+# Use the node alpine image as build
+FROM node:14-alpine AS BUILD
 
-COPY src /usr/src/app/src
-COPY public /usr/src/app/public
-COPY package.json /usr/src/app/
-COPY babel.config.js /usr/src/app/
-COPY .eslintrc.js /usr/src/app/src
-COPY vue.config.js /usr/src/app/
-COPY tailwind.config.js /usr/src/app/
-COPY postcss.config.js /usr/src/app/
-COPY jsconfig.json /usr/src/app/
-WORKDIR /usr/src/app/
+# 2. WORKDIR sets the working directory for any subsequent COPY, CMD, or RUN instructions
+# Set the working directory to /app
+WORKDIR /app
+
+# 3. Add git to the image to be able to execute scripts
+RUN apk add --no-cache git
+
+# 4. COPY copies files or folders from source to the destination path in the image's filesystem
+# Copy the yarn and package files to /app in the image's filesystem
+COPY package.json ./
+COPY yarn.lock ./
+
+# 5. Install all the dependencies with the reproducible dependencies flag
 RUN yarn install
+
+# 6. COPY copies files or folders from source to the destination path in the image's filesystem
+# Copy all the files to /app in the image's filesystem
+COPY . .
+
+# 7. Generates a production 'build' folder to /app in the image's filesystem.
 RUN yarn build
 
-##############################
-#           PRODUCTION
-##############################
-# https://blog.openshift.com/deploy-vuejs-applications-on-openshift/
-FROM nginx:alpine
+# 8. Removes the node_modules fron the images filesystem.
+RUN rm -rf node_modules/
 
-RUN apk add --update coreutils
+################################################################################
 
-# Add a user how will have the rights to change the files in code
-RUN addgroup -g 1500 nginxusers
-RUN adduser --disabled-password -u 1501 nginxuser nginxusers
+# 9. FROM sets the base image to use for subsequent instructions
+# Use the latest stable nginx alpine image and create a new image as final
+FROM nginx:1.18.0-alpine AS FINAL
 
-# Configure ngnix server
-COPY nginx-webapp.conf /etc/nginx/nginx.conf
-WORKDIR /code
-COPY --from=BUILD /usr/src/app/dist .
+RUN rm -rf /etc/nginx/conf.d
+COPY conf /etc/nginx
 
-# https://zingzai.medium.com/externalise-and-configure-frontend-environment-variables-on-kubernetes-e8e798285b3e
-# Configure web-app for environment variable usage
-WORKDIR /
-COPY docker_entrypoint.sh .
-COPY generate_env-config.sh .
-RUN chown nginxuser:nginxusers docker_entrypoint.sh
-RUN chown nginxuser:nginxusers generate_env-config.sh
-RUN chmod 777 docker_entrypoint.sh generate_env-config.sh
-RUN chown -R nginxuser:nginxusers /code
-RUN chown -R nginxuser:nginxusers /etc/nginx
-RUN chown -R nginxuser:nginxusers /tmp
-RUN chmod 777 /code
-RUN chmod 777 /tmp
-RUN chmod 777 /etc/nginx
+# 10. WORKDIR sets the working directory for any subsequent COPY, CMD, or RUN instructions
+# Set the working directory to /usr/share/nginx/html
+WORKDIR /usr/share/nginx/html
 
-USER nginxuser
+# 11. COPY copies files or folders from source to the destination path in the image's filesystem
+# Copy all the files from the 'build' folder in the BUILD image to the filesystem of the new image.
+COPY --from=BUILD /app/dist .
 
-EXPOSE 8080:8080
-CMD ["/bin/sh","docker_entrypoint.sh"]
+# 12. Copy the shell script that will write te env variables to the filesystem on execution.
+COPY ./env.sh .
+
+# 13. Add bash to the image to be able to execute bash scripts
+RUN apk add --no-cache bash
+
+# 14. Make the script executable with the correct permissions
+RUN chmod +x env.sh
+
+# 15. Execute the scripts
+RUN ./env.sh
+
+# 16. Expose port 80
+EXPOSE 80
+
+# 17. The given commando will launch on start/restart, its going to write envs to filesystem and start nginx webserver.
+CMD ["/bin/bash", "-c", "/usr/share/nginx/html/env.sh && nginx -g \"daemon off;\""]
+
