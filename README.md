@@ -8,6 +8,9 @@ yarn install
 
 ### Compiles and hot-reloads for development
 
+Copy the .env.example to .env and configure to your choosing.
+The .env file is automatically ignored.
+
 ```
 yarn serve
 ```
@@ -37,7 +40,7 @@ docker build -t eu.gcr.io/t1t-pre-prod/read-my-cards:latest .
 ```
 
 ```sh
-docker run -it -p 8080:8080 -e VUE_APP_T1C_URL="https://t1c.t1t.io" -e VUE_APP_T1C_PORT="51883" "eu.gcr.io/t1t-pre-prod/read-my-cards:latest"
+docker run -it -p 3001:80 -e VUE_APP_T1C_URL="https://t1c.t1t.io" -e VUE_APP_T1C_PORT="51883" "eu.gcr.io/t1t-pre-prod/read-my-cards:latest"
 ```
 
 ### Push built images
@@ -48,5 +51,5 @@ gcloud config set project t1t-pre-prod
 
 and then make sure docker is configured
 ```shell script
-gcloud auth configure-docker   
+gcloud auth configure-docker
 ```
