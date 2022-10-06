@@ -52,7 +52,7 @@ export default {
   methods: {
     switchLanguage(lang) {
       this.$i18n.locale = lang;
-      window._env_.VUE_APP_ENV_DEFAULT_LANGUAGE = lang;
+      window._env_.VUE_APP_DEFAULT_LANGUAGE = lang;
     },
   },
 };

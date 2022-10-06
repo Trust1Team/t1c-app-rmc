@@ -2,8 +2,8 @@ import axios from 'axios'
 
 function apiClient() {
   return axios.create({
-    baseURL: window._env_.VUE_APP_ENV_FILE_EXCHANGE_URL
-      ? window._env_.VUE_APP_ENV_FILE_EXCHANGE_URL
+    baseURL: window._env_.VUE_APP_FILE_EXCHANGE_URL
+      ? window._env_.VUE_APP_FILE_EXCHANGE_URL
       : 'https://t1c.t1t.io:55000/v3/modules/fileexchange/apps/file',
     withCredentials: false,
     headers: {

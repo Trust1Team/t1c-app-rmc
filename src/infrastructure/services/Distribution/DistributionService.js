@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const apiClient = jwt => {
   const baseInstance = {
-    baseURL: window?.VUE_APP_ENV_DS_URL || 'https://acc-ds.t1t.io',
+    baseURL: window?.VUE_APP_DS_URL || 'https://acc-ds.t1t.io',
     withCredentials: false,
     headers: {
       Accept: 'application/json',
@@ -41,7 +41,7 @@ export default {
   getJWT() {
     return apiClient().get('/v3_5/tokens/application', {
       headers: {
-        apikey: window?.VUE_APP_ENV_API_KEY || '799f2350-7aee-4dd6-8f6f-ab82be18b21a'
+        apikey: window?.VUE_APP_API_KEY || '799f2350-7aee-4dd6-8f6f-ab82be18b21a'
       }
     })
   }

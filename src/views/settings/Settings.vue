@@ -111,7 +111,7 @@ export default {
       const client = Trust1ConnectorService.getClient();
 
       if (!client) {
-        return window?.VUE_APP_ENV_T1C_URL || 'https://t1c.t1t.io';
+        return window?.VUE_APP_T1C_URL || 'https://t1c.t1t.io';
       }
 
       return client.config()._t1cApiUrl;
@@ -121,7 +121,7 @@ export default {
       const client = Trust1ConnectorService.getClient();
 
       if (!client) {
-        return window?.VUE_APP_ENV_T1C_PORT || 51783;
+        return window?.VUE_APP_T1C_PORT || 51783;
       }
 
       return client.config()._t1cProxyPort;

@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const apiClient = () => {
   const baseInstance = {
-    baseURL: window?.VUE_APP_ENV_BFF_URL || 'http://localhost:9000',
+    baseURL: window?.VUE_APP_BFF_URL || 'http://localhost:9000',
     withCredentials: false,
   }
 
