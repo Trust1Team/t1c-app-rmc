@@ -5,7 +5,7 @@
   <div v-if="!loading" class="container">
     <VersionCheck />
 
-    <div v-if="getConsent && getInstalled">
+    <div v-if="consent && isInstalled">
       <div v-if="error">
         <Error :text="error" />
       </div>
@@ -21,12 +21,15 @@
         <PinPad @pinSelected="pinSelected" />
       </div>
     </div>
-    <Consent v-if="getInstalled && !getConsent" @consented="consented" />
+    <Consent v-if="isInstalled && !consent" @consented="consented" />
   </div>
 </template>
 
 <script>
-import { useToast } from 'vue-toastification';
+import { useStore } from 'vuex';
+import { useRouter } from 'vue-router';
+import { useI18n } from 'vue-i18n';
+import { ref, computed, onMounted } from 'vue';
 import { Consent } from '@/components/core';
 import { Error, LoadingIcon } from '@/components/UIComponents';
 import VersionCheck from '@/views/admin/components/VersionCheck';
@@ -45,252 +48,152 @@ export default {
     LoadingIcon,
   },
   setup() {
-    const toast = useToast();
-    return {
-      toast,
+    const store = useStore();
+    const router = useRouter();
+    const { t } = useI18n();
+
+    const selectedReader = computed(() => store.getters['reader/getSelectedReader']);
+    const selectedPin = computed(() => store.getters['reader/getSelectedPin']);
+    const selectedPinType = computed(() => store.getters['reader/getSelectedPinType']);
+    const consent = computed(() => store.getters['config/getConsent']);
+    const isInstalled = computed(() => store.getters['config/getInstalled']);
+
+    const loading = ref(false);
+    const pageView = ref(0);
+    const pinType = ref(false);
+    const error = ref();
+
+    const resetError = () => {
+      error.value = null;
     };
-  },
-  data() {
-    return {
-      loading: false,
-      pageView: 0,
-      pinType: false,
-      error: null,
+
+    const returnToStart = () => {
+      resetError();
+      pageView.value = 0;
     };
-  },
-  computed: {
-    getReader() {
-      return this.$store.getters['reader/getSelectedReader'];
-    },
-    getPin() {
-      return this.$store.getters['reader/getSelectedPin'];
-    },
-    getPinType() {
-      return this.$store.getters['reader/getSelectedPinType'];
-    },
-    getConsent() {
-      return this.$store.getters['config/getConsent'];
-    },
-    getInstalled() {
-      return this.$store.getters['config/getInstalled'];
-    },
-    getDataLoading() {
-      return this.$store.getters['card/getDataLoading'];
-    },
-    getCertificateLoading() {
-      return this.$store.getters['card/getCertificateLoading'];
-    },
-  },
-  created() {
-    this.resetError();
-    if (Trust1ConnectorService.getErrorClient() || Trust1ConnectorService.getClient()) {
-      this.installed();
-      if (Trust1ConnectorService.getClient()) this.consented();
-    } else {
-      Trust1ConnectorService.init().then(
-        (res) => {
-          this.installed();
-          this.consented();
-          Trust1ConnectorService.setClient(res);
-        },
-        (err) => {
-          if (err.code === '814500' || err.code === '814501') {
-            this.installed();
-            Trust1ConnectorService.setErrorClient(err.client);
-          } else {
-            this.$router.push({ name: 'side-menu-download' });
-          }
-        },
-      );
-    }
-  },
-  methods: {
-    returnToStart() {
-      this.resetError();
-      this.pageView = 0;
-    },
-    installed() {
-      this.resetError();
-      this.$store.dispatch('setInstalled', true);
-    },
-    consented() {
-      this.resetError();
-      this.$store.dispatch('setConsent', true);
-    },
-    pinSelected() {
-      this.resetError();
-      this.loading = true;
-      Promise.all([this.getTokenAllData(), this.getTokenCertificates()])
+
+    const installed = () => {
+      resetError();
+      store.dispatch('setInstalled', true);
+    };
+
+    const consented = () => {
+      resetError();
+      store.dispatch('setConsent', true);
+    };
+
+    const getTokenCertificates = () => {
+      return new Promise((resolve, reject) => {
+        if (selectedReader.value && selectedReader.value.card && selectedReader.value.card.modules) {
+          const client = Trust1ConnectorService.getClient();
+          const c = client.generic(selectedReader.value.id, selectedPin.value, selectedPinType.value);
+          c.allCerts(selectedReader.value.card.modules[0]).then(
+            (allCertsRes) => {
+              store.dispatch('card/setAllCertificates', allCertsRes).then(() => {
+                store.dispatch('card/setCertificateLoading', false);
+                return resolve();
+              });
+            },
+            (err) => {
+              error.value = t('home.certificates.error.fetch', [err.description]);
+              console.error(err);
+              store.dispatch('card/setCertificateLoading', false).then(() => {
+                return reject(err);
+              });
+            },
+          );
+        } else {
+          error.value = t('home.error.nomodule');
+          store.dispatch('card/setCertificateLoading', false).then(() => {
+            return reject(t('home.error.nomodule'));
+          });
+        }
+      });
+    };
+
+    const getTokenAllData = () => {
+      return new Promise((resolve, reject) => {
+        if (selectedReader.value && selectedReader.value.card && selectedReader.value.card.modules) {
+          const client = Trust1ConnectorService.getClient();
+          const c = client.generic(selectedReader.value.id, selectedPin.value, selectedPinType.value);
+
+          c.allData(selectedReader.value.card.modules[0]).then(
+            (allDataRes) => {
+              store.dispatch('card/setAllData', allDataRes).then(() => {
+                store.dispatch('card/setDataLoading', false);
+                return resolve();
+              });
+            },
+            (err) => {
+              error.value = t('home.data.error.fetch', [err.description]);
+              console.error(err);
+              store.dispatch('card/setDataLoading', false).then(() => {
+                return reject(err);
+              });
+            },
+          );
+        } else {
+          error.value = t('home.error.nomodule');
+          store.dispatch('card/setCertificateLoading', false).then(() => {
+            return reject(t('home.error.nomodule'));
+          });
+        }
+      });
+    };
+
+    const pinSelected = () => {
+      resetError();
+      loading.value = true;
+      Promise.all([getTokenAllData(), getTokenCertificates()])
         .then(() => {
-          this.loading = false;
-          this.$router.push({ name: 'side-menu-generic' });
+          loading.value = false;
+          router.push({ name: 'side-menu-generic' });
         })
         .catch((err) => {
-          this.loading = false;
+          loading.value = false;
           console.error(err);
         });
-    },
-    readerSelected() {
-      this.loading = true;
-      const reader = this.getReader;
-      if (reader) {
-        if (this.getReader.card.modules.includes('emv') || this.getReader.card.modules.includes('crelan')) {
-          // EMV token
-          Promise.all([this.getPaymentAllData()])
-            .then(() => {
-              this.loading = false;
-              this.$router.push({ name: 'side-menu-generic' });
-            })
-            .catch((err) => {
-              this.loading = false;
-              console.error(err);
-            });
-        } else if (this.getReader.card.modules.includes('luxeid')) {
-          // PACE enabled token
-          this.loading = false;
-          this.pageView = 1;
-        } else {
-          // Regular tokens without PACE
-          Promise.all([this.getTokenAllData(), this.getTokenCertificates()])
-            .then(() => {
-              this.loading = false;
-              this.$router.push({ name: 'side-menu-generic' });
-            })
-            .catch((err) => {
-              this.loading = false;
-              console.error(err);
-            });
-        }
-      } else {
-        this.error = this.$t('home.error.noreader');
-      }
-    },
-    resetError() {
-      this.error = null;
-    },
-    getTokenCertificates() {
+    };
+
+    const getPaymentAllData = () => {
       return new Promise((resolve, reject) => {
-        if (this.getReader && this.getReader.card && this.getReader.card.modules) {
+        if (selectedReader.value && selectedReader.value.card && selectedReader.value.card.modules) {
           const client = Trust1ConnectorService.getClient();
-          const c = client.generic(this.getReader.id, this.getPin, this.getPinType);
-          c.allCerts(this.getReader.card.modules[0]).then(
-            (allCertsRes) => {
-              this.$store.dispatch('card/setAllCertificates', allCertsRes).then(() => {
-                this.$store.dispatch('card/setCertificateLoading', false);
-                return resolve();
-              });
-            },
-            (err) => {
-              this.error = this.$t('home.certificates.error.fetch', [err.description]);
-              console.error(err);
-              this.$store.dispatch('card/setCertificateLoading', false).then(() => {
-                return reject(err);
-              });
-            },
-          );
-        } else {
-          this.error = this.$t('home.error.nomodule');
-          this.$store.dispatch('card/setCertificateLoading', false).then(() => {
-            return reject(this.$t('home.error.nomodule'));
-          });
-        }
-      });
-    },
-    getTokenAllData() {
-      return new Promise((resolve, reject) => {
-        if (this.getReader && this.getReader.card && this.getReader.card.modules) {
-          const client = Trust1ConnectorService.getClient();
-          const c = client.generic(this.getReader.id, this.getPin, this.getPinType);
-          c.allData(this.getReader.card.modules[0]).then(
-            (allDataRes) => {
-              this.$store.dispatch('card/setAllData', allDataRes).then(() => {
-                this.$store.dispatch('card/setDataLoading', false);
-                return resolve();
-              });
-            },
-            (err) => {
-              this.error = this.$t('home.data.error.fetch', [err.description]);
-              console.error(err);
-              this.$store.dispatch('card/setDataLoading', false).then(() => {
-                return reject(err);
-              });
-            },
-          );
-        } else {
-          this.error = this.$t('home.error.nomodule');
-          this.$store.dispatch('card/setCertificateLoading', false).then(() => {
-            return reject(this.$t('home.error.nomodule'));
-          });
-        }
-      });
-    },
-    getPaymentCertificates() {
-      return new Promise((resolve, reject) => {
-        if (this.getReader && this.getReader.card && this.getReader.card.modules) {
-          const client = Trust1ConnectorService.getClient();
-          const c = client.paymentGeneric(this.getReader.id);
-          c.allCerts(this.getReader.card.modules[0]).then(
-            (allCertsRes) => {
-              this.$store.dispatch('card/setAllCertificates', allCertsRes).then(() => {
-                this.$store.dispatch('card/setCertificateLoading', false);
-                return resolve();
-              });
-            },
-            (err) => {
-              this.error = this.$t('home.certificates.error.fetch', [err.description]);
-              console.error(err);
-              this.$store.dispatch('card/setCertificateLoading', false).then(() => {
-                return reject(err);
-              });
-            },
-          );
-        } else {
-          this.error = this.$t('home.error.nomodule');
-          this.$store.dispatch('card/setCertificateLoading', false).then(() => {
-            return reject(this.$t('home.error.nomodule'));
-          });
-        }
-      });
-    },
-    getPaymentAllData() {
-      return new Promise((resolve, reject) => {
-        if (this.getReader && this.getReader.card && this.getReader.card.modules) {
-          const client = Trust1ConnectorService.getClient();
-          const c = client.paymentGeneric(this.getReader.id);
-          c.readApplicationData(this.getReader.card.modules[0]).then(
+          const c = client.paymentGeneric(selectedReader.value.id);
+          c.readApplicationData(selectedReader.value.card.modules[0]).then(
             (applicationDataRes) => {
-              this.$store.dispatch('card/setApplicationData', applicationDataRes).then(() => {
-                this.$store.dispatch('card/setDataLoading', false);
-                c.readData(this.getReader.card.modules[0]).then(
+              store.dispatch('card/setApplicationData', applicationDataRes).then(() => {
+                store.dispatch('card/setDataLoading', false);
+                c.readData(selectedReader.value.card.modules[0]).then(
                   (allDataRes) => {
                     let certsFetched = 0;
                     allDataRes.data.applications.forEach((app) => {
-                      c.allCerts(this.getReader.card.modules[0], app.aid).then(
+                      c.allCerts(selectedReader.value.card.modules[0], app.aid).then(
                         (allCertsRes) => {
                           certsFetched += 1;
-                          this.$store
+                          store
                             .dispatch('card/setPaymentCertificates', {
                               aid: app.aid,
                               data: allCertsRes.data,
                             })
                             .then(() => {
                               if (certsFetched === allDataRes.data.applications.length) {
-                                this.$store.dispatch('card/setCertificateLoading', false);
+                                store.dispatch('card/setCertificateLoading', false);
                               }
                             });
                         },
                         (err) => {
-                          this.error = this.$t('home.certificates.error.fetch', [err.description]);
+                          error.value = t('home.certificates.error.fetch', [err.description]);
                           console.error(err);
                           return reject(err);
                         },
                       );
                     });
-                    this.$store.dispatch('card/setApplications', allDataRes);
+                    store.dispatch('card/setApplications', allDataRes);
                     return resolve();
                   },
                   (err) => {
-                    this.error = this.$t('home.data.error.fetch', [err.description]);
+                    error.value = t('home.data.error.fetch', [err.description]);
                     console.error(err);
                     return reject(err);
                   },
@@ -298,43 +201,92 @@ export default {
               });
             },
             (err) => {
-              this.error = this.$t('home.data.error.fetch', [err.description]);
+              error.value = t('home.data.error.fetch', [err.description]);
               console.error(err);
               return reject(err);
             },
           );
         } else {
-          this.error = this.$t('home.error.nomodule');
-          this.$store.dispatch('card/setCertificateLoading', false).then(() => {
-            return reject(this.$t('home.error.nomodule'));
+          error.value = t('home.error.nomodule');
+          store.dispatch('card/setCertificateLoading', false).then(() => {
+            return reject(t('home.error.nomodule'));
           });
         }
       });
-    },
+    };
+
+    const readerSelected = () => {
+      loading.value = true;
+      const reader = selectedReader.value;
+      if (reader) {
+        if (selectedReader.value.card.modules.includes('emv') || selectedReader.value.card.modules.includes('crelan')) {
+          // EMV token
+          Promise.all([getPaymentAllData()])
+            .then(() => {
+              loading.value = false;
+              router.push({ name: 'side-menu-generic' });
+            })
+            .catch((err) => {
+              loading.value = false;
+              console.error(err);
+            });
+        } else if (selectedReader.value.card.modules.includes('luxeid')) {
+          // PACE enabled token
+          loading.value = false;
+          pageView.value = 1;
+        } else {
+          // Regular tokens without PACE
+          Promise.all([getTokenAllData(), getTokenCertificates()])
+            .then(() => {
+              loading.value = false;
+              router.push({ name: 'side-menu-generic' });
+            })
+            .catch((err) => {
+              loading.value = false;
+              console.error(err);
+            });
+        }
+      } else {
+        error.value = t('home.error.noreader');
+      }
+    };
+
+    onMounted(() => {
+      resetError();
+      if (Trust1ConnectorService.getErrorClient() || Trust1ConnectorService.getClient()) {
+        installed();
+        if (Trust1ConnectorService.getClient()) consented();
+      } else {
+        Trust1ConnectorService.init().then(
+          (res) => {
+            installed();
+            consented();
+            Trust1ConnectorService.setClient(res);
+          },
+          (err) => {
+            if (err.code === '814500' || err.code === '814501') {
+              installed();
+              Trust1ConnectorService.setErrorClient(err.client);
+            } else {
+              router.push({ name: 'side-menu-download' });
+            }
+          },
+        );
+      }
+    });
+
+    return {
+      loading,
+      pageView,
+      pinType,
+      error,
+      consent,
+      isInstalled,
+      readerSelected,
+      pinSelected,
+    };
   },
 };
 </script>
 
-<style scoped>
-.installer h1,
-h2 {
-  text-align: center;
-}
-
-.installer h2 {
-  margin-bottom: 60px;
-}
-
-.loading {
-  display: flex;
-  justify-content: center;
-  margin: 10px;
-}
-
-.pin-pad-container h1 {
-  width: 100%;
-  text-align: center;
-  font-size: 1.7rem;
-  color: #dc623b;
-}
-</style>
+<style src="./Home.style.css" scoped />

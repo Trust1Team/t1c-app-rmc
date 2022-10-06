@@ -3,7 +3,7 @@
   "version": "0.6.5",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
+    "serve": "chmod +x ./env.sh && ./env.sh && cp env-config.js ./public/ && vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "docker-build": "docker build -t eu.gcr.io/t1t-pre-prod/read-my-cards .",
