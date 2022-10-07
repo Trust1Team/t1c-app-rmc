@@ -5,7 +5,7 @@ import fr from './locales/fr.json';
 
 const USED_LOCALES = ['en', 'nl', 'fr'];
 
-const getDefaultBrowserLocale = (defaultLocale = window._env_.VUE_APP_DEFAULT_LANGUAGE || 'en') => {
+const getDefaultBrowserLocale = (defaultLocale = window?._env_?.VUE_APP_DEFAULT_LANGUAGE || 'en') => {
 
   const browserLanguage = navigator.language.split('-')[0].toLowerCase();
 

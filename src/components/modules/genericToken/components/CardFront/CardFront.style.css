@@ -29,6 +29,15 @@ p {
   margin-top: 10px;
 }
 
+.card-header {
+  padding: 5px 10px;
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: unset !important;
+}
+
 .chip-spacing {
   margin-left: 130px;
 }
@@ -73,13 +82,4 @@ p {
   margin-bottom: 5px;
   width: 100px;
   border-radius: 10px;
-}
-
-.card-header {
-  padding: 5px 10px;
-  display: flex;
-  flex-wrap: nowrap;
-  flex-direction: row;
-  justify-content: space-between;
-  background-color: unset !important;
 }

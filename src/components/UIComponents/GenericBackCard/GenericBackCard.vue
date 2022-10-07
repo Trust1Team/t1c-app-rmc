@@ -36,4 +36,4 @@ export default {
 };
 </script>
 
-<style src="./CardBack.style.css" scoped />
+<style src="./GenericBackCard.style.css" scoped />

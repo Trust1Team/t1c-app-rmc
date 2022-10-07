@@ -74,12 +74,12 @@ export default {
 
     const installed = () => {
       resetError();
-      store.dispatch('setInstalled', true);
+      store.dispatch('config/setInstalled', true);
     };
 
     const consented = () => {
       resetError();
-      store.dispatch('setConsent', true);
+      store.dispatch('config/setConsent', true);
     };
 
     const getTokenCertificates = () => {
